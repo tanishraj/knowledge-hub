@@ -131,3 +131,20 @@ git config --global user.email "your.email@example.com"
 ```bash
 git config --global --list
 ```
+
+## What is Git SSH and What Does it Do?
+
+### Git SSH:
+
+- **SSH (Secure Shell)**: A protocol used to securely connect to remote servers.
+- **Git SSH**: Enables secure communication between your local machine and remote Git repositories (e.g., on GitHub, GitLab).
+
+### What It Does:
+
+- **Authentication**: SSH keys replace the need for username/password authentication, enhancing security.
+- **Secure Transfers**: SSH ensures that all data transferred between your local machine and the remote repository is encrypted.
+- **Convenience**: Once configured, SSH allows seamless pushing and pulling of code without repeatedly entering credentials.
+
+### Use Case:
+
+- Commonly used when working with private repositories or when enhanced security is needed for remote operations.
