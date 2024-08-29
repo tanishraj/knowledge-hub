@@ -116,3 +116,18 @@ These benefits make version control systems an essential tool for managing and c
    - Download the installer from [git-scm.com](https://git-scm.com/download/win).
    - Run the installer and follow the setup instructions.
    - Verify installation: Open Command Prompt and run `git --version`.
+
+## Configure Your Username and Email in Git
+
+### Set Username:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+### Verify Configuration:
+
+```bash
+git config --global --list
+```
