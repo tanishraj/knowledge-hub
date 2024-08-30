@@ -244,3 +244,31 @@ clip < ~/.ssh/id_rsa.pub
 - The archive contains only the tracked files, excluding the .git directory and untracked files.
 - `HEAD` refers to the current branch.
 - `HEAD:folder-name` refers to the folder in the current branch.
+
+## GitOps
+
+### What is GitOps?
+
+- **GitOps**: A set of practices that uses Git as the single source of truth for managing infrastructure and application deployments.
+- **Automation**: Automates the deployment, monitoring, and management of infrastructure using Git and continuous integration/continuous deployment (CI/CD) pipelines.
+
+### Key Concepts:
+
+- **Declarative Configuration**: Infrastructure is described in code, stored in Git repositories.
+- **Version Control**: All changes to infrastructure are tracked in Git, enabling easy rollback and auditability.
+- **Continuous Deployment**: Automated pipelines deploy changes directly from the Git repository to the production environment.
+
+### Benefits:
+
+- **Consistency**: Ensures that the deployed environment matches the configuration in Git.
+- **Auditability**: Every change is tracked and can be reviewed, providing a clear history of changes.
+- **Collaboration**: Teams can collaborate on infrastructure changes using familiar Git workflows (e.g., pull requests).
+
+### Use Cases:
+
+- **Kubernetes Management**: Commonly used in Kubernetes environments to manage cluster configurations.
+- **Infrastructure as Code (IaC)**: Works with tools like Terraform, Ansible, and Helm to manage infrastructure.
+
+### Tools:
+
+- **FluxCD**, **ArgoCD**: Popular tools that implement GitOps workflows.
