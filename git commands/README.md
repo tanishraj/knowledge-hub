@@ -273,6 +273,12 @@ clip < ~/.ssh/id_rsa.pub
 
 - **FluxCD**, **ArgoCD**: Popular tools that implement GitOps workflows.
 
-## git cheatsheet
+## Git Cheatsheet
 
 <a href="./SWTM-2088_Atlassian-Git-Cheatsheet.pdf" target="_blank">Download the PDF file</a>
+
+## Git Commands
+
+| Command    | Options | Explanation                                                |
+| ---------- | ------- | ---------------------------------------------------------- |
+| `git init` | N/A     | Initializes a new Git repository in the current directory. |
