@@ -272,3 +272,7 @@ clip < ~/.ssh/id_rsa.pub
 ### Tools:
 
 - **FluxCD**, **ArgoCD**: Popular tools that implement GitOps workflows.
+
+## git cheatsheet
+
+[Download the PDF file](./SWTM-2088_Atlassian-Git-Cheatsheet.pdf)
