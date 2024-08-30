@@ -145,6 +145,65 @@ git config --global --list
 - **Secure Transfers**: SSH ensures that all data transferred between your local machine and the remote repository is encrypted.
 - **Convenience**: Once configured, SSH allows seamless pushing and pulling of code without repeatedly entering credentials.
 
+### How it works?
+
+SSH uses a pair of keys to initiate a secure handshake between remote parties. The key pair contains a public and private key. The private vs public nomenclature can be confusing as they are both called keys. It is more helpful to think of the public key as a "lock" and the private key as the "key". You give the public 'lock' to remote parties to encrypt or 'lock' data. This data is then opened with the 'private' key which you hold in a secure place.
+
 ### Use Case:
 
 - Commonly used when working with private repositories or when enhanced security is needed for remote operations.
+
+## How to Create an SSH Key
+
+### Steps to Create an SSH Key:
+
+1. **Open Terminal or Command Prompt**:
+
+   - On Mac/Linux: Use Terminal.
+   - On Windows: Use Git Bash or Command Prompt.
+
+2. **Generate the SSH Key**:
+
+   - Run the following command:
+
+   ```bash
+   ssh-keygen -t rsa -b 4096 -C "your.email@example.com"
+   ```
+
+   - Press Enter to accept the default file location.
+   - Optionally, enter a passphrase for added security.
+
+3. **Add SSH Key to SSH Agent**:
+
+   - Start the SSH agent:
+
+   ```bash
+   eval "$(ssh-agent -s)"
+   ```
+
+   - Add the SSH key to the agent:
+
+   ```bash
+   ssh-add -K ~/.ssh/id_rsa
+   ```
+
+4. **Copy the SSH Key to Your Clipboard:**:
+
+- On Mac/Linux
+
+```bash
+pbcopy < ~/.ssh/id_rsa.pub
+```
+
+- On Windows
+
+```bash
+clip < ~/.ssh/id_rsa.pub
+```
+
+5. **Add SSH Key to GitHub/GitLab**:
+
+   - Go to your account settings on GitHub/GitLab.
+   - Click **SSH and GPG keys**.
+   - Click **Add SSH key**.
+   - Paste in the key and click **Add key**.
