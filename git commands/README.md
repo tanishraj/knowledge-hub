@@ -279,11 +279,6 @@ clip < ~/.ssh/id_rsa.pub
 
 ## Git Commands
 
-<details>
-<summary><b>git init</b></summary>
-
 | Command    | what it does?                                              | options | options details |
 | ---------- | ---------------------------------------------------------- | ------- | --------------- |
 | `git init` | Initializes a new Git repository in the current directory. | N/A     |                 |
-
-</details>
