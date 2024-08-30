@@ -187,7 +187,7 @@ SSH uses a pair of keys to initiate a secure handshake between remote parties. T
    ssh-add -K ~/.ssh/id_rsa
    ```
 
-4. **Copy the SSH Key to Your Clipboard:**:
+4. **Copy the SSH Key to Your Clipboard**:
 
 - On Mac/Linux
 
@@ -207,3 +207,40 @@ clip < ~/.ssh/id_rsa.pub
    - Click **SSH and GPG keys**.
    - Click **Add SSH key**.
    - Paste in the key and click **Add key**.
+
+## Git Archive
+
+### What is Git Archive?
+
+- **Git Archive**: A command used to create an archive (e.g., `.zip` or `.tar`) of files from a specific Git repository or a particular branch/commit.
+
+### Common Use Cases:
+
+- **Distribution**: Package your code for distribution without including the entire Git history.
+- **Backup**: Create a snapshot of your repository at a specific point in time.
+
+### How to Use:
+
+1. **Create a `.zip` Archive of the Latest Commit**:
+
+   ```bash
+   git archive --format=zip -o archive.zip HEAD
+   ```
+
+2. **Create a .tar.gz Archive of a Specific Branch**:
+
+   ```bash
+   git archive --format=tar.gz -o archive.tar.gz branch-name
+   ```
+
+3. **Create an Archive of a Specific Folder**:
+
+   ```bash
+   git archive --format=zip -o folder.zip HEAD:folder-name
+   ```
+
+   **Note**:
+
+- The archive contains only the tracked files, excluding the .git directory and untracked files.
+- `HEAD` refers to the current branch.
+- `HEAD:folder-name` refers to the folder in the current branch.
