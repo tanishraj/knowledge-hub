@@ -275,4 +275,4 @@ clip < ~/.ssh/id_rsa.pub
 
 ## git cheatsheet
 
-[Download the PDF file](./SWTM-2088_Atlassian-Git-Cheatsheet.pdf)
+<a href="./SWTM-2088_Atlassian-Git-Cheatsheet.pdf" target="_blank">Download the PDF file</a>
