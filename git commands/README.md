@@ -296,6 +296,8 @@ Initializes a new Git repository in the current directory. It creates a `.git` f
 git init
 ```
 
+##
+
 ### `git init --bare`
 
 The `git init --bare` command creates a **bare Git repository**. Unlike a standard Git repository, a bare repository doesn't have a working directory where files can be edited. Instead, it only contains the version history and configuration files. This makes it ideal for use as a central repository in collaborative projects.
@@ -319,4 +321,30 @@ This command creates a bare repository named my-repo.git, which can be used as a
 
 ##
 
+### `git init --template`
+
+The `git init --template` command allows you to initialize a new Git repository with a custom template directory. This template directory can include hooks, configuration files, and other settings that Git will automatically copy into the new repository’s `.git` folder.
+
+#### When to Use:
+
+- **Custom Git Setup**: Use this when you want all new repositories to start with specific configurations or scripts.
+- **Standardization Across Teams**: Ensures consistent setup for all repositories within a team or organization.
+
+#### Real-Life Example:
+
+Think of the `--template` option as a **starter kit** for a new project. Just like a baking kit might come with pre-measured ingredients to ensure consistency, a Git template ensures that every new repository starts with the same pre-configured settings.
+
+#### Command Example:
+
+```bash
+git init --template=/path/to/your/template-directory my-repo
+```
+
+This command creates a new Git repository named `my-repo`, applying the custom settings and files from `/path/to/your/template-directory`.
+
+### Default Behavior:
+
+If no `--template` option is specified, Git uses its default template directory.
+
 </details>
+```
