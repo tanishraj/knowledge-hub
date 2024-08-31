@@ -290,6 +290,12 @@ clip < ~/.ssh/id_rsa.pub
 
 Initializes a new Git repository in the current directory. It creates a `.git` folder in the current directory. This tracks all changes made to the repository.
 
+#### Command Example:
+
+```bash
+git init
+```
+
 ### `git init --bare`
 
 The `git init --bare` command creates a **bare Git repository**. Unlike a standard Git repository, a bare repository doesn't have a working directory where files can be edited. Instead, it only contains the version history and configuration files. This makes it ideal for use as a central repository in collaborative projects.
