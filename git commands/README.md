@@ -277,12 +277,14 @@ clip < ~/.ssh/id_rsa.pub
 
 <a href="./SWTM-2088_Atlassian-Git-Cheatsheet.pdf" target="_blank">Download the PDF file</a>
 
-## Setting up a repository
+## Git Commands
 
 <details>
-<summary>click to expand</summary>
+<summary>
 
-## Git Commands
+## Setting up a repository
+
+</summary>
 
 ### `git init`
 
