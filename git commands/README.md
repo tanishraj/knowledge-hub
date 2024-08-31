@@ -281,6 +281,7 @@ clip < ~/.ssh/id_rsa.pub
 
 <details>
 <summary>click to expand</summary>
+
 ## Git Commands
 
 ### `git init`
