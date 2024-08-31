@@ -347,4 +347,3 @@ This command creates a new Git repository named `my-repo`, applying the custom s
 If no `--template` option is specified, Git uses its default template directory.
 
 </details>
-```
