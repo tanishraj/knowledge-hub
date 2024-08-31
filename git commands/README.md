@@ -362,4 +362,36 @@ If no `--template` option is specified, Git uses its default template directory.
 
 </details>
 
+<details>
+<summary>
+
+### `git init --separate-git-dir`
+
+</summary>
+
+The `git init --separate-git-dir` option allows you to initialize a Git repository where the `.git` directory (containing the repository's history and configuration) is stored in a different location from the working directory.
+
+#### When to Use:
+
+- **Shared Metadata**: To use the same `.git` directory across multiple projects.
+- **Clean Project Directory**: To keep the project folder clean by storing the Git metadata elsewhere.
+
+#### Real-Life Example:
+
+Think of your project directory as a workshop and the `.git` directory as a storage room for tools and blueprints. With `--separate-git-dir`, you store these tools and blueprints in a different location, while still being able to use them in your workshop.
+
+#### Command Example:
+
+```bash
+git init --separate-git-dir=/path/to/gitdir my-project
+```
+
+This command initializes a Git repository in `my-project`, with the `.git` directory stored separately in `/path/to/gitdir`.
+
+#### Default Behavior:
+
+Without the `--separate-git-dir` option, the `.git` directory is created inside the root of your project directory.
+
+</details>
+
 </details>
