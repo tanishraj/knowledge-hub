@@ -279,6 +279,11 @@ clip < ~/.ssh/id_rsa.pub
 
 ## Git Commands
 
-| Command    | what it does?                                              | options | options details |
-| ---------- | ---------------------------------------------------------- | ------- | --------------- |
-| `git init` | Initializes a new Git repository in the current directory. | N/A     |                 |
+| Command    | what it does?                                              | options                           | options details                                    |
+| ---------- | ---------------------------------------------------------- | --------------------------------- | -------------------------------------------------- |
+| `git init` | Initializes a new Git repository in the current directory. | N/A                               | N/A                                                |
+|            |                                                            | `--bare`                          | Creates a repository without a working directory.  |
+|            |                                                            | `--template=<template_directory>` | Copies templates from the specified directory.     |
+|            |                                                            | `--separate-git-dir=<git_dir>`    | Stores the `.git` directory in the specified path. |
+|            |                                                            | `--shared[=permissions]`          | Sets sharing permissions like `group` or `all`.    |
+|            |                                                            | `-q`, `--quiet`                   | Suppresses output for a quieter operation.         |
