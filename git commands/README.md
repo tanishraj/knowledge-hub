@@ -303,8 +303,6 @@ git init
 
 </details>
 
-##
-
 <details>
 <summary>
 
@@ -332,8 +330,6 @@ git init --bare my-repo.git
 This command creates a bare repository named my-repo.git, which can be used as a central hub for multiple developers to manage code collaboratively.
 
 </details>
-
-##
 
 <details>
 <summary>
