@@ -277,8 +277,37 @@ clip < ~/.ssh/id_rsa.pub
 
 <a href="./SWTM-2088_Atlassian-Git-Cheatsheet.pdf" target="_blank">Download the PDF file</a>
 
+## Setting up a repository
+
+<details>
+<summary>click to expand</summary>
 ## Git Commands
 
-| Command    | What It Does?                                              | Options and Details                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ---------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `git init` | Initializes a new Git repository in the current directory. | <table><tr><td>`--bare`</td><td>Creates a repository without a working tree which means this is a repo without .git folder. This is useful for creating centralized repositories, which have capabilities to only pull and push to such repositories. Github.com is an example of this, as it creates the repo as bare repo.</td></tr><tr><td>`--template=<template_directory>`</td><td>Copies templates from the specified directory.</td></tr><tr><td>`--separate-git-dir=<git_dir>`</td><td>Stores the `.git` directory in the specified path.</td></tr><tr><td>`--shared[=permissions]`</td><td>Sets sharing permissions like `group` or `all`.</td></tr><tr><td>`-q`, `--quiet`</td><td>Suppresses output for a quieter operation.</td></tr></table> |
+### `git init`
+
+Initializes a new Git repository in the current directory. It creates a `.git` folder in the current directory. This tracks all changes made to the repository.
+
+### `git init --bare`
+
+The `git init --bare` command creates a **bare Git repository**. Unlike a standard Git repository, a bare repository doesn't have a working directory where files can be edited. Instead, it only contains the version history and configuration files. This makes it ideal for use as a central repository in collaborative projects.
+
+#### When to Use:
+
+- **Central Repository**: For setting up a repository that serves as the main point for others to clone, push, or pull code.
+- **Remote Hosting**: When hosting a Git repository on a server where direct file edits are unnecessary, and only version management is needed.
+
+#### Real-Life Example:
+
+Imagine a bare repository as a **storage unit** for your store’s inventory. You don't work directly in the storage unit (no working directory), but you can store and retrieve items (code versions) from it as needed.
+
+#### Command Example:
+
+```bash
+git init --bare my-repo.git
+```
+
+This command creates a bare repository named my-repo.git, which can be used as a central hub for multiple developers to manage code collaboratively.
+
+##
+
+</details>
