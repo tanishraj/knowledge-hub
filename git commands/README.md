@@ -286,7 +286,12 @@ clip < ~/.ssh/id_rsa.pub
 
 </summary>
 
+<details>
+<summary>
+
 ### `git init`
+
+</summary>
 
 Initializes a new Git repository in the current directory. It creates a `.git` folder in the current directory. This tracks all changes made to the repository.
 
@@ -296,9 +301,16 @@ Initializes a new Git repository in the current directory. It creates a `.git` f
 git init
 ```
 
+</details>
+
 ##
 
+<details>
+<summary>
+
 ### `git init --bare`
+
+</summary>
 
 The `git init --bare` command creates a **bare Git repository**. Unlike a standard Git repository, a bare repository doesn't have a working directory where files can be edited. Instead, it only contains the version history and configuration files. This makes it ideal for use as a central repository in collaborative projects.
 
@@ -319,10 +331,15 @@ git init --bare my-repo.git
 
 This command creates a bare repository named my-repo.git, which can be used as a central hub for multiple developers to manage code collaboratively.
 
+</details>
 ##
+
+<details>
+<summary>
 
 ### `git init --template`
 
+</summary>
 The `git init --template` command allows you to initialize a new Git repository with a custom template directory. This template directory can include hooks, configuration files, and other settings that Git will automatically copy into the new repository’s `.git` folder.
 
 #### When to Use:
@@ -345,5 +362,7 @@ This command creates a new Git repository named `my-repo`, applying the custom s
 ### Default Behavior:
 
 If no `--template` option is specified, Git uses its default template directory.
+
+</details>
 
 </details>
