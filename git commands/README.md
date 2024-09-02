@@ -394,4 +394,50 @@ Without the `--separate-git-dir` option, the `.git` directory is created inside 
 
 </details>
 
+<details>
+<summary>
+
+### `--quiet`
+
+</summary>
+
+The `--quiet` option in Git is used to suppress the output of commands, making them run with minimal or no terminal feedback.
+
+### When to Use:
+
+- **Script Automation**: Ideal for scripts where command output is not necessary.
+- **Minimal Output**: Useful when you want to avoid cluttering your terminal with messages during repetitive tasks.
+
+### Real-Life Example:
+
+Think of the `--quiet` option as working in a library where you need to be silent. It’s like putting Git commands in "silent mode" to avoid unnecessary output.
+
+### Command Examples:
+
+- **Initializing a Repository:**
+
+  ```bash
+  git init --quiet
+  ```
+
+  This initializes a Git repository without displaying the usual initialization message.
+
+- **Adding Files:**
+
+  ```bash
+  git add --quiet .
+  ```
+
+  This adds files to the staging area without listing them.
+
+  - **Committing Changes:**
+
+  ```bash
+  git commit --quiet -m "Your commit message"
+  ```
+
+  This commits changes without showing the commit summary.
+
+  </details>
+
 </details>
