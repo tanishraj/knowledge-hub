@@ -459,5 +459,11 @@ Think of `git clone` as making a photocopy of a friend's cookbook. You get your 
 git clone https://github.com/user/repository.git
 ```
 
+This command clones the repository at https://github.com/user/repository.git into your current directory.
+
+Cloning into a Specific Directory:
+
+git clone https://github.com/user/repository.git my-directory
+
 </details>
 ```
