@@ -440,12 +440,9 @@ Think of the `--quiet` option as working in a library where you need to be silen
 
   </details>
 
-<details>
-<summary>
+##
 
 # `git clone`
-
-</summary>
 
 ## Description
 
@@ -508,5 +505,3 @@ git clone <repository-url>
   ```
   git clone https://github.com/user/repo.git my-repo-clone
   ```
-
-  </details>
