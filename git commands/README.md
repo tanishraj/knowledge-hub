@@ -279,13 +279,6 @@ clip < ~/.ssh/id_rsa.pub
 
 ## Git Commands
 
-<details>
-<summary>
-
-## Setting up a repository
-
-</summary>
-
 # git init
 
 ## Description
