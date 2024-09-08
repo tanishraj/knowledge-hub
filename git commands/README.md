@@ -234,8 +234,6 @@ git config --global user.email "newemail@example.com"
 
 Remember, the email you use in your Git configuration should match the email you use for your remote Git services (like GitHub, GitLab, or Bitbucket) to ensure your commits are properly attributed to your account.
 
-# Git SSH: A Comprehensive Guide
-
 ## What is Git SSH?
 
 Git SSH (Secure Shell) is a secure network protocol used for remote communication and operations with Git repositories. It provides a way to access, manage, and transfer data to and from remote Git servers securely. SSH uses encryption to ensure that all data transmitted between the client and the server is protected from eavesdropping, tampering, and other security threats.
@@ -360,8 +358,6 @@ Setting up Git SSH involves several steps:
 
 By understanding and implementing Git SSH, you significantly enhance the security and efficiency of your Git workflows. It's an essential tool for any developer working with remote Git repositories, providing a robust foundation for secure and convenient source code management.
 
-# Git Archive: Concise Guide with Examples
-
 ## What is Git Archive?
 
 Git Archive is a command that creates a compressed archive file of a specified Git tree (usually a commit or a tag). It's used to export a snapshot of your project without including the Git repository itself.
@@ -441,8 +437,6 @@ Scenario: You want to create a clean distribution of your project's v2.0 release
 This command creates a ZIP file named 'my-project-v2.0.zip' containing all files from the v2.0 tag, with all files placed inside a 'my-project-v2.0' directory in the ZIP.
 
 Git Archive provides a straightforward way to create clean exports of your project, which is particularly useful for distribution or deployment scenarios where you don't want to include the entire Git history.
-
-# GitOps: Concise Guide with Examples
 
 ## What is GitOps?
 
@@ -556,67 +550,54 @@ GitOps provides a powerful framework for managing infrastructure and application
 
 <a href="./SWTM-2088_Atlassian-Git-Cheatsheet.pdf" target="_blank">Download the PDF file</a>
 
-# git init
+# Git Init Command
 
-## Description
+The `git init` command is used to initialize a new Git repository.
 
-The `git init` command is used to initialize a new Git repository. It creates a new `.git` subdirectory in your current working directory, which contains all of the necessary metadata for the new repository.
+## Command Overview
 
-## Basic Syntax
+| Aspect               | Description                                                   |
+| -------------------- | ------------------------------------------------------------- |
+| **Purpose**          | Creates a new Git repository or reinitializes an existing one |
+| **Usage**            | `git init [options] [directory]`                              |
+| **Default behavior** | Initializes a repository in the current directory             |
 
-```
-git init [directory]
-```
+## Common Options
 
-If `[directory]` is not specified, the command initializes the repository in the current directory.
-
-## Options
-
-### Common Options
-
-- `--bare`: Create a bare repository (a repository without a working directory).
-- `--shared[=<permissions>]`: Specify that the Git repository is to be shared amongst several users.
-
-### Additional Options
-
-- `--quiet`, `-q`: Only print error and warning messages; all other output will be suppressed.
-- `--initial-branch=<branch-name>`, `-b <branch-name>`: Use the specified name for the initial branch in the newly created repository.
-- `--separate-git-dir=<git-dir>`: Instead of initializing the repository in the `.git` directory, create a text file there containing the path to the actual repository.
+| Option                                 | Description                                                             |
+| -------------------------------------- | ----------------------------------------------------------------------- |
+| `--bare`                               | Creates a bare repository (no working directory)                        |
+| `--quiet`, `-q`                        | Only prints error and warning messages                                  |
+| `--initial-branch=<name>`, `-b <name>` | Uses the specified name for the initial branch                          |
+| `--separate-git-dir=<git-dir>`         | Creates the repository in the specified directory instead of .git/      |
+| `--shared[=<permissions>]`             | Specifies that the Git repository is to be shared amongst several users |
 
 ## Examples
 
-1. Initialize a new Git repository in the current directory:
+| Command                       | Description                                                                   |
+| ----------------------------- | ----------------------------------------------------------------------------- |
+| `git init`                    | Initializes a new Git repository in the current directory                     |
+| `git init my_project`         | Creates a new directory named 'my_project' with an initialized Git repository |
+| `git init --bare my_repo.git` | Creates a new bare repository named 'my_repo.git'                             |
+| `git init -b main`            | Initializes a new repository with the initial branch named 'main'             |
 
-   ```
-   git init
-   ```
+## Output Files
 
-2. Initialize a new Git repository in a specific directory:
-
-   ```
-   git init /path/to/your/new/repo
-   ```
-
-3. Create a bare repository:
-
-   ```
-   git init --bare /path/to/bare/repo.git
-   ```
-
-4. Initialize a repository with a specific initial branch name:
-   ```
-   git init --initial-branch=main
-   ```
+| File/Directory  | Purpose                                                                  |
+| --------------- | ------------------------------------------------------------------------ |
+| `.git/`         | Directory containing all the Git-related files                           |
+| `.git/config`   | Repository-specific configuration file                                   |
+| `.git/HEAD`     | Reference to the current branch                                          |
+| `.git/objects/` | Directory storing all the content for your database                      |
+| `.git/refs/`    | Directory storing pointers into commit objects (branches, tags, remotes) |
 
 ## Notes
 
 - Running `git init` in an existing repository is safe. It will not overwrite things that are already there.
-- The `--bare` option creates a repository that doesn't have a working directory, making it impossible to edit files and commit changes in that repository. Bare repositories are typically used as centralized repositories.
-- After running `git init`, the repository is empty. You need to add files and commit them to start tracking changes.
+- The `--bare` option is used when creating a central repository that developers will clone from.
+- Use `git init -b main` to start with a 'main' branch instead of the default 'master'.
 
-##
-
-# `git clone`
+## `git clone`
 
 ## Description
 
