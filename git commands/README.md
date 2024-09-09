@@ -647,3 +647,64 @@ The `git clone` command is used to create a copy of an existing Git repository.
 - Shallow clones (`--depth`) can significantly reduce download time for large repositories.
 - The `--recursive` option is useful when cloning repositories with submodules.
 - HTTPS and SSH are common protocols used with `git clone`.
+
+# `git config`
+
+The `git config` command is used to get and set repository or global options.
+
+## Command Overview
+
+| Aspect               | Description                                                                                                                 |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **Purpose**          | Sets configuration values for your Git installation                                                                         |
+| **Usage**            | `git config [<file-option>] [--type=<type>] [--show-origin] [--show-scope] [-z\|--null] <name> [<value> [<value-pattern>]]` |
+| **Default behavior** | Reads from and writes to the repository-specific configuration file                                                         |
+
+## Common Options
+
+| Option         | Description                                       |
+| -------------- | ------------------------------------------------- |
+| `--global`     | Use global config file (~/.gitconfig)             |
+| `--system`     | Use system-wide config file (/etc/gitconfig)      |
+| `--local`      | Use repository config file (.git/config, default) |
+| `--list`, `-l` | List all variables set in config file             |
+| `--get`        | Get the value for a given key                     |
+| `--add`        | Add a new variable                                |
+| `--unset`      | Remove a variable                                 |
+| `--edit`       | Open the config file in an editor                 |
+
+## Common Configurations
+
+| Configuration       | Command                                           | Description                                          |
+| ------------------- | ------------------------------------------------- | ---------------------------------------------------- |
+| User name           | `git config --global user.name "Your Name"`       | Sets the name attached to your commits               |
+| User email          | `git config --global user.email "your@email.com"` | Sets the email attached to your commits              |
+| Default editor      | `git config --global core.editor "vim"`           | Sets your default text editor                        |
+| Default branch name | `git config --global init.defaultBranch main`     | Sets the default branch name for new repositories    |
+| Credential helper   | `git config --global credential.helper cache`     | Caches your credentials for a certain amount of time |
+| Color UI            | `git config --global color.ui auto`               | Enables helpful colorization of command line output  |
+
+## Examples
+
+| Command                                    | Description                                   |
+| ------------------------------------------ | --------------------------------------------- |
+| `git config --list`                        | Lists all configurations                      |
+| `git config user.name`                     | Gets the user name for the current repository |
+| `git config --global user.name "John Doe"` | Sets the global user name                     |
+| `git config --global --unset user.name`    | Removes the global user name setting          |
+| `git config --global alias.co checkout`    | Creates a global alias 'co' for 'checkout'    |
+
+## Configuration Levels
+
+| Level  | File Location                        | Applied To                                         |
+| ------ | ------------------------------------ | -------------------------------------------------- |
+| System | /etc/gitconfig                       | All users on the system and all their repositories |
+| Global | ~/.gitconfig or ~/.config/git/config | All repositories for the current user              |
+| Local  | .git/config (in current repo)        | The current repository only                        |
+
+## Notes
+
+- The `--global` flag writes to a global ~/.gitconfig file for the user.
+- Local (repository) settings override global settings, which override system settings.
+- Use `git config --edit --system/--global/--local` to directly edit the respective config file.
+- The `--add` option will append the value to a possibly existing multi-valued variable.
