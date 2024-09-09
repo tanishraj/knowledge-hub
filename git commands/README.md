@@ -597,66 +597,53 @@ The `git init` command is used to initialize a new Git repository.
 - The `--bare` option is used when creating a central repository that developers will clone from.
 - Use `git init -b main` to start with a 'main' branch instead of the default 'master'.
 
-## `git clone`
+# `git clone`
 
-## Description
+The `git clone` command is used to create a copy of an existing Git repository.
 
-The `git clone` command is used to create a copy of a remote repository on your local machine. It downloads the entire repository, including all files, branches, and commit history.
+## Command Overview
 
-## Basic Syntax
+| Aspect               | Description                                                              |
+| -------------------- | ------------------------------------------------------------------------ |
+| **Purpose**          | Creates a copy of a remote repository on your local machine              |
+| **Usage**            | `git clone [options] <repository> [<directory>]`                         |
+| **Default behavior** | Clones the repository into a directory named after the repository's name |
 
-```
-git clone <repository-url>
-```
+## Common Options
 
-## Options
-
-### Common Options
-
-- `-b <branch>`, `--branch <branch>`: Clone a specific branch instead of the default branch.
-- `--depth <depth>`: Create a shallow clone with a limited number of commits.
-- `--recursive`: Initialize and clone submodules recursively.
-- `-o <name>`, `--origin <name>`: Use a different name for the remote (default is "origin").
-
-### Additional Options
-
-- `--bare`: Create a bare repository (without a working directory).
-- `--mirror`: Create a mirror repository (used for backups).
-- `--single-branch`: Clone only a single branch.
-- `--no-tags`: Don't clone any tags.
-- `--shallow-submodules`: Clone submodules with a depth of 1.
-- `--separate-git-dir=<dir>`: Store the Git repository in a separate directory.
+| Option                         | Description                                                  |
+| ------------------------------ | ------------------------------------------------------------ |
+| `--branch <name>`, `-b <name>` | Clones a specific branch instead of the remote's HEAD        |
+| `--depth <depth>`              | Creates a shallow clone with a limited number of commits     |
+| `--recursive`                  | Initializes and clones submodules recursively                |
+| `--shallow-submodules`         | Clones submodules with a depth of 1                          |
+| `--single-branch`              | Clones only a single branch                                  |
+| `--no-tags`                    | Don't clone any tags, and set remote.origin.tagOpt=--no-tags |
+| `--separate-git-dir=<git-dir>` | Sets the path to the repository's .git directory             |
+| `--mirror`                     | Sets up a mirror of the source repository                    |
 
 ## Examples
 
-1. Clone a repository:
+| Command                                                  | Description                                         |
+| -------------------------------------------------------- | --------------------------------------------------- |
+| `git clone https://github.com/user/repo.git`             | Clones a repository into a new directory            |
+| `git clone https://github.com/user/repo.git mydir`       | Clones a repository into the specified directory    |
+| `git clone -b dev https://github.com/user/repo.git`      | Clones a specific branch of a repository            |
+| `git clone --depth 1 https://github.com/user/repo.git`   | Creates a shallow clone with only the latest commit |
+| `git clone --recursive https://github.com/user/repo.git` | Clones a repository and its submodules              |
 
-   ```
-   git clone https://github.com/user/repo.git
-   ```
+## Resulting Structure
 
-2. Clone a specific branch:
-
-   ```
-   git clone -b develop https://github.com/user/repo.git
-   ```
-
-3. Create a shallow clone with only the latest commit:
-
-   ```
-   git clone --depth 1 https://github.com/user/repo.git
-   ```
-
-4. Clone a repository with a different name for the remote:
-   ```
-   git clone -o upstream https://github.com/user/repo.git
-   ```
+| Item                  | Description                                  |
+| --------------------- | -------------------------------------------- |
+| `<repo-name>/`        | Root directory of the cloned repository      |
+| `<repo-name>/.git/`   | Git-specific files for the cloned repository |
+| `<repo-name>/<files>` | Working tree of the cloned repository        |
 
 ## Notes
 
-- After cloning, your local repository will be set up with a remote named "origin" pointing to the original repository (unless changed with `-o` option).
-- You can specify a different directory name for the cloned repository by adding it after the repository URL:
-
-  ```
-  git clone https://github.com/user/repo.git my-repo-clone
-  ```
+- `git clone` automatically creates a remote named "origin" for the cloned repository.
+- Use `git clone --mirror` for creating a bare mirror of the repository.
+- Shallow clones (`--depth`) can significantly reduce download time for large repositories.
+- The `--recursive` option is useful when cloning repositories with submodules.
+- HTTPS and SSH are common protocols used with `git clone`.
