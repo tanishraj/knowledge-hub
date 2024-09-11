@@ -708,3 +708,64 @@ The `git config` command is used to get and set repository or global options.
 - Local (repository) settings override global settings, which override system settings.
 - Use `git config --edit --system/--global/--local` to directly edit the respective config file.
 - The `--add` option will append the value to a possibly existing multi-valued variable.
+
+# `git alias`
+
+Git aliases are shortcuts for longer Git commands, allowing users to create custom commands to simplify their workflow.
+
+## Command Overview
+
+| Aspect               | Description                                              |
+| -------------------- | -------------------------------------------------------- |
+| **Purpose**          | Create shortcuts for Git commands to improve efficiency  |
+| **Usage**            | `git config --global alias.<alias-name> '<git-command>'` |
+| **Default behavior** | No default aliases; users must create their own          |
+
+## Common Options
+
+| Option     | Description                                                        |
+| ---------- | ------------------------------------------------------------------ |
+| `--global` | Sets the alias for all repositories of the current user            |
+| `--local`  | Sets the alias for the current repository only (default)           |
+| `--system` | Sets the alias for all users on the system (requires admin rights) |
+
+## Examples
+
+| Command                                             | Description                                          |
+| --------------------------------------------------- | ---------------------------------------------------- |
+| `git config --global alias.co checkout`             | Creates an alias 'co' for 'checkout'                 |
+| `git config --global alias.br branch`               | Creates an alias 'br' for 'branch'                   |
+| `git config --global alias.ci commit`               | Creates an alias 'ci' for 'commit'                   |
+| `git config --global alias.st status`               | Creates an alias 'st' for 'status'                   |
+| `git config --global alias.unstage 'reset HEAD --'` | Creates an alias 'unstage' to unstage files          |
+| `git config --global alias.last 'log -1 HEAD'`      | Creates an alias 'last' to show the last commit      |
+| `git config --global alias.visual '!gitk'`          | Creates an alias to launch a GUI (gitk in this case) |
+
+## Resulting Structure
+
+| Item             | Description                                                 |
+| ---------------- | ----------------------------------------------------------- |
+| `~/.gitconfig`   | File where global aliases are stored (for the current user) |
+| `.git/config`    | File where local aliases are stored (in the repository)     |
+| `/etc/gitconfig` | File where system-wide aliases are stored                   |
+
+## Usage of Aliases
+
+| Command                | Equivalent                   | Description                          |
+| ---------------------- | ---------------------------- | ------------------------------------ |
+| `git co main`          | `git checkout main`          | Switch to the main branch            |
+| `git br -a`            | `git branch -a`              | List all branches                    |
+| `git ci -m "Message"`  | `git commit -m "Message"`    | Commit with a message                |
+| `git st`               | `git status`                 | Check the status of the working tree |
+| `git unstage file.txt` | `git reset HEAD -- file.txt` | Unstage file.txt                     |
+| `git last`             | `git log -1 HEAD`            | Show the last commit                 |
+
+## Notes
+
+- Aliases can significantly speed up your Git workflow by reducing typing.
+- You can use aliases to create new Git commands or modify existing ones.
+- Aliases starting with an exclamation mark (!) are treated as external commands.
+- You can view your current aliases by running `git config --get-regexp alias`.
+- To remove an alias, use `git config --global --unset alias.<alias-name>`.
+- Aliases are stored in Git configuration files and can be version controlled.
+- Be cautious when sharing aliases, as they may contain system-specific commands.
