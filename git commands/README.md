@@ -769,3 +769,68 @@ Git aliases are shortcuts for longer Git commands, allowing users to create cust
 - To remove an alias, use `git config --global --unset alias.<alias-name>`.
 - Aliases are stored in Git configuration files and can be version controlled.
 - Be cautious when sharing aliases, as they may contain system-specific commands.
+
+# `git commit`
+
+The `git commit` command is used to save your changes to the local repository.
+
+## Command Overview
+
+| Aspect               | Description                                             |
+| -------------------- | ------------------------------------------------------- |
+| **Purpose**          | Records changes to the repository                       |
+| **Usage**            | `git commit [<options>]`                                |
+| **Default behavior** | Opens the default text editor to enter a commit message |
+
+## Common Options
+
+| Option            | Description                                                                   |
+| ----------------- | ----------------------------------------------------------------------------- |
+| `-m <message>`    | Use the given message as the commit message                                   |
+| `-a`, `--all`     | Automatically stage files that have been modified and deleted                 |
+| `--amend`         | Amend the previous commit                                                     |
+| `-s`, `--signoff` | Add a Signed-off-by trailer by the committer at the end of the commit message |
+| `--no-verify`     | Bypass the pre-commit and commit-msg hooks                                    |
+| `--dry-run`       | Show what would be committed without actually committing                      |
+| `-v`, `--verbose` | Show unified diff between the HEAD commit and what would be committed         |
+
+## Examples
+
+| Command                                    | Description                                            |
+| ------------------------------------------ | ------------------------------------------------------ |
+| `git commit -m "Add new feature"`          | Commit with a short message                            |
+| `git commit -am "Fix bug and update docs"` | Stage all tracked, modified files and commit           |
+| `git commit --amend`                       | Amend the previous commit                              |
+| `git commit --amend --no-edit`             | Amend the previous commit without changing the message |
+| `git commit -s -m "Implement feature X"`   | Commit with a sign-off trailer                         |
+
+## Resulting Actions
+
+| Action                | Description                                          |
+| --------------------- | ---------------------------------------------------- |
+| Create a new commit   | A new commit object is created in the Git repository |
+| Update branch pointer | The current branch pointer moves to the new commit   |
+| Record commit message | The provided message is stored with the commit       |
+| Update commit history | The commit becomes part of the project's history     |
+
+## Commit Structure
+
+| Item             | Description                                            |
+| ---------------- | ------------------------------------------------------ |
+| Commit hash      | Unique identifier for the commit                       |
+| Author           | Name and email of the person who created the changes   |
+| Committer        | Name and email of the person who committed the changes |
+| Date             | Timestamp of when the commit was created               |
+| Commit message   | Description of the changes made in the commit          |
+| Parent commit(s) | Hash of the previous commit(s) this commit is based on |
+
+## Notes
+
+- A good commit message should be concise yet descriptive of the changes made.
+- The first line of the commit message is treated as the subject line.
+- Use the body of the commit message to explain the what and why of the changes.
+- Commits should ideally contain related changes and be atomic.
+- Use `git add` to stage changes before committing.
+- The `--amend` option is useful for modifying the most recent commit.
+- Be cautious when amending commits that have already been pushed to a shared repository.
+- Use `git commit --verbose` to see the changes you're committing in the commit message editor.
