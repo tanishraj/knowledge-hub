@@ -904,3 +904,73 @@ The `git diff` command is used to show changes between commits, commit and worki
 - You can use `git diff` with commit hashes to compare specific commits.
 - `git diff` can be combined with other Git commands like `log` for more complex comparisons.
 - Large diffs can be hard to read; consider using tools like `git difftool` for a graphical interface.
+
+# `git stash`
+
+The `git stash` command is used to temporarily store modified, tracked files in order to clean your working directory.
+
+## Command Overview
+
+| Aspect               | Description                                                        |
+| -------------------- | ------------------------------------------------------------------ |
+| **Purpose**          | Saves modified and staged changes that you are not ready to commit |
+| **Usage**            | `git stash <subcommand> [<options>]`                               |
+| **Default behavior** | When used without options, pushes a new stash onto the stash stack |
+
+## Common Subcommands
+
+| Subcommand | Description                                                          |
+| ---------- | -------------------------------------------------------------------- |
+| `push`     | Save your local modifications to a new stash (default action)        |
+| `pop`      | Remove and apply a single stashed state from the stash list          |
+| `apply`    | Apply a single stashed state from the stash list without removing it |
+| `list`     | List the stashes that you currently have                             |
+| `show`     | Show the changes recorded in the stash as a diff                     |
+| `drop`     | Remove a single stashed state from the stash list                    |
+| `clear`    | Remove all the stashed states                                        |
+| `branch`   | Create and check out a new branch with the changes from a stash      |
+
+## Common Options
+
+| Option                      | Description                                            |
+| --------------------------- | ------------------------------------------------------ |
+| `-u`, `--include-untracked` | Stash also untracked files                             |
+| `-a`, `--all`               | Stash also ignored and untracked files                 |
+| `-k`, `--keep-index`        | All changes already added to the index are left intact |
+| `-p`, `--patch`             | Interactively select hunks from the diff to stash      |
+| `--message <message>`       | Add a custom message to the stash                      |
+
+## Examples
+
+| Command                                 | Description                       |
+| --------------------------------------- | --------------------------------- |
+| `git stash`                             | Stash current changes             |
+| `git stash push -m "my_stash"`          | Stash with a custom message       |
+| `git stash --include-untracked`         | Stash including untracked files   |
+| `git stash list`                        | List all stashes                  |
+| `git stash pop`                         | Apply and remove the latest stash |
+| `git stash apply stash@{2}`             | Apply a specific stash            |
+| `git stash drop stash@{1}`              | Remove a specific stash           |
+| `git stash clear`                       | Remove all stashes                |
+| `git stash branch new-branch stash@{1}` | Create a new branch from a stash  |
+
+## Stash Storage
+
+| Item            | Description                                              |
+| --------------- | -------------------------------------------------------- |
+| Stash Stack     | LIFO (Last In, First Out) data structure storing stashes |
+| Stash Reference | Unique identifier for each stash (e.g., stash@{0})       |
+| Stash Message   | Description of the stash (auto-generated or custom)      |
+
+## Notes
+
+- Stashes are stored in a Last-In-First-Out (LIFO) stack.
+- By default, `git stash` only stashes tracked files that are modified or staged.
+- Use `--include-untracked` or `--all` to stash untracked or ignored files.
+- Stashes can be moved between repositories using `git stash push` and `git stash pop`.
+- The `git stash` command is particularly useful when you need to switch branches quickly but aren't ready to commit.
+- Be cautious when applying stashes, especially if you've made changes since creating the stash. Conflicts may occur.
+- Stashes are local to your repository and are not pushed to remote repositories.
+- You can view the contents of a stash without applying it using `git stash show -p`.
+- The `git stash branch` command is useful for testing stashed changes in isolation.
+- Regularly clear old stashes to keep your repository clean and manageable.
