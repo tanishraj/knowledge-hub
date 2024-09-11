@@ -834,3 +834,73 @@ The `git commit` command is used to save your changes to the local repository.
 - The `--amend` option is useful for modifying the most recent commit.
 - Be cautious when amending commits that have already been pushed to a shared repository.
 - Use `git commit --verbose` to see the changes you're committing in the commit message editor.
+
+# `git diff`
+
+The `git diff` command is used to show changes between commits, commit and working tree, etc.
+
+## Command Overview
+
+| Aspect               | Description                                                                        |
+| -------------------- | ---------------------------------------------------------------------------------- |
+| **Purpose**          | Shows changes between the working directory, the index, and commits                |
+| **Usage**            | `git diff [<options>] [<commit>] [--] [<path>...]`                                 |
+| **Default behavior** | Shows changes in the working directory that are not yet staged for the next commit |
+
+## Common Options
+
+| Option                        | Description                                                |
+| ----------------------------- | ---------------------------------------------------------- |
+| `--staged`, `--cached`        | Show changes between the index and the last commit         |
+| `--stat`                      | Generate a diffstat instead of a patch                     |
+| `--numstat`                   | Show number of added and deleted lines in decimal notation |
+| `--shortstat`                 | Output only the last line of the --stat format             |
+| `--name-only`                 | Show only names of changed files                           |
+| `--name-status`               | Show only names and status of changed files                |
+| `--color`                     | Show colored diff                                          |
+| `--word-diff`                 | Show a word diff                                           |
+| `-b`, `--ignore-space-change` | Ignore changes in amount of whitespace                     |
+
+## Examples
+
+| Command                     | Description                                          |
+| --------------------------- | ---------------------------------------------------- |
+| `git diff`                  | Show unstaged changes                                |
+| `git diff --staged`         | Show staged changes                                  |
+| `git diff HEAD`             | Show all staged and unstaged changes                 |
+| `git diff commit1 commit2`  | Show changes between two commits                     |
+| `git diff branch1..branch2` | Show changes between the tips of branch1 and branch2 |
+| `git diff -- path/to/file`  | Show changes to a specific file                      |
+| `git diff --stat`           | Show a summary of changes instead of a full diff     |
+
+## Output Format
+
+| Section         | Description                                                            |
+| --------------- | ---------------------------------------------------------------------- |
+| Diff header     | Shows the compared versions and file modes                             |
+| Extended header | Contains information about file renames and similarity index           |
+| Chunk header    | Indicates the lines where changes occurred in both versions            |
+| Chunk content   | Shows the actual changes, with `-` for removed and `+` for added lines |
+
+## Common Symbols in Output
+
+| Symbol                        | Meaning                                                 |
+| ----------------------------- | ------------------------------------------------------- |
+| `+`                           | Line added                                              |
+| `-`                           | Line removed                                            |
+| ` ` (space)                   | Line unchanged                                          |
+| `@@`                          | Start of a chunk header                                 |
+| `\ No newline at end of file` | Indicates the file doesn't end with a newline character |
+
+## Notes
+
+- `git diff` by itself shows only unstaged changes.
+- Use `git diff --staged` to see what changes are about to be committed.
+- `git diff HEAD` shows all changes in your working directory since your last commit.
+- You can compare branches using `git diff branch1..branch2`.
+- To see changes to a specific file, add the file path after the command.
+- The `--color` option can make the output easier to read.
+- `--word-diff` is useful for seeing changes within lines.
+- You can use `git diff` with commit hashes to compare specific commits.
+- `git diff` can be combined with other Git commands like `log` for more complex comparisons.
+- Large diffs can be hard to read; consider using tools like `git difftool` for a graphical interface.
