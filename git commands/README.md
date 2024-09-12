@@ -1052,3 +1052,76 @@ The `.gitignore` file specifies intentionally untracked files that Git should ig
 - The global .gitignore file can be set using `git config --global core.excludesfile ~/.gitignore_global`.
 - Empty directories are not tracked by Git, so they don't need to be explicitly ignored.
 - Remember that .gitignore only affects untracked files. If a file was tracked before adding it to .gitignore, it will remain tracked.
+
+# `git tag`
+
+The `git tag` command is used to create, list, delete or verify a tag object signed with GPG.
+
+## Command Overview
+
+| Aspect               | Description                                                  |
+| -------------------- | ------------------------------------------------------------ |
+| **Purpose**          | Creates, lists, deletes or verifies tags in a Git repository |
+| **Usage**            | `git tag [<options>] [<tagname>] [<commit>]`                 |
+| **Default behavior** | When used without options, lists existing tags               |
+
+## Common Options
+
+| Option                        | Description                                     |
+| ----------------------------- | ----------------------------------------------- |
+| `-a`, `--annotate`            | Create an annotated tag                         |
+| `-m <msg>`, `--message=<msg>` | Use the given tag message                       |
+| `-d`, `--delete`              | Delete existing tags with the given names       |
+| `-l`, `--list`                | List tags (can be combined with wildcards)      |
+| `-n[<num>]`                   | Print <num> lines of each tag message           |
+| `-f`, `--force`               | Replace an existing tag with the given name     |
+| `--contains [<commit>]`       | List tags that contain the specified commit     |
+| `-s`, `--sign`                | Create a signed tag, using the default GPG key  |
+| `-v`, `--verify`              | Verify the GPG signature of the given tag names |
+
+## Types of Tags
+
+| Type        | Description                                                                                 |
+| ----------- | ------------------------------------------------------------------------------------------- |
+| Lightweight | Just a name for a specific commit                                                           |
+| Annotated   | Stored as full objects in the Git database, contain tagger name, email, date, and a message |
+
+## Examples
+
+| Command                               | Description                            |
+| ------------------------------------- | -------------------------------------- |
+| `git tag v1.0`                        | Create a lightweight tag               |
+| `git tag -a v1.1 -m "Version 1.1"`    | Create an annotated tag with a message |
+| `git tag`                             | List all tags                          |
+| `git tag -l "v1.8.5*"`                | List tags matching a pattern           |
+| `git tag -d v1.0`                     | Delete a tag                           |
+| `git tag -a v1.2 9fceb02`             | Tag a specific commit                  |
+| `git push origin v1.5`                | Push a single tag to remote            |
+| `git push origin --tags`              | Push all tags to remote                |
+| `git tag -s v1.5 -m "Signed 1.5 tag"` | Create a signed tag                    |
+
+## Tag Information
+
+| Item        | Description                                                  |
+| ----------- | ------------------------------------------------------------ |
+| Tag name    | Identifier for the tag (e.g., v1.0, release-2.1)             |
+| Tagger      | Name and email of the person who created the tag (annotated) |
+| Date        | When the tag was created (annotated)                         |
+| Message     | Description or release notes (annotated)                     |
+| Commit hash | The commit that the tag points to                            |
+
+## Notes
+
+- Tags are ref's that point to specific points in Git history.
+- Lightweight tags are just a name and a pointer to a commit.
+- Annotated tags are stored as full objects in the Git database.
+- Tags don't move when new commits are made. They always point to the same commit.
+- By default, `git push` doesn't transfer tags to remote servers. You need to explicitly push tags.
+- You can check out tags, but this puts your repository in a "detached HEAD" state.
+- Use semantic versioning (e.g., v1.0.0) for release tags to maintain clarity.
+- Tags can be used to mark release points, important merges, or other significant points in history.
+- You can use `git describe` to get a description of the current commit based on the nearest tag.
+- Annotated tags are recommended for releases, as they contain valuable metadata.
+- Be cautious when deleting tags, especially if they've been pushed to a shared repository.
+- You can use `git tag -n` to view tag messages along with the tag names when listing.
+- Tags can be used with other Git commands, like `git show v1.0` to view the tagged commit.
