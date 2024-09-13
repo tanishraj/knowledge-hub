@@ -1533,3 +1533,60 @@ The `git rebase` command is used to change the base of a branch, effectively rew
 - Use `git reflog` to recover from mistakes during rebasing.
 - Large rebases can be time-consuming and complex, so plan accordingly.
 - During rebasing, Git applies each commit in order. You may need to resolve the same conflict multiple times if later commits modify the same part of a file.
+
+# `git reflog`
+
+The `git reflog` command is used to manage and display the reference logs, which record when the tips of branches and other references were updated in the local repository.
+
+## Command Overview
+
+| Aspect               | Description                                                                     |
+| -------------------- | ------------------------------------------------------------------------------- |
+| **Purpose**          | Shows a log of changes to the HEAD and other references in the local repository |
+| **Usage**            | `git reflog [<options>] [<ref>]`                                                |
+| **Default behavior** | Displays the reflog for the HEAD reference                                      |
+
+## Common Options
+
+| Option                                | Description                                             |
+| ------------------------------------- | ------------------------------------------------------- |
+| `--all`                               | Shows all reflogs, not just HEAD                        |
+| `--expire=<time>`                     | Prune entries older than the specified time             |
+| `--expire-unreachable=<time>`         | Prune unreachable entries older than the specified time |
+| `--rewrite`                           | Rewrite the reflog to remove old entries                |
+| `--update-ref`                        | Updates the ref with the new value                      |
+| `-n <number>`, `--max-count=<number>` | Limits the number of entries to show                    |
+| `--pretty=<format>`                   | Specifies the format of the output                      |
+| `--date=<format>`                     | Specifies the date format                               |
+
+## Examples
+
+| Command                                    | Description                                         |
+| ------------------------------------------ | --------------------------------------------------- |
+| `git reflog`                               | Shows the reflog for HEAD                           |
+| `git reflog show master`                   | Shows the reflog for the master branch              |
+| `git reflog --all`                         | Shows reflogs for all references                    |
+| `git reflog --date=iso`                    | Shows the reflog with ISO date format               |
+| `git reflog expire --expire=30.days --all` | Removes entries older than 30 days from all reflogs |
+
+## Resulting Structure
+
+| Item          | Description                                            |
+| ------------- | ------------------------------------------------------ |
+| Reflog Output | List of reference log entries showing past HEAD states |
+| Entry Format  | `<short_hash> <ref>@{<index>}: <command>: <message>`   |
+| Reflog Files  | Updated in `.git/logs/` directory                      |
+
+## Notes
+
+- The reflog is local to your repository and not shared with remotes.
+- It's a safety net for recovering lost commits or undoing mistakes.
+- Each entry in the reflog includes a timestamp, allowing you to reference specific points in time.
+- The reflog is automatically updated when you make changes in your repository.
+- By default, reflog entries expire after 90 days for reachable entries and 30 days for unreachable entries.
+- You can use reflog entries to checkout specific states, e.g., `git checkout HEAD@{2}`.
+- The reflog can help recover from hard resets, rebases gone wrong, or accidental branch deletions.
+- It's not a replacement for regular backups, as it's stored within the `.git` directory.
+- You can create multiple reflogs for different references (branches, remotes).
+- The `git gc` command may remove unreachable objects that are no longer in the reflog.
+- Understanding the reflog can greatly enhance your ability to manage and recover your Git history.
