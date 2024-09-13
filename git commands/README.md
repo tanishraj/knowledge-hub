@@ -1125,3 +1125,80 @@ The `git tag` command is used to create, list, delete or verify a tag object sig
 - Be cautious when deleting tags, especially if they've been pushed to a shared repository.
 - You can use `git tag -n` to view tag messages along with the tag names when listing.
 - Tags can be used with other Git commands, like `git show v1.0` to view the tagged commit.
+
+# `git blame`
+
+The `git blame` command shows what revision and author last modified each line of a file.
+
+## Command Overview
+
+| Aspect               | Description                                                                                           |
+| -------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Purpose**          | Shows what revision and author last modified each line of a file                                      |
+| **Usage**            | `git blame [<options>] [<rev-opts>] [<rev>] [--] <file>`                                              |
+| **Default behavior** | Annotates each line in the given file with information from the revision which last modified the line |
+
+## Common Options
+
+| Option              | Description                                                      |
+| ------------------- | ---------------------------------------------------------------- |
+| `-L <start>,<end>`  | Annotate only the given line range                               |
+| `-l`                | Show long revision names                                         |
+| `-t`                | Show raw timestamp                                               |
+| `-b`                | Show blank SHA-1 for boundary commits                            |
+| `-w`                | Ignore whitespace changes                                        |
+| `--color-lines`     | Color redundant metadata from previous lines differently         |
+| `--color-by-age`    | Color lines by age                                               |
+| `-C`                | Detect lines moved or copied from other files                    |
+| `-M`                | Detect lines moved or copied from other files in the same commit |
+| `--since=<date>`    | Show only lines changed since the given date                     |
+| `--author=<author>` | Show only lines changed by author                                |
+
+## Output Format
+
+| Column       | Description                                        |
+| ------------ | -------------------------------------------------- |
+| Commit hash  | The hash of the commit that last modified the line |
+| Author       | The author who last modified the line              |
+| Date         | The date when the line was last modified           |
+| Line number  | The line number in the file                        |
+| Line content | The content of the line                            |
+
+## Examples
+
+| Command                                        | Description                                           |
+| ---------------------------------------------- | ----------------------------------------------------- |
+| `git blame filename.txt`                       | Show what revision and author last modified each line |
+| `git blame -L 10,20 filename.txt`              | Restrict the output to lines 10-20                    |
+| `git blame -w filename.txt`                    | Ignore whitespace changes                             |
+| `git blame --since="3 weeks ago" filename.txt` | Show only changes made in the last 3 weeks            |
+| `git blame -C filename.txt`                    | Show line moves within and across files               |
+| `git blame -M filename.txt`                    | Show line moves within the same file                  |
+| `git blame --color-by-age filename.txt`        | Color lines by age                                    |
+| `git blame -b filename.txt`                    | Show boundary commits                                 |
+
+## Use Cases
+
+| Use Case             | Description                                                    |
+| -------------------- | -------------------------------------------------------------- |
+| Identifying changes  | Determine who last modified a specific line or section of code |
+| Tracking bug origins | Find out when a bug was introduced and by whom                 |
+| Code review          | Understand the history and context of changes in a file        |
+| Attribution          | Determine the original author of a piece of code               |
+
+## Notes
+
+- `git blame` is often used to find the origin of problematic code.
+- It's not meant to assign blame, but to understand the history of the code.
+- Use `-w` to ignore whitespace changes, which can be helpful for meaningful blame.
+- The `-C` and `-M` options can help track the origin of copied or moved lines.
+- `git blame` can be combined with other Git commands for more complex investigations.
+- Most IDEs and Git GUI tools have built-in blame functionality with enhanced visuals.
+- For a more detailed history of a file, consider using `git log -p <filename>`.
+- `git blame` works on a per-line basis, so it may not capture all relevant context.
+- The output can be overwhelming for large files; consider using line range options.
+- Remember that the last person to modify a line isn't necessarily the original author.
+- `git blame` can be used with specific commits or branches, not just the current state.
+- The `--since` option is useful for focusing on recent changes.
+- Use `git gui blame` for a graphical interface to blame information.
+- `git blame` doesn't show lines that have been deleted, only the current state of the file.
