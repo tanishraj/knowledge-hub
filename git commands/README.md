@@ -1425,3 +1425,53 @@ The `git reset` command is used to undo changes by moving the HEAD and current b
 - The `--keep` option is useful when you want to reset to a previous state but keep local modifications.
 - After a `git reset`, you may need to force push (`git push --force`) if the branch was already pushed.
 - Always communicate with your team before force pushing after a reset on shared branches.
+
+# `git rm`
+
+The `git rm` command is used to remove files from both the Git repository and the working directory.
+
+## Command Overview
+
+| Aspect               | Description                                                               |
+| -------------------- | ------------------------------------------------------------------------- |
+| **Purpose**          | Removes files from the Git repository and the working directory           |
+| **Usage**            | `git rm [options] <file>...`                                              |
+| **Default behavior** | Removes specified files from both the working directory and the Git index |
+
+## Common Options
+
+| Option             | Description                                                                  |
+| ------------------ | ---------------------------------------------------------------------------- |
+| `--cached`         | Removes files only from the Git index, keeping them in the working directory |
+| `-r`               | Allows recursive removal when a leading directory name is given              |
+| `-f`, `--force`    | Override the up-to-date check and remove the files anyway                    |
+| `--ignore-unmatch` | Exit with a zero status even if no files match                               |
+| `-n`, `--dry-run`  | Don't actually remove any file(s). Instead, just show what would happen      |
+
+## Examples
+
+| Command                              | Description                                                             |
+| ------------------------------------ | ----------------------------------------------------------------------- |
+| `git rm file.txt`                    | Removes file.txt from both the working directory and Git index          |
+| `git rm --cached sensitive_file.txt` | Stops tracking sensitive_file.txt but keeps it in the working directory |
+| `git rm -r old_directory`            | Recursively removes old_directory and its contents                      |
+| `git rm \*.log`                      | Removes all .log files in the current directory                         |
+| `git rm -n *.tmp`                    | Shows which .tmp files would be removed without actually removing them  |
+
+## Resulting Structure
+
+| Item              | Description                                        |
+| ----------------- | -------------------------------------------------- |
+| Working Directory | File is removed (unless --cached is used)          |
+| Git Index         | File removal is staged for the next commit         |
+| Git History       | File remains in history until a new commit is made |
+
+## Notes
+
+- `git rm` stages the file removal for the next commit. You need to commit the change to complete the removal from the repository history.
+- Use `--cached` to untrack a file without deleting it from your local filesystem.
+- If you accidentally remove a file, you can restore it using `git checkout -- <file>` if the removal hasn't been committed yet.
+- `git rm` will fail if there are uncommitted changes to the file, unless you use the `-f` (force) option.
+- The command removes files from the current branch. Other branches may still contain the file.
+- Always be cautious when using `git rm`, especially with wildcards, to avoid unintended data loss.
+- After using `git rm`, you typically want to commit the changes to finalize the removal in your repository.
