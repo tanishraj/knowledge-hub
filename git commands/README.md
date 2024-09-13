@@ -1276,3 +1276,75 @@ The `git clean` command removes untracked files from the working directory.
 - `git clean` can be restricted to specific paths by providing them after the options.
 - The `-e` option can be used multiple times to exclude multiple patterns.
 - `git clean` is often used to clean up build artifacts or generated files.
+
+# `git revert`
+
+The `git revert` command creates new commits that undo the changes made by previous commits.
+
+## Command Overview
+
+| Aspect               | Description                                                               |
+| -------------------- | ------------------------------------------------------------------------- |
+| **Purpose**          | Creates a new commit that undoes the changes made in a previous commit    |
+| **Usage**            | `git revert [<options>] <commit>...`                                      |
+| **Default behavior** | Creates a new commit that undoes the changes made by the specified commit |
+
+## Common Options
+
+| Option                                         | Description                                                |
+| ---------------------------------------------- | ---------------------------------------------------------- |
+| `-e`, `--edit`                                 | Edit the commit message prior to committing                |
+| `-n`, `--no-commit`                            | Revert but do not create a new commit                      |
+| `--no-edit`                                    | Do not edit the commit message                             |
+| `-m parent-number`, `--mainline parent-number` | Specify the parent number for reverting a merge commit     |
+| `--strategy=<strategy>`                        | Use the given merge strategy                               |
+| `--no-recurse-submodules`                      | Do not revert submodules                                   |
+| `--continue`                                   | Continue the revert operation after resolving conflicts    |
+| `--abort`                                      | Cancel the revert operation and return to pre-revert state |
+| `--quit`                                       | Forget about the current revert operation                  |
+
+## Examples
+
+| Command                   | Description                                                  |
+| ------------------------- | ------------------------------------------------------------ |
+| `git revert HEAD`         | Revert the most recent commit                                |
+| `git revert abc123`       | Revert the commit with hash abc123                           |
+| `git revert HEAD~3..HEAD` | Revert the last three commits                                |
+| `git revert -n HEAD`      | Revert the last commit without creating a new commit         |
+| `git revert -m 1 HEAD`    | Revert a merge commit, keeping changes from the first parent |
+| `git revert --continue`   | Continue a revert operation after resolving conflicts        |
+| `git revert --abort`      | Abort a revert operation and return to pre-revert state      |
+
+## Revert Process
+
+| Step                 | Description                                                            |
+| -------------------- | ---------------------------------------------------------------------- |
+| 1. Identify commit   | Specify the commit(s) to be reverted                                   |
+| 2. Create patch      | Git creates a patch that undoes the changes in the specified commit(s) |
+| 3. Apply patch       | The patch is applied to the working directory and staged               |
+| 4. Create new commit | A new commit is created with the reverted changes                      |
+
+## Commit Message Structure
+
+| Part       | Description                                                        |
+| ---------- | ------------------------------------------------------------------ |
+| First line | "Revert" followed by the subject line of the reverted commit       |
+| Body       | "This reverts commit <hash>." followed by the reason for reverting |
+
+## Notes
+
+- `git revert` is a safe way to undo changes as it doesn't alter existing history.
+- It creates a new commit that undoes the changes, rather than modifying existing commits.
+- Reverting a merge commit requires specifying which parent to follow with `-m`.
+- You can revert multiple commits in one command.
+- If there are conflicts during revert, you need to resolve them manually.
+- After resolving conflicts, use `git revert --continue` to complete the revert.
+- Use `git revert --abort` to cancel a revert operation and return to the pre-revert state.
+- `git revert` is different from `git reset` in that it doesn't remove commits from history.
+- It's safe to use `git revert` on commits that have been pushed to a shared repository.
+- The `--no-commit` option is useful if you want to revert multiple commits as a single new commit.
+- Reverting a commit that added a file will delete that file.
+- Reverting a commit that deleted a file will recreate that file.
+- You can edit the revert commit message using the `-e` or `--edit` option.
+- `git revert` can be used to undo a previous revert.
+- It's a good practice to include the reason for reverting in the commit message.
