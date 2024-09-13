@@ -1348,3 +1348,80 @@ The `git revert` command creates new commits that undo the changes made by previ
 - You can edit the revert commit message using the `-e` or `--edit` option.
 - `git revert` can be used to undo a previous revert.
 - It's a good practice to include the reason for reverting in the commit message.
+
+# `git reset`
+
+The `git reset` command is used to undo changes by moving the HEAD and current branch pointer to a specified commit.
+
+## Command Overview
+
+| Aspect               | Description                                                                   |
+| -------------------- | ----------------------------------------------------------------------------- |
+| **Purpose**          | Resets the current HEAD to a specified state                                  |
+| **Usage**            | `git reset [<mode>] [<commit>]`                                               |
+| **Default behavior** | Resets HEAD to the specified commit, keeping changes in the working directory |
+
+## Reset Modes
+
+| Mode                | Description                                                  |
+| ------------------- | ------------------------------------------------------------ |
+| `--soft`            | Does not touch the index file or the working tree            |
+| `--mixed` (default) | Resets the index but not the working tree                    |
+| `--hard`            | Resets the index and working tree. Any changes are discarded |
+
+## Common Options
+
+| Option          | Description                                                              |
+| --------------- | ------------------------------------------------------------------------ |
+| `--soft`        | Does not touch the index file or the working tree                        |
+| `--mixed`       | Reset the index but not the working tree (default)                       |
+| `--hard`        | Reset the index and working tree                                         |
+| `--merge`       | Reset the index and update the files in the working tree                 |
+| `--keep`        | Reset index entries and update files in the working tree                 |
+| `--patch`, `-p` | Interactively select hunks in the difference between HEAD and `<commit>` |
+
+## Examples
+
+| Command                        | Description                                                    |
+| ------------------------------ | -------------------------------------------------------------- |
+| `git reset HEAD~1`             | Undo the last commit, keeping changes in the working directory |
+| `git reset --hard HEAD~1`      | Undo the last commit and discard all changes                   |
+| `git reset --soft HEAD~1`      | Undo the last commit, keeping changes staged                   |
+| `git reset <file>`             | Unstage a file while keeping its modifications                 |
+| `git reset --hard origin/main` | Reset local branch to match the remote branch                  |
+| `git reset --merge ORIG_HEAD`  | Undo a merge preserving local modifications                    |
+| `git reset --keep HEAD~1`      | Undo last commit while keeping modified tracked files          |
+
+## Reset Process
+
+| Step                  | Description                                                                      |
+| --------------------- | -------------------------------------------------------------------------------- |
+| 1. Move HEAD          | Points HEAD and the current branch to the specified commit                       |
+| 2. Update Index       | Updates the staged snapshot to match the specified commit (if --mixed or --hard) |
+| 3. Update Working Dir | Updates the working directory to match the specified commit (if --hard)          |
+
+## Affected Areas
+
+| Area                 | Soft Reset | Mixed Reset | Hard Reset |
+| -------------------- | ---------- | ----------- | ---------- |
+| Commit History       | Modified   | Modified    | Modified   |
+| Staging Area (Index) | Unchanged  | Modified    | Modified   |
+| Working Directory    | Unchanged  | Unchanged   | Modified   |
+
+## Notes
+
+- `git reset` can be dangerous, especially with `--hard`, as it can lead to loss of work.
+- Always create a backup or use `git reflog` to recover if needed.
+- `git reset` is often used to "undo" a `git add` before committing.
+- It's generally safe to use `git reset` on commits that haven't been pushed to a shared repository.
+- For commits that have been pushed, consider using `git revert` instead.
+- `git reset --hard` can be used to completely discard all uncommitted changes.
+- The `--patch` option allows for more granular control over which changes to reset.
+- `git reset` moves the branch pointer, while `git checkout` moves the HEAD pointer.
+- When used without a commit specified, `git reset` will unstage all changes.
+- `git reset --hard` can be useful for cleaning up feature branches before merging.
+- Be cautious when using `git reset` with merge commits, as it can lead to unexpected results.
+- `git reset` can be used to squash commits by resetting and then creating a new commit.
+- The `--keep` option is useful when you want to reset to a previous state but keep local modifications.
+- After a `git reset`, you may need to force push (`git push --force`) if the branch was already pushed.
+- Always communicate with your team before force pushing after a reset on shared branches.
