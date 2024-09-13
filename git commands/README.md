@@ -1475,3 +1475,61 @@ The `git rm` command is used to remove files from both the Git repository and th
 - The command removes files from the current branch. Other branches may still contain the file.
 - Always be cautious when using `git rm`, especially with wildcards, to avoid unintended data loss.
 - After using `git rm`, you typically want to commit the changes to finalize the removal in your repository.
+
+# `git rebase`
+
+The `git rebase` command is used to change the base of a branch, effectively rewriting the commit history.
+
+## Command Overview
+
+| Aspect               | Description                                                                    |
+| -------------------- | ------------------------------------------------------------------------------ |
+| **Purpose**          | Moves or combines a sequence of commits to a new base commit                   |
+| **Usage**            | `git rebase [options] [<upstream> [<branch>]]`                                 |
+| **Default behavior** | Moves the entire current branch to begin on the tip of the `<upstream>` branch |
+
+## Common Options
+
+| Option                | Description                                                    |
+| --------------------- | -------------------------------------------------------------- |
+| `-i`, `--interactive` | Enters interactive mode for modifying commits during rebase    |
+| `--onto <newbase>`    | Specifies the new base commit for the branch                   |
+| `--continue`          | Resumes the rebase operation after resolving conflicts         |
+| `--abort`             | Cancels the rebase operation and returns to the original state |
+| `--skip`              | Skips the current commit and continues with the next one       |
+| `-m`, `--merge`       | Uses merging strategies to rebase                              |
+| `-s <strategy>`       | Specifies the merge strategy to use                            |
+| `-X <option>`         | Passes an option to the merge strategy                         |
+| `--stat`              | Displays a diffstat of changes since the last rebase           |
+
+## Examples
+
+| Command                                   | Description                                                             |
+| ----------------------------------------- | ----------------------------------------------------------------------- |
+| `git rebase master`                       | Rebases the current branch onto the master branch                       |
+| `git rebase -i HEAD~3`                    | Starts an interactive rebase for the last 3 commits                     |
+| `git rebase --onto master feature bugfix` | Rebases the bugfix branch onto master, starting from the feature branch |
+| `git rebase --continue`                   | Continues a rebase after resolving conflicts                            |
+| `git rebase --abort`                      | Aborts the current rebase operation                                     |
+
+## Resulting Structure
+
+| Item              | Description                                     |
+| ----------------- | ----------------------------------------------- |
+| Commit History    | New commits are created to replace the old ones |
+| Branch Pointer    | Moved to the tip of the newly created commits   |
+| Working Directory | Updated to reflect the state after rebasing     |
+
+## Notes
+
+- Rebasing rewrites commit history, which can cause issues if commits have been pushed to a shared repository.
+- Avoid rebasing commits that have been pushed to public repositories unless you're certain no one has based work on them.
+- Interactive rebasing (`-i`) is useful for cleaning up commit history before merging.
+- Conflicts may occur during rebasing and need to be resolved manually.
+- The `--onto` option is powerful for complex rebasing scenarios, like moving a specific range of commits.
+- Rebasing can create a more linear and cleaner history compared to merging.
+- Always ensure you have a clean working directory before starting a rebase.
+- Consider creating a backup branch before complex rebases: `git branch backup-branch`.
+- Use `git reflog` to recover from mistakes during rebasing.
+- Large rebases can be time-consuming and complex, so plan accordingly.
+- During rebasing, Git applies each commit in order. You may need to resolve the same conflict multiple times if later commits modify the same part of a file.
