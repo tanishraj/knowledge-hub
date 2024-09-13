@@ -1202,3 +1202,77 @@ The `git blame` command shows what revision and author last modified each line o
 - The `--since` option is useful for focusing on recent changes.
 - Use `git gui blame` for a graphical interface to blame information.
 - `git blame` doesn't show lines that have been deleted, only the current state of the file.
+
+# `git clean`
+
+The `git clean` command removes untracked files from the working directory.
+
+## Command Overview
+
+| Aspect               | Description                                                           |
+| -------------------- | --------------------------------------------------------------------- |
+| **Purpose**          | Removes untracked files from the working tree                         |
+| **Usage**            | `git clean [<options>]`                                               |
+| **Default behavior** | Does nothing; requires at least `-f` or `-i` to actually remove files |
+
+## Common Options
+
+| Option                                | Description                                                         |
+| ------------------------------------- | ------------------------------------------------------------------- |
+| `-n`, `--dry-run`                     | Don't actually remove anything, just show what would be done        |
+| `-f`, `--force`                       | Force git clean to delete the files                                 |
+| `-i`, `--interactive`                 | Show what would be deleted and give a chance to interactively clean |
+| `-d`                                  | Remove untracked directories in addition to untracked files         |
+| `-x`                                  | Remove ignored files as well as untracked files                     |
+| `-X`                                  | Remove only ignored files                                           |
+| `-e <pattern>`, `--exclude=<pattern>` | Use the given pattern to exclude files from being removed           |
+| `-q`, `--quiet`                       | Be quiet, only report errors                                        |
+
+## Interactive Mode Options
+
+| Option                   | Description                                             |
+| ------------------------ | ------------------------------------------------------- |
+| `1`, `clean`             | Delete all files and directories                        |
+| `2`, `filter by pattern` | Delete files and directories based on a pattern         |
+| `3`, `select by numbers` | Delete files and directories by selecting their numbers |
+| `4`, `ask each`          | Ask about each file or directory individually           |
+| `5`, `quit`              | Exit without cleaning                                   |
+| `6`, `help`              | Print help information                                  |
+
+## Examples
+
+| Command                 | Description                                       |
+| ----------------------- | ------------------------------------------------- |
+| `git clean -n`          | Show what would be deleted                        |
+| `git clean -f`          | Force deletion of untracked files                 |
+| `git clean -fd`         | Force deletion of untracked files and directories |
+| `git clean -fX`         | Remove only ignored files                         |
+| `git clean -fx`         | Remove ignored and non-ignored untracked files    |
+| `git clean -i`          | Interactively clean untracked files               |
+| `git clean -e *.log -f` | Force clean but exclude .log files                |
+
+## Affected Files
+
+| File Type             | Description                                                     |
+| --------------------- | --------------------------------------------------------------- |
+| Untracked files       | Files in the working directory that are not in the staging area |
+| Ignored files         | Files specified in .gitignore (only with -x option)             |
+| Untracked directories | Directories not tracked by Git (only with -d option)            |
+
+## Notes
+
+- `git clean` is a dangerous command as it permanently deletes files.
+- Always use `git clean -n` first to see what would be deleted.
+- The `-f` (force) option is required unless the `clean.requireForce` configuration is set to false.
+- `git clean` does not remove files specified in .gitignore by default.
+- Use `-x` to remove ignored files as well, or `-X` to remove only ignored files.
+- The `-i` option provides a safer, interactive way to clean files.
+- `git clean` only operates on untracked files, it won't touch files that have been staged or committed.
+- Be cautious when using `git clean -fd` as it will remove entire directories.
+- `git clean` can be used with `git reset --hard` to completely undo all uncommitted changes.
+- The command respects the `core.excludesFile` configuration option.
+- Files specified by `clean.ignore` configuration are always excluded.
+- Use `.gitignore` to prevent certain files from being accidentally removed.
+- `git clean` can be restricted to specific paths by providing them after the options.
+- The `-e` option can be used multiple times to exclude multiple patterns.
+- `git clean` is often used to clean up build artifacts or generated files.
