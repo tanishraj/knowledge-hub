@@ -1649,3 +1649,63 @@ The `git fetch` command downloads objects and refs from another repository, upda
 - It's part of keeping your repository up-to-date and is often used in automated scripts and CI/CD pipelines.
 - Fetching is what you do when you want to see what everybody else has been working on without integrating it into your work.
 - The command is particularly useful in team environments where you want to check remote changes before integrating them.
+
+# `git push`
+
+The `git push` command is used to upload local repository content to a remote repository. It transfers commits from your local repository to a remote repo.
+
+## Command Overview
+
+| Aspect               | Description                                                                                      |
+| -------------------- | ------------------------------------------------------------------------------------------------ |
+| **Purpose**          | Updates remote refs using local refs, while sending objects necessary to complete the given refs |
+| **Usage**            | `git push [<options>] [<repository> [<refspec>...]]`                                             |
+| **Default behavior** | Pushes the current branch to the configured upstream branch                                      |
+
+## Common Options
+
+| Option                 | Description                                                    |
+| ---------------------- | -------------------------------------------------------------- |
+| `-u`, `--set-upstream` | Sets the upstream for the current branch                       |
+| `--all`                | Pushes all branches                                            |
+| `--tags`               | Pushes all tags                                                |
+| `--force`, `-f`        | Forces the push even if it results in a non-fast-forward merge |
+| `--delete`             | Deletes the specified remote branch                            |
+| `--dry-run`            | Does everything except actually send the updates               |
+| `-v`, `--verbose`      | Run verbosely                                                  |
+| `--prune`              | Remove remote branches that don't have a local counterpart     |
+
+## Examples
+
+| Command                               | Description                                            |
+| ------------------------------------- | ------------------------------------------------------ |
+| `git push origin master`              | Pushes the master branch to the origin remote          |
+| `git push -u origin feature-branch`   | Pushes feature-branch and sets it as upstream          |
+| `git push --all`                      | Pushes all local branches to their remote counterparts |
+| `git push --tags`                     | Pushes all local tags to the remote                    |
+| `git push origin --delete old-branch` | Deletes the old-branch from the origin remote          |
+
+## Resulting Structure
+
+| Item              | Description                                    |
+| ----------------- | ---------------------------------------------- |
+| Remote Repository | Updated with new commits from local repository |
+| Remote Branches   | Updated to match pushed local branches         |
+| Local Repository  | Remains unchanged                              |
+| Upstream Tracking | May be set if -u option is used                |
+
+## Notes
+
+- `git push` only uploads changes that have been committed locally.
+- It's a good practice to fetch and merge (or pull) before pushing to avoid conflicts.
+- The `--force` option should be used with caution as it can overwrite remote changes.
+- If you've created a new local branch, you need to specify both the remote and branch name the first time you push it.
+- Use `git push --tags` to share tags with the remote repository.
+- The `-u` option is useful for setting up tracking, which simplifies future push/pull operations.
+- If your push is rejected, it usually means the remote has changes you don't have locally.
+- `git push` can trigger hooks on the remote repository, like CI/CD pipelines.
+- You can push to multiple remotes, but you need to do so explicitly.
+- Be cautious when pushing to shared branches on public repositories, as it can affect other collaborators.
+- The `--prune` option can help keep your remote branches tidy by removing obsolete ones.
+- If you're working on a fork, you might need to specify both the remote and the branch, e.g., `git push origin feature-branch:feature-branch`.
+- Always ensure you have the necessary permissions before pushing to a repository.
