@@ -1769,3 +1769,63 @@ The `git pull` command is used to fetch and download content from a remote repos
 - The `--no-commit` option is useful when you want to inspect the result of the merge before committing.
 - Always make sure you're pulling from the correct remote and branch to avoid unintended merges.
 - If you're working on a public project, it's often better to use `git fetch` and then merge manually for more control.
+
+# `git checkout`
+
+The `git checkout` command is used to switch between different versions of a target entity. It can be used to switch branches, restore working tree files, or restore specific commits.
+
+## Command Overview
+
+| Aspect               | Description                                                                      |
+| -------------------- | -------------------------------------------------------------------------------- |
+| **Purpose**          | Switches branches or restores working tree files                                 |
+| **Usage**            | `git checkout [<options>] <branch>` or `git checkout [<options>] [--] <file>...` |
+| **Default behavior** | Switches to the specified branch, updating the working directory                 |
+
+## Common Options
+
+| Option                  | Description                                                                 |
+| ----------------------- | --------------------------------------------------------------------------- |
+| `-b <new_branch>`       | Creates a new branch and switches to it                                     |
+| `-B <new_branch>`       | Creates or resets branch and switches to it                                 |
+| `-t`, `--track`         | Sets up tracking mode when checking out a remote branch                     |
+| `--orphan <new_branch>` | Creates a new orphan branch                                                 |
+| `-f`, `--force`         | Forces the checkout even if there are uncommitted changes                   |
+| `--merge`               | Merges the current branch with the specified branch                         |
+| `--patch`, `-p`         | Interactively select hunks from diff between the index and the working tree |
+| `--detach`              | Detaches HEAD at the specified commit                                       |
+
+## Examples
+
+| Command                          | Description                                              |
+| -------------------------------- | -------------------------------------------------------- |
+| `git checkout feature-branch`    | Switches to the feature-branch                           |
+| `git checkout -b new-feature`    | Creates and switches to a new branch called new-feature  |
+| `git checkout -- file.txt`       | Discards changes in the working directory for file.txt   |
+| `git checkout HEAD~3`            | Checks out the commit three before HEAD                  |
+| `git checkout -t origin/feature` | Creates a new local branch that tracks the remote branch |
+
+## Resulting Structure
+
+| Item                 | Description                                                      |
+| -------------------- | ---------------------------------------------------------------- |
+| Working Directory    | Updated to reflect the state of the checked-out branch or commit |
+| HEAD                 | Points to the newly checked-out branch or commit                 |
+| Index (Staging Area) | Updated to match the checked-out branch or commit                |
+| Current Branch       | Changed to the specified branch (if a branch was checked out)    |
+
+## Notes
+
+- `git checkout` can switch between branches, commits, and even individual files.
+- When switching branches, make sure your working directory is clean to avoid conflicts.
+- Use `git checkout -b <new-branch>` to create and switch to a new branch in one command.
+- Checking out a file (`git checkout -- <file>`) will discard any uncommitted changes to that file.
+- `git checkout` can be used to create a new branch from a specific commit or tag.
+- When checking out remote branches, use `-t` to set up proper tracking.
+- Be cautious when using `--force`, as it can potentially cause loss of uncommitted changes.
+- `git checkout` with a commit hash will result in a "detached HEAD" state.
+- In modern Git versions, `git switch` and `git restore` are introduced to split the responsibilities of `git checkout`.
+- `git checkout` can be used with wildcards to checkout multiple files at once.
+- When in detached HEAD state, any new commits you make will be orphaned when you checkout something else.
+- `git checkout` can be used with the `-p` option for interactive patching, allowing you to selectively discard changes.
+- Always double-check the branch or commit you're checking out to avoid unintended consequences.
