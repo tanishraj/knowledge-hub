@@ -1590,3 +1590,62 @@ The `git reflog` command is used to manage and display the reference logs, which
 - You can create multiple reflogs for different references (branches, remotes).
 - The `git gc` command may remove unreachable objects that are no longer in the reflog.
 - Understanding the reflog can greatly enhance your ability to manage and recover your Git history.
+
+# `git fetch`
+
+The `git fetch` command downloads objects and refs from another repository, updating the local repository's remote-tracking branches without merging the changes into your current branch.
+
+## Command Overview
+
+| Aspect               | Description                                                                      |
+| -------------------- | -------------------------------------------------------------------------------- |
+| **Purpose**          | Retrieves latest changes from remote repository without modifying local branches |
+| **Usage**            | `git fetch [<options>] [<repository> [<refspec>...]]`                            |
+| **Default behavior** | Fetches all branches from the default remote (usually 'origin')                  |
+
+## Common Options
+
+| Option                   | Description                                                                           |
+| ------------------------ | ------------------------------------------------------------------------------------- |
+| `--all`                  | Fetches from all remotes                                                              |
+| `-p`, `--prune`          | Removes any remote-tracking references that no longer exist on the remote             |
+| `-t`, `--tags`           | Fetches all tags and associated objects                                               |
+| `--depth=<depth>`        | Limits fetching to the specified number of commits from the tip of each remote branch |
+| `--shallow-since=<date>` | Fetches only commits newer than the specified date                                    |
+| `--dry-run`              | Shows what would be done, without making any changes                                  |
+| `-f`, `--force`          | Forces fetching even when it would not normally be considered up-to-date              |
+| `-v`, `--verbose`        | Provides more detailed output                                                         |
+
+## Examples
+
+| Command                   | Description                                  |
+| ------------------------- | -------------------------------------------- |
+| `git fetch origin`        | Fetches changes from the 'origin' remote     |
+| `git fetch --all`         | Fetches changes from all configured remotes  |
+| `git fetch origin master` | Fetches only the master branch from 'origin' |
+| `git fetch -p`            | Fetches and prunes deleted remote branches   |
+| `git fetch --tags`        | Fetches all tags from the remote             |
+
+## Resulting Structure
+
+| Item                     | Description                                     |
+| ------------------------ | ----------------------------------------------- |
+| Local Repository         | Updated with new objects from the remote        |
+| Remote-Tracking Branches | Updated to reflect the state of remote branches |
+| Working Directory        | Remains unchanged                               |
+| Local Branches           | Not automatically updated or merged             |
+
+## Notes
+
+- `git fetch` only downloads new data from a remote repository - it doesn't integrate any of this new data into your working files.
+- It's safe to do anytime as it doesn't modify your local branches.
+- After fetching, use `git merge` or `git rebase` to integrate the changes into your local branch.
+- Use `git pull` instead of `git fetch` if you want to fetch and merge in one step.
+- Fetching updates your remote-tracking branches (e.g., `origin/master`).
+- It's a good practice to fetch before pushing to ensure you have the latest changes.
+- The `--prune` option is useful for cleaning up deleted remote branches.
+- For large repositories, you can use `--depth` to limit the amount of history fetched.
+- `git fetch` can be used with specific branches, tags, or even commit SHAs.
+- It's part of keeping your repository up-to-date and is often used in automated scripts and CI/CD pipelines.
+- Fetching is what you do when you want to see what everybody else has been working on without integrating it into your work.
+- The command is particularly useful in team environments where you want to check remote changes before integrating them.
