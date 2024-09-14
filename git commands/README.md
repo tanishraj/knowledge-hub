@@ -1829,3 +1829,63 @@ The `git checkout` command is used to switch between different versions of a tar
 - When in detached HEAD state, any new commits you make will be orphaned when you checkout something else.
 - `git checkout` can be used with the `-p` option for interactive patching, allowing you to selectively discard changes.
 - Always double-check the branch or commit you're checking out to avoid unintended consequences.
+
+# `git merge`
+
+The `git merge` command is used to integrate changes from one branch into another. It's a way to combine forked version histories back together.
+
+## Command Overview
+
+| Aspect               | Description                                                                                                                           |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| **Purpose**          | Incorporates changes from the named commits (since the time their histories diverged from the current branch) into the current branch |
+| **Usage**            | `git merge [<options>] [<commit>...]`                                                                                                 |
+| **Default behavior** | Merges the specified branch into the current branch, creating a new merge commit                                                      |
+
+## Common Options
+
+| Option                        | Description                                                                                                                                    |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--no-ff`                     | Creates a merge commit even if the merge resolves as a fast-forward                                                                            |
+| `--ff-only`                   | Refuses to merge and exits with a non-zero status unless the current HEAD is already up to date or the merge can be resolved as a fast-forward |
+| `--squash`                    | Produces the working tree and index state as if a real merge happened, but does not actually make a commit or move the HEAD                    |
+| `--strategy=<strategy>`       | Use the given merge strategy                                                                                                                   |
+| `--abort`                     | Aborts the current conflict resolution process, and tries to reconstruct the pre-merge state                                                   |
+| `--continue`                  | After a git merge stops due to conflicts you can continue the merge process                                                                    |
+| `-m <msg>`                    | Sets the commit message to be used for the merge commit                                                                                        |
+| `--allow-unrelated-histories` | Allows merging histories that do not share a common ancestor                                                                                   |
+
+## Examples
+
+| Command                         | Description                                                              |
+| ------------------------------- | ------------------------------------------------------------------------ |
+| `git merge feature-branch`      | Merges feature-branch into the current branch                            |
+| `git merge --no-ff release-1.0` | Merges release-1.0 into the current branch, always creating a new commit |
+| `git merge --squash bugfix`     | Merges bugfix into the current branch, squashing all commits             |
+| `git merge --abort`             | Aborts the current merge and restores the pre-merge state                |
+| `git merge origin/master`       | Merges the remote master branch into the current local branch            |
+
+## Resulting Structure
+
+| Item              | Description                                    |
+| ----------------- | ---------------------------------------------- |
+| Current Branch    | Updated with changes from the merged branch    |
+| Commit History    | New merge commit created (unless fast-forward) |
+| Working Directory | Updated to reflect the merged state            |
+| HEAD              | Points to the new merge commit                 |
+
+## Notes
+
+- Fast-forward merges move the current branch tip up to the target branch tip without creating a new commit.
+- Non-fast-forward merges create a new "merge commit" that ties together the two histories.
+- Merge conflicts occur when the same part of a file has been modified differently in the two branches being merged.
+- When conflicts occur, Git marks the conflicted files and halts the merging process. You must manually resolve conflicts.
+- After resolving conflicts, use `git add` to mark them as resolved, then `git merge --continue` or `git commit` to finish the merge.
+- The `--squash` option is useful for treating a series of commits as a single unit of work.
+- Be cautious when using `--allow-unrelated-histories`, as it can lead to confusing history.
+- It's a good practice to have a clean working directory before starting a merge.
+- You can use `git merge --abort` at any time to back out of a problematic merge.
+- The merge strategy can be specified with `--strategy`. Common strategies include recursive (default) and octopus (for merging more than two branches).
+- `git pull` is essentially a `git fetch` followed by a `git merge`.
+- Always review the changes before merging, especially in collaborative environments.
+- Consider using feature branches and pull requests for better code review before merging into main branches.
