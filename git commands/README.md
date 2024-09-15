@@ -1889,3 +1889,61 @@ The `git merge` command is used to integrate changes from one branch into anothe
 - `git pull` is essentially a `git fetch` followed by a `git merge`.
 - Always review the changes before merging, especially in collaborative environments.
 - Consider using feature branches and pull requests for better code review before merging into main branches.
+
+# Pull Request Quick Guide
+
+A Pull Request (PR) is a method of submitting contributions to a project. It allows developers to propose changes to a repository, which can then be reviewed and potentially merged into the main project.
+
+## Steps to Create a Pull Request
+
+1. **Fork the Repository** (if you're not a collaborator)
+
+   - Go to the main page of the repository
+   - Click the "Fork" button in the top-right corner
+
+2. **Clone the Repository**
+
+   ```
+   git clone https://github.com/your-username/repository-name.git
+   ```
+
+3. **Create a New Branch**
+
+   ```
+   git checkout -b your-feature-branch
+   ```
+
+4. **Make Your Changes**
+
+   - Edit, add, or delete files as necessary
+
+5. **Commit Your Changes**
+
+   ```
+   git add .
+   git commit -m "Descriptive commit message"
+   ```
+
+6. **Push Your Changes**
+
+   ```
+   git push origin your-feature-branch
+   ```
+
+7. **Create the Pull Request**
+
+   - Go to your repository on GitHub
+   - Click "Pull request" button
+   - Select your branch and the destination branch
+   - Add a title and description for your changes
+   - Click "Create pull request"
+
+8. **Review Process**
+
+   - Wait for project maintainers to review your PR
+   - Make any requested changes and push them to your branch
+
+9. **Merge**
+   - Once approved, a project maintainer will merge your PR
+
+Remember to keep your PR focused, write clear descriptions, and be open to feedback during the review process.
