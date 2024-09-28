@@ -4,5 +4,12 @@
   "description": "A server for TODO apis",
   "main": "app.js",
   "author": "Tanishraj",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
 }
