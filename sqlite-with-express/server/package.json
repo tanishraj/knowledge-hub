@@ -1,0 +1,8 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "A server for TODO apis",
+  "main": "app.js",
+  "author": "Tanishraj",
+  "license": "MIT"
+}
