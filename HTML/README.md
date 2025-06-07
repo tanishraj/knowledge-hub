@@ -1655,7 +1655,7 @@ A)
 
 <details>
 <summary>View Answer</summary>
-``` 
-<button>Click Me</button>
-```
+
+`<button>Click Me</button>`
+
 </details>
