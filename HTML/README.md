@@ -25,7 +25,10 @@ A) Hyper Text Markup Language
 
 <details>
 <summary>View Answer</summary>
-B) `<a>`
+B)
+
+`<a>`
+
 </details>
 
 ---
@@ -39,7 +42,10 @@ B) `<a>`
 
 <details>
 <summary>View Answer</summary>
-A) `<img src="image.jpg" alt="Image">`
+A)
+
+`<img src="image.jpg" alt="Image">`
+
 </details>
 
 ---
@@ -53,7 +59,10 @@ A) `<img src="image.jpg" alt="Image">`
 
 <details>
 <summary>View Answer</summary>
-A) `<!-- This is a comment -->`
+A)
+
+`<!-- This is a comment -->`
+
 </details>
 
 ---
@@ -67,7 +76,10 @@ A) `<!-- This is a comment -->`
 
 <details>
 <summary>View Answer</summary>
-A) `<p>`
+A)
+
+`<p>`
+
 </details>
 
 ---
@@ -81,7 +93,10 @@ A) `<p>`
 
 <details>
 <summary>View Answer</summary>
-A) `<h1>`
+A)
+
+`<h1>`
+
 </details>
 
 ---
@@ -95,7 +110,10 @@ A) `<h1>`
 
 <details>
 <summary>View Answer</summary>
-A) `<ul>`
+A)
+
+`<ul>`
+
 </details>
 
 ---
@@ -109,7 +127,10 @@ A) `<ul>`
 
 <details>
 <summary>View Answer</summary>
-B) `alt`
+B)
+
+`alt`
+
 </details>
 
 ---
@@ -123,7 +144,10 @@ B) `alt`
 
 <details>
 <summary>View Answer</summary>
-A) `<input type="checkbox">`
+A)
+
+`<input type="checkbox">`
+
 </details>
 
 ---
@@ -137,7 +161,10 @@ A) `<input type="checkbox">`
 
 <details>
 <summary>View Answer</summary>
-A) `<video>`
+A)
+
+`<video>`
+
 </details>
 
 ---
@@ -151,7 +178,10 @@ A) `<video>`
 
 <details>
 <summary>View Answer</summary>
-A) `<br>`
+A)
+
+`<br>`
+
 </details>
 
 ---
@@ -165,7 +195,10 @@ A) `<br>`
 
 <details>
 <summary>View Answer</summary>
-A) ```<table>```
+A)
+
+`<table>`
+
 </details>
 
 ---
@@ -179,7 +212,10 @@ A) ```<table>```
 
 <details>
 <summary>View Answer</summary>
-A) `<tr>`
+A)
+
+`<tr>`
+
 </details>
 
 ---
@@ -193,7 +229,10 @@ A) `<tr>`
 
 <details>
 <summary>View Answer</summary>
-A) `<td>`
+A)
+
+`<td>`
+
 </details>
 
 ---
@@ -207,7 +246,10 @@ A) `<td>`
 
 <details>
 <summary>View Answer</summary>
-B) `<th>`
+B)
+
+`<th>`
+
 </details>
 
 ---
@@ -221,7 +263,10 @@ B) `<th>`
 
 <details>
 <summary>View Answer</summary>
-A) `<form>`
+A)
+
+`<form>`
+
 </details>
 
 ---
@@ -235,7 +280,10 @@ A) `<form>`
 
 <details>
 <summary>View Answer</summary>
-A) `<input type="password">`
+A)
+
+`<input type="password">`
+
 </details>
 
 ---
@@ -249,7 +297,10 @@ A) `<input type="password">`
 
 <details>
 <summary>View Answer</summary>
-A) `<select>`
+A)
+
+`<select>`
+
 </details>
 
 ---
@@ -263,7 +314,10 @@ A) `<select>`
 
 <details>
 <summary>View Answer</summary>
-A) `<option>`
+A)
+
+`<option>`
+
 </details>
 
 ---
@@ -277,7 +331,10 @@ A) `<option>`
 
 <details>
 <summary>View Answer</summary>
-A) `<button>`
+A)
+
+`<button>`
+
 </details>
 
 ---
@@ -291,7 +348,10 @@ A) `<button>`
 
 <details>
 <summary>View Answer</summary>
-B) `id`
+B)
+
+`id`
+
 </details>
 
 ---
@@ -305,7 +365,10 @@ B) `id`
 
 <details>
 <summary>View Answer</summary>
-B) `<textarea>`
+B)
+
+`<textarea>`
+
 </details>
 
 ---
@@ -319,7 +382,10 @@ B) `<textarea>`
 
 <details>
 <summary>View Answer</summary>
-A) `<body>`
+A)
+
+`<body>`
+
 </details>
 
 ---
@@ -333,7 +399,10 @@ A) `<body>`
 
 <details>
 <summary>View Answer</summary>
-B) `<head>`
+B)
+
+`<head>`
+
 </details>
 
 ---
@@ -347,7 +416,10 @@ B) `<head>`
 
 <details>
 <summary>View Answer</summary>
-A) `<input type="radio">`
+A)
+
+`<input type="radio">`
+
 </details>
 
 ---
@@ -361,7 +433,10 @@ A) `<input type="radio">`
 
 <details>
 <summary>View Answer</summary>
-A) `<script>`
+A)
+
+`<script>`
+
 </details>
 
 ---
@@ -375,7 +450,10 @@ A) `<script>`
 
 <details>
 <summary>View Answer</summary>
-A) `<footer>`
+A)
+
+`<footer>`
+
 </details>
 
 ---
@@ -389,7 +467,10 @@ A) `<footer>`
 
 <details>
 <summary>View Answer</summary>
-A) `<nav>`
+A)
+
+`<nav>`
+
 </details>
 
 ---
@@ -403,7 +484,10 @@ A) `<nav>`
 
 <details>
 <summary>View Answer</summary>
-A) `<section>`
+A)
+
+`<section>`
+
 </details>
 
 ---
@@ -417,7 +501,10 @@ A) `<section>`
 
 <details>
 <summary>View Answer</summary>
-A) `<article>`
+A)
+
+`<article>`
+
 </details>
 
 ---
@@ -431,7 +518,10 @@ A) `<article>`
 
 <details>
 <summary>View Answer</summary>
-A) `<aside>`
+A)
+
+`<aside>`
+
 </details>
 
 ---
@@ -445,7 +535,10 @@ A) `<aside>`
 
 <details>
 <summary>View Answer</summary>
-A) `<header>`
+A)
+
+`<header>`
+
 </details>
 
 ---
@@ -459,7 +552,10 @@ A) `<header>`
 
 <details>
 <summary>View Answer</summary>
-A) `<div>`
+A)
+
+`<div>`
+
 </details>
 
 ---
@@ -473,7 +569,10 @@ A) `<div>`
 
 <details>
 <summary>View Answer</summary>
-A) `<style>`
+A)
+
+`<style>`
+
 </details>
 
 ---
@@ -487,7 +586,10 @@ A) `<style>`
 
 <details>
 <summary>View Answer</summary>
-C) `style`
+C)
+
+`style`
+
 </details>
 
 ---
@@ -501,7 +603,10 @@ C) `style`
 
 <details>
 <summary>View Answer</summary>
-A) `<style>`
+A)
+
+`<style>`
+
 </details>
 
 ---
@@ -515,7 +620,10 @@ A) `<style>`
 
 <details>
 <summary>View Answer</summary>
-A) `<link>`
+A)
+
+`<link>`
+
 </details>
 
 ---
@@ -529,7 +637,10 @@ A) `<link>`
 
 <details>
 <summary>View Answer</summary>
-A) `<hr>`
+A)
+
+`<hr>`
+
 </details>
 
 ---
@@ -543,7 +654,10 @@ A) `<hr>`
 
 <details>
 <summary>View Answer</summary>
-A) `<dl>`
+A)
+
+`<dl>`
+
 </details>
 
 ---
@@ -557,7 +671,10 @@ A) `<dl>`
 
 <details>
 <summary>View Answer</summary>
-A) `<dt>`
+A)
+
+`<dt>`
+
 </details>
 
 ---
@@ -571,7 +688,10 @@ A) `<dt>`
 
 <details>
 <summary>View Answer</summary>
-B) `<dd>`
+B)
+
+`<dd>`
+
 </details>
 
 ---
@@ -585,7 +705,10 @@ B) `<dd>`
 
 <details>
 <summary>View Answer</summary>
-A) `<sub>`
+A)
+
+`<sub>`
+
 </details>
 
 ---
@@ -599,7 +722,10 @@ A) `<sub>`
 
 <details>
 <summary>View Answer</summary>
-B) `<sup>`
+B)
+
+`<sup>`
+
 </details>
 
 ---
@@ -613,7 +739,10 @@ B) `<sup>`
 
 <details>
 <summary>View Answer</summary>
-A) `<meta>`
+A)
+
+`<meta>`
+
 </details>
 
 ---
@@ -627,7 +756,10 @@ A) `<meta>`
 
 <details>
 <summary>View Answer</summary>
-A) `charset`
+A)
+
+`charset`
+
 </details>
 
 ---
@@ -641,7 +773,10 @@ A) `charset`
 
 <details>
 <summary>View Answer</summary>
-A) `<caption>`
+A)
+
+`<caption>`
+
 </details>
 
 ---
@@ -655,7 +790,10 @@ A) `<caption>`
 
 <details>
 <summary>View Answer</summary>
-A) `<thead>`
+A)
+
+`<thead>`
+
 </details>
 
 ---
@@ -669,7 +807,10 @@ A) `<thead>`
 
 <details>
 <summary>View Answer</summary>
-B) `<tbody>`
+B)
+
+`<tbody>`
+
 </details>
 
 ---
@@ -683,7 +824,10 @@ B) `<tbody>`
 
 <details>
 <summary>View Answer</summary>
-C) `<tfoot>`
+C)
+
+`<tfoot>`
+
 </details>
 
 ---
@@ -697,7 +841,10 @@ C) `<tfoot>`
 
 <details>
 <summary>View Answer</summary>
-A) `<colgroup>`
+A)
+
+`<colgroup>`
+
 </details>
 
 ---
@@ -711,7 +858,10 @@ A) `<colgroup>`
 
 <details>
 <summary>View Answer</summary>
-B) `<col>`
+B)
+
+`<col>`
+
 </details>
 
 ---
@@ -725,7 +875,10 @@ B) `<col>`
 
 <details>
 <summary>View Answer</summary>
-A) `<figure>`
+A)
+
+`<figure>`
+
 </details>
 
 ---
@@ -739,7 +892,10 @@ A) `<figure>`
 
 <details>
 <summary>View Answer</summary>
-B) `<figcaption>`
+B)
+
+`<figcaption>`
+
 </details>
 
 ---
@@ -753,7 +909,10 @@ B) `<figcaption>`
 
 <details>
 <summary>View Answer</summary>
-A) `<audio>`
+A)
+
+`<audio>`
+
 </details>
 
 ---
@@ -767,7 +926,10 @@ A) `<audio>`
 
 <details>
 <summary>View Answer</summary>
-A) `<iframe>`
+A)
+
+`<iframe>`
+
 </details>
 
 ---
@@ -781,7 +943,10 @@ A) `<iframe>`
 
 <details>
 <summary>View Answer</summary>
-A) `<progress>`
+A)
+
+`<progress>`
+
 </details>
 
 ---
@@ -795,7 +960,10 @@ A) `<progress>`
 
 <details>
 <summary>View Answer</summary>
-B) `<meter>`
+B)
+
+`<meter>`
+
 </details>
 
 ---
@@ -809,7 +977,10 @@ B) `<meter>`
 
 <details>
 <summary>View Answer</summary>
-A) `<dialog>`
+A)
+
+`<dialog>`
+
 </details>
 
 ---
@@ -823,7 +994,10 @@ A) `<dialog>`
 
 <details>
 <summary>View Answer</summary>
-A) `<details>`
+A)
+
+`<details>`
+
 </details>
 
 ---
@@ -837,7 +1011,10 @@ A) `<details>`
 
 <details>
 <summary>View Answer</summary>
-B) `<summary>`
+B)
+
+`<summary>`
+
 </details>
 
 ---
@@ -851,7 +1028,10 @@ B) `<summary>`
 
 <details>
 <summary>View Answer</summary>
-A) `<svg>`
+A)
+
+`<svg>`
+
 </details>
 
 ---
@@ -865,7 +1045,10 @@ A) `<svg>`
 
 <details>
 <summary>View Answer</summary>
-B) `<canvas>`
+B)
+
+`<canvas>`
+
 </details>
 
 ---
@@ -879,7 +1062,10 @@ B) `<canvas>`
 
 <details>
 <summary>View Answer</summary>
-A) `<time>`
+A)
+
+`<time>`
+
 </details>
 
 ---
@@ -893,7 +1079,10 @@ A) `<time>`
 
 <details>
 <summary>View Answer</summary>
-A) `<code>`
+A)
+
+`<code>`
+
 </details>
 
 ---
@@ -907,7 +1096,10 @@ A) `<code>`
 
 <details>
 <summary>View Answer</summary>
-B) `<pre>`
+B)
+
+`<pre>`
+
 </details>
 
 ---
@@ -921,7 +1113,10 @@ B) `<pre>`
 
 <details>
 <summary>View Answer</summary>
-C) `<samp>`
+C)
+
+`<samp>`
+
 </details>
 
 ---
@@ -935,7 +1130,10 @@ C) `<samp>`
 
 <details>
 <summary>View Answer</summary>
-D) `<kbd>`
+D)
+
+`<kbd>`
+
 </details>
 
 ---
@@ -949,7 +1147,10 @@ D) `<kbd>`
 
 <details>
 <summary>View Answer</summary>
-A) `<var>`
+A)
+
+`<var>`
+
 </details>
 
 ---
@@ -963,7 +1164,10 @@ A) `<var>`
 
 <details>
 <summary>View Answer</summary>
-A) `<cite>`
+A)
+
+`<cite>`
+
 </details>
 
 ---
@@ -977,7 +1181,10 @@ A) `<cite>`
 
 <details>
 <summary>View Answer</summary>
-D) `<q>`
+D)
+
+`<q>`
+
 </details>
 
 ---
@@ -991,7 +1198,10 @@ D) `<q>`
 
 <details>
 <summary>View Answer</summary>
-C) `<blockquote>`
+C)
+
+`<blockquote>`
+
 </details>
 
 ---
@@ -1005,7 +1215,10 @@ C) `<blockquote>`
 
 <details>
 <summary>View Answer</summary>
-A) `<dfn>`
+A)
+
+`<dfn>`
+
 </details>
 
 ---
@@ -1019,7 +1232,10 @@ A) `<dfn>`
 
 <details>
 <summary>View Answer</summary>
-A) `<abbr>`
+A)
+
+`<abbr>`
+
 </details>
 
 ---
@@ -1033,7 +1249,10 @@ A) `<abbr>`
 
 <details>
 <summary>View Answer</summary>
-B) `<address>`
+B)
+
+`<address>`
+
 </details>
 
 ---
@@ -1047,7 +1266,10 @@ B) `<address>`
 
 <details>
 <summary>View Answer</summary>
-B) `<wbr>`
+B)
+
+`<wbr>`
+
 </details>
 
 ---
@@ -1061,7 +1283,10 @@ B) `<wbr>`
 
 <details>
 <summary>View Answer</summary>
-A) `<hr>`
+A)
+
+`<hr>`
+
 </details>
 
 ---
@@ -1075,7 +1300,10 @@ A) `<hr>`
 
 <details>
 <summary>View Answer</summary>
-A) `<object>`
+A)
+
+`<object>`
+
 </details>
 
 ---
@@ -1089,7 +1317,10 @@ A) `<object>`
 
 <details>
 <summary>View Answer</summary>
-A) `<param>`
+A)
+
+`<param>`
+
 </details>
 
 ---
@@ -1103,7 +1334,10 @@ A) `<param>`
 
 <details>
 <summary>View Answer</summary>
-A) `<datalist>`
+A)
+
+`<datalist>`
+
 </details>
 
 ---
@@ -1117,7 +1351,10 @@ A) `<datalist>`
 
 <details>
 <summary>View Answer</summary>
-A) `<output>`
+A)
+
+`<output>`
+
 </details>
 
 ---
@@ -1131,7 +1368,10 @@ A) `<output>`
 
 <details>
 <summary>View Answer</summary>
-C) `href`
+C)
+
+`href`
+
 </details>
 
 ---
@@ -1145,7 +1385,10 @@ C) `href`
 
 <details>
 <summary>View Answer</summary>
-C) `alt`
+C)
+
+`alt`
+
 </details>
 
 ---
@@ -1159,7 +1402,10 @@ C) `alt`
 
 <details>
 <summary>View Answer</summary>
-A) `title`
+A)
+
+`title`
+
 </details>
 
 ---
@@ -1173,7 +1419,10 @@ A) `title`
 
 <details>
 <summary>View Answer</summary>
-A) `required`
+A)
+
+`required`
+
 </details>
 
 ---
@@ -1187,7 +1436,10 @@ A) `required`
 
 <details>
 <summary>View Answer</summary>
-A) `max`
+A)
+
+`max`
+
 </details>
 
 ---
@@ -1201,7 +1453,10 @@ A) `max`
 
 <details>
 <summary>View Answer</summary>
-A) `min`
+A)
+
+`min`
+
 </details>
 
 ---
@@ -1215,7 +1470,10 @@ A) `min`
 
 <details>
 <summary>View Answer</summary>
-A) `pattern`
+A)
+
+`pattern`
+
 </details>
 
 ---
@@ -1229,7 +1487,10 @@ A) `pattern`
 
 <details>
 <summary>View Answer</summary>
-A) `placeholder`
+A)
+
+`placeholder`
+
 </details>
 
 ---
@@ -1243,7 +1504,10 @@ A) `placeholder`
 
 <details>
 <summary>View Answer</summary>
-A) `autofocus`
+A)
+
+`autofocus`
+
 </details>
 
 ---
@@ -1257,7 +1521,10 @@ A) `autofocus`
 
 <details>
 <summary>View Answer</summary>
-A) `novalidate`
+A)
+
+`novalidate`
+
 </details>
 
 ---
