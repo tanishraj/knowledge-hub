@@ -90,8 +90,8 @@ A) `<h1>`
 
 **A)** `<ul>`  
 **B)** `<ol>`  
-**C)`<li>`  
-**D)`<list>`
+**C)** `<li>`  
+**D)** `<list>`
 
 <details>
 <summary>View Answer</summary>
@@ -104,8 +104,8 @@ A) `<ul>`
 
 **A)** `title`  
 **B)** `alt`  
-**C)`src`  
-**D)`href`
+**C)** `src`  
+**D)** `href`
 
 <details>
 <summary>View Answer</summary>
@@ -118,8 +118,8 @@ B) `alt`
 
 **A)** `<input type="checkbox">`  
 **B)** `<checkbox>`  
-**C)`<input type="check">`  
-**D)`<check>`
+**C)** `<input type="check">`  
+**D)** `<check>`
 
 <details>
 <summary>View Answer</summary>
@@ -132,8 +132,8 @@ A) `<input type="checkbox">`
 
 **A)** `<video>`  
 **B)** `<embed>`  
-**C)`<movie>`  
-**D)`<media>`
+**C)** `<movie>`  
+**D)** `<media>`
 
 <details>
 <summary>View Answer</summary>
@@ -146,8 +146,8 @@ A) `<video>`
 
 **A)** `<br>`  
 **B)** `<break>`  
-**C)`<lb>`  
-**D)`<newline>`
+**C)** `<lb>`  
+**D)** `<newline>`
 
 <details>
 <summary>View Answer</summary>
@@ -160,12 +160,12 @@ A) `<br>`
 
 **A)** `<table>`  
 **B)** `<tr>`  
-**C)`<td>`  
-**D)`<tab>`
+**C)** `<td>`  
+**D)** `<tab>`
 
 <details>
 <summary>View Answer</summary>
-A) `<table>`
+A) ```<table>```
 </details>
 
 ---
@@ -174,8 +174,8 @@ A) `<table>`
 
 **A)** `<tr>`  
 **B)** `<td>`  
-**C)`<th>`  
-**D)`<table-row>`
+**C)** `<th>`  
+**D)** `<table-row>`
 
 <details>
 <summary>View Answer</summary>
@@ -188,8 +188,8 @@ A) `<tr>`
 
 **A)** `<td>`  
 **B)** `<tr>`  
-**C)`<th>`  
-**D)`<cell>`
+**C)** `<th>`  
+**D)** `<cell>`
 
 <details>
 <summary>View Answer</summary>
@@ -202,8 +202,8 @@ A) `<td>`
 
 **A)** `<td>`  
 **B)** `<th>`  
-**C)`<tr>`  
-**D)`<header>`
+**C)** `<tr>`  
+**D)** `<header>`
 
 <details>
 <summary>View Answer</summary>
@@ -216,8 +216,8 @@ B) `<th>`
 
 **A)** `<form>`  
 **B)** `<input>`  
-**C)`<submit>`  
-**D)`<fieldset>`
+**C)** `<submit>`  
+**D)** `<fieldset>`
 
 <details>
 <summary>View Answer</summary>
@@ -230,8 +230,8 @@ A) `<form>`
 
 **A)** `<input type="password">`  
 **B)** `<input type="text">`  
-**C)`<input type="hidden">`  
-**D)`<password>`
+**C)** `<input type="hidden">`  
+**D)** `<password>`
 
 <details>
 <summary>View Answer</summary>
@@ -244,8 +244,8 @@ A) `<input type="password">`
 
 **A)** `<select>`  
 **B)** `<dropdown>`  
-**C)`<option>`  
-**D)`<list>`
+**C)** `<option>`  
+**D)** `<list>`
 
 <details>
 <summary>View Answer</summary>
@@ -258,8 +258,8 @@ A) `<select>`
 
 **A)** `<option>`  
 **B)** `<select>`  
-**C)`<dropdown>`  
-**D)`<list>`
+**C)** `<dropdown>`  
+**D)** `<list>`
 
 <details>
 <summary>View Answer</summary>
@@ -272,8 +272,8 @@ A) `<option>`
 
 **A)** `<button>`  
 **B)** `<input type="button">`  
-**C)`<btn>`  
-**D)`<submit>`
+**C)** `<btn>`  
+**D)** `<submit>`
 
 <details>
 <summary>View Answer</summary>
@@ -286,8 +286,8 @@ A) `<button>`
 
 **A)** `class`  
 **B)** `id`  
-**C)`name`  
-**D)`type`
+**C)** `name`  
+**D)** `type`
 
 <details>
 <summary>View Answer</summary>
@@ -300,8 +300,8 @@ B) `id`
 
 **A)** `<input type="text">`  
 **B)** `<textarea>`  
-**C)`<text>`  
-**D)`<input type="textarea">`
+**C)** `<text>`  
+**D)** `<input type="textarea">`
 
 <details>
 <summary>View Answer</summary>
@@ -314,8 +314,8 @@ B) `<textarea>`
 
 **A)** `<body>`  
 **B)** `<head>`  
-**C)`<html>`  
-**D)`<document>`
+**C)** `<html>`  
+**D)** `<document>`
 
 <details>
 <summary>View Answer</summary>
@@ -328,8 +328,8 @@ A) `<body>`
 
 **A)** `<body>`  
 **B)** `<head>`  
-**C)`<html>`  
-**D)`<header>`
+**C)** `<html>`  
+**D)** `<header>`
 
 <details>
 <summary>View Answer</summary>
@@ -342,8 +342,8 @@ B) `<head>`
 
 **A)** `<input type="radio">`  
 **B)** `<input type="checkbox">`  
-**C)`<radio>`  
-**D)`<checkbox>`
+**C)** `<radio>`  
+**D)** `<checkbox>`
 
 <details>
 <summary>View Answer</summary>
@@ -356,8 +356,8 @@ A) `<input type="radio">`
 
 **A)** `<script>`  
 **B)** `<js>`  
-**C)`<javascript>`  
-**D)`<code>`
+**C)** `<javascript>`  
+**D)** `<code>`
 
 <details>
 <summary>View Answer</summary>
@@ -370,8 +370,8 @@ A) `<script>`
 
 **A)** `<footer>`  
 **B)** `<foot>`  
-**C)`<bottom>`  
-**D)`<end>`
+**C)** `<bottom>`  
+**D)** `<end>`
 
 <details>
 <summary>View Answer</summary>
@@ -384,8 +384,8 @@ A) `<footer>`
 
 **A)** `<nav>`  
 **B)** `<navigation>`  
-**C)`<menu>`  
-**D)`<navigate>`
+**C)** `<menu>`  
+**D)** `<navigate>`
 
 <details>
 <summary>View Answer</summary>
@@ -398,8 +398,8 @@ A) `<nav>`
 
 **A)** `<section>`  
 **B)** `<div>`  
-**C)`<span>`  
-**D)`<article>`
+**C)** `<span>`  
+**D)** `<article>`
 
 <details>
 <summary>View Answer</summary>
@@ -412,8 +412,8 @@ A) `<section>`
 
 **A)** `<article>`  
 **B)`<section>`  
-**C)`<div>`  
-\*\*D)`<aside>`
+**C)\*\* `<div>`  
+**D)** `<aside>`
 
 <details>
 <summary>View Answer</summary>
@@ -426,8 +426,8 @@ A) `<article>`
 
 **A)** `<aside>`  
 **B)`<sidebar>`  
-**C)`<section>`  
-\*\*D)`<div>`
+**C)\*\* `<section>`  
+**D)** `<div>`
 
 <details>
 <summary>View Answer</summary>
@@ -440,8 +440,8 @@ A) `<aside>`
 
 **A)** `<header>`  
 **B)`<head>`  
-**C)`<heading>`  
-\*\*D)`<h1>`
+**C)\*\* `<heading>`  
+**D)** `<h1>`
 
 <details>
 <summary>View Answer</summary>
@@ -454,8 +454,8 @@ A) `<header>`
 
 **A)** `<div>`  
 **B)`<section>`  
-**C)`<span>`  
-\*\*D)`<article>`
+**C)\*\* `<span>`  
+**D)** `<article>`
 
 <details>
 <summary>View Answer</summary>
@@ -468,8 +468,8 @@ A) `<div>`
 
 **A)** `<style>`  
 **B)`<css>`  
-**C)`<span>`  
-\*\*D)`<div>`
+**C)\*\* `<span>`  
+**D)** `<div>`
 
 <details>
 <summary>View Answer</summary>
@@ -482,8 +482,8 @@ A) `<style>`
 
 **A)** `class`  
 **B)`id`  
-**C)`style`  
-\*\*D)`css`
+**C)\*\* `style`  
+**D)** `css`
 
 <details>
 <summary>View Answer</summary>
@@ -496,8 +496,8 @@ C) `style`
 
 **A)** `<style>`  
 **B)`<css>`  
-**C)`<link>`  
-\*\*D)`<script>`
+**C)\*\* `<link>`  
+**D)** `<script>`
 
 <details>
 <summary>View Answer</summary>
@@ -510,8 +510,8 @@ A) `<style>`
 
 **A)** `<link>`  
 **B)`<css>`  
-**C)`<style>`  
-\*\*D)`<import>`
+**C)\*\* `<style>`  
+**D)** `<import>`
 
 <details>
 <summary>View Answer</summary>
@@ -524,8 +524,8 @@ A) `<link>`
 
 **A)** `<hr>`  
 **B)`<line>`  
-**C)`<br>`  
-\*\*D)`<rule>`
+**C)\*\* `<br>`  
+**D)** `<rule>`
 
 <details>
 <summary>View Answer</summary>
@@ -538,8 +538,8 @@ A) `<hr>`
 
 **A)** `<dl>`  
 **B)`<ul>`  
-**C)`<ol>`  
-\*\*D)`<list>`
+**C)\*\* `<ol>`  
+**D)** `<list>`
 
 <details>
 <summary>View Answer</summary>
@@ -552,8 +552,8 @@ A) `<dl>`
 
 **A)** `<dt>`  
 **B)`<dd>`  
-**C)`<dl>`  
-\*\*D)`<term>`
+**C)\*\* `<dl>`  
+**D)** `<term>`
 
 <details>
 <summary>View Answer</summary>
@@ -566,8 +566,8 @@ A) `<dt>`
 
 **A)** `<dt>`  
 **B)`<dd>`  
-**C)`<dl>`  
-\*\*D)`<desc>`
+**C)\*\* `<dl>`  
+**D)** `<desc>`
 
 <details>
 <summary>View Answer</summary>
@@ -580,8 +580,8 @@ B) `<dd>`
 
 **A)** `<sub>`  
 **B)`<sup>`  
-**C)`<small>`  
-\*\*D)`<lower>`
+**C)\*\* `<small>`  
+**D)** `<lower>`
 
 <details>
 <summary>View Answer</summary>
@@ -594,8 +594,8 @@ A) `<sub>`
 
 **A)** `<sub>`  
 **B)`<sup>`  
-**C)`<small>`  
-\*\*D)`<upper>`
+**C)\*\* `<small>`  
+**D)** `<upper>`
 
 <details>
 <summary>View Answer</summary>
@@ -608,8 +608,8 @@ B) `<sup>`
 
 **A)** `<meta>`  
 **B)`<metadata>`  
-**C)`<head>`  
-\*\*D)`<script>`
+**C)\*\* `<head>`  
+**D)** `<script>`
 
 <details>
 <summary>View Answer</summary>
@@ -622,8 +622,8 @@ A) `<meta>`
 
 **A)** `charset`  
 **B)`encoding`  
-**C)`type`  
-\*\*D)`meta`
+**C)\*\* `type`  
+**D)** `meta`
 
 <details>
 <summary>View Answer</summary>
@@ -636,8 +636,8 @@ A) `charset`
 
 **A)** `<caption>`  
 **B)`<summary>`  
-**C)`<title>`  
-\*\*D)`<heading>`
+**C)\*\* `<title>`  
+**D)** `<heading>`
 
 <details>
 <summary>View Answer</summary>
@@ -650,8 +650,8 @@ A) `<caption>`
 
 **A)** `<thead>`  
 **B)`<tbody>`  
-**C)`<tfoot>`  
-\*\*D)`<header>`
+**C)\*\* `<tfoot>`  
+**D)** `<header>`
 
 <details>
 <summary>View Answer</summary>
@@ -664,8 +664,8 @@ A) `<thead>`
 
 **A)** `<thead>`  
 **B)`<tbody>`  
-**C)`<tfoot>`  
-\*\*D)`<body>`
+**C)\*\* `<tfoot>`  
+**D)** `<body>`
 
 <details>
 <summary>View Answer</summary>
@@ -678,8 +678,8 @@ B) `<tbody>`
 
 **A)** `<thead>`  
 **B)`<tbody>`  
-**C)`<tfoot>`  
-\*\*D)`<footer>`
+**C)\*\* `<tfoot>`  
+**D)** `<footer>`
 
 <details>
 <summary>View Answer</summary>
@@ -692,8 +692,8 @@ C) `<tfoot>`
 
 **A)** `<colgroup>`  
 **B)`<col>`  
-**C)`<group>`  
-\*\*D)`<column>`
+**C)\*\* `<group>`  
+**D)** `<column>`
 
 <details>
 <summary>View Answer</summary>
@@ -706,8 +706,8 @@ A) `<colgroup>`
 
 **A)** `<colgroup>`  
 **B)`<col>`  
-**C)`<td>`  
-\*\*D)`<column>`
+**C)\*\* `<td>`  
+**D)** `<column>`
 
 <details>
 <summary>View Answer</summary>
@@ -720,8 +720,8 @@ B) `<col>`
 
 **A)** `<figure>`  
 **B)`<figcaption>`  
-**C)`<img>`  
-\*\*D)`<picture>`
+**C)\*\* `<img>`  
+**D)** `<picture>`
 
 <details>
 <summary>View Answer</summary>
@@ -734,8 +734,8 @@ A) `<figure>`
 
 **A)** `<caption>`  
 **B)`<figcaption>`  
-**C)`<summary>`  
-\*\*D)`<title>`
+**C)\*\* `<summary>`  
+**D)** `<title>`
 
 <details>
 <summary>View Answer</summary>
@@ -748,8 +748,8 @@ B) `<figcaption>`
 
 **A)** `<audio>`  
 **B)`<sound>`  
-**C)`<music>`  
-\*\*D)`<embed>`
+**C)\*\* `<music>`  
+**D)** `<embed>`
 
 <details>
 <summary>View Answer</summary>
@@ -762,8 +762,8 @@ A) `<audio>`
 
 **A)** `<iframe>`  
 **B)`<video>`  
-**C)`<embed>`  
-\*\*D)`<youtube>`
+**C)\*\* `<embed>`  
+**D)** `<youtube>`
 
 <details>
 <summary>View Answer</summary>
@@ -776,8 +776,8 @@ A) `<iframe>`
 
 **A)** `<progress>`  
 **B)`<meter>`  
-**C)`<bar>`  
-\*\*D)`<range>`
+**C)\*\* `<bar>`  
+**D)** `<range>`
 
 <details>
 <summary>View Answer</summary>
@@ -790,8 +790,8 @@ A) `<progress>`
 
 **A)** `<progress>`  
 **B)`<meter>`  
-**C)`<bar>`  
-\*\*D)`<range>`
+**C)\*\* `<bar>`  
+**D)** `<range>`
 
 <details>
 <summary>View Answer</summary>
@@ -804,8 +804,8 @@ B) `<meter>`
 
 **A)** `<dialog>`  
 **B)`<popup>`  
-**C)`<modal>`  
-\*\*D)`<window>`
+**C)\*\* `<modal>`  
+**D)** `<window>`
 
 <details>
 <summary>View Answer</summary>
@@ -818,8 +818,8 @@ A) `<dialog>`
 
 **A)** `<details>`  
 **B)`<summary>`  
-**C)`<disclosure>`  
-\*\*D)`<expand>`
+**C)\*\* `<disclosure>`  
+**D)** `<expand>`
 
 <details>
 <summary>View Answer</summary>
@@ -832,8 +832,8 @@ A) `<details>`
 
 **A)** `<details>`  
 **B)`<summary>`  
-**C)`<caption>`  
-\*\*D)`<title>`
+**C)\*\* `<caption>`  
+**D)** `<title>`
 
 <details>
 <summary>View Answer</summary>
@@ -846,8 +846,8 @@ B) `<summary>`
 
 **A)** `<svg>`  
 **B)`<canvas>`  
-**C)`<graphics>`  
-\*\*D)`<img>`
+**C)\*\* `<graphics>`  
+**D)** `<img>`
 
 <details>
 <summary>View Answer</summary>
@@ -860,8 +860,8 @@ A) `<svg>`
 
 **A)** `<svg>`  
 **B)`<canvas>`  
-**C)`<graphics>`  
-\*\*D)`<img>`
+**C)\*\* `<graphics>`  
+**D)** `<img>`
 
 <details>
 <summary>View Answer</summary>
@@ -874,8 +874,8 @@ B) `<canvas>`
 
 **A)** `<time>`  
 **B)`<date>`  
-**C)`<datetime>`  
-\*\*D)`<calendar>`
+**C)\*\* `<datetime>`  
+**D)** `<calendar>`
 
 <details>
 <summary>View Answer</summary>
@@ -888,8 +888,8 @@ A) `<time>`
 
 **A)** `<code>`  
 **B)`<pre>`  
-**C)`<samp>`  
-\*\*D)`<kbd>`
+**C)\*\* `<samp>`  
+**D)** `<kbd>`
 
 <details>
 <summary>View Answer</summary>
@@ -902,8 +902,8 @@ A) `<code>`
 
 **A)** `<code>`  
 **B)`<pre>`  
-**C)`<samp>`  
-\*\*D)`<kbd>`
+**C)\*\* `<samp>`  
+**D)** `<kbd>`
 
 <details>
 <summary>View Answer</summary>
@@ -916,8 +916,8 @@ B) `<pre>`
 
 **A)** `<code>`  
 **B)`<pre>`  
-**C)`<samp>`  
-\*\*D)`<kbd>`
+**C)\*\* `<samp>`  
+**D)** `<kbd>`
 
 <details>
 <summary>View Answer</summary>
@@ -930,8 +930,8 @@ C) `<samp>`
 
 **A)** `<code>`  
 **B)`<pre>`  
-**C)`<samp>`  
-\*\*D)`<kbd>`
+**C)\*\* `<samp>`  
+**D)** `<kbd>`
 
 <details>
 <summary>View Answer</summary>
@@ -944,8 +944,8 @@ D) `<kbd>`
 
 **A)** `<var>`  
 **B)`<variable>`  
-**C)`<code>`  
-\*\*D)`<pre>`
+**C)\*\* `<code>`  
+**D)** `<pre>`
 
 <details>
 <summary>View Answer</summary>
@@ -958,8 +958,8 @@ A) `<var>`
 
 **A)** `<cite>`  
 **B)`<quote>`  
-**C)`<blockquote>`  
-\*\*D)`<q>`
+**C)\*\* `<blockquote>`  
+**D)** `<q>`
 
 <details>
 <summary>View Answer</summary>
@@ -972,8 +972,8 @@ A) `<cite>`
 
 **A)** `<cite>`  
 **B)`<quote>`  
-**C)`<blockquote>`  
-\*\*D)`<q>`
+**C)\*\* `<blockquote>`  
+**D)** `<q>`
 
 <details>
 <summary>View Answer</summary>
@@ -986,8 +986,8 @@ D) `<q>`
 
 **A)** `<cite>`  
 **B)`<quote>`  
-**C)`<blockquote>`  
-\*\*D)`<q>`
+**C)\*\* `<blockquote>`  
+**D)** `<q>`
 
 <details>
 <summary>View Answer</summary>
@@ -1000,8 +1000,8 @@ C) `<blockquote>`
 
 **A)** `<dfn>`  
 **B)`<def>`  
-**C)`<define>`  
-\*\*D)`<description>`
+**C)\*\* `<define>`  
+**D)** `<description>`
 
 <details>
 <summary>View Answer</summary>
@@ -1014,8 +1014,8 @@ A) `<dfn>`
 
 **A)** `<abbr>`  
 **B)`<acronym>`  
-**C)`<abbreviation>`  
-\*\*D)`<short>`
+**C)\*\* `<abbreviation>`  
+**D)** `<short>`
 
 <details>
 <summary>View Answer</summary>
@@ -1028,8 +1028,8 @@ A) `<abbr>`
 
 **A)** `<contact>`  
 **B)`<address>`  
-**C)`<info>`  
-\*\*D)`<mail>`
+**C)\*\* `<info>`  
+**D)** `<mail>`
 
 <details>
 <summary>View Answer</summary>
@@ -1042,8 +1042,8 @@ B) `<address>`
 
 **A)** `<br>`  
 **B)`<wbr>`  
-**C)`<break>`  
-\*\*D)`<line>`
+**C)\*\* `<break>`  
+**D)** `<line>`
 
 <details>
 <summary>View Answer</summary>
@@ -1056,8 +1056,8 @@ B) `<wbr>`
 
 **A)** `<hr>`  
 **B)`<break>`  
-**C)`<thematic>`  
-\*\*D)`<change>`
+**C)\*\* `<thematic>`  
+**D)** `<change>`
 
 <details>
 <summary>View Answer</summary>
@@ -1070,8 +1070,8 @@ A) `<hr>`
 
 **A)** `<object>`  
 **B)`<embed>`  
-**C)`<applet>`  
-\*\*D)`<external>`
+**C)\*\* `<applet>`  
+**D)** `<external>`
 
 <details>
 <summary>View Answer</summary>
@@ -1084,8 +1084,8 @@ A) `<object>`
 
 **A)** `<param>`  
 **B)`<parameter>`  
-**C)`<object>`  
-\*\*D)`<value>`
+**C)\*\* `<object>`  
+**D)** `<value>`
 
 <details>
 <summary>View Answer</summary>
@@ -1098,8 +1098,8 @@ A) `<param>`
 
 **A)** `<datalist>`  
 **B)`<list>`  
-**C)`<select>`  
-\*\*D)`<option>`
+**C)\*\* `<select>`  
+**D)** `<option>`
 
 <details>
 <summary>View Answer</summary>
@@ -1112,8 +1112,8 @@ A) `<datalist>`
 
 **A)** `<output>`  
 **B)`<result>`  
-**C)`<display>`  
-\*\*D)`<value>`
+**C)\*\* `<display>`  
+**D)** `<value>`
 
 <details>
 <summary>View Answer</summary>
@@ -1126,8 +1126,8 @@ A) `<output>`
 
 **A)** `src`  
 **B)`link`  
-**C)`href`  
-\*\*D)`url`
+**C)\*\* `href`  
+**D)** `url`
 
 <details>
 <summary>View Answer</summary>
@@ -1140,8 +1140,8 @@ C) `href`
 
 **A)** `title`  
 **B)`src`  
-**C)`alt`  
-\*\*D)`value`
+**C)\*\* `alt`  
+**D)** `value`
 
 <details>
 <summary>View Answer</summary>
@@ -1154,8 +1154,8 @@ C) `alt`
 
 **A)** `title`  
 **B)`tooltip`  
-**C)`alt`  
-\*\*D)`info`
+**C)\*\* `alt`  
+**D)** `info`
 
 <details>
 <summary>View Answer</summary>
@@ -1168,8 +1168,8 @@ A) `title`
 
 **A)** `required`  
 **B)`must`  
-**C)`validate`  
-\*\*D)`mandatory`
+**C)\*\* `validate`  
+**D)** `mandatory`
 
 <details>
 <summary>View Answer</summary>
@@ -1182,8 +1182,8 @@ A) `required`
 
 **A)** `max`  
 **B)`maximum`  
-**C)`top`  
-\*\*D)`value`
+**C)\*\* `top`  
+**D)** `value`
 
 <details>
 <summary>View Answer</summary>
@@ -1196,8 +1196,8 @@ A) `max`
 
 **A)** `min`  
 **B)`minimum`  
-**C)`bottom`  
-\*\*D)`value`
+**C)\*\* `bottom`  
+**D)** `value`
 
 <details>
 <summary>View Answer</summary>
@@ -1210,8 +1210,8 @@ A) `min`
 
 **A)** `pattern`  
 **B)`regex`  
-**C)`format`  
-\*\*D)`validate`
+**C)\*\* `format`  
+**D)** `validate`
 
 <details>
 <summary>View Answer</summary>
@@ -1224,8 +1224,8 @@ A) `pattern`
 
 **A)** `placeholder`  
 **B)`hint`  
-**C)`value`  
-\*\*D)`text`
+**C)\*\* `value`  
+**D)** `text`
 
 <details>
 <summary>View Answer</summary>
@@ -1238,8 +1238,8 @@ A) `placeholder`
 
 **A)** `autofocus`  
 **B)`focus`  
-**C)`selected`  
-\*\*D)`active`
+**C)\*\* `selected`  
+**D)** `active`
 
 <details>
 <summary>View Answer</summary>
@@ -1252,8 +1252,8 @@ A) `autofocus`
 
 **A)** `novalidate`  
 **B)`novalidation`  
-**C)`validate="false"`  
-\*\*D)`invalid`
+**C)\*\* `validate="false"`  
+**D)** `invalid`
 
 <details>
 <summary>View Answer</summary>
