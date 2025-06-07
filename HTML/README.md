@@ -1558,12 +1558,7 @@ A)
 <details>
 <summary>View Answer</summary>
 
-` <form>
-<label for="name">Name:</label>
-<input type="text" id="name" name="name">
-<button type="submit">Submit</button>
-
-</form> `
+`<form> <label for="name">Name:</label> <input type="text" id="name" name="name"> <button type="submit">Submit</button> </form>`
 
 </details>
 
@@ -1574,13 +1569,7 @@ A)
 <details>
 <summary>View Answer</summary>
 
-`
-
-<ul>
-    <li>Apple</li>
-    <li>Banana</li>
-    <li>Cherry</li>
-</ul> `
+`<ul> <li>Apple</li> <li>Banana</li> <li>Cherry</li> </ul> `
 
 </details>
 
@@ -1591,19 +1580,7 @@ A)
 <details>
 <summary>View Answer</summary>
 
-`
-
-<table> 
-    <tr> 
-        <td>Row 1, Cell 1</td> 
-        <td>Row 1, Cell 2</td> 
-    </tr> 
-    <tr> 
-        <td>Row 2, Cell 1</td> 
-        <td>Row 2, Cell 2</td> 
-    </tr> 
-</table>
-`
+`<table> <tr> <td>Row 1, Cell 1</td> <td>Row 1, Cell 2</td> </tr> <tr> <td>Row 2, Cell 1</td> <td>Row 2, Cell 2</td> </tr> </table> `
 
 </details>
 
@@ -1614,10 +1591,7 @@ A)
 <details>
 <summary>View Answer</summary>
 
-`<label>
-    <input type="checkbox" name="subscribe"> 
-    Subscribe 
-</label>`
+`<label> <input type="checkbox" name="subscribe">Subscribe</label>`
 
 </details>
 
@@ -1628,10 +1602,7 @@ A)
 <details>
 <summary>View Answer</summary>
 
-`
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-`
+`<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>`
 
 </details>
 
@@ -1642,11 +1613,7 @@ A)
 <details>
 <summary>View Answer</summary>
 
-`<select> 
-    <option value="red">Red</option> 
-    <option value="green">Green</option> 
-    <option value="blue">Blue</option> 
-</select>`
+`<select> <option value="red">Red</option> <option value="green">Green</option> <option value="blue">Blue</option> </select>`
 
 </details>
 
@@ -1657,8 +1624,7 @@ A)
 <details>
 <summary>View Answer</summary>
 
-`<label for="comments">Comments:</label> 
-<textarea id="comments" name="comments"></textarea>`
+`<label for="comments">Comments:</label> <textarea id="comments" name="comments"></textarea>`
 
 </details>
 
