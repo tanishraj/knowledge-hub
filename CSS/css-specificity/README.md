@@ -1,5 +1,7 @@
 ## CSS Specificity Objective Type Questions
 
+---
+
 ### 1. What is CSS Specificity?
 
 **A)** A way to count the number of CSS rules  
@@ -7,8 +9,10 @@
 **C)** A method to reduce CSS file size  
 **D)** A tool to debug CSS
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 B) An algorithm to determine which CSS rule is most relevant to an element.
+</details>
 
 ---
 
@@ -19,8 +23,10 @@ B) An algorithm to determine which CSS rule is most relevant to an element.
 **C)** `div`  
 **D)** `*`
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 B) `#id`.
+</details>
 
 ---
 
@@ -31,8 +37,10 @@ B) `#id`.
 **C)** 0,0,1,0  
 **D)** 1,0,0,0
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 A) 0,0,0,0.
+</details>
 
 ---
 
@@ -43,8 +51,10 @@ A) 0,0,0,0.
 **C)** 0,1,0,0  
 **D)** 1,0,0,0
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 A) 0,0,0,1.
+</details>
 
 ---
 
@@ -55,8 +65,10 @@ A) 0,0,0,1.
 **C)** 0,0,1,0  
 **D)** 1,0,0,0
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 D) 1,0,0,0.
+</details>
 
 ---
 
@@ -67,8 +79,10 @@ D) 1,0,0,0.
 **C)** 1,1,1  
 **D)** 0,1,2
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 B) 1,0,2 (assuming modern notation: ID, class/attribute, type).
+</details>
 
 ---
 
@@ -79,8 +93,10 @@ B) 1,0,2 (assuming modern notation: ID, class/attribute, type).
 **C)** Both have the same  
 **D)** Cannot be determined
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 A) `.menu li` (class + type is higher than two types).
+</details>
 
 ---
 
@@ -91,8 +107,10 @@ A) `.menu li` (class + type is higher than two types).
 **C)** Both are applied  
 **D)** Neither is applied
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 B) The last one wins.
+</details>
 
 ---
 
@@ -103,8 +121,10 @@ B) The last one wins.
 **C)** 0,0,1  
 **D)** 1,0,0
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 A) 0,1,1 (class + type).
+</details>
 
 ---
 
@@ -115,8 +135,10 @@ A) 0,1,1 (class + type).
 **C)** 1,0,1  
 **D)** 0,2,1
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 B) 1,1,1 (ID + class + type).
+</details>
 
 ---
 
@@ -125,10 +147,12 @@ B) 1,1,1 (ID + class + type).
 **A)** `#id`  
 **B)** `.class`  
 **C)** `tag`  
-**D)** `*`
+\*_D)`_`
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 D) `*`.
+</details>
 
 ---
 
@@ -139,8 +163,10 @@ D) `*`.
 **C)** 1,0,0  
 **D)** 0,0,0
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 A) 0,1,0 (attribute selector counts as class/attribute).
+</details>
 
 ---
 
@@ -151,8 +177,10 @@ A) 0,1,0 (attribute selector counts as class/attribute).
 **C)** 1,0,1  
 **D)** 0,2,0
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 A) 0,1,1 (type + pseudo-class).
+</details>
 
 ---
 
@@ -163,8 +191,10 @@ A) 0,1,1 (type + pseudo-class).
 **C)** 0,2,1  
 **D)** 1,1,2
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 A) 1,2,1 (ID + two pseudo-classes + type).
+</details>
 
 ---
 
@@ -175,8 +205,10 @@ A) 1,2,1 (ID + two pseudo-classes + type).
 **C)** 0,1,0  
 **D)** 1,0,0
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 A) 0,1,1 (type + attribute).
+</details>
 
 ---
 
@@ -187,8 +219,10 @@ A) 0,1,1 (type + attribute).
 **C)** 0,1,1  
 **D)** 1,0,0
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 A) 0,0,2 (two type selectors).
+</details>
 
 ---
 
@@ -199,8 +233,10 @@ A) 0,0,2 (two type selectors).
 **C)** 1,0,1  
 **D)** 0,2,0
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 A) 0,1,1 (type + pseudo-class).
+</details>
 
 ---
 
@@ -211,8 +247,10 @@ A) 0,1,1 (type + pseudo-class).
 **C)** 0,0,2  
 **D)** 1,0,0
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 A) 0,2,0 (two class selectors).
+</details>
 
 ---
 
@@ -223,8 +261,10 @@ A) 0,2,0 (two class selectors).
 **C)** 0,2,1  
 **D)** 1,0,2
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 A) 1,2,1 (ID + two classes + type).
+</details>
 
 ---
 
@@ -235,5 +275,7 @@ A) 1,2,1 (ID + two classes + type).
 **C)** 1,1,1,1  
 **D)** 1,2,2,0
 
-**Answer:**  
+<details>
+<summary>View Answer</summary>
 B) 1,1,2,1 (ID + class + type + pseudo-element; if using four-part notation: 1,1,2,1).
+</details>
