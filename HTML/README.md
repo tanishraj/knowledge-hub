@@ -495,8 +495,8 @@ A)
 ### 30. Which tag is used to define an article?
 
 **A)** `<article>`  
-**B)`<section>`  
-**C)\*\* `<div>`  
+**B)** `<section>`  
+**C)** `<div>`  
 **D)** `<aside>`
 
 <details>
@@ -512,8 +512,8 @@ A)
 ### 31. Which tag is used to define a sidebar or aside content?
 
 **A)** `<aside>`  
-**B)`<sidebar>`  
-**C)\*\* `<section>`  
+**B)** `<sidebar>`  
+**C)** `<section>`  
 **D)** `<div>`
 
 <details>
@@ -529,8 +529,8 @@ A)
 ### 32. Which tag is used to define a header for a document or section?
 
 **A)** `<header>`  
-**B)`<head>`  
-**C)\*\* `<heading>`  
+**B)** `<head>`  
+**C)** `<heading>`  
 **D)** `<h1>`
 
 <details>
@@ -546,8 +546,8 @@ A)
 ### 33. Which tag is used to define a division or section?
 
 **A)** `<div>`  
-**B)`<section>`  
-**C)\*\* `<span>`  
+**B)** `<section>`  
+**C)** `<span>`  
 **D)** `<article>`
 
 <details>
@@ -563,8 +563,8 @@ A)
 ### 34. Which tag is used for inline styling?
 
 **A)** `<style>`  
-**B)`<css>`  
-**C)\*\* `<span>`  
+**B)** `<css>`  
+**C)** `<span>`  
 **D)** `<div>`
 
 <details>
@@ -580,8 +580,8 @@ A)
 ### 35. Which attribute is used for inline styles?
 
 **A)** `class`  
-**B)`id`  
-**C)\*\* `style`  
+**B)** `id`  
+**C)** `style`  
 **D)** `css`
 
 <details>
@@ -597,8 +597,8 @@ C)
 ### 36. Which tag is used to embed CSS in HTML?
 
 **A)** `<style>`  
-**B)`<css>`  
-**C)\*\* `<link>`  
+**B)** `<css>`  
+**C)** `<link>`  
 **D)** `<script>`
 
 <details>
@@ -614,8 +614,8 @@ A)
 ### 37. Which tag is used to link an external CSS file?
 
 **A)** `<link>`  
-**B)`<css>`  
-**C)\*\* `<style>`  
+**B)** `<css>`  
+**C)** `<style>`  
 **D)** `<import>`
 
 <details>
@@ -631,8 +631,8 @@ A)
 ### 38. Which tag is used for a horizontal rule?
 
 **A)** `<hr>`  
-**B)`<line>`  
-**C)\*\* `<br>`  
+**B)** `<line>`  
+**C)** `<br>`  
 **D)** `<rule>`
 
 <details>
@@ -648,8 +648,8 @@ A)
 ### 39. Which tag is used for a definition list?
 
 **A)** `<dl>`  
-**B)`<ul>`  
-**C)\*\* `<ol>`  
+**B)** `<ul>`  
+**C)** `<ol>`  
 **D)** `<list>`
 
 <details>
@@ -665,8 +665,8 @@ A)
 ### 40. Which tag defines a term in a definition list?
 
 **A)** `<dt>`  
-**B)`<dd>`  
-**C)\*\* `<dl>`  
+**B)** `<dd>`  
+**C)** `<dl>`  
 **D)** `<term>`
 
 <details>
@@ -682,8 +682,8 @@ A)
 ### 41. Which tag defines a description in a definition list?
 
 **A)** `<dt>`  
-**B)`<dd>`  
-**C)\*\* `<dl>`  
+**B)** `<dd>`  
+**C)** `<dl>`  
 **D)** `<desc>`
 
 <details>
@@ -699,8 +699,8 @@ B)
 ### 42. Which tag is used for a subscript?
 
 **A)** `<sub>`  
-**B)`<sup>`  
-**C)\*\* `<small>`  
+**B)** `<sup>`  
+**C)** `<small>`  
 **D)** `<lower>`
 
 <details>
@@ -716,8 +716,8 @@ A)
 ### 43. Which tag is used for a superscript?
 
 **A)** `<sub>`  
-**B)`<sup>`  
-**C)\*\* `<small>`  
+**B)** `<sup>`  
+**C)** `<small>`  
 **D)** `<upper>`
 
 <details>
@@ -733,8 +733,8 @@ B)
 ### 44. Which tag is used to define metadata?
 
 **A)** `<meta>`  
-**B)`<metadata>`  
-**C)\*\* `<head>`  
+**B)** `<metadata>`  
+**C)** `<head>`  
 **D)** `<script>`
 
 <details>
@@ -750,8 +750,8 @@ A)
 ### 45. Which attribute specifies the character encoding for an HTML document?
 
 **A)** `charset`  
-**B)`encoding`  
-**C)\*\* `type`  
+**B)** `encoding`  
+**C)** `type`  
 **D)** `meta`
 
 <details>
@@ -767,8 +767,8 @@ A)
 ### 46. Which tag is used to define a caption for a table?
 
 **A)** `<caption>`  
-**B)`<summary>`  
-**C)\*\* `<title>`  
+**B)** `<summary>`  
+**C)** `<title>`  
 **D)** `<heading>`
 
 <details>
@@ -784,8 +784,8 @@ A)
 ### 47. Which tag is used to group header content in a table?
 
 **A)** `<thead>`  
-**B)`<tbody>`  
-**C)\*\* `<tfoot>`  
+**B)** `<tbody>`  
+**C)** `<tfoot>`  
 **D)** `<header>`
 
 <details>
@@ -801,8 +801,8 @@ A)
 ### 48. Which tag is used to group body content in a table?
 
 **A)** `<thead>`  
-**B)`<tbody>`  
-**C)\*\* `<tfoot>`  
+**B)** `<tbody>`  
+**C)** `<tfoot>`  
 **D)** `<body>`
 
 <details>
@@ -818,8 +818,8 @@ B)
 ### 49. Which tag is used to group footer content in a table?
 
 **A)** `<thead>`  
-**B)`<tbody>`  
-**C)\*\* `<tfoot>`  
+**B)** `<tbody>`  
+**C)** `<tfoot>`  
 **D)** `<footer>`
 
 <details>
@@ -835,8 +835,8 @@ C)
 ### 50. Which tag is used to define a column group in a table?
 
 **A)** `<colgroup>`  
-**B)`<col>`  
-**C)\*\* `<group>`  
+**B)** `<col>`  
+**C)** `<group>`  
 **D)** `<column>`
 
 <details>
@@ -852,8 +852,8 @@ A)
 ### 51. Which tag is used to define a column in a table?
 
 **A)** `<colgroup>`  
-**B)`<col>`  
-**C)\*\* `<td>`  
+**B)** `<col>`  
+**C)** `<td>`  
 **D)** `<column>`
 
 <details>
@@ -869,8 +869,8 @@ B)
 ### 52. Which tag is used to define a figure in HTML5?
 
 **A)** `<figure>`  
-**B)`<figcaption>`  
-**C)\*\* `<img>`  
+**B)** `<figcaption>`  
+**C)** `<img>`  
 **D)** `<picture>`
 
 <details>
@@ -886,8 +886,8 @@ A)
 ### 53. Which tag is used to define a caption for a figure?
 
 **A)** `<caption>`  
-**B)`<figcaption>`  
-**C)\*\* `<summary>`  
+**B)** `<figcaption>`  
+**C)** `<summary>`  
 **D)** `<title>`
 
 <details>
@@ -903,8 +903,8 @@ B)
 ### 54. Which tag is used to embed an audio file in HTML5?
 
 **A)** `<audio>`  
-**B)`<sound>`  
-**C)\*\* `<music>`  
+**B)** `<sound>`  
+**C)** `<music>`  
 **D)** `<embed>`
 
 <details>
@@ -920,8 +920,8 @@ A)
 ### 55. Which tag is used to embed a YouTube video?
 
 **A)** `<iframe>`  
-**B)`<video>`  
-**C)\*\* `<embed>`  
+**B)** `<video>`  
+**C)** `<embed>`  
 **D)** `<youtube>`
 
 <details>
@@ -937,8 +937,8 @@ A)
 ### 56. Which tag is used to define a progress bar?
 
 **A)** `<progress>`  
-**B)`<meter>`  
-**C)\*\* `<bar>`  
+**B)** `<meter>`  
+**C)** `<bar>`  
 **D)** `<range>`
 
 <details>
@@ -954,8 +954,8 @@ A)
 ### 57. Which tag is used to define a meter or gauge?
 
 **A)** `<progress>`  
-**B)`<meter>`  
-**C)\*\* `<bar>`  
+**B)** `<meter>`  
+**C)** `<bar>`  
 **D)** `<range>`
 
 <details>
@@ -971,8 +971,8 @@ B)
 ### 58. Which tag is used to define a dialog box?
 
 **A)** `<dialog>`  
-**B)`<popup>`  
-**C)\*\* `<modal>`  
+**B)** `<popup>`  
+**C)** `<modal>`  
 **D)** `<window>`
 
 <details>
@@ -988,8 +988,8 @@ A)
 ### 59. Which tag is used to define a details disclosure widget?
 
 **A)** `<details>`  
-**B)`<summary>`  
-**C)\*\* `<disclosure>`  
+**B)** `<summary>`  
+**C)** `<disclosure>`  
 **D)** `<expand>`
 
 <details>
@@ -1005,8 +1005,8 @@ A)
 ### 60. Which tag is used to define a summary for a details element?
 
 **A)** `<details>`  
-**B)`<summary>`  
-**C)\*\* `<caption>`  
+**B)** `<summary>`  
+**C)** `<caption>`  
 **D)** `<title>`
 
 <details>
@@ -1022,8 +1022,8 @@ B)
 ### 61. Which tag is used to define a container for SVG graphics?
 
 **A)** `<svg>`  
-**B)`<canvas>`  
-**C)\*\* `<graphics>`  
+**B)** `<canvas>`  
+**C)** `<graphics>`  
 **D)** `<img>`
 
 <details>
@@ -1039,8 +1039,8 @@ A)
 ### 62. Which tag is used to define a drawing surface for graphics?
 
 **A)** `<svg>`  
-**B)`<canvas>`  
-**C)\*\* `<graphics>`  
+**B)** `<canvas>`  
+**C)** `<graphics>`  
 **D)** `<img>`
 
 <details>
@@ -1056,8 +1056,8 @@ B)
 ### 63. Which tag is used to define a time or date?
 
 **A)** `<time>`  
-**B)`<date>`  
-**C)\*\* `<datetime>`  
+**B)** `<date>`  
+**C)** `<datetime>`  
 **D)** `<calendar>`
 
 <details>
@@ -1073,8 +1073,8 @@ A)
 ### 64. Which tag is used to define a section of code?
 
 **A)** `<code>`  
-**B)`<pre>`  
-**C)\*\* `<samp>`  
+**B)** `<pre>`  
+**C)** `<samp>`  
 **D)** `<kbd>`
 
 <details>
@@ -1090,8 +1090,8 @@ A)
 ### 65. Which tag is used to define preformatted text?
 
 **A)** `<code>`  
-**B)`<pre>`  
-**C)\*\* `<samp>`  
+**B)** `<pre>`  
+**C)** `<samp>`  
 **D)** `<kbd>`
 
 <details>
@@ -1107,8 +1107,8 @@ B)
 ### 66. Which tag is used to define sample output?
 
 **A)** `<code>`  
-**B)`<pre>`  
-**C)\*\* `<samp>`  
+**B)** `<pre>`  
+**C)** `<samp>`  
 **D)** `<kbd>`
 
 <details>
@@ -1124,8 +1124,8 @@ C)
 ### 67. Which tag is used to define keyboard input?
 
 **A)** `<code>`  
-**B)`<pre>`  
-**C)\*\* `<samp>`  
+**B)** `<pre>`  
+**C)** `<samp>`  
 **D)** `<kbd>`
 
 <details>
@@ -1141,8 +1141,8 @@ D)
 ### 68. Which tag is used to define a variable?
 
 **A)** `<var>`  
-**B)`<variable>`  
-**C)\*\* `<code>`  
+**B)** `<variable>`  
+**C)** `<code>`  
 **D)** `<pre>`
 
 <details>
@@ -1158,8 +1158,8 @@ A)
 ### 69. Which tag is used to define a citation?
 
 **A)** `<cite>`  
-**B)`<quote>`  
-**C)\*\* `<blockquote>`  
+**B)** `<quote>`  
+**C)** `<blockquote>`  
 **D)** `<q>`
 
 <details>
@@ -1175,8 +1175,8 @@ A)
 ### 70. Which tag is used to define a short quotation?
 
 **A)** `<cite>`  
-**B)`<quote>`  
-**C)\*\* `<blockquote>`  
+**B)** `<quote>`  
+**C)** `<blockquote>`  
 **D)** `<q>`
 
 <details>
@@ -1192,8 +1192,8 @@ D)
 ### 71. Which tag is used to define a long quotation?
 
 **A)** `<cite>`  
-**B)`<quote>`  
-**C)\*\* `<blockquote>`  
+**B)** `<quote>`  
+**C)** `<blockquote>`  
 **D)** `<q>`
 
 <details>
@@ -1209,8 +1209,8 @@ C)
 ### 72. Which tag is used to define a definition?
 
 **A)** `<dfn>`  
-**B)`<def>`  
-**C)\*\* `<define>`  
+**B)** `<def>`  
+**C)** `<define>`  
 **D)** `<description>`
 
 <details>
@@ -1226,8 +1226,8 @@ A)
 ### 73. Which tag is used to define an abbreviation?
 
 **A)** `<abbr>`  
-**B)`<acronym>`  
-**C)\*\* `<abbreviation>`  
+**B)** `<acronym>`  
+**C)** `<abbreviation>`  
 **D)** `<short>`
 
 <details>
@@ -1243,8 +1243,8 @@ A)
 ### 74. Which tag is used to define a contact information?
 
 **A)** `<contact>`  
-**B)`<address>`  
-**C)\*\* `<info>`  
+**B)** `<address>`  
+**C)** `<info>`  
 **D)** `<mail>`
 
 <details>
@@ -1260,8 +1260,8 @@ B)
 ### 75. Which tag is used to define a line break opportunity?
 
 **A)** `<br>`  
-**B)`<wbr>`  
-**C)\*\* `<break>`  
+**B)** `<wbr>`  
+**C)** `<break>`  
 **D)** `<line>`
 
 <details>
@@ -1277,8 +1277,8 @@ B)
 ### 76. Which tag is used to define a thematic change in the content?
 
 **A)** `<hr>`  
-**B)`<break>`  
-**C)\*\* `<thematic>`  
+**B)** `<break>`  
+**C)** `<thematic>`  
 **D)** `<change>`
 
 <details>
@@ -1294,8 +1294,8 @@ A)
 ### 77. Which tag is used to define a container for external application?
 
 **A)** `<object>`  
-**B)`<embed>`  
-**C)\*\* `<applet>`  
+**B)** `<embed>`  
+**C)** `<applet>`  
 **D)** `<external>`
 
 <details>
@@ -1311,8 +1311,8 @@ A)
 ### 78. Which tag is used to define a parameter for an object?
 
 **A)** `<param>`  
-**B)`<parameter>`  
-**C)\*\* `<object>`  
+**B)** `<parameter>`  
+**C)** `<object>`  
 **D)** `<value>`
 
 <details>
@@ -1328,8 +1328,8 @@ A)
 ### 79. Which tag is used to define a data list?
 
 **A)** `<datalist>`  
-**B)`<list>`  
-**C)\*\* `<select>`  
+**B)** `<list>`  
+**C)** `<select>`  
 **D)** `<option>`
 
 <details>
@@ -1345,8 +1345,8 @@ A)
 ### 80. Which tag is used to define an output element?
 
 **A)** `<output>`  
-**B)`<result>`  
-**C)\*\* `<display>`  
+**B)** `<result>`  
+**C)** `<display>`  
 **D)** `<value>`
 
 <details>
@@ -1362,8 +1362,8 @@ A)
 ### 81. Which attribute is used to specify the URL of the page the link goes to?
 
 **A)** `src`  
-**B)`link`  
-**C)\*\* `href`  
+**B)** `link`  
+**C)** `href`  
 **D)** `url`
 
 <details>
@@ -1379,8 +1379,8 @@ C)
 ### 82. Which attribute is used to specify an alternate text for an image?
 
 **A)** `title`  
-**B)`src`  
-**C)\*\* `alt`  
+**B)** `src`  
+**C)** `alt`  
 **D)** `value`
 
 <details>
@@ -1396,8 +1396,8 @@ C)
 ### 83. Which attribute is used to specify a tooltip for an element?
 
 **A)** `title`  
-**B)`tooltip`  
-**C)\*\* `alt`  
+**B)** `tooltip`  
+**C)** `alt`  
 **D)** `info`
 
 <details>
@@ -1413,8 +1413,8 @@ A)
 ### 84. Which attribute is used to make an input field required?
 
 **A)** `required`  
-**B)`must`  
-**C)\*\* `validate`  
+**B)** `must`  
+**C)** `validate`  
 **D)** `mandatory`
 
 <details>
@@ -1430,8 +1430,8 @@ A)
 ### 85. Which attribute is used to specify the maximum value for an input?
 
 **A)** `max`  
-**B)`maximum`  
-**C)\*\* `top`  
+**B)** `maximum`  
+**C)** `top`  
 **D)** `value`
 
 <details>
@@ -1447,8 +1447,8 @@ A)
 ### 86. Which attribute is used to specify the minimum value for an input?
 
 **A)** `min`  
-**B)`minimum`  
-**C)\*\* `bottom`  
+**B)** `minimum`  
+**C)** `bottom`  
 **D)** `value`
 
 <details>
@@ -1464,8 +1464,8 @@ A)
 ### 87. Which attribute is used to specify a pattern for an input?
 
 **A)** `pattern`  
-**B)`regex`  
-**C)\*\* `format`  
+**B)** `regex`  
+**C)** `format`  
 **D)** `validate`
 
 <details>
@@ -1481,8 +1481,8 @@ A)
 ### 88. Which attribute is used to specify a placeholder for an input?
 
 **A)** `placeholder`  
-**B)`hint`  
-**C)\*\* `value`  
+**B)** `hint`  
+**C)** `value`  
 **D)** `text`
 
 <details>
@@ -1498,8 +1498,8 @@ A)
 ### 89. Which attribute is used to specify that an input should be automatically focused?
 
 **A)** `autofocus`  
-**B)`focus`  
-**C)\*\* `selected`  
+**B)** `focus`  
+**C)** `selected`  
 **D)** `active`
 
 <details>
@@ -1515,8 +1515,8 @@ A)
 ### 90. Which attribute is used to specify that a form should not be validated?
 
 **A)** `novalidate`  
-**B)`novalidation`  
-**C)\*\* `validate="false"`  
+**B)** `novalidation`  
+**C)** `validate="false"`  
 **D)** `invalid`
 
 <details>
