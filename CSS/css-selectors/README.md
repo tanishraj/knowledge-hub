@@ -213,8 +213,8 @@ B) Links being hovered over
 
 **A)** `a[title]`  
 **B)** `a.title`  
-**C)\*\* `a > title`  
-**D)\*\* `a:title`
+**C)** `a > title`  
+**D)** `a:title`
 
 <details>
 <summary>View Answer</summary>
@@ -278,8 +278,8 @@ The third `<li>` in every parent
 
 **A)** `div p`  
 **B)** `div > p`  
-**C)\*\* `div + p`  
-**D)\*\* `div ~ p`
+**C)** `div + p`  
+**D)** `div ~ p`
 
 <details>
 <summary>View Answer</summary>
@@ -379,9 +379,9 @@ B)
 ### 24. What does `:not(.hidden)` select?
 
 **A)** `<div>` with class "hidden"  
-**B) All elements except those with class "hidden"  
-**C) Only `<div>` elements  
-\*\*D) Only `<span>` elements
+**B)** All elements except those with class "hidden"  
+**C)** Only `<div>` elements  
+**D)** Only `<span>` elements
 
 <details>
 <summary>View Answer</summary>
@@ -409,10 +409,10 @@ B)
 
 ### 26. What does `:empty` select?
 
-**A) Elements with no children or text  
-**B) Elements with no class  
-**C) Elements with no ID  
-**D) Elements with no attributes
+**A)** Elements with no children or text  
+**B)** Elements with no class  
+**C)** Elements with no ID  
+**D)** Elements with no attributes
 
 <details>
 <summary>View Answer</summary>
@@ -457,10 +457,10 @@ B)
 
 ### 29. What does `:checked` select?
 
-**A) All checkboxes  
-**B) All radio buttons  
-**C) All checked checkboxes or radio buttons  
-**D) All selected options
+**A)** All checkboxes  
+**B)** All radio buttons  
+**C)** All checked checkboxes or radio buttons  
+**D)** All selected options
 
 <details>
 <summary>View Answer</summary>
@@ -522,10 +522,10 @@ A)
 
 ### 33. What does `:root` refer to in CSS?
 
-**A) The `<body>` element  
-**B) The `<html>` element  
-**C) The `<head>` element  
-**D) The `<div>` element
+**A)** The `<body>` element  
+**B)** The `<html>` element  
+**C)** The `<head>` element  
+**D)** The `<div>` element
 
 <details>
 <summary>View Answer</summary>
@@ -536,10 +536,10 @@ B) The `<html>` element
 
 ### 34. What does `::before` do?
 
-**A) Adds content before an element  
-**B) Adds content after an element  
-**C) Adds a class before an element  
-**D) Adds an ID before an element
+**A)** Adds content before an element  
+**B)** Adds content after an element  
+**C)** Adds a class before an element  
+**D)** Adds an ID before an element
 
 <details>
 <summary>View Answer</summary>
@@ -550,10 +550,10 @@ A) Adds content before an element
 
 ### 35. What does `::after` do?
 
-**A) Adds content before an element  
-**B) Adds content after an element  
-**C) Adds a class after an element  
-**D) Adds an ID after an element
+**A)** Adds content before an element  
+**B)** Adds content after an element  
+**C)** Adds a class after an element  
+**D)** Adds an ID after an element
 
 <details>
 <summary>View Answer</summary>
@@ -615,10 +615,10 @@ B)
 
 ### 39. What does `:target` select?
 
-**A) The element with the ID matching the current URL fragment  
-**B) The element with the class matching the current URL  
-**C) The element with the ID matching the current query  
-**D) The element with the class matching the current query
+**A)** The element with the ID matching the current URL fragment  
+**B)** The element with the class matching the current URL  
+**C)** The element with the ID matching the current query  
+**D)** The element with the class matching the current query
 
 <details>
 <summary>View Answer</summary>
@@ -663,10 +663,10 @@ A)
 
 ### 42. What does `:required` select?
 
-**A) All `<input>` elements  
-**B) All `<input>` elements marked as required  
-**C) All `<select>` elements  
-**D) All `<textarea>` elements
+**A)** All `<input>` elements  
+**B)** All `<input>` elements marked as required  
+**C)** All `<select>` elements  
+**D)** All `<textarea>` elements
 
 <details>
 <summary>View Answer</summary>
@@ -711,10 +711,10 @@ B)
 
 ### 45. What does `:enabled` select?
 
-**A) All enabled form elements  
-**B) All disabled form elements  
-**C) All `<div>` elements  
-**D) All `<span>` elements
+**A)** All enabled form elements  
+**B)** All disabled form elements  
+**C)** All `<div>` elements  
+**D)** All `<span>` elements
 
 <details>
 <summary>View Answer</summary>
