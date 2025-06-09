@@ -11,7 +11,10 @@
 
 <details>
 <summary>View Answer</summary>
-A) `p`
+A)
+
+`p`
+
 </details>
 
 ---
@@ -39,7 +42,10 @@ A) Selects all elements
 
 <details>
 <summary>View Answer</summary>
-B) `.highlight`
+B)
+
+`.highlight`
+
 </details>
 
 ---
@@ -53,7 +59,10 @@ B) `.highlight`
 
 <details>
 <summary>View Answer</summary>
-C) `#main`
+C)
+
+`#main`
+
 </details>
 
 ---
@@ -81,7 +90,10 @@ A) Selects all `<div>` and `<p>` elements
 
 <details>
 <summary>View Answer</summary>
-D) `nav div`
+D)
+
+`nav div`
+
 </details>
 
 ---
@@ -137,7 +149,10 @@ A) All siblings after
 
 <details>
 <summary>View Answer</summary>
-B) `ul > li:first-child` (or A, but B is more direct)
+B)
+
+`ul > li:first-child` (or A, but B is more direct)
+
 </details>
 
 > **Clarification:**  
@@ -155,7 +170,10 @@ B) `ul > li:first-child` (or A, but B is more direct)
 
 <details>
 <summary>View Answer</summary>
-B) `ul li:last-child`
+B)
+
+`ul li:last-child`
+
 </details>
 
 ---
@@ -169,7 +187,10 @@ B) `ul li:last-child`
 
 <details>
 <summary>View Answer</summary>
-B) All `<input>` elements with `type="text"`
+B)
+
+All `<input>` elements with `type="text"`
+
 </details>
 
 ---
@@ -191,13 +212,16 @@ B) Links being hovered over
 ### 14. Which selector selects all `<a>` elements with a `title` attribute?
 
 **A)** `a[title]`  
-**B)`a.title`  
-**C)`a > title`  
-\*\*D)`a:title`
+**B)** `a.title`  
+**C)\*\* `a > title`  
+**D)\*\* `a:title`
 
 <details>
 <summary>View Answer</summary>
-A) `a[title]`
+A)
+
+`a[title]`
+
 </details>
 
 ---
@@ -220,12 +244,15 @@ B) Any element with focus
 
 **A)** `li:odd`  
 **B)** `li:even`  
-**C)`li:nth-child(even)`  
-**D)`li:2n`
+**C)** `li:nth-child(even)`  
+**D)** `li:2n`
 
 <details>
 <summary>View Answer</summary>
-C) `li:nth-child(even)`
+C)
+
+`li:nth-child(even)`
+
 </details>
 
 ---
@@ -234,12 +261,15 @@ C) `li:nth-child(even)`
 
 **A)** Every third `<li>`  
 **B)** The third `<li>` in every parent  
-**C)`li` elements with class "nth"  
-**D)`li` elements with child index 3
+**C)** `li` elements with class "nth"  
+**D)** `li` elements with child index 3
 
 <details>
 <summary>View Answer</summary>
-B) The third `<li>` in every parent
+B)
+
+The third `<li>` in every parent
+
 </details>
 
 ---
@@ -247,93 +277,111 @@ B) The third `<li>` in every parent
 ### 18. Which selector selects all `<p>` elements that are direct children of `<div>`?
 
 **A)** `div p`  
-**B)`div > p`  
-**C)`div + p`  
-\*\*D)`div ~ p`
+**B)** `div > p`  
+**C)\*\* `div + p`  
+**D)\*\* `div ~ p`
 
 <details>
 <summary>View Answer</summary>
-B) `div > p`
+B)
+
+`div > p`
+
 </details>
 
 ---
 
 ### 19. What does `div + p` select?
 
-**A)`<p>` immediately after `<div>`  
-**B)`<p>` inside `<div>`  
-**C)`<div>` inside `<p>`  
-**D)`<div>` and `<p>`
+**A)** `<p>` immediately after `<div>`  
+**B)** `<p>` inside `<div>`  
+**C)** `<div>` inside `<p>`  
+**D)** `<div>` and `<p>`
 
 <details>
 <summary>View Answer</summary>
-A) `<p>` immediately after `<div>`
+A)
+
+`<p>` immediately after `<div>`
+
 </details>
 
 ---
 
 ### 20. What does `div ~ p` select?
 
-**A)`<p>` inside `<div>`  
-**B)`<p>` immediately after `<div>`  
-**C)`<p>` siblings after `<div>`  
-**D)`<div>` and `<p>`
+**A)** `<p>` inside `<div>`  
+**B)** `<p>` immediately after `<div>`  
+**C)** `<p>` siblings after `<div>`  
+**D)** `<div>` and `<p>`
 
 <details>
 <summary>View Answer</summary>
-C) `<p>` siblings after `<div>`
+C)
+
+`<p>` siblings after `<div>`
+
 </details>
 
 ---
 
 ### 21. Which selector selects all `<a>` elements with `href` starting with "https"?
 
-**A)`a[href^="https"]`  
-**B)`a[href*="https"]`  
-**C)`a[href$="https"]`  
-**D)`a[href="https"]`
+**A)** `a[href^="https"]`  
+**B)** `a[href*="https"]`  
+**C)** `a[href$="https"]`  
+**D)** `a[href="https"]`
 
 <details>
 <summary>View Answer</summary>
-A) `a[href^="https"]`
+A)
+
+`a[href^="https"]`
+
 </details>
 
 ---
 
 ### 22. Which selector selects all `<a>` elements with `href` ending with ".pdf"?
 
-**A)`a[href^=".pdf"]`  
-**B)`a[href*=".pdf"]`  
-**C)`a[href$=".pdf"]`  
-**D)`a[href=".pdf"]`
+**A)** `a[href^=".pdf"]`  
+**B)** `a[href*=".pdf"]`  
+**C)** `a[href$=".pdf"]`  
+**D)** `a[href=".pdf"]`
 
 <details>
 <summary>View Answer</summary>
-C) `a[href$=".pdf"]`
+C)
+
+`a[href$=".pdf"]`
+
 </details>
 
 ---
 
 ### 23. Which selector selects all `<a>` elements with `href` containing "google"?
 
-**A)`a[href^="google"]`  
-**B)`a[href*="google"]`  
-**C)`a[href$="google"]`  
-**D)`a[href="google"]`
+**A)** `a[href^="google"]`  
+**B)** `a[href*="google"]`  
+**C)** `a[href$="google"]`  
+**D)** `a[href="google"]`
 
 <details>
 <summary>View Answer</summary>
-B) `a[href*="google"]`
+B)
+
+`a[href*="google"]`
+
 </details>
 
 ---
 
 ### 24. What does `:not(.hidden)` select?
 
-**A)`<div>` with class "hidden"  
+**A)** `<div>` with class "hidden"  
 **B) All elements except those with class "hidden"  
 **C) Only `<div>` elements  
-**D) Only `<span>` elements
+\*\*D) Only `<span>` elements
 
 <details>
 <summary>View Answer</summary>
@@ -344,14 +392,17 @@ B) All elements except those with class "hidden"
 
 ### 25. Which selector selects all `<li>` elements except the first one?
 
-**A)`li:first-child`  
-**B)`li:not(:first-child)`  
-**C)`li:first-of-type`  
-**D)`li:last-child`
+**A)** `li:first-child`  
+**B)** `li:not(:first-child)`  
+**C)** `li:first-of-type`  
+**D)** `li:last-child`
 
 <details>
 <summary>View Answer</summary>
-B) `li:not(:first-child)`
+B)
+
+`li:not(:first-child)`
+
 </details>
 
 ---
@@ -372,28 +423,34 @@ A) Elements with no children or text
 
 ### 27. Which selector selects all `<p>` elements that are the first of their type among siblings?
 
-**A)`p:first-child`  
-**B)`p:first-of-type`  
-**C)`p:first`  
-**D)`p:first-sibling`
+**A)** `p:first-child`  
+**B)** `p:first-of-type`  
+**C)** `p:first`  
+**D)** `p:first-sibling`
 
 <details>
 <summary>View Answer</summary>
-B) `p:first-of-type`
+B)
+
+`p:first-of-type`
+
 </details>
 
 ---
 
 ### 28. Which selector selects all `<li>` elements that are the last of their type among siblings?
 
-**A)`li:last-child`  
-**B)`li:last-of-type`  
-**C)`li:last`  
-**D)`li:last-sibling`
+**A)** `li:last-child`  
+**B)** `li:last-of-type`  
+**C)** `li:last`  
+**D)** `li:last-sibling`
 
 <details>
 <summary>View Answer</summary>
-B) `li:last-of-type`
+B)
+
+`li:last-of-type`
+
 </details>
 
 ---
@@ -414,42 +471,51 @@ C) All checked checkboxes or radio buttons
 
 ### 30. Which selector selects all elements that are disabled?
 
-**A)`disabled`  
-**B)`[disabled]`  
-**C)`is-disabled`  
-**D)`inactive`
+**A)** `disabled`  
+**B)** `[disabled]`  
+**C)** `is-disabled`  
+**D)** `inactive`
 
 <details>
 <summary>View Answer</summary>
-B) `[disabled]`
+B)
+
+`[disabled]`
+
 </details>
 
 ---
 
 ### 31. Which selector selects all `<a>` elements that have been visited?
 
-**A)`a:visited`  
-**B)`a:link`  
-**C)`a:active`  
-**D)`a:hover`
+**A)** `a:visited`  
+**B)** `a:link`  
+**C)** `a:active`  
+**D)** `a:hover`
 
 <details>
 <summary>View Answer</summary>
-A) `a:visited`
+A)
+
+`a:visited`
+
 </details>
 
 ---
 
 ### 32. Which selector selects all `<a>` elements that are currently being clicked?
 
-**A)`a:active`  
-**B)`a:click`  
-**C)`a:hover`  
-**D)`a:focus`
+**A)** `a:active`  
+**B)** `a:click`  
+**C)** `a:hover`  
+**D)** `a:focus`
 
 <details>
 <summary>View Answer</summary>
-A) `a:active`
+A)
+
+`a:active`
+
 </details>
 
 ---
@@ -498,42 +564,51 @@ B) Adds content after an element
 
 ### 36. Which selector selects all `<input>` elements except those with `type="submit"`?
 
-**A)`input:not([type="submit"])`  
-**B)`input[type!="submit"]`  
-**C)`input:not(:submit)`  
-**D)`input:not(.submit)`
+**A)** `input:not([type="submit"])`  
+**B)** `input[type!="submit"]`  
+**C)** `input:not(:submit)`  
+**D)** `input:not(.submit)`
 
 <details>
 <summary>View Answer</summary>
-A) `input:not([type="submit"])`
+A)
+
+`input:not([type="submit"])`
+
 </details>
 
 ---
 
 ### 37. Which selector selects all `<p>` elements with a class starting with "text-"?
 
-**A)`p[class^="text-"]`  
-**B)`p[class*="text-"]`  
-**C)`p[class$="text-"]`  
-**D)`p[class="text-"]`
+**A)** `p[class^="text-"]`  
+**B)** `p[class*="text-"]`  
+**C)** `p[class$="text-"]`  
+**D)** `p[class="text-"]`
 
 <details>
 <summary>View Answer</summary>
-A) `p[class^="text-"]`
+A)
+
+`p[class^="text-"]`
+
 </details>
 
 ---
 
 ### 38. Which selector selects all elements with a class containing "error"?
 
-**A)`[class^="error"]`  
-**B)`[class*="error"]`  
-**C)`[class$="error"]`  
-**D)`[class="error"]`
+**A)** `[class^="error"]`  
+**B)** `[class*="error"]`  
+**C)** `[class$="error"]`  
+**D)** `[class="error"]`
 
 <details>
 <summary>View Answer</summary>
-B) `[class*="error"]`
+B)
+
+`[class*="error"]`
+
 </details>
 
 ---
@@ -554,28 +629,34 @@ A) The element with the ID matching the current URL fragment
 
 ### 40. Which selector selects all `<input>` elements with `type="checkbox"`?
 
-**A)`input[type="checkbox"]`  
-**B)`input:checkbox`  
-**C)`input.checkbox`  
-**D)`input[checkbox]`
+**A)** `input[type="checkbox"]`  
+**B)** `input:checkbox`  
+**C)** `input.checkbox`  
+**D)** `input[checkbox]`
 
 <details>
 <summary>View Answer</summary>
-A) `input[type="checkbox"]`
+A)
+
+`input[type="checkbox"]`
+
 </details>
 
 ---
 
 ### 41. Which selector selects all `<img>` elements with an `alt` attribute?
 
-**A)`img[alt]`  
-**B)`img.alt`  
-**C)`img:alt`  
-**D)`img > alt`
+**A)** `img[alt]`  
+**B)** `img.alt`  
+**C)** `img:alt`  
+**D)** `img > alt`
 
 <details>
 <summary>View Answer</summary>
-A) `img[alt]`
+A)
+
+`img[alt]`
+
 </details>
 
 ---
@@ -596,28 +677,34 @@ B) All `<input>` elements marked as required
 
 ### 43. Which selector selects all `<p>` elements that are the only child of their parent?
 
-**A)`p:only-child`  
-**B)`p:only-of-type`  
-**C)`p:single-child`  
-**D)`p:one-child`
+**A)** `p:only-child`  
+**B)** `p:only-of-type`  
+**C)** `p:single-child`  
+**D)** `p:one-child`
 
 <details>
 <summary>View Answer</summary>
-A) `p:only-child`
+A)
+
+`p:only-child`
+
 </details>
 
 ---
 
 ### 44. Which selector selects all `<p>` elements that are the only `<p>` among their siblings?
 
-**A)`p:only-child`  
-**B)`p:only-of-type`  
-**C)`p:solo`  
-**D)`p:single`
+**A)** `p:only-child`  
+**B)** `p:only-of-type`  
+**C)** `p:solo`  
+**D)** `p:single`
 
 <details>
 <summary>View Answer</summary>
-B) `p:only-of-type`
+B)
+
+`p:only-of-type`
+
 </details>
 
 ---
@@ -638,68 +725,83 @@ A) All enabled form elements
 
 ### 46. Which selector selects all `<li>` elements that are at least the third child?
 
-**A)`li:nth-child(3)`  
-**B)`li:nth-child(n+3)`  
-**C)`li:nth-child(3n)`  
-**D)`li:nth-child(-n+3)`
+**A)** `li:nth-child(3)`  
+**B)** `li:nth-child(n+3)`  
+**C)** `li:nth-child(3n)`  
+**D)** `li:nth-child(-n+3)`
 
 <details>
 <summary>View Answer</summary>
-B) `li:nth-child(n+3)`
+B)
+
+`li:nth-child(n+3)`
+
 </details>
 
 ---
 
 ### 47. Which selector selects every third `<li>` element?
 
-**A)`li:nth-child(3)`  
-**B)`li:nth-child(n+3)`  
-**C)`li:nth-child(3n)`  
-**D)`li:nth-child(-n+3)`
+**A)** `li:nth-child(3)`  
+**B)** `li:nth-child(n+3)`  
+**C)** `li:nth-child(3n)`  
+**D)** `li:nth-child(-n+3)`
 
 <details>
 <summary>View Answer</summary>
-C) `li:nth-child(3n)`
+C)
+
+`li:nth-child(3n)`
+
 </details>
 
 ---
 
 ### 48. Which selector selects all `<input>` elements with `type="radio"`?
 
-**A)`input[type="radio"]`  
-**B)`input:radio`  
-**C)`input.radio`  
-**D)`input[radio]`
+**A)** `input[type="radio"]`  
+**B)** `input:radio`  
+**C)** `input.radio`  
+**D)** `input[radio]`
 
 <details>
 <summary>View Answer</summary>
-A) `input[type="radio"]`
+A)
+
+`input[type="radio"]`
+
 </details>
 
 ---
 
 ### 49. Which selector selects all `<input>` elements that are not required?
 
-**A)`input:not(:required)`  
-**B)`input:not([required])`  
-**C)`input:not(.required)`  
-**D)`input:not(required)`
+**A)** `input:not(:required)`  
+**B)** `input:not([required])`  
+**C)** `input:not(.required)`  
+**D)** `input:not(required)`
 
 <details>
 <summary>View Answer</summary>
-A) `input:not(:required)`
+A)
+
+`input:not(:required)`
+
 </details>
 
 ---
 
 ### 50. Which selector selects all `<p>` elements with a class ending with "-warning"?
 
-**A)`p[class^="-warning"]`  
-**B)`p[class*="-warning"]`  
-**C)`p[class$="-warning"]`  
-**D)`p[class="-warning"]`
+**A)** `p[class^="-warning"]`  
+**B)** `p[class*="-warning"]`  
+**C)** `p[class$="-warning"]`  
+**D)** `p[class="-warning"]`
 
 <details>
 <summary>View Answer</summary>
-C) `p[class$="-warning"]`
+C)
+
+`p[class$="-warning"]`
+
 </details>
