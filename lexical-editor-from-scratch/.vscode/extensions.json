@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint", // ES-Lint analyze the code and quickly find and fix problems
+    "esbenp.prettier-vscode", // Prettier, a code formatter for consistent style and formatting
+    "VisualStudioExptTeam.vscodeintellicode", // intellicode provides AI assisted development feature
+    "dsznajder.es7-react-js-snippets", // react js snippets
+    "xabikos.javascriptsnippets", // Code snippets for javascript in ES6 style
+    "rbbit.typescript-hero", // typescript intelligence and code organization
+    "oderwat.indent-rainbow", // Bracket pair colorizer
+    "EliverLara.andromeda" // Color Theme
+  ]
+}
