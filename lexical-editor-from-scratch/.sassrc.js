@@ -1,1 +1,0 @@
-module.exports = {data: '@import "./src/theme/main.scss";'}
