@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Back References Using String Replace</title>
+</head>
+<body>
+    <h2>Back References Using String Replace</h2>
+    <p>Backreferences can be used with string's replace() method by using the special character sequences $1, $2, and so on.
+    The best example to illustrate this functionality is to reverse the order of two items in a string.</p>
+
+    <script type="text/javascript">
+        var sToChange = "1234 5678";
+        var reMatch = /(\d{4}) (\d{4})/;
+        sNew = sToChange.replace(reMatch, "$2 $1");
+        document.write(sNew);
+    </script>
+</body>
+</html>

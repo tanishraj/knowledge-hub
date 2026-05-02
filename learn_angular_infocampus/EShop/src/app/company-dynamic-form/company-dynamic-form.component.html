@@ -1,0 +1,72 @@
+<div class="container-fluid mt-5 mb-5">
+	<div class="container">
+		<h1 class="text-center mb-3">Company Dynamic Form (Assignment)</h1>
+
+		<form class="form" [formGroup]="companyForm">
+			<div class="form-group">
+				<label for="companyName">Company Name: </label>
+				<input type="text" id="companyName" formControlName="companyName" class="form-control" />
+
+				<div class="text-danger" *ngIf="companyForm.get('companyName').errors && companyForm.get('companyName').touched">
+					<span *ngIf="companyForm.get('companyName').errors['required']">Company name is required.</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="companyLocation">Company Location: </label>
+				<input type="text" id="companyLocation" formControlName="companyLocation" class="form-control" />
+
+				<div class="text-danger" *ngIf="companyForm.get('companyLocation').errors && companyForm.get('companyLocation').touched">
+					<span *ngIf="companyForm.get('companyLocation').errors['required']">Company location is required.</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="companyImage">Company Image: </label>
+				<input type="text" id="companyImage" formControlName="companyImage" class="form-control" />
+
+				<div class="text-danger" *ngIf="companyForm.get('companyImage').errors && companyForm.get('companyImage').touched">
+					<span *ngIf="companyForm.get('companyImage').errors['required']">Company photo is required.</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<input type="button" [disabled]="!companyForm.valid" class="btn btn-primary" value="Save Company Details" />
+			</div>
+
+			<div class="mt-5" formArrayName="employeesList">
+				<button class="btn btn-success" (click)="addEmployees()">Add Employees <span class="fa fa-user-plus"></span></button>
+
+				<div *ngFor="let x of companyForm.get('employeesList').controls; let i = index">
+					<div class="card card-default mt-3" [formGroupName]="i">
+						<div class="card-header bg-primary text-white">
+							Employee {{i+1}}
+							<span class="fa fa-trash text-warning float-right" (click)="deleteEmployees(i)"></span>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="employeeID">Employee ID: </label>
+								<input type="text" class="form-control" id="employeeID" formControlName="employeeID" />
+							</div>
+
+							<div class="form-group">
+								<label for="employeeName">Employee Name: </label>
+								<input type="text" class="form-control" id="employeeName" formControlName="employeeName" />
+							</div>
+
+							<div class="form-group">
+								<label for="employeeDepartment">Employee Department: </label>
+								<input type="text" class="form-control" id="employeeDepartment" formControlName="employeeDepartment" />
+							</div>
+
+							<div class="form-group">
+								<label for="employeeEmail">Employee Email ID: </label>
+								<input type="text" class="form-control" id="employeeEmail" formControlName="employeeEmail" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

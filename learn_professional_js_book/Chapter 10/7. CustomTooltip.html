@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Tooltip</title>
+    <style type="text/css">
+        #div1{
+            height: 50px;
+            width: 50px;
+            background: #f00;
+        }
+        #tooltip{
+            background: #ff0;
+            position: absolute;
+            visibility: hidden;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Custom Tooltip</h2>
+    <p>Another interesting use of the style object is to create custom tooltips, which are those helpful yellow
+        boxes that appear when you move a mouse over an image button. By using the title attribute, HTML
+        elements can provide plain text tooltips, such as this:</p>
+    <p><a href="http://www.google.com" title="Plain Tooltip" Site”>Link With Plain Tooltip</a></p>
+
+    <p>However, these plain text tooltips may not be enough. Suppose you want to create a tooltip with bold or
+        italic text, or maybe even an image, you can do so by creating a hidden div that is displayed only
+    when the mouse moves over its designated target. This is essentially the same as the rollover code, with
+    one extra step: moving the div into a position close to the mouse. To correctly position the div,
+    you can make use of the clientX and clientY properties of the event object. Note that because these
+    properties are available in all instances of the event object, you don’t need to use the EventUtil object
+    created earlier in the book:</p>
+
+    <h3>Example:</h3>
+    <p>Move your mouse over the red square.</p>
+    <div id="div1"></div>
+
+    <div id="tooltip">More details can go here.</div>
+
+    <script type="text/javascript">
+        var oDiv = document.getElementById("div1");
+
+        var showTooltip = function (oEvent) {
+            var oTooltip = document.getElementById("tooltip");
+            oTooltip.style.visibility = "visible";
+            oTooltip.style.left = oEvent.clientX + 5 + "px";
+            oTooltip.style.top = oEvent.clientY + 5 + "px";
+        }
+        
+        var hideTooltip = function () {
+            var oTooltip = document.getElementById("tooltip");
+            oTooltip.style.visibility = "hidden";
+        }
+
+        oDiv.addEventListener("mousemove", showTooltip, false);
+        oDiv.addEventListener("mouseout", hideTooltip, false);
+
+    </script>
+</body>
+</html>

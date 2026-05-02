@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>One Way Data Binding</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body>
+	<h2>One Way Data Binding Example</h2>
+	<div ng-app="myApp" ng-controller="myController">
+		<input type="text" name="name" ng-model="name"/>
+		<p>{{name}}</p>
+	</div>
+
+	<script type="text/javascript">
+		var app = angular.module('myApp',[]);
+		app.controller('myController', function($scope){
+			$scope.name = "My name is Tanish Raj";
+		})
+	</script>
+</body>
+</html>

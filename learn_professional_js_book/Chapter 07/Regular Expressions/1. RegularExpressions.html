@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regular Expressions</title>
+</head>
+<body>
+    <h2>Regular Expressions</h2>
+    <p>JS supports regular expressions through the ECMAScript RegExp class.
+    The constructor for RegExp object takes one or two argument. The first (or only)
+    argument is the strong describing the pattern to match if there is a second argument
+    it is string specifying additional processing instructions.</p>
+
+    <script type="text/javascript">
+        var sToMatch = "cat";
+
+        //Simplest Regular Expression Pattern (compares only first occurance)
+        var reCat = new RegExp("cat");
+        document.write("is cat match the pattern cat = " + reCat.test(sToMatch));
+
+        sToMatch = /dog/;
+        document.write("<br/>is dog match the pattern cat = " + reCat.test(sToMatch));
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object Masquerading</title>
+</head>
+<body>
+    <h2>Object Masquerading</h2>
+    <p>Object masquerading was never intended when the original ECMAScript was conceived. Instead, it
+    evolved as developers began to understand exactly how functions worked and, specifically, how
+    to use this keyword in the context of functions.</p>
+
+    <script type="text/javascript">
+        function ClassA(sColor) {
+            this.color = sColor;
+            this.sayColor = function(){
+                document.write("<br/>Color for Class A = " + this.color);
+            }
+        }
+
+        function ClassB(sColor, sName){
+            this.newMethod = ClassA;
+            this.newMethod(sColor);
+            delete this.newMethod;
+
+            this.name = sName;
+            this.sayName = function(){
+                document.write("<br/>Name for Class B = " + this.name);
+            }
+        }
+
+        var objA = new ClassA("Red");
+        var objB = new ClassB("Red","Tanish");
+
+        objA.sayColor();
+        objB.sayColor();
+        objB.sayName();
+    </script>
+</body>
+</html>

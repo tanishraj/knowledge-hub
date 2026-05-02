@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Argument Object</title>
+</head>
+<body>
+    <h2>Function Argument Object</h2>
+    <p>Within the function's code, a special object called arguments gives the
+    developer access to the function's arguments without specifically naming them.</p>
+
+    <script type="text/javascript">
+        function fnSayHi() {
+            if(arguments[0] == "Bye"){
+                document.write("Bye... Bye...");
+                return;
+            }else {
+                document.write("Argument[0] = " + arguments[0]);
+                document.write("<br/>Argument Length = " + arguments.length);
+            }
+        }
+
+        fnSayHi("Hi", "Tanish", "Raj");
+
+
+        function fnUnique(){
+            document.write("<br/> <br/>Hello i can still be invoked.");
+        }
+
+        fnUnique("Tanish");
+    </script>
+</body>
+</html>

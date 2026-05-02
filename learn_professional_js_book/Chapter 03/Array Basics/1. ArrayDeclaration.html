@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Declaration</title>
+</head>
+<body>
+    <h2>Array Declaration</h2>
+    <p>There are many ways to declare the array object.</p>
+
+    <script type="text/javascript">
+        //Declaring an array object named aValues
+        var aValues = new Array();
+
+        //Initialize above array object
+        aValues[0] = "Tanish";
+        aValues[1] = "Chandan";
+
+        //displaying arrays values
+        document.write("<br/><br/>Array without size:");
+        for(var temp in aValues){
+            document.write("<br/>" + aValues[temp]);
+        }
+
+        //Declaring an Array Object with fixed size
+        var colors = new Array(5);
+
+        //initialize abover array object
+        colors[0] = "Red";
+        colors[1] = "Blue";
+        colors[2] = "Black";
+        colors[3] = "Green";
+        colors[4] = "Golden";
+
+        //displaying arrays values
+        document.write("<br/><br/>Array with size:");
+        for(var temp in colors){
+            document.write("<br/>" + colors[temp]);
+        }
+
+        //Another way of declaring and initializing array object
+        var names = new Array("Tanish","Neha","Pinki","Muskaan");
+
+        //displaying arrays values
+        document.write("<br/><br/>Array with names:");
+        for(var temp in names){
+            document.write("<br/>" + names[temp]);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Non-Capturing Groups</title>
+</head>
+<body>
+    <h2>Non-Capturing Groups</h2>
+    <p>Groups that create backreferences are called capturing groups. There are also non-capturing groups, which 
+    don't create backreferences. In very long regular expressions, storing backreferences slows down the
+    matching process. By using non-capturing groups, you can have the same flexibility to match sequences
+    of characters without incurring the overhead of storing the results.</p>
+
+    <script type="text/javascript">
+        var sToMatch = "#123456789";
+        var reNumbers = /#(?:\d+)/;
+        document.write(reNumbers.test(sToMatch));
+        document.write("Hello" + RegExp.$1); //Output will be an empty string
+    </script>
+
+    <p>The last line of this example outputs an empty string because the group is specified as non-capturing.
+    Because of this, no backreferences can be used with the replace() method, accessed via the RegExp.$x
+    variables, or used in the regular expression itself. Look what happens when the following code is run:</p>
+
+    <script type="text/javascript">
+        var sToMatch = "#123456789";
+        var reNumbers = /#(?:\d+)/;
+        document.write(sToMatch.replace(reNumbers, "abcd$1")); //outputs “abcd$1”
+    </script>
+</body>
+</html>

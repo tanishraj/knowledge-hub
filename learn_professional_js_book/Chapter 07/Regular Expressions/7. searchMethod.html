@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>search() Method</title>
+</head>
+<body>
+    <h2>search() Method</h2>
+    <p>search() method acts the same way as indexOf(), but uses a RegExp object insteadof a substring.
+    The search() method returns the index of the first occurance in the string.</p>
+
+    <p><strong>Note:</strong> index always starts from 0 position.</p>
+
+    <script type="text/javascript">
+        var sToMatch = "a bat, a cat, a fAt baT, a faT cat";
+        var reAt = /at/gi;
+
+        document.write("First occurance of at is = " + sToMatch.search(reAt));
+    </script>
+</body>
+</html>

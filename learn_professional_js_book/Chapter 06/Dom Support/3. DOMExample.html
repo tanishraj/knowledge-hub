@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Example</title>
+</head>
+<body>
+    <p>Hello World!</p>
+    <p>isn't this exciting?</p>
+    <p>You are learning to use the DOM.</p>
+
+    <script type="text/javascript">
+        //hold the HTML object
+        var oHtml = document.documentElement;
+        document.write("oHTML = " + oHtml);
+
+        var oHead = oHtml.firstChild;
+        var oBody = oHtml.lastChild;
+
+        document.write("<br/><br/>oHead = " + oHead);
+        document.write("<br/>oBody = " + oBody);
+
+        //Other ways to call the same nodes
+        var oHead = oHtml.childNodes[0];
+        var oBody = oHtml.childNodes[1];
+
+        document.write("<br/><br/>oHead = " + oHead);
+        document.write("<br/>oBody = " + oBody);
+
+        //Other ways to call the same nodes
+        var oHead = oHtml.childNodes.item(0);
+        var oBody = oHtml.childNodes.item(1);
+
+        document.write("<br/><br/>oHead = " + oHead);
+        document.write("<br/>oBody = " + oBody);
+
+        var totalChildForHtml = oHtml.childNodes.length;
+        document.write("<br/><br/>Length of child nodes = " + totalChildForHtml);
+
+    </script>
+</body>
+</html>

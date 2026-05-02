@@ -1,0 +1,34 @@
+<div class="fuid-container mt-5 mb-5">
+    <div class="container">
+      <h1 class="text-center mb-3">Average Marks (Property Binding + Event Binding)</h1>
+  
+      <div class="form-group">
+        <label for="averagePhysics">Physics:</label>
+        <input type="text" class="form-control" id="averagephysics" [(ngModel)]="physics" />
+      </div>
+  
+      <div class="form-group">
+        <label for="averageChemistry">Chemistry:</label>
+        <input type="text" class="form-control" id="averageChemistry" [(ngModel)]="chemistry" />
+      </div>
+  
+      <div class="form-group">
+        <label for="averageMathematics">Mathematics:</label>
+        <input type="text" class="form-control" id="averageMathematics" [(ngModel)]="mathematics" />
+      </div>
+  
+      <div class="form-group">
+        <label for="averageHindi">Hindi:</label>
+        <input type="text" class="form-control" id="averageHindi" [(ngModel)]="hindi" />
+      </div>
+  
+      <div class="form-group">
+        <label for="averageEnglish">English:</label>
+        <input type="text" class="form-control" id="averageEnglish" [(ngModel)]="english" />
+      </div>
+
+      <div class="form-group">
+          <input type="button" class="btn btn-primary" value="Calculate Average" (click)=calculateAverage()/>
+      </div>
+    </div>
+  </div>

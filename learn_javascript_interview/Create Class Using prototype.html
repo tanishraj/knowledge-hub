@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create Class</title>
+</head>
+<body>
+	<script type="text/javascript">
+		Person = function(name, age, salary){
+			this.name = name,
+			this.age = age,
+			this.salary = salary
+		}
+
+		Person.prototype.printInfo = function(){
+			return this.name + " " + this.age + " " + this.salary + " ";
+		}
+
+		var tanish = new Person("Tanish","25","25000");
+		document.write(tanish.printInfo());
+	</script>
+</body>
+</html>

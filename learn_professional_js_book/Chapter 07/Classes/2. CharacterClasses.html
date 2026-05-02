@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Character Classes</title>
+</head>
+<body>
+    <h2>Character Classes</h2>
+    <p>Character classes are groups of characters to test for. By enclosing characters inside a square bracets,
+    you are effectively telling th RE to match the first character, the second cahracter, the third character
+    or so on.</p>
+
+    <script type="text/javascript">
+    	//Example of simple class
+    	var sToMatch = "a bat, a cat, a fAt baT, a faT cat";
+    	var reBatCatRat = /[bcf]at/gi;
+    	var arrMatches = sToMatch.match(reBatCatRat);
+    	document.write("Matches are (bcf) = " + arrMatches.toString());
+
+    	//Example of simple class by changing the pattern
+    	var reBatCatRat = /[bcr]at/gi;
+    	var arrMatches = sToMatch.match(reBatCatRat);
+    	document.write("<br/>Matches are (bcr) = " + arrMatches.toString());
+    </script>
+</body>
+</html>

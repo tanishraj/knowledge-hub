@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Computed styles in the DOM</title>
+    <style type="text/css">
+        div.special {
+            background-color: red;
+            height: 50px;
+            width: 50px;
+            margin: 0 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Computed styles in the DOM</h2>
+    <p>The DOM provides a method called getComputedStyle() that creates a style-like object based on a
+        given element. The method accepts two parameters, the element to get the style for and a pseudo-element,
+        such as :hover or :first-letter (it can also be null if not needed). You can access this method from the
+        document.defaultView object, which is used to represent the currently rendered view of the document
+        (document.defaultView is not supported in Internet Explorer or Safari).</p>
+
+    <h3>Example:</h3>
+    <div id="div1" class="special"></div>
+    <input type="button" value="Get Background Color" onclick="getBackgroundColor()" />
+
+    <script type="text/javascript">
+        function getBackgroundColor() {
+            var oDiv = document.getElementById("div1");
+            alert(document.defaultView.getComputedStyle(oDiv, null).backgroundColor);
+        }
+    </script>
+</body>
+</html>

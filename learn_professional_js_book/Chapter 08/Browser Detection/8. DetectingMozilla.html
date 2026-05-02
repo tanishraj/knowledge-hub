@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detecting Mozilla</title>
+</head>
+<body>
+    <h2>Detecting Mozilla</h2>
+
+    <script type="text/javascript">
+        var isMoz = sUserAgent.indexOf("Gecko") > -1 && !isKHTML;
+        var isMinMoz1 = sMinMoz1_4 = isMinMoz1_5 = false;
+
+        if (isMoz) {
+            var reMoz = new RegExp("rv:(\\d+\\.\\d+(?:\\.\\d+)?)");
+            reMoz.test(sUserAgent);
+            isMinMoz1 = compareVersions(RegExp["$1"], "1.0") >= 0;
+            isMinMoz1_4 = compareVersions(RegExp["$1"], "1.4") >= 0;
+            isMinMoz1_5 = compareVersions(RegExp["$1"], "1.5") >= 0;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>Fat Arrow Function Vs Normal Function</title>
+		<script>
+			// const profile = {
+			// 	firstName : 'Nick',
+			// 	lastName : '',
+			// 	setName : function(name){
+			// 		let splitName = function(n) {
+			// 			let nameArray = n.split(' ');
+			// 			this.firstName = nameArray[0];
+			// 			this.lastName = nameArray[1];
+			// 		}
+			// 		splitName(name);
+			// 	}
+			// }
+			
+			// Fat Arrow Function
+			const profile = {
+				firstName : 'Nick',
+				lastName : '',
+				setName : function(name){
+					let splitName = (n) => {
+						let nameArray = n.split(' ');
+						this.firstName = nameArray[0];
+						this.lastName = nameArray[1];
+					}
+					splitName(name);
+				}
+			}
+
+			profile.setName("Tanish Raj");
+
+			// Normal function does not have its own current this object associated with it instead it will sit on the window object always.
+			console.log(window.firstName);
+
+			// If you try to access firstName using the object it will not show any output.
+			console.log(profile.firstName);
+
+
+
+		</script>
+	</head>
+	<body>
+
+	</body>
+</html>

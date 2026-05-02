@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tag Placement</title>
+
+    <script type="text/javascript">
+        function sayHi(){
+            alert("Hi");
+        }
+    </script>
+</head>
+<body>
+    <script type="text/javascript">
+        sayHi();
+    </script>
+
+    <h2>Tag Placement</h2>
+    <p>Generally speaking, it is common to place all code and function definitions in the head
+    tag of an HTML page so that the code is fully loaded and ready for use once the body is rendered.
+    The only code that should appear with in the body tag is code that calls the functions defined
+    previously.</p>
+
+    <p>When the script tag is placed inside of the body tag, the script is executed as soon as as the part
+    of the page is downloaded to the browser. This makes it possible to execute JS code before the entire
+    page is loaded.</p>
+
+</body>
+</html>

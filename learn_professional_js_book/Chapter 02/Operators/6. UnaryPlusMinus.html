@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unary Plus Minus</title>
+</head>
+<body>
+    <h2>Unary Plus or Minus</h2>
+    <p>The unary plus and minus are familiar symbolsto most people and
+    and operate the same way in ECMAScript as they do in high school math.
+    The unary plus essentially has no effect on a number.</p>
+
+    <script type="text/javascript">
+        var iNum = 25;
+        iNum = +iNum;
+        document.write("value of iNum = " + iNum);
+
+        iNum = -iNum;
+        document.write("<br/>value of iNum = " + iNum);
+
+        var iNum1 = 25;
+        var iNum2 = "25";
+        document.write("<br/>Addition of num1 and num2 = " + (iNum1 + (+iNum2)));
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grouping</title>
+</head>
+<body>
+    <h2>Grouping</h2>
+    <p>Grouping is used by enclosing a set of characters, character classes, and/or quantifiers inside
+    of a set of parentheses.</p>
+
+    <script type="text/javascript">
+        //Simple Regular Expression 
+        var reDogDog = /dogdog/gi;
+
+        //Grouping Regular Expression
+        var reDogDog = /(dog){2}/g;
+
+        //More efficient Regular Expression
+        var re1 = /(dog)?/; //matches zero or one occurance of dog
+        var re2 = /(dog)*/; //matches zero or more occurance of dog
+        var re3 = /(dog)+/; //matches one or more occurance of dog
+
+        var sToMatch = "She is a dogdog";
+        document.write(reDogDog.test(sToMatch));
+        document.write("<br/>" + re1.test(sToMatch));
+        document.write("<br/>" + re2.test(sToMatch));
+        document.write("<br/>" + re3.test(sToMatch));
+
+        var sToMatch = "She is a dog dog";
+        document.write("<br/><br/>" + reDogDog.test(sToMatch));
+        document.write("<br/>" + re1.test(sToMatch));
+        document.write("<br/>" + re2.test(sToMatch));
+        document.write("<br/>" + re3.test(sToMatch));
+
+        var re = /([bd]ad?)*/; // matching zero or more occurances of ba, da, bad, dad
+        document.write("<br/><br/>" + re.test("baba"));
+        document.write("<br/>" + re.test("dad"));
+
+        var re = /(mom( and dad)?)/; //match mom or mom and dad
+        document.write("<br/><br/>" + re.test("mom"));
+        document.write("<br/>" + re.test("mom and dad"));
+        document.write("<br/>" + re.test("momand dad"));
+
+        var reExtraSpace = /^\s+(.*?)\s+$/; // match leading and trailing white space
+        document.write("<br/><br/>" + re.test(" mom"));
+        document.write("<br/>" + reExtraSpace.test(" mom "));
+        document.write("<br/>" + reExtraSpace.test("mom "));
+        document.write("<br/>" + reExtraSpace.test("mom"));
+    </script>
+</body>
+</html>

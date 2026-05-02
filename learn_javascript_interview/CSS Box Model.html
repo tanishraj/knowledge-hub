@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS Box Model</title>
+	<style type="text/css">
+		*{
+			text-align: center
+		}
+
+		.container-1, .container-2{
+			display: block;
+			margin:  0 auto;
+			width: 978px;
+			background: #ccc;
+		}
+
+		.container-1{
+			display: table;
+			margin:  0 auto;
+			height: 200px;
+			width: 978px;
+			background: #ccc;
+		}
+
+		.container-2{
+			font-size: 20px;
+			line-height: 1;
+		}
+
+		.container-3{
+			padding:  20px;
+		}
+
+		.container-4{
+			margin:  20px auto;
+		}
+
+		.container-5{
+			padding:  20px 0;
+			margin:  20px auto;
+		}
+
+		.container-6{
+			padding:  20px 0;
+			margin:  20px auto;
+			border:  20px solid #f00;
+		}
+	</style>
+</head>
+<body>
+	<div class="container-1">
+	</div>
+	<p><strong>Container 1: </strong>Above container height has been set so the height and width will be 200px and 978px respectively.</p>
+
+	<br/>
+	<br/>
+	<br/>
+
+	<div class="container-2">
+		There are some content inside this container.
+	</div>
+	<p><strong>Container 2: </strong>Above container height is not set so the height of this container will be the font size of the content along with the line height. This container height is 20px as font size is 20px and line height is 1.</p>
+
+	<br/>
+	<br/>
+	<br/>
+	
+	<div class="container-3 container-1">
+		Content in this container.
+	</div>
+	<p><strong>Container 3: </strong>Above container has all the properties as first container so height will be the same 200px as the first container is having for now. But height and width will be increased by 20px each side. Height will be 40px and width 978+40=1018</p>
+
+	<br/>
+	<br/>
+	<br/>
+
+	<div class="container-4 container-1">
+	</div>
+	<p><strong>Container 4: </strong>Above container has all the properties as first container so height will be the same 200px as the first container is having for now. Margin has been set to 20px but the height of the container will remain same.</p>
+
+	<br/>
+	<br/>
+	<br/>
+
+	<div class="container-5 container-1">
+	</div>
+	<p><strong>Container 5: </strong>Above container has all the properties as first container so height will be the same 200px as the first container is having for now. Margin has been set to 20px And Padding set to 20px but the height of the container will be 240px as margin will be ignored.</p>
+
+	<br/>
+	<br/>
+	<br/>
+
+
+	<div class="container-6 container-1">
+	</div>
+	<p><strong>Container 5: </strong>Above container has all the properties as first container so height will be the same 200px as the first container is having for now. Margin has been set to 20px And Padding set to 20px but the height of the container will be 240px as margin will be ignored.</p>
+
+	<br/>
+	<br/>
+	<br/>
+
+</body>
+</html>

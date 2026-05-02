@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User-agent string detection</title>
+</head>
+<body>
+    <h2>User-agent string detection</h2>
+    <p>User-agent string detection is the oldest browser detection method there is. Every program that accesses
+    a Web site is required to provide a user-agent string identifying itself to the server. Traditionally, this
+    information was only accessible from the server in the CGI environment variable HTTP_USER_AGENT
+    (accessed by $ENV{‘HTTP_USER_AGENT’}). However, JavaScript introduced the userAgent property of
+    the navigator object to provide client-side access to the user-agent string:</p>
+
+    <script type="text/javascript">
+        var sUserAgent = navigator.userAgent;
+        document.write("Your browser details are = " + sUserAgent);
+    </script>
+</body>
+</html>

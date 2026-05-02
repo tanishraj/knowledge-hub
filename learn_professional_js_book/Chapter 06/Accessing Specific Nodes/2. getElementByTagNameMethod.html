@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getElementByTagName() Method</title>
+</head>
+<body>
+    <h2>getElementByTagName() Method</h2>
+    <p>It is used to access the DOM element by tag name.</p>
+    <p>When there are multiple same tags, it will be treated as an array.</p>
+
+    <script type="text/javascript">
+        var oPs = document.getElementsByTagName("p");
+        var objectLength = oPs.length;
+        document.write("Number of p tag = " + objectLength);
+
+        for(var i=0; i<objectLength; i++){
+            document.write("<br/>Tag Name is = " + oPs[i].nodeName);
+        }
+
+        oPs = document.getElementsByTagName("*");
+        objectLength = oPs.length;
+        document.write("<br/><br/>All number of tags used in this HTML file is = " + objectLength);
+
+        for(var i=0; i<objectLength; i++){
+            document.write("<br/>Tag Name is = " + oPs[i].nodeName);
+        }
+    </script>
+</body>
+</html>

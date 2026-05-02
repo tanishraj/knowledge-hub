@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Storing Data in component with the data method</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Storing Data in component with the data method</h1>
+        <p>As we know we can create a component using the 'el' object by passing the name or selectors as a parameter. But it will not be used multiple time as this will be rendered in the page for the first time and everythign else will be omitted.</p>
+        <p class="text-warning">There is also a workaround to achieve the same scenario, and this was we cheat to the Vue instance and this will also cause a problem.</p>
+        <p>
+            <strong>Example: </strong>
+        </p>
+        <div id="app">
+            <my-cmp></my-cmp>
+            <my-cmp></my-cmp>
+        </div>
+    </div>
+
+    <script>
+        // This implementation will cause a problem, as this is be acting as a single object with different refrences. which will change both the values even if you click on either buttons.
+        /* 
+            var data =  {
+                status: 'critical'
+            } 
+        */
+
+        Vue.component('my-cmp', {
+            data: function(){
+                // this approach is better than the cheating approach.
+                return {
+                    status: 'critical'
+                }
+            },
+
+            template: '<h3>Server status: <span class="text-danger">{{status}}</span> <button @click="changeStatus" class="btn btn-primary">Change Status</button></h3>',
+
+            methods: {
+                changeStatus: function(){
+                    this.status = "up and running"
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>

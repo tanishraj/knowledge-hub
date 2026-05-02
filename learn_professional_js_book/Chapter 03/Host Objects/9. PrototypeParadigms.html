@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototype Paradigms</title>
+</head>
+<body>
+    <h2>Prototype Paradigms</h2>
+    <p>This paradigm makes use of an object's prototype property, which is considered to be the prototype
+    upon which new object of that type are created. Here, an empty constructor is used only to set up the name
+    of the class. Then, all properties and methods are assigned directly to the prototype property.</p>
+
+    <script type="text/javascript">
+        function Car(){
+        }
+
+        Car.prototype.color = "Red";
+        Car.prototype.doors = 4;
+        Car.prototype.mpg = 25;
+        Car.prototype.showColor = function(){
+            document.write("<br/>Color is = " + this.color);
+        }
+
+        var oCar1 = new Car();
+        var oCar2 = new Car();
+
+        //Here for both the cars colors remains same since we have given the static values
+        oCar1.showColor();
+        oCar2.showColor();
+
+    </script>
+</body>
+</html>

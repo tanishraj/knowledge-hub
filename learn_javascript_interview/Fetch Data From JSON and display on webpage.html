@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fetch Data From JSON</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+	<h2>List of Students</h2>
+	
+	<table border="1" ng-show="userFound">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Course</th>
+				<th>English</th>
+				<th>Math</th>
+				<th>Science</th>
+				<th>Hindi</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="temp in details">
+				<td>{{temp.name}}</td>
+				<td>{{temp.age}}</td>
+				<td>{{temp.course}}</td>
+				<td ng-repeat="marks in temp.marks">{{marks.English + marks.Math + marks.Science + marks.Hindi}}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<h2 style="color: #f00;" ng-show="userNotFound">No Students Found.</h2>
+
+	<script type="text/javascript">
+		var app = angular.module('myApp',[]);
+
+		app.controller('myController', function($scope, $http){
+			$scope.userFound = false;
+			$scope.userNotFound = false;
+
+			$http.get('students.json')
+			.success(function(data){
+				if(data.length>0){
+					$scope.userFound = true;
+					$scope.details = data;
+				}else{
+					$scope.userNotFound = true;
+				}
+			})
+			.error(function(){
+				$scope.userNotFound = true;
+			})
+		});
+	</script>
+</body>
+</html>

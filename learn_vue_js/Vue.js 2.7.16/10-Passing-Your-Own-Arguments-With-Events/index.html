@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Getting Event Data From Event Object</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div class="container my-3">
+        <h1>Getting Event Data From Event Object</h1>
+        <p></p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <!-- If we want to pass custom parameters along with the default/builtin parameters then we can do so as following -->
+            <button class="btn btn-primary" v-on:click="increase(2, $event)">Click Me</button>
+            <p class="my-3 display-4">{{counter}}</p>
+
+            <!-- Here we are not passing the default parameter that we wanna use in the function definition, but still we will be able to access it without passing it. -->
+            <p v-on:mousemove="updateCoordinates" class="my-3">Hover over me to find the mouse co-ordinates: {{x}}, {{y}}</p>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                counter: 0,
+                x: 0,
+                y: 0
+            },
+
+            methods: {
+                increase: function(step){
+                    this.counter += step;
+                },
+
+                updateCoordinates: function(event){
+                    this.x = event.clientX;
+                    this.y = event.clientY;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

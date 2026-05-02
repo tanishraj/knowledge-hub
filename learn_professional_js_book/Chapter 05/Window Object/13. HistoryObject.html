@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History Object</title>
+</head>
+<body>
+    <h2>History Object</h2>
+    <p>It is possible to access the history of a browser window. The history is the list of places the user has been.
+    For security reasons, all you can do to navigate through the history; there is no way to get the URLs of the pages contained
+    in the browser history.</p>
+
+    <a href="14. HistoryDemo.html">Click me to go to another page</a>
+
+    <p><button onclick="goForward()">Click me to go forward</button></p>
+
+    <script type="text/javascript">
+        function goForward() {
+            //below code can be written without window object reference
+            window.history.go(1);
+
+            //below code can be written as well in place of above code
+            history.forward();
+        }
+    </script>
+</body>
+</html>

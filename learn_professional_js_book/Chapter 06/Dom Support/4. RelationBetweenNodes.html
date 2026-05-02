@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relation Between Nodes</title>
+</head>
+<body>
+    <h2>Relation Between Nodes</h2>
+    <p>There are many properties to relate all the nodes with each other.</p>
+
+    <script type="text/javascript">
+        var oHtml = document.documentElement;
+
+        var oHead = oHtml.childNodes.item(0);
+        var oBody = oHtml.childNodes.item(1);
+
+        document.write("<br/>oHead.parentNode == oHtml -> " + (oHead.parentNode == oHtml));
+        document.write("<br/>oBody.parentNode == oHtml -> " + (oBody.parentNode == oHtml));
+        document.write("<br/>oBody.previousSibling == oHead -> " + (oBody.previousSibling == oHead));
+        document.write("<br/>oHead.nextSibling == oBody -> " + (oHead.nextSibling == oBody));
+        document.write("<br/>oHead.ownerDocument == document -> " + (oHead.ownerDocument == document));
+    </script>
+</body>
+</html>

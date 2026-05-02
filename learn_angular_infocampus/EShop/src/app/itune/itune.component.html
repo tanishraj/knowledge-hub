@@ -1,0 +1,22 @@
+<div class="container-fluid mt-5 mb-5">
+	<div class="container">
+		<h1 class="text-center pb-3">iTune API Call through Promises</h1>
+
+		<form class="form-group">
+			<div class="form-group">
+				<input type="search" class="form-control" placeholder="Enter search string" #search>
+			</div>
+			<button class="btn btn-primary" (click)="doSearch(search.value)">
+				Search
+			</button>
+		</form>
+
+		<ul class="list-group">
+			<li class="list-group-item" *ngFor="let track of searchService.results">
+				<img src="{{track.artworkUrl30}}" class="pr-2">
+				<a target="_blank" href="{{track.trackViewUrl}}">{{ track.trackName }}
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

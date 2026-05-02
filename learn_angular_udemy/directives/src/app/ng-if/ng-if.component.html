@@ -1,0 +1,10 @@
+<div *ngIf="courses.length > 0">
+  List of courses:
+  <ul>
+    <li *ngFor="let course of courses">{{course}}</li>
+  </ul>
+</div>
+
+<div *ngIf="courses.length == 0">
+  No Courses
+</div>

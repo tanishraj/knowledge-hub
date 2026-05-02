@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Node Iterator</title>
+</head>
+<body>
+    <h2>Node Iterator</h2>
+    <p>The first object of interest is the node iterator, which enables you to do a depth first
+    search of a DOM tree, which can be useful if you are looking for specific types of information in
+    a page.</p>
+
+    <h3>Create Node Iterator</h3>
+    <p>To create a NodeIterator object, use the createNodeIterator() method of the document object. This method
+    accepts four arguments.</p>
+
+    <ul>
+        <li><strong>root:</strong> the node in the tree that you wish to start searching from.</li>
+        <li><strong>whatToShow:</strong> a numerical code indicating which nodes should be visited.</li>
+        <li><strong>filter:</strong> a NodeFilter object to determine which node to ignore.</li>
+        <li><strong>entityReferenceExpression:</strong> a boolean value indicating whether entity reference
+        should be expanded.</li>
+    </ul>
+
+    <h3>whatToShow arguments</h3>
+    <p>whatToShow arguments determines which nodes to visit nodes to visit by applying one or more of the following
+    constants...</p>
+
+    <ul>
+        <li><strong>NodeFilter.SHOW_ALL:</strong> show all node types.</li>
+        <li><strong>NodeFilter.SHOW_ELEMENT:</strong> show element nodes.</li>
+        <li><strong>NodeFilter.SHOW_ATTRIBUTE:</strong> show attribute nodes.</li>
+        <li><strong>NodeFilter.SHOW_TEXT:</strong> show text nodes.</li>
+        <li><strong>NodeFilter.SHOW_CDATA_SECTION:</strong> show cdata node section.</li>
+        <li><strong>NodeFilter.SHOW_ENTITY_REFERENCE:</strong> show entity reference nodes.</li>
+        <li><strong>NodeFilter.SHOW_ENTITY:</strong> show entity nodes.</li>
+        <li><strong>NodeFilter.SHOW_PROCESSING_INSTRUCTION:</strong> show PI nodes.</li>
+        <li><strong>NodeFilter.SHOW_COMMENT:</strong> show comment nodes.</li>
+        <li><strong>NodeFilter.SHOW_DOCUMENT:</strong> show document nodes.</li>
+        <li><strong>NodeFilter.SHOW_DOCUMENT_TYPE:</strong> show document type nodes.</li>
+        <li><strong>NodeFilter.SHOW_DOCUMENT_FRAGMENT:</strong> show document fragment nodes.</li>
+        <li><strong>NodeFilter.SHOW_NOTATION:</strong> show notation nodes.</li>
+    </ul>
+
+    <p><strong>Notes:</strong> You can combine multiple values by using the bitwise OR operator.
+    <br/> var iWhatToShow = NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT</p>
+
+    <div id="div1">
+        <p>Hello <b>World!</b></p>
+        <ul>
+            <li>List Item 1</li>
+            <li>List Item 2</li>
+            <li>List Item 3</li>
+            <li>List Item 4</li>
+        </ul>
+        <textarea id="text1" cols="40" rows="10"></textarea><br/>
+        <input type="button" value="Make List" onclick="makeList()"/>
+    </div>
+
+    <script type="text/javascript">
+        var iterator = null;
+
+        function makeList() {
+            var oDiv = document.getElementById("div1");
+            iterator = document.createNodeIterator(oDiv, NodeFilter.SHOW_ELEMENT, null, false);
+            var oOutput = document.getElementById("text1");
+            var oNode = iterator.nextNode();
+            while(oNode){
+                oOutput.value += oNode.tagName + "\n";
+                oNode = iterator.nextNode();
+            }
+        }
+    </script>
+</body>
+</html>

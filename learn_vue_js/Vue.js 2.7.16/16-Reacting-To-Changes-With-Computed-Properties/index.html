@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reacting to changes with computed properties</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div class="container my-3">
+        <h1>Reacting to changes with computed properties</h1>
+        <p>
+                In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain.
+
+                <code>
+                    <div id="example">
+                        {{ message.split('').reverse().join('') }}
+                    </div>
+                </code>
+        </p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <p>
+                    <button class="btn btn-success" v-on:click="counter++">Increase</button>
+                    <button class="btn btn-danger" v-on:click="counter--">Decrease</button>
+            </p>
+            <p class="display-3">{{counter}}</p>
+            <p class="display-4">{{calculateCounter}}</p>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                counter: 0,
+                result : ''
+            },
+
+            computed: {
+                calculateCounter: function(){
+                    return this.result = this.counter > 5 ? "Greater than 5" : "Smaller than 5";
+                }
+            }
+        })
+    </script>
+</body>
+</html>

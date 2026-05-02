@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>apply() Method</title>
+</head>
+<body>
+    <h2>apply() Method</h2>
+    <p>The apply() method takes two arguments: the object to be used for this and an array of
+    arguments to be passed to the function.</p>
+
+    <script type="text/javascript">
+        function ClassA(sColor) {
+            this.color = sColor;
+            this.sayColor = function(){
+                document.write("<br/>Color for Class A = " + this.color);
+            }
+        }
+
+        function ClassB(sColor, sName){
+            //this.newMethod = ClassA;
+            //this.newMethod(sColor);
+            //delete this.newMethod;
+            ClassA.apply(this, new Array(sColor));
+
+            this.name = sName;
+            this.sayName = function(){
+                document.write("<br/>Name for Class B = " + this.name);
+            }
+        }
+
+        var objA = new ClassA("Red");
+        var objB = new ClassB("Red","Tanish");
+
+        objA.sayColor();
+        objB.sayColor();
+        objB.sayName();
+    </script>
+</body>
+</html>

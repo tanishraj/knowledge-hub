@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue JS Multiple Instances</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Vue JS Multiple Instances</h1>
+        <p>We can access the data from outside the Vuer instances using the Vanila Javascript.</p>
+        <ul>
+            <li>
+                <strong>Can we create more than one Vue JS instance in the same application?</strong>
+                <p>Yes</p>
+            </li>
+            <li>
+                <strong>Can we access the Vue JS instance properties from outside?</strong>
+                <p>Yes</p>
+            </li>
+        </ul>
+
+        <p><strong>It is always the best practice to use single instance considering the business logic shud be in the single intance. But if this is not the case, you are good to use mutiple instances for your different part of your application.</strong></p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <h5>{{title}}</h5>
+            <button class="btn btn-primary" @click="show">Show Paragraph</button>
+            <p class="pt-2" v-if="showParagraph">This is not always visible.</p>
+        </div>
+
+        <div id="app1">
+            <h5>{{title}}</h5>
+            <button class="btn btn-primary" @click="show">Show Paragraph</button>
+            <p class="pt-2" v-if="showParagraph">This is not always visible.</p>
+        </div>
+    </div>
+
+    <script>
+        var vm1 = new Vue({
+            el: '#app',
+
+            data: {
+                title: 'Vue JS instance',
+                showParagraph: false
+            },
+
+            methods: {
+                show: function () {
+                    this.showParagraph = true;
+                    this.updateTitle("Vue JS instance (updated)");
+                },
+
+                updateTitle: function (title) {
+                    vm2.title = title;
+                }
+            }
+        })
+
+        // Global Scope (Vanila JS)
+        vm1.$data.title = "This is changed from outside";
+        console.log(vm1);
+
+        var vm2 = new Vue({
+            el: '#app1',
+
+            data: {
+                title: 'The second Instance',
+                showParagraph: false
+            },
+
+            methods: {
+                show: function () {
+                    this.showParagraph = true;
+                    this.updateTitle("Vue JS instance (updated)");
+                },
+
+                updateTitle: function (title) {
+                    vm1.title = title;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

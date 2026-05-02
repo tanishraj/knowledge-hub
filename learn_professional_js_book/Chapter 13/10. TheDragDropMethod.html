@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The dragDrop() method</title>
+</head>
+<body>
+    <h2>The dragDrop() method</h2>
+    <p>You already know how to create your own drop targets, so now it’s time to learn about creating your
+        own draggable items. In IE 5.5, the dragDrop() method can be applied to almost any HTML element.
+        You can initiate a system drag event by calling dragDrop() and, therefore, allow normally undraggable
+        items to fire dragstart, drag, and dragend events.</p>
+
+    <h3>Example:</h3>
+    <p>Try dragging the red square into the textbox.</p>
+    <p><div style="background-color: red; height: 100px; width: 100px"
+            onmousemove="handleMouseMove(event)"
+            ondragstart="handleDragDropEvent(event)">This is a red square</div> </p>
+    <p><input type="text" value="" /></p>
+
+    <script type="text/javascript">
+
+        function handleMouseMove(oEvent) {
+            if (oEvent.button == 1) {
+                oEvent.srcElement.dragDrop();
+            }
+        }
+
+        function handleDragDropEvent(oEvent) {
+            oEvent.dataTransfer.setData("text", "This is a red square");
+        }
+    </script>
+</body>
+</html>

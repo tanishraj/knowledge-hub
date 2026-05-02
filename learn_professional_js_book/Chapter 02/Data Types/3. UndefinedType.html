@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Undefined Type</title>
+</head>
+<body>
+    <h2>Undefined Type</h2>
+    <p>When a variable is declared but not initialized with the proper definition
+    value it will throw undefined value.</p>
+
+    <script type="text/javascript">
+        //Variable declared but ot initialized
+        var a;
+        document.write("a = " + a);
+
+        //Below statement returns true
+        document.write("<br/>" + (a == undefined));
+
+        //Below statement returns false
+        document.write("<br/>" + (a == "undefined"));
+
+        //Below statement will cause an error
+        //document.write("<br/>" + (b == undefined));
+
+        //below function will produce undefined
+        function testFunc(){
+            //leave the function blank
+        }
+        document.write("<br/>" + (testFunc() == undefined));
+
+    </script>
+</body>
+</html>

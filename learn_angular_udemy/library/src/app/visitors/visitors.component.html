@@ -1,0 +1,63 @@
+<h2 class="mb-4 text-center">Bootstrap Table Implementation</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Serial No.</th>
+      <th>Visitor's Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let visitor of visitors">
+      <!-- <td>{{visitors.indexOf(visitor) + 1}}</td> String Interpolation -->
+      <td [textContent]="visitors.indexOf(visitor) + 1 | number:'1.1-1'"></td><!--1(before point).1-1(after point minimum 1 and maximum 1)-->
+      <!-- <td>{{visitor}}</td> String Interpolation -->
+      <td [textContent]="visitor | uppercase"></td> <!-- Property Binding -->
+    </tr>
+  </tbody>
+</table>
+
+<br/>
+<hr/>
+
+<h2>Bootstrap Buttons</h2>
+<hr/>
+<h4>----Class Binding Example----</h4>
+<button class="btn btn-primary mr-2" [class.active]="isActive">Primary Button</button> <!-- Class Binding -->
+<br/>
+<br/>
+
+<h4>----Style Binding Example----</h4>
+<button class="btn btn-warning mr-2" [style.background]="isActive ? 'blue' : 'white'">Warning Button</button> <!-- Style Binding -->
+<br/>
+<br/>
+
+<h4>----Event Binding And Prevent Bubbling Example----</h4>
+<span (click)="onSpanClick($event)"><button class="btn btn-danger mr-2" (click)="onSave($event)">Danger Button</button></span> <!-- Event Binding And Bubbling Captured-->
+<button class="btn btn-success">Success Button</button> 
+
+<br/>
+<hr/>
+
+<h2>Bootstrap TextBox</h2>
+<hr/>
+
+<h4>----Event Filtering Example----</h4>
+<input type="text" class="form-control mb-3" (keyup.enter)="submitForm()" placeholder="enter the text (Event Filtering)"/>
+<br/>
+<br/>
+
+<h4>----Template Variable Example----</h4>
+<input type="text" class="form-control mb-3" placeholder="email address (template Variable)" #email (keyup.enter)="fetchValue(email.value)"> <!-- Template Variable #email -->
+<br/>
+<br/>
+
+<h4>----Two way binding Example----</h4>
+<input type="text" class="form-control mb-3" [value]="text" placeholder="text please (Two way binding)" (keyup.enter)=" text = $event.target.value; fetchValueTwoWay()">
+<br/>
+<br/>
+
+<h4>----Two way binding (Better) Example----</h4>
+<input type="text" class="form-control" [(ngModel)]="textBetter" placeholder="text please (better Two way binding)" (keyup.enter)="fetchValueBetter()">
+
+<br/>
+<hr/>

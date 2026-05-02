@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object/Feature Detection</title>
+</head>
+<body>
+    <h2>Object/Feature Detection</h2>
+    <p>Object detection (also called feature detection) is a generic way of determining a browser’s capabilities
+    rather than the exact make and model of a target browser. Most JavaScript experts point to this method
+    as the most appropriate one to use because they believe it future proofs scripts against changes that might
+    make it difficult to determine the exact browser being used.</p>
+
+    <p id="SecondPara">Object detection involves checking to see if a given object exists before using it. For instance, suppose
+    you want to use the DOM method document.getElementById(), but you aren’t sure if the browser
+    supports it.</p>
+
+    <script type="text/javascript">
+        if(document.getElementById){
+            document.write("<p style='color: green; font-weight: 700;'>YAY! your browser support this method.</p>");
+        }
+        else{
+            document.write("<p style='color: red; font-weight: 700;'>Sorry, your browser does not support this method.</p>");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Reverse String</title>
+	<script type="text/javascript">
+		function reverse(str) {
+			return Array.prototype.reduce.call(str, function(result, c) {
+				return c + result;
+			}, "");
+		}
+
+		document.write("Reverse of Tanish Raj is:" + reverse("Tanish Raj"));
+	</script>
+</head>
+<body>
+
+</body>
+</html>

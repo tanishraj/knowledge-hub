@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Date Object</title>
+</head>
+<body>
+    <h2>Date Object</h2>
+    <p>The Date class in ECMAScript is based on earlier versions of java.util.Date from JAVA.
+    ECMAScript as well as JAVA, stores the date as a number of milliseconds since 12 AM on january 1, 1970 UTC.
+    UTC stand for Universal time code also known as Greenwich mean time, which is the standard time
+    upon which all time zones are based.</p>
+
+    <script type="text/javascript">
+        var d = Date();
+        document.write("Date = " + d.toString());
+        d = new Date(0);
+        document.write("<br/>Date = " + d.toString());
+        d = new Date(1000);
+        document.write("<br/>Date = " + d.toString());
+    </script>
+</body>
+</html>

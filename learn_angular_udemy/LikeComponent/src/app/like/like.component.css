@@ -1,0 +1,20 @@
+.glyphicon{
+    font-size: 40px;
+    color: #ccc;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.highlighted{
+    color: deeppink;
+    cursor: pointer;
+}
+
+.likesCount{
+    display: inline-block;
+    vertical-align: middle;
+    color: #000;
+    font-size: 50px;
+    margin-left: 10px;
+}

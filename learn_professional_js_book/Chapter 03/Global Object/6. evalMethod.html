@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eval() Method</title>
+</head>
+<body>
+    <h2>eval() Method</h2>
+    <p>The most powerful method in entire ECMAScript language is, the eval() method.
+    This method works like an entire ECMAScript interpreter and accepts one argument, a string of ECMAScript
+    to execute.</p>
+
+    <script type="text/javascript">
+        //Below line exactly works as
+        eval('document.write("Hey, i am under eval() method.")');
+
+        //Variables can be referenced inside and eval()
+        var msg = "<br/><br/>Hello, Tanish!";
+        eval(document.write(msg));
+
+    </script>
+</body>
+</html>

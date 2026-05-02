@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>createDocumentFragment() Method</title>
+</head>
+<body>
+    <h2>createDocumentFragment() Method</h2>
+    <p>As soon as you add nodes to document.body, the page is updated to reflect changes.
+    This is fine for small number of changes. However, when a large amount of data has to be loaded
+    to the document, it can be very slow process if it adds changes one by one. To correct this situation
+    you can create a document fragment to which you attach all new nodes, and then add the contents of the
+    document fragment to the document.</p>
+
+    <script type="text/javascript">
+        //This is not the best practice, since we are making the call for 5 times and which causes the refresh of page each time.
+        var arrText = ["first","second","third","fourth","fifth"];
+        for (var i=0; i<arrText.length; i++){
+            var oP = document.createElement("p");
+            var oText = document.createTextNode(arrText[i]);
+            oP.appendChild(oText);
+            document.body.appendChild(oP);
+        }
+
+        //To overcome the above issue we have createDocumentFragment() method
+        document.write("<h2>Using Fragment Method</h2>");
+        arrText = ["first","second","third","fourth","fifth"];
+        var oFragment = document.createDocumentFragment();
+        for (i=0; i<arrText.length; i++){
+            oP = document.createElement("p");
+            oText = document.createTextNode(arrText[i]);
+            oP.appendChild(oText);
+            document.body.appendChild(oP);
+            oFragment.appendChild(oP);
+        }
+        document.body.appendChild(oFragment);
+
+    </script>
+</body>
+</html>

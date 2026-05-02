@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dereferencing Objects</title>
+</head>
+<body>
+    <h2>Dereferencing Objects</h2>
+    <p>ECMAScript has a garbage collection routine, meaning that you don't have to specifically destroy
+    objects in order to free up the memory. When there are no remaining remaining references to an object
+    the object is said to be dereferenced.</p>
+
+    <script type="text/javascript">
+        var oObject = new Object();
+        oObject.name = "Tanish";
+
+        document.write("Name is = " + oObject.name);
+
+        oObject = null;
+        //Below code gives an error since object is dereferenced
+        document.write("<br/>After deferenced Name is = " + oObject.name);
+    </script>
+</body>
+</html>

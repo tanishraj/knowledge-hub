@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Custom Directives</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+	
+	<!-- directive: custom-Directives-M -->
+	<div class="custom-Directives-C"></div>
+	<div custom-Directives-A></div>
+	<custom-Directives-E></custom-Directives-E>	
+	
+	<script type="text/javascript">
+		var app = angular.module('myApp',[]);
+		app.directive('customDirectivesM', function(){
+			return{
+				restrict: "M",
+				replace: true,
+				template: "<h1>My Custom Directive.</h1>"
+			};
+		});
+	
+		app.directive('customDirectivesC', function(){
+			return{
+				restrict: "C",
+				template: "<h1>My Custom Directive.</h1>"
+			};
+		});
+
+		app.directive('customDirectivesA', function(){
+			return{
+				restrict: "A",
+				template: "<h1>My Custom Directive.</h1>"
+			};
+		});
+
+		app.directive('customDirectivesE', function(){
+			return{
+				restrict: "E",
+				template: "<h1>My Custom Directive.</h1>"
+			};
+		});
+	</script>
+</body>
+</html>

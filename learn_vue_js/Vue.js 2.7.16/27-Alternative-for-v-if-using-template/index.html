@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Alternative for v-if using template</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Alternative for v-if using template</h1>
+        <p>
+            Conditionally render the element based on the truthy-ness of the expression value. The element and its contained directives / components are destroyed and re-constructed during toggles. If the element is a <template></template> element, its content will be extracted as the  conditional block.
+        </p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <p v-if="show">You can see me! <span>Hello!</span></p>
+            <p v-else>Now, you can see me.</p>
+
+            <!-- We must use template in case if we want to apply if condition on bunch of DOM elements, and the benefit of template tag is that it will not even appear on the DOM tree. So it is always the best practice to use template instead of using the addition DOM elements like DIV -->
+            <template v-if="show">
+                <h1>Greeting</h1>
+                <p>Welcome to Vue JS</p>
+            </template>
+
+            <button class="btn btn-primary" @click="show =! show">Switch Show</button>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                show: true
+            },
+
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

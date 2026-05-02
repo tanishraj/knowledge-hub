@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this Keyword</title>
+</head>
+<body>
+    <h2>this Keyword</h2>
+    <p>One of the most important concept to grasp in ECMAScript is the use of this keyword.
+    which is used in object methods. The this keyword always points to the object that calling
+    a particular method.</p>
+
+    <script type="text/javascript">
+        function showColor() {
+            document.write("<br/>Color is = " + (this.color));
+        }
+
+        var oCar = new Object;
+        oCar.color = "red";
+        oCar.showColor = showColor;
+
+        var oCar2 = new Object;
+        oCar2.color = "Green";
+        oCar2.showColor = showColor;
+
+        oCar.showColor();
+        oCar2.showColor();
+    </script>
+</body>
+</html>

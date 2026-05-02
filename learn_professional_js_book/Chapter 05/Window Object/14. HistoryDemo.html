@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History Demo</title>
+</head>
+<body>
+    <h2>History Demo</h2>
+    <p>This is a demo page.</p>
+
+    <button onclick="goBack()">Click Me to go back</button>
+
+    <script type="text/javascript">
+        function goBack() {
+            //below code can be written without window object reference
+            window.history.go(-1);
+
+            //below code can be written as well in place of above code
+            history.back();
+        }
+    </script>
+</body>
+</html>

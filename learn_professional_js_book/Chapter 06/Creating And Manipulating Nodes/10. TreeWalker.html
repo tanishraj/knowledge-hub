@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TreeWalker</title>
+</head>
+<body>
+    <h2>TreeWalker</h2>
+    <p>The TreeWalker is like a big brother of NodeIterator: It has all the same functionality
+    (with nextNode() and previousNode()) but with the added traversal methods.</p>
+
+    <ul>
+        <li><strong>parentNode():</strong> travels to the current node's parent.</li>
+        <li><strong>firstChild():</strong> travels to the first child of current node.</li>
+        <li><strong>lastChild():</strong> travels to the last child of the current node.</li>
+        <li><strong>nextSibling():</strong> travels to the next sibling of the current node.</li>
+        <li><strong>previousSibling():</strong> travels to the previous sibling of the current node.</li>
+    </ul>
+
+    <div id="div1">
+        <p>Hello <b>World!</b></p>
+        <ul>
+            <li>List Item 1</li>
+            <li>List Item 2</li>
+            <li>List Item 3</li>
+            <li>List Item 4</li>
+        </ul>
+        <textarea id="text1" cols="40" rows="10"></textarea><br/>
+        <input type="button" value="Make List" onclick="makeList()"/>
+    </div>
+
+    <script type="text/javascript">
+        function makeList() {
+            var oDiv = document.getElementById("div1");
+            var oFilter = new Object;
+            oFilter.acceptNode = function(oNode){
+                return (oNode.tagName == "P") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+            };
+
+            walker = document.createTreeWalker(oDiv, NodeFilter.SHOW_ELEMENT, oFilter, false);
+
+            var oOutput = document.getElementById("text1");
+            var oNode = walker.nextNode();
+            while(oNode){
+                oOutput.value += oNode.tagName + "\n";
+                oNode = walker.nextNode();
+
+            }
+        }
+    </script>
+</body>
+</html>

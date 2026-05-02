@@ -1,0 +1,21 @@
+import { MySuperService } from './../services/mySuperService.service';
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css']
+})
+export class MainComponent implements OnInit {
+  private toggleState;
+
+  constructor(private mySuperService : MySuperService) { }
+
+  ngOnInit() {
+  }
+
+  toggleSideBar(){
+    this.mySuperService.sidenav = !this.mySuperService.sidenav;
+  }
+
+}

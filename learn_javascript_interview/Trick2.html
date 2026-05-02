@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tricky Question</title>
+	<style type="text/css">
+		ul#awesome #must-buy {
+		    color: red;
+		}
+		.favorite span {
+		    color: blue!important;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		$(window).on('load', function(){
+			alert("Window");
+		});
+		$(document).ready(function(){
+			alert("Hello");
+		})
+	</script>
+</head>
+<body>
+	<ul class="shopping-list" id="awesome">
+	    <li><span>Milk</span></li>
+	    <li class="favorite" id="must-buy"><span class="highlight">Sausage</span></li>
+	    <img src="artistic_photography-wallpaper-3554x1999.jpg"/>
+	</ul>
+</body>
+</html>

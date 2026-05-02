@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Handlers/Listeners</title>
+</head>
+<body>
+    <h2>Event Handlers/Listeners</h2>
+    <p>Events are certain actions performed either by the user or by the browser itself. These events have names
+        like click, load, and mouseover. A function that is called in response to an event is called an event handler (or,
+        as the DOM describes it, an event listener). A function responding to a click event is considered an onclick
+        event handler. Traditionally, event handlers are assigned in one of two ways: in JavaScript or in HTML.</p>
+
+    <div id="div1">Click Me</div>
+
+    <script type="text/javascript">
+        //Below written function is a heavy code which will be created to
+        var oDiv = document.getElementById("div1");
+        oDiv.onclick = function () {
+            alert("I was clicked.");
+        }
+    </script>
+</body>
+</html>

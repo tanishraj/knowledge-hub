@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retrieve Values of Inline CSS Styles</title>
+</head>
+<body>
+    <h2>Retrieve Values of Inline CSS Styles</h2>
+    <p>It is possible to retrieve the value of any inline styles (those assigned by using the HTML style
+        attribute) by using the style object as well. For example, the following page displays the background
+        color of a div by clicking a button:</p>
+
+    <h3>Example:</h3>
+
+    <div id="div1" style="background-color: red; height: 50px; width: 50px"></div>
+    <br />
+    <input type="button" value="Get Background Color" id="button"/>
+
+    <script type="text/javascript">
+        var oDiv = document.getElementById("div1");
+        var oButton = document.getElementById("button");
+        var getColor = function () {
+            alert(oDiv.style.backgroundColor);
+        }
+
+        oButton.addEventListener("click", getColor, false);
+    </script>
+</body>
+</html>

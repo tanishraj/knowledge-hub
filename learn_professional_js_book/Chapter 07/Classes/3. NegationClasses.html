@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Negation Classes</title>
+</head>
+<body>
+    <h2>Negation Classes</h2>
+    <p>At times you may want to match all characters except for a select few. In this case, you can use
+    negation class, which specifies characters to exclude.</p>
+
+    <script type="text/javascript">
+    	//Example of negation class
+    	var sToMatch = "a bat, a cat, a fAt baT, a faT cat";
+    	var reBatCatRat = /[^cf]at/gi;
+    	var arrMatches = sToMatch.match(reBatCatRat);
+    	document.write("Matches are (^cf) = " + arrMatches.toString());
+
+    	//Example of negation class by changing the pattern
+    	var reBatCatRat = /[^b]at/gi;
+    	var arrMatches = sToMatch.match(reBatCatRat);
+    	document.write("<br/>Matches are (^b) = " + arrMatches.toString());
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Back References</title>
+</head>
+<body>
+    <h2>Back References</h2>
+    <p>Each  group is stored in a special location for later use. These special values, stored from your groups, are called backreferences.</p>
+    <p>Backreferences are created and numbered by the order in which opening parenthesis charaters are encountered groing from left to right.</p>
+    <p><strong>Example: </strong> <br/>(A? (B? (C?)))<br/>(B? (C?))<br/>(C?)</p>
+
+    <script type="text/javascript">
+        var sToMatch = "#123456789";
+        var reNumbers = /#(\d+)/;
+        document.write("" + reNumbers.test(sToMatch))
+        document.write("<br/>" + RegExp.$1);
+    </script>
+</body>
+</html>

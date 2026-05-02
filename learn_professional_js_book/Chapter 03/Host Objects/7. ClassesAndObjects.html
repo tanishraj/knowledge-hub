@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classes And Objects</title>
+</head>
+<body>
+    <h2>Defining Classes And Objects</h2>
+    <h3>Factory Paradigms</h3>
+    <script type="text/javascript">
+        function createCar(sColor, iDoors, iMpg){
+            var oTempCar = new Object();
+            oTempCar.color = sColor;
+            oTempCar.doors = iDoors;
+            oTempCar.mpg = iMpg;
+            oTempCar.showColor = showColor;
+            return oTempCar;
+        }
+
+        function showColor(){
+            document.write("<br/>Color of car is = " + this.color);
+        }
+
+        var oCar1 = createCar("Red", 4, 23);
+        var oCar2 = createCar("Green", 6, 50);
+
+        oCar1.showColor();
+        oCar2.showColor();
+    </script>
+</body>
+</html>

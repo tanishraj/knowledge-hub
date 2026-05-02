@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Focus on the first field</title>
+</head>
+<body>
+    <h2>Focus on the first field</h2>
+    <p>When a form is displayed on a Web page, the focus is typically not on the first control. It’s easy to
+        change this with a generic script that can be used on any form page.</p>
+    <p>Many developers just put the following in the page’s onload event handler:</p>
+    <p>document.forms[0].elements[0].focus();</p>
+
+    <h3>Example:</h3>
+    <form method="post" name="simpleForm" action="handlepost.jsp">
+        <!-- regular textbox -->
+        <label for="txtName">Name:</label><br />
+        <input type="text" id="txtName" name="txtName" /><br />
+
+        <!-- password textbox -->
+        <label for="txtPassword">Password:</label><br />
+        <input type="password" id="txtPassword" name="txtPassword"/><br />
+
+        <!-- age comboxbox (drop-down) -->
+        <label for="selAge">Age:</label><br />
+        <select name="selAge" id="selAge">
+            <option>18-21</option>
+            <option>22-25</option>
+            <option>26-29</option>
+            <option>30-35</option>
+            <option>Over 35</option>
+        </select><br />
+
+        <!-- multiline textbox -->
+        <label for="txtComments">Comments:</label><br />
+        <textarea rows="10" cols="50" id="txtComments" name="txtComments"></textarea><br />
+
+        <!-- submit button -->
+        <input type="submit" value="Submit Form" />
+    </form>
+
+    <script type="text/javascript">
+        document.forms[0].elements[0].focus();
+    </script>
+</body>
+</html>

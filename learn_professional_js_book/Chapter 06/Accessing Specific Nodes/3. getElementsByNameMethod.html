@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getElementsByName() Method</title>
+</head>
+<body>
+    <h2>getElementByName() Method</h2>
+    <p>It is used to access the DOM element by name of the tag.</p>
+    <p>When there are multiple same name of the tags, it will be treated as an array.</p>
+
+    <form action="#" method="post">
+        <fieldset>
+            <legend>What color do you like?</legend>
+            <input type="radio" name="redColor" value="red"/> Red <br/>
+            <input type="radio" name="redColor" value="green"/> Green <br/>
+            <input type="radio" name="redColor" value="blue"/> Blue <br/>
+        </fieldset>
+    </form>
+
+    <script type="text/javascript">
+        var oPs = document.getElementsByName("redColor");
+        var objectLength = oPs.length;
+        document.write("<br/>Number of tag with name redColor is = " + objectLength);
+
+        for(var i=0; i<objectLength; i++){
+            document.write("<br/>Tag Name is = " + oPs[i].nodeName);
+        }
+
+        document.write("<br/><br/>Values of all the input tags with redColor name is = ");
+        for(var i=0; i<objectLength; i++){
+            document.write("<br/>Tag Name is = " + oPs[i].getAttribute("value"));
+        }
+
+    </script>
+</body>
+</html>

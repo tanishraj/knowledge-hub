@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Event Handler</title>
+</head>
+<body>
+    <h2>DOM Event Handler</h2>
+    <p>The DOM methods addEventListener() and removeEventListener() accomplish the assignment
+        and removal of event handlers. These methods, unlike IE, take three parameters: the event name, the
+        function to assign, and whether the handler should be used for the bubbling or capture phase. If the handler
+        is to be used in the capture phase, the third parameter is true; for the bubbling phase, it is false.</p>
+    <p><strong>Syntax:</strong><br/>
+        [Object].addEventListener(“name_of_event”, fnHandler, bCapture);<br/>
+        [Object].removeEventListener(“name_of_event”, fnHandler, bCapture);
+    </p>
+
+    <div id="div1">Click Me</div>
+
+    <script type="text/javascript">
+        var fnClick = function () {
+            alert("Clicked!");
+        };
+        var fnClick2 = function () {
+            alert("Also Clicked!");
+        };
+
+        var oDiv = document.getElementById("div1");
+        oDiv.addEventListener("click", fnClick); //add the event handler
+        oDiv.addEventListener("click", fnClick2);
+        //oDiv.removeEventListener("click", fnClick, false); //remove the event handler
+    </script>
+</body>
+</html>

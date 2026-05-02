@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Screen object</title>
+</head>
+<body>
+    <h2>Screen object</h2>
+    <p>Although most information about the user's system is hidden for security reasons, it is possoble to
+    get a certain amount of information about the users monitor using the screen object.</p>
+
+    <h3>Properties</h3>
+    <ul>
+        <li><strong>availHeight: </strong> the available height of the screen.</li>
+        <li><strong>availWidth: </strong> the available width of the screen.</li>
+        <li><strong>colorDepth: </strong> the number of bits used to represent colors.</li>
+        <li><strong>height: </strong> the height of the screen in pixels.</li>
+        <li><strong>width: </strong> the width of the screen in pixels.</li>
+    </ul>
+
+    <script type="text/javascript">
+        document.write("available height = " + screen.availHeight);
+        document.write("<br/>available width = " + screen.availWidth);
+        document.write("<br/>Color depth = " + screen.colorDepth);
+        document.write("<br/>Height = " + screen.height);
+        document.write("<br/>Width = " + screen.width);
+    </script>
+</body>
+</html>

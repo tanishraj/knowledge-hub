@@ -1,0 +1,38 @@
+[
+	{
+		"name":"Tanish",
+		"age":"25",
+		"course":"MCA",
+		"marks": [{"English":"10"},{"Math":"20"},{"Science":"30"},{"Hindi":"40"}]
+	},
+	{
+		"name":"Ajay",
+		"age":"27",
+		"course":"BCA",
+		"marks": [{"English":"40"},{"Math":"20"},{"Science":"30"},{"Hindi":"40"}]
+	},
+	{
+		"name":"Nikhil",
+		"age":"29",
+		"course":"B.Tech",
+		"marks": [{"English":"50"},{"Math":"20"},{"Science":"30"},{"Hindi":"40"}]
+	},
+	{
+		"name":"Chandan",
+		"age":"24",
+		"course":"PUC",
+		"marks": [{"English":"20"},{"Math":"20"},{"Science":"30"},{"Hindi":"40"}]
+	},
+	{
+		"name":"Anand",
+		"age":"25",
+		"course":"BCA",
+		"marks": [{"English":"80"},{"Math":"20"},{"Science":"30"},{"Hindi":"40"}]
+	},
+	{
+		"name":"Neelam",
+		"age":"25",
+		"course":"BCA",
+		"marks": [{"English":"60"},{"Math":"20"},{"Science":"30"},{"Hindi":"40"}]
+	}
+]

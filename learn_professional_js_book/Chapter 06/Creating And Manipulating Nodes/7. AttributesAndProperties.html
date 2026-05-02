@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attributes And Properties</title>
+</head>
+<body>
+    <h2>Attributes And Properties</h2>
+    <p>For the most part, all the attributes are included in HTML DOM elements as properties.</p>
+    <img src="Tulips.jpg" alt="Image" width="100"/>
+
+    <h3>Get attributes values</h3>
+    <script type="text/javascript">
+        var oImg = document.getElementsByTagName("img");
+        document.write("Src value of img = " + oImg[0].getAttribute("src"));
+        document.write("<br/>width value of img = " + oImg[0].getAttribute("width"));
+        document.write("<br/>alt value of img = " + oImg[0].getAttribute("alt"));
+    </script>
+
+    <h3>Set attributes values</h3>
+    <script type="text/javascript">
+        var oImg = document.getElementsByTagName("img");
+        oImg[0].setAttribute("src","Tulips.jpg");
+        oImg[0].setAttribute("width","200");
+        oImg[0].setAttribute("alt","Tulip Image");
+    </script>
+
+    <h3>Get attributes values</h3>
+    <script type="text/javascript">
+        var oImg = document.getElementsByTagName("img");
+        document.write("Src value of img = " + oImg[0].getAttribute("src"));
+        document.write("<br/>width value of img = " + oImg[0].getAttribute("width"));
+        document.write("<br/>alt value of img = " + oImg[0].getAttribute("alt"));
+    </script>
+</body>
+</html>

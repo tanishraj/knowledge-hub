@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reordering Options</title>
+    <script type="text/javascript" src="listutil.js"></script>
+</head>
+<body>
+    <h2>Reordering Options</h2>
+    <p>To reorder options in a list box, moving a particular option either up or down, two methods are necessary,
+        one to shift an option up and one to shift an option down. Each method takes two arguments: the
+        list box to act on and the index of the option to move. Both also make use of the DOM insertBefore()
+        method to reorder the option elements.</p>
+
+    <h3>Example:</h3>
+    <form>
+        <select id="selListbox" size="5">
+            <option>Original Value 0</option>
+            <option>Original Value 1</option>
+            <option>Original Value 2</option>
+            <option>Original Value 3</option>
+            <option>Original Value 4</option>
+        </select><br />
+        Click the "Shift Up" or "Shift Down" button to move the item with this position:<br />
+        <input type="text" id="txtIndex" /><br />
+        <input type="button" value="Shift Up" onclick="shiftUp()" />
+        <input type="button" value="Shift Down" onclick="shiftDown()" />
+    </form>
+
+    <script type="text/javascript">
+        function shiftUp() {
+            var oListbox = document.getElementById("selListbox");
+            var oTxtIndex = document.getElementById("txtIndex");
+            ListUtil.shiftUp(oListbox, parseInt(oTxtIndex.value));
+        }
+
+        function shiftDown() {
+            var oListbox = document.getElementById("selListbox");
+            var oTxtIndex = document.getElementById("txtIndex");
+            ListUtil.shiftDown(oListbox, parseInt(oTxtIndex.value));
+        }
+    </script>
+</body>
+</html>

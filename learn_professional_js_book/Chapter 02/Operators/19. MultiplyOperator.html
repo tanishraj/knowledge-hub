@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiply Operator</title>
+</head>
+<body>
+    <h2>Multiply Operator</h2>
+    <p>This operator is used to perform multiplication on two operands.</p>
+
+    <script type="text/javascript">
+        var iNum1 = 10;
+        var iNum2 = 20;
+        document.write("Multiplication of two numbers 10 and 20 is = " + (iNum1 * iNum2));
+
+        var sNum1 = "10"; //Auto Type Conversion
+        document.write("<br/>Multiplication of two numbers 10 and 20 is = " + (sNum1 * iNum2));
+
+        var sNum1 = "Tanu";
+        document.write("<br/>Multiplication of two numbers 10 and 20 is = " + (sNum1 * iNum2));
+
+        var iInfinity = 10/0;
+        document.write("<br/>Multiplication of two numbers 10 and 20 is = " + (iInfinity * iNum2));
+
+        document.write("<br/>Multiplication of two numbers 10 and 20 is = " + (iInfinity * sNum1));
+
+        document.write("<br/>Multiplication of two numbers 10 and 20 is = " + (iInfinity * iInfinity));
+    </script>
+</body>
+</html>

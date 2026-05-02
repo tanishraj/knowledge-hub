@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event properties</title>
+</head>
+<body>
+    <h2>Event properties</h2>
+    <p>For each mouse event, the following properties are filled in on the event object:</p>
+    <ul>
+        <li>Coordinate properties (such as clientX and clientY, and so on)</li>
+        <li>The type property</li>
+        <li>The target (DOM) or srcElement (IE) property</li>
+        <li>The shiftKey, ctrlKey, altKey, and metaKey (DOM) properties</li>
+        <li>The button property (only on mousedown, mousemove, mouseout, mouseover, and mouseup
+            events)</li>
+    </ul>
+
+    <h3>Example:</h3>
+    <p>Use your mouse to click and double click the red square.</p>
+    <div style="width: 100px; height: 100px; background-color: red"
+         onmouseover="handleEvent(event)"
+         onmouseout="handleEvent(event)"
+         onmousedown="handleEvent(event)"
+         onmouseup="handleEvent(event)"
+         onclick="handleEvent(event)"
+         ondblclick="handleEvent(event)" id="div1"></div>
+
+    <p><textarea id="txt1" rows="15" cols="50"></textarea></p>
+
+    <script type="text/javascript">
+        function handleEvent(oEvent) {
+            var oTextbox = document.getElementById("txt1");
+            oTextbox.value += "\n>" + oEvent.type;
+            oTextbox.value += "\n target is " + (oEvent.target ||
+                oEvent.srcElement).id;
+            oTextbox.value += "\n at (" + oEvent.clientX + "," +
+                oEvent.clientY + ") in the client";
+            oTextbox.value += "\n at (" + oEvent.screenX + "," +
+                oEvent.screenY + ") on the screen";
+            oTextbox.value += "\n button down is " + oEvent.button;
+            var arrKeys = [];
+            if (oEvent.shiftKey) {
+                arrKeys.push("Shift");
+            }
+
+            if (oEvent.ctrlKey) {
+                arrKeys.push("Ctrl");
+            }
+            if (oEvent.altKey) {
+                arrKeys.push("Alt");
+            }
+            oTextbox.value += "\n keys down are " + arrKeys;
+        }
+    </script>
+</body>
+</html>

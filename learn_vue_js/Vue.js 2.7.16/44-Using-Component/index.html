@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Using Components</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Using Components</h1>
+        <p>Components are reusable Vue instances with a name: in this case, <button-counter>. We can use this component as a custom element inside a root Vue instance created with new Vue: (This can be used mutiple times in the same template.)</p>
+        <p>
+            <strong>Example: </strong>
+            <xmp>
+                <div id="components-demo">
+                <button-counter></button-counter>
+                </div>
+            
+                new Vue({ el: '#components-demo' })
+            </xmp>
+        </p>
+        <div id="app">
+            <Hello></Hello>
+            <Hello></Hello>
+            <Hello></Hello>
+            <Hello></Hello>
+        </div>
+    </div>
+
+    <script>
+
+        Vue.component('Hello', {
+            template: '<h2>Hello There!</h2>'
+        })
+
+        new Vue({
+            el: '#app'
+        })
+
+    </script>
+</body>
+
+</html>

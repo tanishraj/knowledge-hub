@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Closures</title>
+</head>
+<body>
+    <h2>Closures</h2>
+    <p>The inner function is a closure because it captures the argument of the outer function.
+    The important concept to grasp here is that doAddition(); does not accept any argument at
+    all, the values it uses are captured from the execution environment.</p>
+
+    <script type="text/javascript">
+        var iBaseNum = 10;
+
+        function addNumbers(iNum1, iNum2){
+            function doAddition(){
+                return iNum1 + iNum2;
+            }
+            return doAddition();
+        }
+
+        document.write("Addition of 10 and 20 is = " + addNumbers(10, 20));
+
+    </script>
+</body>
+</html>

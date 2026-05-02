@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Type</title>
+</head>
+<body>
+    <h2>Number Type</h2>
+    <p>The number type can represent both 32bit integer and 64bit floating point values.
+        A number type literal is considered any number entered directly (not accessed
+        from another variable).</p>
+
+    <script type="text/javascript">
+        //Declaring and defining an integer
+        var iNum = 55;
+        document.write("Number assigned in variable is [55] = " + iNum);
+
+        //Octal Representation
+        iNum = 070;
+        document.write("<br/>Number assigned in variable is [070] = " + iNum);
+
+        //Hexadecimal Representation
+        iNum = 0x1f;
+        document.write("<br/>Number assigned in variable is [0x1f] = " + iNum);
+
+        //Binary Representation
+        iNum = 0100;
+        document.write("<br/>Number assigned in variable is [10] = " + iNum);
+
+        //Floating Point Number Representation
+        iNum = 5.5;
+        document.write("<br/>Number assigned in variable is [5.5] = " + iNum);
+
+        //Number Max value
+        document.write("<br/> Numbers max value = " + Number.MAX_VALUE);
+
+        //Number Max value
+        document.write("<br/> Numbers min value = " + Number.MIN_VALUE);
+
+        //Addition
+        iNum = 1.7976931348623157e+308 + 1;
+        document.write("<br/>Addition of 1.7976931348623157e+308 and 1 is = " + iNum);
+
+        //NaN Representation
+        document.write("<br/>NaN == NaN results = " + (NaN == NaN));
+
+        //isNan Representation
+        document.write("<br/>Blue is Nan = " + (isNaN("Blue")));
+        document.write("<br/>'123' is Nan = " + (isNaN("123")));
+        document.write("<br/>123 is Nan = " + (isNaN(123)));
+
+    </script>
+</body>
+</html>

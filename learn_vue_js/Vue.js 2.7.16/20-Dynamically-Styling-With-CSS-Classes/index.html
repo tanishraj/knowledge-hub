@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dynamically Styling With CSS Classes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        .demo{
+            background: #ccc;
+            height: 100px;
+            width: 100px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .red{
+            background: red;
+        }
+
+        .green{
+            background: green;
+        }
+
+        .blue{
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-3">
+        <h1>Dynamically Styling With CSS Classes</h1>
+        <p>
+           
+        </p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <div class="demo" @click="attachRed = !attachRed" :class="{red:attachRed}"></div>
+            <div class="demo" @click="attachGreen = !attachGreen" :class="{green:attachGreen}"></div>
+            <div class="demo" @click="attachBlue = !attachBlue" :class="{blue:attachBlue}"></div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                attachRed: false,
+                attachGreen: false,
+                attachBlue: false
+            },
+
+            methods: {
+                
+            }
+        })
+    </script>
+</body>
+</html>

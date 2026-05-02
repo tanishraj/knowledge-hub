@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>createElement() Method</title>
+</head>
+<body>
+    <h2>createElement() Method</h2>
+    <p>createElement() can be useful along with other two methods createTextNode() and appendChild() method.</p>
+
+    <p><strong>Example:</strong></p>
+    <script type="text/javascript">
+        //creating node element as p tag
+        var oP = document.createElement("p");
+
+        //creating text node as a string
+        var oText = document.createTextNode("Hello World!!");
+
+        //attaching text to p tag
+        oP.appendChild(oText);
+
+        //placing it on the body to make is appear on the page
+        document.body.appendChild(oP);
+    </script>
+</body>
+</html>

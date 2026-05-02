@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scripting Styles</title>
+</head>
+<body>
+    <h2>Scripting Styles</h2>
+    <p>When Cascading Style Sheets (CSS) were introduced 1996, they completely changed the way
+        developers formatted their HTML pages. Instead of using HTML tags such as <font/> and <b/>,
+        pages began using CSS to define the appearance of fonts and other items. The natural next step for
+        CSS support was to make styles accessible from JavaScript.</p>
+
+    <p>Internet Explorer 4.0 introduced a style object for each element on a page to manage that element’s
+        CSS-defined styles. The DOM eventually adopted this approach as a standard way to access an element’s
+        style information.</p>
+
+    <div id="content">This is content paragraph inside a div element.</div>
+
+    <script type="text/javascript">
+        var oDiv = document.getElementById("content");
+        oDiv.style.border = "1px solid #f00";
+        oDiv.style.padding = "10px 10px 8px";
+    </script>
+</body>
+</html>

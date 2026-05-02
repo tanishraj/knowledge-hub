@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Getting Event Type</title>
+</head>
+<body>
+    <h2>Getting Event Type</h2>
+    <p>In order to get the event type in either browser, use the following:</p>
+
+    <div id="div1">Click Me</div>
+
+    <script type="text/javascript">
+        var oDiv = document.getElementById("div1");
+
+        function handleEvent(oEvent) {
+            if (oEvent.type == "click") {
+                alert("Clicked!");
+            } else if (oEvent.type == "mouseover") {
+                alert("Mouse Over!");
+            }
+        }
+        oDiv.onclick = handleEvent;
+        oDiv.onmouseover = handleEvent;
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alternation</title>
+</head>
+<body>
+    <h2>Alternation</h2>
+    <p>Sometimes it gets very difficult to create a pattern that correctly matches all the possibilities you have in mind.
+    What if you need to match "red" and "black" with the same expression? These words have no characters in common, so you could write two different regular expressions and test a string against both.</p>
+
+    <script type="text/javascript">
+        //First Method
+        document.write("First Method");
+        var sToMatch1 = "red";
+        var sToMatch2 = "black";
+        var reRed = /red/;
+        var reBlack = /black/;
+        document.write("<br/>" + reRed.test(sToMatch1) || reBlack.test(sToMatch1));
+        document.write("<br/>" + (reRed.test(sToMatch2) || reBlack.test(sToMatch2)));
+
+        //Second Method
+        document.write("<br/><br/>Second Method");
+        var sToMatch1 = "red";
+        var sToMatch2 = "black";
+        var sToMatch3 = "green";
+        var reMatch = /(red|black|green)/;
+        document.write("<br/>" + reMatch.test(sToMatch1));
+        document.write("<br/>" + reMatch.test(sToMatch1));
+        document.write("<br/>" + reMatch.test(sToMatch1));
+
+        //Third realtime Example
+        var reBadWord = /badword|anotherbadword/gi;
+        var sUserInput = "This is the string using badword1 and badword2";
+        var sFinalText = sUserInput.replace(reBadWord, function(sMatch){
+            return sMatch.replace(/./g, "*");
+        })
+        document.write("After replacement: <br/>" + sFinalText);
+    </script>
+</body>
+</html>

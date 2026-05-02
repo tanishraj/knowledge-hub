@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MutiLine Mode</title>
+</head>
+<body>
+    <h2>MutiLine Mode</h2>
+    <p>If a string has only
+    one line, this is very straightforward. But what if there are multiple lines contained in a string? You
+    could use the split() method to separate the string into an array of lines, but then you’d have to match
+    the regular expression against each line.</p>
+
+    <script type="text/javascript">
+        var sToMatch = "First second\nthird fourth\nfifth sixth";
+        var reLastWordOnLine = /(\w+)$/gm;
+        var arrWords = sToMatch.match(reLastWordOnLine);
+        document.write(arrWords);
+    </script>
+</body>
+</html>

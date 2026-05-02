@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" onclick="handleClick()">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Bubbling</title>
+</head>
+<body onclick="handleClick()">
+    <h2>Even Flow</h2>
+    <p>Both the development teams for Internet Explorer 4.0 and Netscape Navigator 4.0 decided that supporting
+        events was not enough, so each came up with its own form of event flow. Event flow means that more
+        than one element on the page can respond to the same event. What happens when you click a button on
+        the page? In reality, you are clicking the button, its container, and the page as a whole. Logically, each of
+        the elements should be able to respond to that event in a specific order. The order of events (the event
+        flow) is the main difference between event support in IE 4.0 and Netscape 4.0.</p>
+
+    <h2>Event Bubbling</h2>
+    <p>For Internet Explorer, the solution was answered by a technique dubbed bubbling. The basic idea of event
+        bubbling is that the event fires sequentially from the most specific event target to the least specific (the
+        document object).</p>
+
+    <div onclick="handleClick()">Click Me</div>
+
+    <script type="text/javascript">
+        handleClick = function () {
+            alert("Hello");
+        }
+    </script>
+</body>
+</html>

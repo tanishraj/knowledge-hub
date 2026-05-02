@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reluctant Quantifiers</title>
+</head>
+<body>
+    <h2>Reluctant Quantifiers</h2>
+    <p>A reluctant quantifiers starts by looking at the first character in the string for a match. If that character alone is not
+    enough, it reads in the next character, forming a string of two characters. If still nomatch is found, a reluctant quantifier 
+    continues to add characters from the string until either a match is found or the entire string is checked without a match.
+    Reluctant quantifier works in reverse of greedy quantifiers.</p>
+
+    <script type="text/javascript">
+    	var re2 = /.*?bbb/g;
+    	document.write("<br/>" + re2.test("a"));
+    	document.write("<br/>" + re2.test("ab"));
+    	document.write("<br/>" + re2.test("abb"));
+    	document.write("<br/>" + re2.test("abbb"));
+
+    	document.write("<br/><br/>" + re2.test("a"));
+    	document.write("<br/>" + re2.test("aa"));
+    	document.write("<br/>" + re2.test("aab"));
+    	document.write("<br/>" + re2.test("aabb"));
+    	document.write("<br/>" + re2.test("aabbb"));
+
+    	document.write("<br/><br/>" + re2.test("a"));
+    	document.write("<br/>" + re2.test("aaa"));
+    	document.write("<br/>" + re2.test("aaab"));
+    	document.write("<br/>" + re2.test("aaabb"));
+    	document.write("<br/>" + re2.test("aaabbb"));
+
+    	document.write("<br/><br/>" + re2.test("1"));
+    	document.write("<br/>" + re2.test("12"));
+    	document.write("<br/>" + re2.test("123"));
+    	document.write("<br/>" + re2.test("1234"));
+    </script>
+</body>
+</html>

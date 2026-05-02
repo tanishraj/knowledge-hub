@@ -1,0 +1,46 @@
+<div class="container-fluid mt-3">
+	<div class="container">
+		<h1 class="text-warning pd-2">GitHub API Call Using Promises And Graph</h1>
+		<hr />
+
+		<form class="form-inline" [formGroup]="frm">
+			<input type="text" formControlName="search" class="form-control mb-2 col-sm-4 mr-lg-2" id="search" name="search"
+			 placeholder="search git user's name" />
+			<button type="button" [disabled]="!frm.valid" class="btn btn-primary mb-2" (click)="searchKeyword(frm.get('search').value)">Search</button>
+
+			<div class="text-danger pb-2 ml-2" *ngIf="frm.get('search').errors && frm.get('search').touched">
+				<span *ngIf="frm.get('search').errors.required">search field is required.</span>
+				<span *ngIf="frm.get('search').errors.minlength">minimum 3 characters required.</span>
+			</div>
+		</form>
+
+		<div class="text-danger" *ngIf="searchService.result == null && searchService.errorMsg != null">
+			<span class="d-block">{{searchService.errorMsg}}</span>
+		</div>
+
+		<div class="row pt-3" *ngIf="searchService.result != null">
+			<div class="card col-sm-4">
+				<img class="card-img-top" src="{{searchService.result.avatar_url}}" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">{{searchService.result.login | titlecase}}</h5>
+					<p class="card-text">{{searchService.result.company}}</p>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">Followers: {{searchService.result.followers}}</li>
+				</ul>
+				<div class="card-body">
+					<a href="{{searchService.result.html_url}}" class="card-link" target="_blank">GitHub Link</a>
+				</div>
+			</div>
+
+			<div class="col-sm-8">
+				<canvas 
+					baseChart 
+					[data]="pieChartData" 
+					[labels]="pieChartLabels" 
+					[chartType]="pieChartType">
+				</canvas>
+			</div>
+		</div>
+	</div>
+</div>

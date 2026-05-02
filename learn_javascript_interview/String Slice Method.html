@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>String Slice Method</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var str = "Hello World";
+		var res = str.slice(); //Hello World
+        console.log(res);
+
+
+		var str = "Hello World";
+    	var res = str.slice(0); //Hello World
+        console.log(res);
+
+
+    	var str = "Hello World";
+    	var res = str.slice(-0); //Hello World
+        console.log(res);
+
+
+    	var str = "Hello World";
+    	var res = str.slice(-1, -6); //""
+        console.log(res);
+
+
+    	var str = "Hello World";
+    	var res = str.slice(-7, -1); //"o Worl"
+        console.log(res);
+
+
+    	var str = "Hello World";
+    	var res = str.slice(-1); //d
+        console.log(res);
+
+
+    	var str = "Hello World";
+    	var res = str.slice(-5); //World
+        console.log(res);
+
+
+    	var str = "Hello World";
+    	var res = str.slice(1, 7); //ello W
+        console.log(res);
+	</script>
+</body>
+</html>

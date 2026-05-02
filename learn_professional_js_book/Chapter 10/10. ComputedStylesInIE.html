@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Computed styles in IE</title>
+    <style type="text/css">
+        div.special {
+            background-color: red;
+            height: 50px;
+            width: 50px;
+            margin: 0 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Computed styles in IE</h2>
+    <p>In addition to the style object of elements and CSS rules is the computed style of an element. The computed
+        style is made up of all the style information from inline styles and CSS rules to give a true indication
+        of how the element is being represented on the screen. As usual, Internet Explorer and the DOM
+        differ in their implementations.</p>
+    <p>Microsoft offers a currentStyle object on each element that includes all properties from the element
+        background-color object as well the properties from any relevant CSS rule’s style object. The
+        currentStyle object works in the exact same way as the style object, with all the same properties
+        and methods. This means that even if a background color is defined in a CSS rule, currentStyle.
+        backgroundColor still contains the correct value:</p>
+
+    <h3>Example:</h3>
+    <div id="div1" class="special"></div>
+    <input type="button" value="Get Background Color"
+           onclick="getBackgroundColor()" />
+
+    <script type="text/javascript">
+        function getBackgroundColor() {
+            var oDiv = document.getElementById("div1");
+            alert(oDiv.currentStyle.backgroundColor);
+        }
+    </script>
+</body>
+</html>

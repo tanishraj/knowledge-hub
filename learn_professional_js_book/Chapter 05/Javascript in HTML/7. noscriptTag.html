@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>noscript Tag</title>
+</head>
+<body>
+    <h2>noscript Tag</h2>
+    <p>Another concern over browsers without JS is how to provide alternate content.
+    Hiding the code was part of solution, but developers wanted a way to specify
+    content that should appear only if JS was not available.</p>
+
+    <p>The solution came in from of the noscript tag, that can contain any HTML code aside script code.
+    This HTML code is ignored by the browser that support JS and have it enabled, any browser that does not
+    support JS and have it disabled renders the content of no script tag.</p>
+
+    <script type="text/javascript">
+        document.write("<p style='color: aquamarine;'>Hello there, This browser supports JS.</p>")
+    </script>
+    <noscript>
+        <p style="color : #f00">Hello there, Really sorry to say that your browser does not support JS.</p>
+    </noscript>
+</body>
+</html>

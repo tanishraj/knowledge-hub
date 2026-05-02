@@ -1,0 +1,9 @@
+<div class="container-fluid">
+	<div [class]="mySuperService.sidenav ? '' : 'main-content'">
+		<app-main ></app-main>
+	</div>
+
+	<div [class]="mySuperService.sidenav ? '' : 'side-content'" [hidden]='mySuperService.sidenav'>
+		<app-side></app-side>
+	</div>
+</div>

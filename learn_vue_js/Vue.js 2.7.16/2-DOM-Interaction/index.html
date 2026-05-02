@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM Interaction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>How Vue JS template syntax and Instance work together:</h1>
+        <p>The HTML DOM elements / template can access all the data members in the vue instance directly without using
+            the 'this' operator and object name.</p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            {{ greeting }}
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                greeting: "Hello Vue JS"
+            }
+        })
+    </script>
+</body>
+
+</html>

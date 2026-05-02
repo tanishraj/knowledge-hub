@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Break Statement</title>
+</head>
+<body>
+    <h2>Break Statement</h2>
+    <p>The break statement provides stricter control over the execution of code in a loop.
+    The break statement exits the loop immediately, preventing any further repetition of the code.</p>
+
+    <script type="text/javascript">
+        var iNum = 0;
+        for(var i = 1; i < 10; i++){
+            if(i % 5 == 0){
+                break;
+            }
+            iNum++;
+        }
+        document.write("iNum = " + iNum);
+    </script>
+</body>
+</html>

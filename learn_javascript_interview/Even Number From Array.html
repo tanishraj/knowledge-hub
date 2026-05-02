@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Even Number From An Array</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+        var numberArray = new Array(1,2,3,4,5,6,7,8,9,10);
+
+        var evenNumbersArray = numberArray.filter(function(value, index, array){
+            return value % 2 === 0;
+        });
+
+        console.log(evenNumbersArray);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

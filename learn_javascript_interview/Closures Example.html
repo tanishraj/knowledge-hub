@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Closures Example</title>
+</head>
+<body>
+	<h2>Closures Example</h2>
+
+	<script type="text/javascript">
+		function showFullName(firstName, lastName){
+			var nameIntro = "Your name is ";
+			function makeFullName(){
+				return nameIntro + firstName + " " + lastName;
+			}
+			return makeFullName();
+		}
+
+		document.write(showFullName("Tanish","Raj"));
+	</script>
+</body>
+</html>

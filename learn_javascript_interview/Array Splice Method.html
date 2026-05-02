@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array Splice Method</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		fruits.splice(2, 1, "Lemon", "Kiwi");
+		//Banana, Orange, Lemon, Kiwi, Mango
+
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		fruits.splice(NaN, 1, "Lemon", "Kiwi");
+		//Lemon, Kiwi, Orange, Apple, Mango
+
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		fruits.splice(1, "2", "Lemon", "Kiwi");
+		//Banana, Lemon, Kiwi, Mango
+
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		fruits.splice(2, "Lemon", "Kiwi");
+		//Banana, Orange, Kiwi, Apple, Mango
+
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		fruits.splice(1, "Lemon", "Kiwi");
+		//Banana, Kiwi, Orange, Apple, Mango
+
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		fruits.splice(NaN, NaN, "Lemon", "Kiwi");
+		//Lemon, Kiwi, Banana, Orange, Apple, Mango
+
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		fruits.splice(NaN, "Lemon", "Kiwi");
+		//Kiwi, Banana, Orange, Apple, Mango
+
+		var fruits = ["Banana", "Orange", "Apple", "Mango"];
+		fruits.splice(-2, 1, "Lemon", "Kiwi");
+		//Banana, Orange, Lemon, Kiwi, Mango
+
+
+	</script>
+</body>
+</html>

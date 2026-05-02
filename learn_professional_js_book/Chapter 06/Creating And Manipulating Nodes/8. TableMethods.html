@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table Methods</title>
+</head>
+<body>
+    <h2>Table Methods</h2>
+    <p>The table element add the following...</p>
+
+    <ul>
+        <li><strong>caption:</strong> pointer to the caption tag element (if it exists).</li>
+        <li><strong>tBodies:</strong> collection of tbody element.</li>
+        <li><strong>tFoot:</strong> pointer to the tfoot element (if it exists).</li>
+        <li><strong>tHead:</strong> pointer to the thead element (if it exists).</li>
+        <li><strong>rows:</strong> collection of all rows in the table.</li>
+        <li><strong>createTHead:</strong> creates a thead element and places it into the table.</li>
+        <li><strong>createTFoot:</strong> creates a tfoot element and places it into the table.</li>
+        <li><strong>createCaption:</strong> creates a caption element and places it into the table.</li>
+        <li><strong>deleteTHead:</strong> deletes the thead element.</li>
+        <li><strong>deleteTFoot:</strong> deletes the tfoot element.</li>
+        <li><strong>deleteCaption:</strong> deletes the caption element.</li>
+        <li><strong>deleteRow(position):</strong> deletes the row in the given position.</li>
+        <li><strong>insertRow(position):</strong> inserts a row in the given position in the rows collection.</li>
+    </ul>
+
+    <p>The tbody element adds the following...</p>
+    <ul>
+        <li><strong>rows:</strong> collection of rows in the body element.</li>
+        <li><strong>deleteRows(position):</strong> delete the row in the given position.</li>
+        <li><strong>insertRow(position):</strong> insert the row in the given position.</li>
+    </ul>
+
+    <p>the tr element adds the following...</p>
+    <ul>
+        <li><strong>cells:</strong> collection of cells in the tr element.</li>
+        <li><strong>deleteCell(position):</strong> deletes the cell in the given position.</li>
+        <li><strong>insertCell(position):</strong> inserts the cell in given position in the cells collection.</li>
+    </ul>
+
+    <script type="text/javascript">
+        //create table
+        var oTable = document.createElement("table");
+        oTable.setAttribute("border","1");
+        oTable.setAttribute("width","40%");
+
+        //create the tbody
+        var oTBody = document.createElement("tbody")
+        oTable.appendChild(oTBody);
+
+        //create the first row
+        oTBody.insertRow(0);
+        oTBody.rows[0].insertCell(0);
+        oTBody.rows[0].cells[0].appendChild(document.createTextNode("CELL 1,1"));
+
+        oTBody.rows[0].insertCell(1);
+        oTBody.rows[0].cells[1].appendChild(document.createTextNode("CELL 1,2"));
+
+        //create the second row
+        oTBody.insertRow(1);
+        oTBody.rows[1].insertCell(0);
+        oTBody.rows[1].cells[0].appendChild(document.createTextNode("CELL 2,1"));
+
+        oTBody.rows[1].insertCell(1);
+        oTBody.rows[1].cells[1].appendChild(document.createTextNode("CELL 2,2"));
+
+        document.body.appendChild(oTable);
+
+    </script>
+</body>
+</html>

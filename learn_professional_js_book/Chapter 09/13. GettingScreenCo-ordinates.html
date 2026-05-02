@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Getting the screen coordinates</title>
+</head>
+<body id="body">
+    <h2>Getting the screen coordinates</h2>
+    <p>During mouse events, you can retrieve the location of the mouse cursor in relation to the computer
+        screen by using the screenX and screenY properties:</p>
+    <p>
+        var iScreenX = oEvent.screenX;<br/>
+        var iScreenY = oEvent.screenY;
+    </p>
+
+    <script type="text/javascript">
+        oBody = document.getElementById("body");
+
+        function handleEvent(oEvent) {
+            alert(oEvent.screenX + " " + oEvent.screenY);
+        }
+
+        oBody.onmousemove = handleEvent;
+    </script>
+</body>
+</html>

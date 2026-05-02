@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>manipulating Windows</title>
+</head>
+<body>
+    <h2>Manipulating Windows</h2>
+    <p>The window object is useful to manipulate browsers windows (and frames), which means as a developer,
+        you are able to move the resize browser windows.</p>
+    <ul>
+        <li><strong>moveBy(dx, dy): </strong> moves the browser window dx pixels horizontally and dy pixels
+        vertically relative to its current position. Negative Numbers can be used for dx to move the window to the left
+        and for dy to move window up.</li>
+        <li><strong>moveTo(x, y): </strong> moves the browser window so that its upper left corner is located at position
+        (x,y) on the user's screen. Negative numbers can be used, but these move part of window off the screen visible.</li>
+        <li><strong>resizeBy(dw, dh): </strong> resizes the browser window's width by dw pixels and its height by dh
+            pixels relative to the window's current size. Negative numbers can be used for dw to shrink the windows's width
+        and for dh to shrink the windows's height.</li>
+        <li><strong>resizeTo(w, h):</strong> resizes the browser windows width to w and its height to h. Negative numbers can
+        not be used.</li>
+    </ul>
+
+    <script type="text/javascript">
+        //move the window right by 10 pixels and down by 20 pixels
+        window.moveBy(10,20);
+
+        //resize the window to have a width of 150 and a height of 300
+        window.resizeTo(150, 300);
+
+        //resize the window to be 150px wider, but leave the height alone
+        window.resizeBy(150, 0);
+
+        //move back to the upper left corner of the screen
+        window.moveTo(0,0);
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>document Properties</title>
+</head>
+<body alink="#faebd7" bgcolor="#fff" link="#f00" text="#000">
+    <h2>document Properties</h2>
+    <p>document object has got lots of properties which are given below...</p>
+
+    <h3>Properties:</h3>
+    <ul>
+        <li><strong>alinkColor: </strong> The color for active links as defined by the body.</li>
+        <li><strong>bgColor: </strong> The color for the page background as defined by body.</li>
+        <li><strong>fgColor: </strong> The color for text as defined by body.</li>
+        <li><strong>lastModified: </strong> The date the page was last modified as a string.</li>
+        <li><strong>linkColor: </strong> The color for links as defined by body.</li>
+        <li><strong>referrer: </strong> The URL one position back in the browser history.</li>
+        <li><strong>title: </strong> The text displayed in the title tag.</li>
+        <li><strong>URL: </strong> The url of the currently loaded page.</li>
+        <li><strong>vlinkColor: </strong> The color of the visited link as defined by the body.</li>
+    </ul>
+    <script type="text/javascript">
+        document.write("alinkColor = " + document.alinkColor);
+        document.write("<br/>bgColor = " + document.bgColor);
+        document.write("<br/>fgColor = " + document.fgColor);
+        document.write("<br/>lastModified = " + document.lastModified);
+        document.write("<br/>linkColor = " + document.linkColor);
+        document.write("<br/>referrer = " + document.referrer);
+        document.write("<br/>title = " + document.title);
+        document.write("<br/>URL = " + decodeURI(document.URL));
+        document.write("<br/>vlinkColor = " + document.vlinkColor);
+    </script>
+</body>
+</html>

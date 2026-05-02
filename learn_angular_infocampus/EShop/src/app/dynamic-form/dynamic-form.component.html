@@ -1,0 +1,48 @@
+<div class="container-fluid mt-5 mb-5">
+	<div class="container">
+		<h1 class="text-center mb-2">Dynamic Forms</h1>
+		<form class="form" [formGroup]="frm">
+			<div class="form-group">
+				<label for="doctorName">Name:</label>
+				<input type="text" id="doctorName" formControlName="name" class="form-control" name="name" />
+				<div class="text-danger" *ngIf="frm.get('name').errors && frm.get('name').dirty">
+					<span *ngIf="frm.get('name').errors['required']">Name is required.</span>
+					<span *ngIf="frm.get('name').errors['minlength']">Name should have minimum 3 characters.</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="doctorDesc">Description:</label>
+				<textarea id="doctorDesc" class="form-control" formControlName="description" name="description"></textarea>
+				<div class="text-danger" *ngIf="frm.get('description').errors && frm.get('description').dirty">
+					<span *ngIf="frm.get('description').errors['required']">Description is required.</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<input type="button" [disabled]="!frm.valid" class="btn btn-primary" value="Save Data" />
+			</div>
+
+			<div class="mt-5" formArrayName="patients">
+					<button class="btn btn-success" (click)="addPatient()">Add Patient <span class="fa fa-user-plus"></span></button>
+		
+					<div *ngFor="let x of frm.get('patients').controls; let i = index">
+						<div class="card card-default mt-3" [formGroupName]="i">
+							<div class="card-header bg-primary text-white">Patient {{i+1}} <span class="fa fa-trash float-right" (click)="deletePatient(i)"></span></div>
+							<div class="card-body">
+								<div class="form-group">
+									<label for="patientName">Patient Name:</label>
+									<input type="text" id="patientName" formControlName="patientName" class="form-control" />
+								</div>
+		
+								<div class="form-group">
+									<label for="patientDisease">Patient Disease:</label>
+									<input type="text" id="patientDisease" formControlName="patientDisease" class="form-control" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</form>
+	</div>
+</div>

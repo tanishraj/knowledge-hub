@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Type Conversion</title>
+</head>
+<body>
+    <h2>Data Type Conversion</h2>
+    <p>Type Casting is another form of type conversion which is used to
+        convert one data type to another data type.</p>
+
+    <hr/>
+    <h3>Other Type To String COnversion</h3>
+    <script type="text/javascript">
+        //Integer to String Conversion
+        iNum = 10;
+        document.write("<br/>Number in string = " + iNum.toString());
+
+        //Floating Point Number to String Conversion
+        iNum = 10.5;
+        document.write("<br/>Number in string = " + iNum.toString());
+
+        //String to String Conversion
+        sName = 'Tanish';
+        document.write("<br/>String in string = " + sName.toString());
+
+        //Integer to String Conversion
+        iNum = 10.0;
+        document.write("<br/>Number in string = " + iNum.toString());
+
+        //Boolean to String Conversion
+        bChoice = true;
+        document.write("<br/>Boolean in string = " + bChoice.toString());
+
+        //Binary Representation of number
+        iNum = 80;
+        document.write("<br/> Binary representation is = " + iNum.toString(2));
+
+        //Octal Representation of number
+        iNum = 80;
+        document.write("<br/> Octal representation is = " + iNum.toString(8));
+
+        //Hexadecimal Representation of number
+        iNum = 80;
+        document.write("<br/> Hexadecimal representation is = " + iNum.toString(16));
+
+        //Decimal Representation of number
+        iNum = 80;
+        document.write("<br/> Binary representation is = " + iNum.toString(10));
+    </script>
+
+    <hr/>
+
+    <h3>Other Type to Int Conversion</h3>
+    <script type="text/javascript">
+        //String to Int Conversion
+        sName = "Tanish";
+        document.write("<br/>String in number = " + parseInt(sName));
+
+        //String to Int Conversion
+        sName = "Tanish123";
+        document.write("<br/>String in number = " + parseInt(sName));
+
+
+        //String to Int Conversion
+        sName = "1234Tanish";
+        document.write("<br/>String in number = " + parseInt(sName));
+
+
+        //Hexadecimal to Int Conversion
+        sName = 0xA;
+        document.write("<br/>Hexadecimal in number = " + parseInt(sName));
+
+
+        //Binary to Int Conversion
+        sName = "010";
+        document.write("<br/>Binary in number = " + parseInt(sName, 2));
+
+        //Octal to Int Conversion
+        sName = "070";
+        document.write("<br/>Octal in number = " + parseInt(sName, 8));
+
+        //Hexadecimal to Int Conversion
+        sName = "0xA";
+        document.write("<br/>Hexadecimal in number = " + parseInt(sName, 16));
+
+        //Octal to Int Conversion
+        sName = 070;
+        document.write("<br/>Octal in number = " + parseInt(sName));
+
+        //Binary to Int Conversion
+        sName = 010;
+        document.write("<br/>Binary in number = " + parseInt(sName));
+    </script>
+
+    <hr/>
+
+    <h3>Other types to Float Data Type</h3>
+    <script type="text/javascript">
+        document.write(parseFloat("1234Blue"));
+        document.write("<br/>" + parseFloat("Blue"));
+        document.write("<br/>" + parseFloat("0xA"));
+        document.write("<br/>" + parseFloat("22.5"));
+        document.write("<br/>" + parseFloat("22.2.3"));
+        document.write("<br/>" + parseFloat("0908"));
+    </script>
+
+    <hr/>
+
+    <h3>Other types to Boolean Data Type</h3>
+    <script type="text/javascript">
+        document.write(Boolean(""));
+        document.write("<br/>" + Boolean("Hi"));
+        document.write("<br/>" + Boolean(100));
+        document.write("<br/>" + Boolean(010));
+        document.write("<br/>" + Boolean(null));
+        document.write("<br/>" + Boolean(undefined));
+        document.write("<br/>" + Boolean(new Object()));
+        document.write("<br/>" + Boolean(0));
+        document.write("<br/>" + Boolean("0"));
+    </script>
+
+    <hr/>
+
+    <h3>Other types to Number Data Type</h3>
+    <script type="text/javascript">
+        document.write(Number(""));
+        document.write("<br/>" + Number(false));
+        document.write("<br/>" + Number(true));
+        document.write("<br/>" + Number(undefined));
+        document.write("<br/>" + Number(null));
+        document.write("<br/>" + Number("5.5"));
+        document.write("<br/>" + Number("56"));
+        document.write("<br/>" + Number("5.6.7"));
+        document.write("<br/>" + Number(new Object()));
+        document.write("<br/>" + Number(100));
+    </script>
+</body>
+</html>

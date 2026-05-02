@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Locating</title>
+</head>
+<body>
+    <h2>Locating</h2>
+    <p>In Internet Explorer, the event object is a property of the window object. This means that an event handler
+        must access the event object in this way:</p>
+
+    <p>
+        oDiv.onclick = function () {<br/>
+        var oEvent = window.event;<br/>
+        }
+    </p>
+
+    <div id="div1">Click Me</div>
+
+    <script type="text/javascript">
+        var oDiv = document.getElementById("div1");
+
+        oDiv.onclick = function () {
+            var oEvent = window.event;
+            alert(oEvent.type);
+        }
+    </script>
+</body>
+</html>

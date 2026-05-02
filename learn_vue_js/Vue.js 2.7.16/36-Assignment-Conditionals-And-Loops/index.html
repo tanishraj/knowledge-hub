@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assignment Conditionals And Loops</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1 class="mb-4">Assignment Conditionals And Loops:</h1>
+
+        <div id="app">
+            <h5>First Assignment</h5>
+            <button class="btn btn-primary mb-3" @click="show =! show">Toggle</button>
+
+            <!-- Using v-if -->
+            <p v-if="show">You either see me, </p>
+            <p v-else>...or me.</p>
+
+            <!-- Using v-show -->
+            <p v-show="show">You either see me, </p>
+            <p v-show="!show">...or me.</p>
+
+            <hr />
+
+            <h5>Second Assignment</h5>
+            <ul>
+                <li v-for="(name, index) in names">({{index}}). {{name}}</li>
+            </ul>
+
+            <hr />
+
+            <h5>Third Assignment</h5>
+            <ul>
+                <li v-for="(book, key, index) in books">({{index}}). {{key}} : {{book}}</li>
+            </ul>
+
+            <hr />
+
+            <h5>Fourth Assignment</h5>
+            <ul>
+                <li v-for="(value, key) in testData">
+                    <span v-if="value.constructor === Array">
+                        {{key}} : 
+                        [<span v-for="(item, index) in value">
+                            {{item}}
+                            <span v-if="index+1 < value.length">, </span>
+                        </span>]
+                    </span>
+                    <span v-else>{{value}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                show: false,
+                names: ['Ajay', 'Tanish', 'Sachin', 'Nirupama', 'Ranjita', 'Gourav'],
+                books: {
+                    title: 'Lord of the Rings',
+                    author: 'J.R.R. Tolkiens',
+                    books: '3'
+                },
+
+                testData: {
+                    name: 'Test Object',
+                    id: 10,
+                    data: [1.67, 1.33, 0.98, 2.21]
+                }
+            },
+
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

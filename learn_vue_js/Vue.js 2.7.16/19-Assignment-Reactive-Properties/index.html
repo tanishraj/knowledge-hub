@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assignment - Reactive Properties</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div class="container my-3">
+        <h1>Assignment - Reactive Properties</h1>
+        <p>
+           
+        </p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <p>
+                <button class="btn btn-primary" @click="updateLink">Click me change the link</button>
+            </p>
+            <p>
+                <!-- In the below line, we can write v-bind:href but we have used only : (semi-colon) and also we could have written v-on:click but instead we have written @click which can make us to write less code. -->
+                <a :href="link" target="_blank">Click me to go to the link</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                link: 'https://www.google.com'
+            },
+
+            methods: {
+                updateLink() {
+                    this.link = "http://www.tanishraj.com";
+                }
+            }
+        })
+    </script>
+</body>
+</html>

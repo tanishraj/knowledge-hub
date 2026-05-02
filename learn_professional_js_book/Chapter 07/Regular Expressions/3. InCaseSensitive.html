@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>inCaseSensitive (i)</title>
+</head>
+<body>
+    <h2>inCaseSensitive (i)</h2>
+    <p>inCaseSensitive(i) is used to ignore the case sensitive of the string while compared to the pattern.</p>
+
+    <script type="text/javascript">
+        var sToMatch = "cat";
+
+        //Simplest Regular Expression Pattern (compares only first occurance)
+        var reCat = new RegExp("cat");
+        document.write("is cat match the pattern cat = " + reCat.test(sToMatch));
+
+        sToMatch = "Cat";
+        reCat = new RegExp("cat");
+        document.write("<br/>is dog match the pattern cat = " + reCat.test(sToMatch));
+
+        sToMatch = "Cat";
+        reCat = new RegExp("cat","i");
+        document.write("<br/>is dog match the pattern cat = " + reCat.test(sToMatch));
+    </script>
+</body>
+</html>

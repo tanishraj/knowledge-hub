@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Call Bind And Apply Methods in Javascript</title>
+		<script>
+			var obj = {
+				num : 1
+			}
+
+			var addNumbers = function(a,b,c){
+				console.log("Addition = ", this.num + a + b + c);
+			}
+
+			//call() Method
+			addNumbers.call(obj, 2,3,4);
+
+			//apply() Method
+			addNumbers.apply(obj, [2,3,4]);
+
+			//bind() Method
+			var bound = addNumbers.bind(obj);
+			bound(2,3,4);
+		</script>
+	</head>
+</html>

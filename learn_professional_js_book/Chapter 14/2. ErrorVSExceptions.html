@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Errors Vs Exceptions</title>
+</head>
+<body>
+    <h2>Errors Vs Exception</h2>
+    <p>When talking about errors in programming, you really have only two categories of primary concern:
+        syntax errors and runtime errors.</p>
+    <p>Syntax errors, also called parsing errors, occur at compile time for traditional programming languages
+        and at interpret time for JavaScript. These errors are a direct result of an unexpected character in the
+        code and thus prevent it from being fully compiled/interpreted. For example, the following line causes
+        a syntax error because it is missing a closing parenthesis:</p>
+    <p>document.write(“test”;</p>
+    <p>When a syntax error occurs, the code cannot be executed. In JavaScript, only the code contained within
+        the same thread as the syntax error is affected. Code in other threads and other externally referenced
+        files still execute appropriately assuming nothing in them depends on the code containing the error.</p>
+
+    <p>Runtime errors, also called exceptions, occur during execution (after compilation/interpretation). In this
+        case, the problems are not with the syntax of the code. Rather, an operation attempting to complete is
+        illegal in some way. Example:</p>
+
+    <p>window.openMySpecialWindow();</p>
+
+    <p>In the previous code, an attempt is made to access a method of the window object named
+        openMySpecialWindow. Syntactically this line is correct, however, no such method exists. This
+        causes the browser to return an exception.</p>
+</body>
+</html>

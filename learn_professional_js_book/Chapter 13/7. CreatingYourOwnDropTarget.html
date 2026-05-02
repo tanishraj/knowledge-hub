@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating your own drop target</title>
+</head>
+<body>
+    <h2>Creating your own drop target</h2>
+    <p>When you try to drag some text (or an image) over an invalid drop target, you see a special cursor (a circle
+        with a line through it) indicating that you cannot drop. Even though all elements support the drop
+        target events, by default, their behavior is to not allow dropping.</p>
+
+    <h3>Example:</h3>
+    <p>Try dragging the text from the textbox to the red square.
+        No drop target events fire.</p>
+    <p><input type="text" value="drag this text"
+              ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)"
+              ondragend="handleDragDropEvent(event)" />
+    <div style="background-color: red; height: 100px; width: 100px"
+         ondragenter="handleDragDropEvent(event)" ondragover="handleDragDropEvent(event)"
+         ondragleave="handleDragDropEvent(event)" ondrop="handleDragDropEvent(event)"></div></p>
+    <p><textarea rows="10" cols="25" readonly="readonly" id="txt1"></textarea></p>
+
+
+    <script type="text/javascript">
+        function handleDragDropEvent(oEvent) {
+            var oTextbox = document.getElementById("txt1");
+            oTextbox.value +=  oEvent.type + "\n";
+        }
+    </script>
+</body>
+</html>

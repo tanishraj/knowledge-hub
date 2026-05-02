@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Global Variables</title>
+</head>
+<body>
+	<script type="text/javascript">
+	// Global variable.
+	var a = "Dot Net Tricks !";
+	
+	function Show() {
+		// A Local variable is declared in this function.
+		var a = "Hello World !";
+		alert("Value of 'a' inside the function show :" + a); //Hello World !
+
+		//b will have global scope
+		b = "Hello JavaScript !";
+		Display();
+	}
+	 
+	alert("Value of 'a' outside the function : " + a); //Dot Net Tricks !
+	Show();
+	alert("Value of 'b' outside the function display : " + b);
+	 
+	function Display() {
+		//Since b variable has global scope
+		alert("Value of 'a' inside the function display : " + a);
+		alert("Value of 'b' inside the function display : " + b); //Hello JavaScript !
+	}
+	</script>
+</body>
+</html>

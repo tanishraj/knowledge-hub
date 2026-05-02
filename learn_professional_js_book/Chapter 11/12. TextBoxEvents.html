@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text box events</title>
+</head>
+<body>
+    <h2>Text box events</h2>
+    <p>Both text box types support the previously mentioned form-field blur and focus events along with two
+        others: change and select.</p>
+    <ul>
+        <li><strong>change —</strong> Occurs when the text box loses focus after the user changed the value (does not fire
+            if you change the value setting the value property).</li>
+        <li><strong>select —</strong> Occurs when one or more characters have been selected, either manually or by
+            using the select() method.</li>
+    </ul>
+
+    <input type="text" name="textbox1" value="" onchange="alert('Change')" onselect="alert('Select')"/>
+
+
+</body>
+</html>

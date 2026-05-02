@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM Interaction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Accessing data in vue instance:</h1>
+        <p>As we know about the template that it can access the data member of Vue instance directly but when it comes to data member of the vue instance it can access the other data members that relies in the same instance. For that we need to use the 'this' keyword.</p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            {{ sayHello() }} <!-- But template can access that method without any keyword -->
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                greeting: "Hello Again Vue JS"
+            },
+
+            methods: {
+                    sayHello: function() {
+                    return this.greeting; // greeting can not be accessed without this keyword
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

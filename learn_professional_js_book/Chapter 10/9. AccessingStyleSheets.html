@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accessing style sheets</title>
+    <style type="text/css">
+        div.special {
+            background-color: red;
+            height: 50px;
+            width: 50px;
+            margin: 0 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Accessing style sheets</h2>
+    <p>The style object is useful for getting the CSS style of an element using the style attribute. What it cannot
+        do is represent the CSS style of an element as defined by a CSS rule or class defined outside of the
+        style attribute, such as in a style element or an external style sheet. The following example illustrates
+        the problem:</p>
+
+    <h3>Example:</h3>
+    <div id="div1" class="special"></div>
+    <input type="button" value="Get Background Color" onclick="getBackgroundColor()" />
+
+    <script type="text/javascript">
+        function getBackgroundColor() {
+            var oCSSRules = document.styleSheets[0].cssRules ||
+                document.styleSheets[0].rules;
+            alert(oCSSRules[0].style.backgroundColor);
+        }
+    </script>
+</body>
+</html>

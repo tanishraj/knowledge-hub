@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'MyFont';
+    src: url('./Roboto-Black.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: myFirstFont;
+    src: url('./Cherry\ Blue.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.hello {
+    color: red;
+    background: url('./icon.png');
+    font-family: 'myFirstFont';
+    font-size: 50px;
+}

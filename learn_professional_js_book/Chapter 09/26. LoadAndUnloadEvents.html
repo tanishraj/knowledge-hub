@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Load And Unload Events</title>
+</head>
+<body>
+    <h2>Load And Unload Events</h2>
+    <p>The load event is probably used most often because DOM manipulation can’t take place until the entire
+        page has been loaded. Two methods define an onload event handler for a window.</p>
+
+    <p><strong>Notes: </strong> The problem here is that the load event actually happens on the window, which is why the
+        event handler is defined on the window object using JavaScript. In HTML, however, there is no code representation
+        of the window object, so the HTML gurus decided that the handler should be assigned on
+        the <body/> element and then placed on the window object behind the scenes. So, if you set the onload
+    event handler on the <body/> element and then check the window.onload property,</p>
+
+    <script type="text/javascript">
+        //
+        window.onload = function () {
+            alert("Window Loaded.");
+        }
+    </script>
+</body>
+</html>

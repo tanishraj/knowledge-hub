@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detecting Konqueror/Safari</title>
+</head>
+<body>
+    <h2>Detecting Konqueror/Safari</h2>
+    <p>Both Konqueror and Safari are based on the KHTML project and so can be considered the same. The
+        problem is that you have no way to tell what version of KHTML the browser is using. Therefore, you can
+        detect whether KHTML is in use, but you still need to rely on the browser version numbers to indicate
+        browser capabilities.</p>
+
+    <script type="text/javascript">
+        var sUserAgent = navigator.userAgent;
+        var isKHTML = sUserAgent.indexOf("KHTML") > -1 || sUserAgent.indexOf("Konqueror") > -1 || sUserAgent.indexOf("AppleWebKit") > -1;
+
+        if (isKHTML) {
+            isSafari = sUserAgent.indexOf("AppleWebKit") > -1;
+            isKonq = sUserAgent.indexOf("Konqueror") > -1;
+            if (isSafari) {
+                var reAppleWebKit = new RegExp("AppleWebKit\\/(\\d+(?:\\.\\d*)?)");
+                reAppleWebKit.test(sUserAgent);
+                var fAppleWebKitVersion = parseFloat(RegExp["$1"]);
+                isMinSafari1 = fAppleWebKitVersion >= 85;
+                isMinSafari1_2 = fAppleWebKitVersion >= 124;
+            } else if (isKonq) {
+                var reKonq = new RegExp("Konqueror\\/(\\d+(?:\\.\\d+(?:\\.\\d)?)?)");
+                reKonq.test(sUserAgent);
+                isMinKonq2_2 = compareVersions(RegExp["$1"], "2.2") >= 0;
+                isMinKonq3 = compareVersions(RegExp["$1"], "3.0") >= 0;
+                isMinKonq3_1 = compareVersions(RegExp["$1"], "3.1") >= 0;
+                isMinKonq3_2 = compareVersions(RegExp["$1"], "3.2") >= 0;
+            }
+        }
+    </script>
+</body>
+</html>

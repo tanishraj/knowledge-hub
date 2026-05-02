@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding Event Handlers</title>
+</head>
+<body>
+    <h2>Adding Event Handlers</h2>
+    <p>As you saw earlier, IE uses the attachEvent() method to assign any number of event handlers to an
+        element, whereas the DOM uses addEventListener(). The first method of the EventUtil object creates
+        a common way to assign event handlers and is called addEventHandler() (so as not to be confused
+        with either browser’s implementation). This method accepts three arguments: the object to assign
+        the event handler to, the name of the event to handle, and the function to assign. Because IE doesn’t support
+        event capturing, this method assigns event handlers during bubbling only. Inside the body of the
+        method is a simple detection algorithm designed to use the correct functionality at the correct time:</p>
+
+        <div id="button">Click Me</div>
+
+    <script type="text/javascript">
+        var EventUtil = new Object;
+        EventUtil.addEventHandler = function (oTarget, sEventType, fnHandler) {
+            if (oTarget.addEventListener) {
+                //for DOM-compliant browsers
+                oTarget.addEventListener(sEventType, fnHandler, false);
+            }
+            else if (oTarget.attachEvent) {
+                //for IE
+                oTarget.attachEvent("on" + sEventType, fnHandler);
+            }
+            else {
+                //for all others
+                oTarget["on" + sEventType] = fnHandler;
+            }
+        };
+
+        var messageAlert = function(){
+            alert("Hello how are you?");
+        }
+
+        var oButton = document.getElementById("button");
+        EventUtil.addEventHandler(oButton, "click", messageAlert);
+    </script>
+</body>
+</html>

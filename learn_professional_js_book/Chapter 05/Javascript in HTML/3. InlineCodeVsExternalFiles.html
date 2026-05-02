@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inline Code Vs External Files</title>
+</head>
+<body>
+    <h2>Inline Code Vs External Files</h2>
+    <p>When should you write the code inline versus writing the code in external file?
+        Although no hard and fast rules exist about when to use either method, the general
+        consensus is that large amounts of JS should never be included inline for number of reasons.
+    </p>
+    <ul>
+        <li><strong>Security: </strong> Anyone can see exactly what the code is doing just by
+        viewing the source of the page. If a malicious developer examines the code, he might find
+        security holes that could compromise the site or application.</li>
+        <li><strong>Code Maintenance </strong> If JS code is sprinkled through out various pages,
+        code maintenance. It is much easier to have a directory for all JS files so that when JS error
+        occurs, there is no question about where the code is located.</li>
+        <li><strong>Cachig: </strong> Browsers cache all externally linked JS files according
+        to specific setting, meaning that if two pages are using the same file, it is only downloaded once.
+        This is ultimately faster loading time.</li>
+    </ul>
+</body>
+</html>

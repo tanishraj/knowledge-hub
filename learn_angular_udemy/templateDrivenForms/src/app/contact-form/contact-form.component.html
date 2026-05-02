@@ -1,0 +1,65 @@
+<div class="container">
+  <h2>Horizontal form</h2>
+  <form class="form-horizontal" #f="ngForm" (ngSubmit)="submit(f)">
+		<div ngModelGroup="contact" #contact="ngModelGroup">
+			<div class="alert alert-danger" *ngIf="contact.invalid">Form in invalid.</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="email">Name:</label>
+				<div class="col-sm-10">
+					<input required minlength="3" pattern="Nick" ngModel name="name" #name="ngModel" type="text" class="form-control" id="name" placeholder="Your Name" />
+					<div class="alert alert-danger" *ngIf="name.touched && name.invalid" [style.margin-top.px]="'10'">
+						<div *ngIf="name.errors.required">Name is required.</div>
+						<div *ngIf="name.errors.minlength">Name should have minimum 3 characters.</div>
+						<div *ngIf="name.errors.pattern">Name does not match the pattern.</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="pwd">Comment:</label>
+				<div class="col-sm-10">
+					<textarea required ngModel name="comment" #comment="ngModel" class="form-control" id="comment" rows="8" placeholder="Your Comment"></textarea>
+					<div class="alert alert-danger" *ngIf="comment.touched && comment.invalid" [style.margin-top.px]="'10'">
+						<div *ngIf="comment.errors.required">Comment is required.</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="pwd"></label>
+				<div class="col-sm-10">
+					<label>
+						<input type="checkbox" ngModel name="isSubscribed"/> Subscribe the mailing list
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="contactMethod">Contact Method</label>
+			<div class="col-sm-10">
+				<select multiple ngModel name="contactMethod" class="form-control" id="contactMethod">
+					<option *ngFor="let method of contactMethods" [value]="method.id">{{method.name}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="contactMethod">Contact Method</label>
+			<div class="col-sm-10">
+				<div class="radio" *ngFor="let method of contactMethods">
+					<label>
+						<input ngModel name="contactMethod" type="radio" [value]="method.id" />{{method.name}}
+					</label>
+				</div>
+			</div>
+		</div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Submit</button>
+      </div>
+		</div>
+		
+		<div class="col-sm-offset-2 col-sm-10" style="margin-top: 30px;">{{f.value | json}}</div>
+  </form>
+</div>

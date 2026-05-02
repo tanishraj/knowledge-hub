@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Introduction to Components</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Introduction to Components</h1>
+        <p>As we know we can create a component using the 'el' object by passing the name or selectors as a parameter. But it will not be used multiple time as this will be rendered in the page for the first time and everythign else will be omitted.</p>
+        <p>
+            <strong>Example: </strong>
+        </p>
+        <div id="app">
+            <my-cmp></my-cmp>
+            <my-cmp></my-cmp>
+        </div>
+    </div>
+
+    <script>
+        Vue.component('my-cmp', {
+            data: function(){
+                return {
+                    status: 'critical'
+                }
+            },
+
+            template: '<h3>Server status: <span class="text-danger">{{status}}</span></h3>'
+        })
+
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>

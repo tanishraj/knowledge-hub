@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Getting the event object</title>
+</head>
+<body>
+    <h2>Getting the event object</h2>
+    <p>Unfortunately, IE and the DOM use very different methods to get the event object. In IE, the event
+        object is tied to the window object although in the DOM it is independent of any other object and is
+        passed in as an argument. Because of this, it is very difficult to make IE’s event model act like Mozilla’s,
+        or vice versa. Instead of trying to make one like the other, you can create a new method that can be used
+        by both browsers called getEvent().</p>
+
+    <script type="text/javascript">
+        EventUtil.getEvent = function() {
+            if (window.event) {
+                return this.formatEvent(window.event);
+            } else {
+                return EventUtil.getEvent.caller.arguments[0];
+            }
+        };
+    </script>
+</body>
+</html>

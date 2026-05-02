@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>getElementsByClassName() Method</title>
+</head>
+<body>
+    <h2>getElementsByClassName() Method</h2>
+    <p>It is used to access the DOM element by class name of the tag.</p>
+    <p>When there are multiple same name of the tags, it will be treated as an array.</p>
+
+    <div class="firstLayer">This is the first layer.</div>
+
+    <script type="text/javascript">
+        var firstLayer = document.getElementsByClassName("firstLayer");
+        var numberOfFirstLayers = firstLayer.length;
+
+        //It will throw undefined since ID should be assigned to only one DOM element
+        document.write("<br/><br/>Number of elements with firstLayer ID = " + numberOfFirstLayers);
+
+        document.write("<br/>Content of element with firstLayer ID = " + firstLayer[0].textContent);
+    </script>
+</body>
+</html>

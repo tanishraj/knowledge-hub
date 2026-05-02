@@ -1,0 +1,33 @@
+<html lang="en">
+    <head>
+        <title>Simulated Drag And Drop Example</title>
+        <script type="text/javascript">
+        
+            function handleMouseMove(oEvent) {
+                var oDiv = document.getElementById("div1");
+                oDiv.style.left = oEvent.clientX;
+                oDiv.style.top = oEvent.clientY;
+            }
+                                  
+        </script>
+        <style type="text/css">
+            #div1 {
+                background-color: red;
+                height: 100px;
+                width: 100px;
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body onmousemove="handleMouseMove(event)">
+        <h2>Simulated Drag And Drop</h2>
+        <p>Simulated drag and drop has been around since Internet Explorer 4.0 and Netscape Navigator 4.0 introduced
+            support for Dynamic HTML. The basic idea is simple: You create an absolutely positioned layer that can
+            be moved along with the mouse. In practice, it’s a bit more complicated to get the true dragand- drop
+            feel to come across to users.</p>
+
+        <h3>Example:</h3>
+        <p>Try moving your mouse around.</p>
+        <p><div id="div1"></div> </p>
+    </body>
+</html>

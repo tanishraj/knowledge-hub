@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag Image</title>
+</head>
+<body>
+    <h2>Drag Image</h2>
+    <h3>Example:</h3>
+    <p>Try dragging the image.</p>
+    <p><img src="images/smiley.gif" alt=""
+            ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)"
+            ondragend="handleDragDropEvent(event)" /></p>
+    <p><textarea rows="10" cols="25" readonly="readonly" id="txt1"></textarea></p>
+
+    <script type="text/javascript">
+        function handleDragDropEvent(oEvent) {
+            var oTextbox = document.getElementById("txt1");
+            oTextbox.value +=  oEvent.type + "\n";
+        }
+    </script>
+</body>
+</html>

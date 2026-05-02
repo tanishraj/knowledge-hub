@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calling Events On Internet Explorer</title>
+</head>
+<body>
+<h2>DOM Event Handler</h2>
+<p>In IE, every element and window object has two methods: attachEvent() and detachEvent(). As the
+    names indicates, attachEvent() is used to attach an event handler to an event and detachEvent() is
+    used to detach an event handler. Each method takes two arguments: the name of the event handler to
+    assign to (for example: onclick) and a function.</p>
+<p><strong>Syntax:</strong><br/>
+    [Object].attachEvent(“name_of_event_handler”, fnHandler);<br/>
+    [Object].detachEvent(“name_of_event_handler”, fnHandler);
+</p>
+
+<p>In the case of attachEvent(), the function is added as an event handler; for detachEvent(), it looks
+    for the given function in the event handler list and removes it.</p>
+
+<div id="div1">Click Me</div>
+
+<script type="text/javascript">
+    var fnClick1 = function () {
+        alert("Clicked!");
+    };
+
+    var fnClick2 = function () {
+        alert("Also Clicked!");
+    };
+
+    var oDiv = document.getElementById("div1");
+    oDiv.attachEvent("onclick",fnClick1);
+    oDiv.attachEvent("onclick",fnClick2);
+</script>
+</body>
+</html>

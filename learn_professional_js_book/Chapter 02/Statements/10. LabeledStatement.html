@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Labeled Statement</title>
+</head>
+<body>
+    <h2>Labeled Statement</h2>
+    <p>It is possible to label statement for later use with this.</p>
+
+    <script type="text/javascript">
+        var iNum = 0;
+        outerMost:
+        for(var i = 0; i < 10; i++){
+            for(var j = 0; j < 10; j++){
+                if (i == 5 && j == 5) {
+                    break outerMost;
+                }
+                iNum++;
+            }
+        }
+
+        document.write("iNum = " + iNum);
+    </script>
+</body>
+</html>

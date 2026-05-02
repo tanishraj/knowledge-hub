@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Collapsible Sections</title>
+</head>
+<body>
+    <h2>Collapsible Sections</h2>
+    <p>The basic idea of collapsible sections is that you can click somewhere to either display or hide a section
+        of the screen. When one section collapses, all others shift their position to move into the empty space.
+        Using the CSS display attribute can accomplish the same thing. When display is set to none, the element
+        is effectively removed from the flow of the page and the page is redrawn as if the element doesn’t
+        exist. This is different from setting visibility to hidden, which simply hides the element, creating an
+        empty space where the element resides.</p>
+
+    <h3>Example:</h3>
+    <div style="background-color: #f00; color: white; font-weight: bold; padding: 10px 10px 3px; cursor: pointer"
+         onclick="toggle('divContent1')">Click Here</div>
+
+    <div style="border: 3px solid #f00; height: 100px; padding: 10px; margin-bottom: 10px;" id="divContent1">This is some content
+        to show and hide.</div>
+
+    <div style="background-color: #f00; color: white; font-weight: bold; padding: 10px 10px 3px; cursor: pointer"
+         onclick="toggle('divContent2')">Click Here</div>
+
+    <div style="border: 3px solid #f00; height: 100px; padding: 10px" id="divContent2">This is some content
+        to show and hide.</div>
+
+    <script type="text/javascript">
+        function toggle(sDivId) {
+            var oDiv = document.getElementById(sDivId);
+            oDiv.style.display = (oDiv.style.display == "none") ? "block" : "none";
+        }
+    </script>
+</body>
+</html>

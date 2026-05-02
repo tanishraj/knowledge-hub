@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototype Chaining</title>
+</head>
+<body>
+    <h2>Prototype Chaining</h2>
+    <p>The form of inheritance actually intended for use in ECMAScript is prototype chaining.
+    Prototype chaining builds off this paradigms to accomplish inheritance in an interesting way.
+    </p>
+
+    <script type="text/javascript">
+        function ClassA() {
+        }
+
+        ClassA.prototype.color = "";
+        ClassA.prototype.sayColor = function () {
+            document.write("<br/>Color is = " + this.color);
+        }
+        
+        function ClassB() {
+        }
+
+        ClassB.prototype = new ClassA();
+
+        var objA = new ClassA();
+        var objB = new ClassB();
+
+        objA.color = "Red";
+        objB.color = "Blue";
+
+        objA.sayColor();
+        objB.sayColor();
+    </script>
+</body>
+</html>

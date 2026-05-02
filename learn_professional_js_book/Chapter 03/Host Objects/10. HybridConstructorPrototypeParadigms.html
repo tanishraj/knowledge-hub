@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hybrid Constructor Prototype Paradigms</title>
+</head>
+<body>
+    <h2>Hybrid Constructor Prototype Paradigms</h2>
+    <p>By using both the constructor and prototype paradigms, you can create an object jsut as you would
+    when using other programing language. The concept is very simple: Use the constructor paradigms to define all
+    non function properties of the object and use the prototype paradigms to define the function properties
+    of the object. The result is that functions are created only once, but each object can have its own instance of
+    object properties.</p>
+
+    <script type="text/javascript">
+        function Car(sColor, iDoors, iMpg) {
+            this.color = sColor;
+            this.doors = iDoors;
+            this.mpg = iMpg;
+            this.drivers = ["Tanish","Vikash"];
+        }
+
+        Car.prototype.showColor = function(){
+            document.write("Color is = " + this.color);
+        }
+
+        oCar1 = new Car("Red", 4, 25);
+        oCar2 = new Car("Green", 5, 30);
+
+        oCar1.drivers.push("Nick");
+
+        document.write("Driver for Car1 = " + oCar1.drivers.toString());
+        document.write("<br/>Driver for Car2 = " + oCar2.drivers.toString());
+    </script>
+</body>
+</html>

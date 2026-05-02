@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rendering List and index with v-for</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Rendering List and index with v-for</h1>
+        <p>
+                You can also use v-for to iterate through the properties of an object.
+        </p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <h5>List of Ingredients</h5>
+            <ul>
+                <li v-for="(ingredient, i) in ingredients"> ({{ i }}) {{ingredient}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                ingredients: ['meat', 'fruit', 'cookies'],
+                persons: [
+                    {name: 'Max', age: 27, color: 'red'},
+                    {name: 'Anna', age: 'unknown', color: 'blue'},
+                    {name: 'Michael', age: 21, color: 'purple'},
+                ]
+            },
+
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

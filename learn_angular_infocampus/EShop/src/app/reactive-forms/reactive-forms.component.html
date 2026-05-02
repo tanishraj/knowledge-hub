@@ -1,0 +1,38 @@
+<div class="container-fluid mt-5 mb-5">
+	<div class="container">
+		<h1 class="text-center mb-2">Reactive Forms</h1>
+		<form class="form" [formGroup]="frm">
+			<div class="form-group">
+				<label for="reactiveName">Name:</label>
+				<input type="text" formControlName="name" id="reactiveName" class="form-control" name="name" />
+				<div class="text-danger" *ngIf="frm.get('name').errors && frm.get('name').dirty">
+					<span class="d-block" *ngIf="frm.get('name').errors.required">Name is required.</span>
+					<span class="d-block" *ngIf="frm.get('name').errors.minlength">Minimum 3 characters required.</span>
+					<span class="d-block" *ngIf="frm.get('name').errors.maxlength">Maximum 10 characters allowed.</span>
+					<span class="d-block" *ngIf="frm.get('name').errors.pattern">Only characters allowed.</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="reactiveEmail">Email:</label>
+				<input type="email" formControlName="email" id="reactiveEmail" class="form-control" name="email" />
+				<div class="text-danger" *ngIf="frm.get('email').errors && frm.get('email').dirty">
+						<span class="d-block" *ngIf="frm.get('email').errors.required">Email is required.</span>
+						<span class="d-block" *ngIf="frm.get('email').errors.minlength">Minimum 3 characters required.</span>
+						<span class="d-block" *ngIf="frm.get('email').errors.maxlength">Maximum 40 characters allowed.</span>
+					</div>
+			</div>
+
+			<div class="form-group">
+				<input type="button" [disabled]="!frm.valid" class="btn btn-primary" value="Display Form Values" (click)=displayRecords() />
+				<input type="button" class="btn btn-warning ml-2" value="Reset All" (click)="reset()"/>
+			</div>
+		</form>
+		<br/>
+		<div *ngIf="formSubmitStatus!=false">
+			<h2>Form Data is:</h2>
+			<p>Name: {{formData.name}}</p>
+			<p>Email: {{formData.email}}</p>
+		</div>
+	</div>
+</div>

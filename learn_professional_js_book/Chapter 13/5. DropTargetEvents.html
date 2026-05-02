@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drop Target Events</title>
+</head>
+<body>
+    <h2>Drop Target Events</h2>
+    <p>When an item is dragged over a valid drop target, the dragenter event (similar to the mouseover
+        event) fires. Immediately after the dragenter event fires, the dragover event fires and continues to fire
+        as the item is being dragged within the boundaries of the drop target. When the item is dragged outside
+        of the drop target, dragover stops firing and the dragleave event is fired (similar to mouseout). If the
+        dragged item is actually dropped on the target, the drop event fires instead of dragleave.</p>
+
+    <h3>Example:</h3>
+    <p>Try dragging the text from the left textbox to the right one.</p>
+    <p><input type="text" value="drag this text" />
+        <input type="text" ondragenter="handleDragDropEvent(event)"
+               ondragover="handleDragDropEvent(event)" ondragleave="handleDragDropEvent(event)"
+               ondrop="handleDragDropEvent(event)" /></p>
+    <p><textarea rows="10" cols="25" readonly="readonly" id="txt1"></textarea></p>
+
+    <script type="text/javascript">
+        function handleDragDropEvent(oEvent) {
+            var oTextbox = document.getElementById("txt1");
+            oTextbox.value +=  oEvent.type + "\n";
+        }
+    </script>
+</body>
+</html>

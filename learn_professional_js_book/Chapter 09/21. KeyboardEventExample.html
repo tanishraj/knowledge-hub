@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Keyboard Events Examples</title>
+</head>
+<body>
+    <h2>Keyboard Events Examples</h2>
+    <p>Type some characters into the first textbox.</p>
+
+    <h3>Input TextBox:</h3>
+    <p><textarea name="inputString" id="txtInput" cols="50" rows="15"></textarea></p>
+
+    <h3>Output TextBox:</h3>
+    <p><textarea name="outputString" id="txtOutput" cols="50" rows="15"></textarea></p>
+    <script type="text/javascript">
+        var txtInput = document.getElementById("txtInput");
+        
+        var handleEvent = function (oEvent) {
+            var txtOutput = document.getElementById("txtOutput");
+            txtOutput.value += oEvent.type + " event and key ascii code is = " + oEvent.keyCode + "\n";
+        }
+
+        txtInput.addEventListener("keyup",handleEvent,false);
+        txtInput.addEventListener("keydown",handleEvent,false);
+        txtInput.addEventListener("keypress",handleEvent,false);
+    </script>
+</body>
+</html>

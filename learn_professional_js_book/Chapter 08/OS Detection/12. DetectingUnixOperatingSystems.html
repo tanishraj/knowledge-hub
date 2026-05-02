@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detecting Unix operating systems</title>
+</head>
+<body>
+    <h2>Detecting Unix operating systems</h2>
+    <p>To determine a specific Unix platform, such as SunOS, search the user-agent string for the appropriate
+        substring. This is actually much easier on Unix, because browsers use the Unix command uname -sm to
+        include in the user-agent string. Thus, every browser shows the same string for the same operating system.
+        Here are some examples for SunOS:</p>
+
+    <script type="text/javascript">
+        var isSunOS = isMinSunOS4 = isMinSunOS5 = isMinSunOS5_5 = false;
+        if (isUnix) {
+            isSunOS = sUserAgent.indexOf("SunOS") > -1;
+            if (isSunOS) {
+                var reSunOS = new RegExp("SunOS (\\d+\\.\\d+(?:\\.\\d+)?)");
+                reSunOS.test(sUserAgent);
+                isMinSunOS4 = compareVersions(RegExp["$1"], "4.0") >= 0;
+                isMinSunOS5 = compareVersions(RegExp["$1"], "5.0") >= 0;
+                isMinSunOS5_5 = compareVersions(RegExp["$1"], "5.5") >= 0;
+            }
+        }
+    </script>
+</body>
+</html>

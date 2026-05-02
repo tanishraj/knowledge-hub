@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Removing options</title>
+    <script type="text/javascript" src="listutil.js"></script>
+</head>
+<body>
+    <h2>Removing options</h2>
+    <p>JavaScript provides the capability to not only add options, but to remove them as well. There is an old
+        way of removing an option from a list box, which is simply to use the options collection and set the
+        option in question to be equal to null:</p>
+
+    <h3>Example:</h3>
+    <form>
+        <select id="selListbox" size="5">
+            <option>Original Value 0</option>
+            <option>Original Value 1</option>
+            <option>Original Value 2</option>
+            <option>Original Value 3</option>
+            <option>Original Value 4</option>
+        </select><br />
+        Click the "Remove" button to remove the item with this position:<br />
+        <input type="text" id="txtIndex" /><br />
+        <input type="button" value="Remove" onclick="removeItem()" />
+    </form>
+
+    <script type="text/javascript">
+        function removeItem() {
+            var oListbox = document.getElementById("selListbox");
+            var oTxtIndex = document.getElementById("txtIndex");
+
+            ListUtil.remove(oListbox, parseInt(oTxtIndex.value));
+        }
+    </script>
+</body>
+</html>

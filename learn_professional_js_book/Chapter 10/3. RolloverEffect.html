@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rollover Effect</title>
+</head>
+<body>
+    <h2>Rollover Effect</h2>
+    <p>This same technique can be used to apply rollover effects when the user moves the mouse over a given
+        element on the page. Although CSS Level 2 provides the :hover pseudo-class to provide rollover effects
+        on all elements, it is not supported by all browsers on all elements. To overcome this lack of support, just
+        use the style object:</p>
+
+    <h3>Example:</h3>
+
+    <div id="div1" style="background-color: red; height: 50px; width: 50px" onmouseover="this.style.backgroundColor = 'blue'"
+         onmouseout="this.style.backgroundColor = 'red'"></div>
+</body>
+</html>

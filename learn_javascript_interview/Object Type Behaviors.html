@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        var text1 = "abcsef"; // string
+        var text2 = 123; // Number
+        var text3 = true; // boolean
+        var text4 = []; // object
+        var text5 = {}; // Object
+        var text6; // undefined
+        var text7 = { "abcdef": 123 }; // Object
+        var text8 = ["abcdef", 123]; // object
+
+        function text9() {
+            return ("abcdef");
+        };
+        
+        var test10 = null; // object
+        var test11 = 0 / 0; // number
+
+
+        console.log(typeof text1); //string
+        console.log(typeof text2); //number
+        console.log(typeof text3); //boolean
+        console.log(typeof text4); //object
+        console.log(typeof text5); //object
+        console.log(typeof text6); //undefined
+        console.log(typeof text7); //object
+        console.log(typeof text8); //object
+        console.log(typeof text9); //function
+
+        console.log(typeof test10); //object
+        console.log(typeof test11); //number
+        
+        if (0 == "") { 
+            console.log("number equal to string"); // 0 and "" both evaluates to false
+        } else {
+            console.log("no way");
+        };
+        
+        console.log(Infinity - "1"); // infinity
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>

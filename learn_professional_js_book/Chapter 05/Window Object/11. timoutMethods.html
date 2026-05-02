@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>timeout Methods</title>
+</head>
+<body>
+    <h2>Timeout Methods</h2>
+    <p>Timeout has two methods...</p>
+    <ul>
+        <li>setTimeout(): it will set the timer and the code will be executed after specified number of milliseconds.</li>
+        <li>clearTimeout(): It will clear the time and setTimeout will be destroyed.</li>
+    </ul>
+    <p><strong>Examples:</strong></p>
+
+    <script type="text/javascript">
+        function sayHello() {
+            document.write("Hello");
+        }
+
+        var timeoutID = setTimeout(sayHello, 5000);
+        clearTimeout(timeoutID);
+    </script>
+</body>
+</html>

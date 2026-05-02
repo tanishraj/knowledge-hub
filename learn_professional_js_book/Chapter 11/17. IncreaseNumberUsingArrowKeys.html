@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Numeric text boxes with the up/down arrow keys</title>
+    <script type="text/javascript" src="detect.js"></script>
+    <script type="text/javascript" src="eventutil.js"></script>
+    <script type="text/javascript" src="textutil.js"></script>
+</head>
+<body>
+    <h2>Numeric text boxes with the up/down arrow keys</h2>
+    <p>Suppose you’ve implemented a numbers-only text box using the TextUtil.allowChars() method,
+        but that still isn’t enough to make your users happy. What they really want is the capability to press the
+        up arrow and down arrow keys in order to increment and decrement the number. To address this, use
+        the onkeydown event handler.</p>
+
+    <h3>Example:</h3>
+    <p>You can use the up arrow and down arrow to increase/decrease the value.</p>
+
+    <input type="text" onkeypress="return TextUtil.allowChars(this, event)"
+           validchars="0123456789" onblur="TextUtil.blurAllow(this)"
+           onkeydown="TextUtil.numericScroll(this, event)"
+           max="100" min="0" />
+
+    <script type="text/javascript">
+        TextUtil.numericScroll = function (oTextbox, oEvent) {
+            oEvent = EventUtil.formatEvent(oEvent);
+            var iValue = oTextbox.value.length == 0 ? 0 : parseInt(oTextbox.value);
+            var iMax = oTextbox.getAttribute("max");
+            var iMin = oTextbox.getAttribute("min");
+            if (oEvent.keyCode == 38) {
+                if (iMax == null || iValue < parseInt(iMax)) {
+                    oTextbox.value = (iValue + 1);
+                }
+            } else if (oEvent.keyCode == 40){
+                if (iMin == null || iValue > parseInt(iMin)) {
+                    oTextbox.value = (iValue - 1);
+                }
+            }
+        };
+    </script>
+</body>
+</html>

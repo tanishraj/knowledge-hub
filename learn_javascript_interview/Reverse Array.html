@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reverse Array</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var a = [1,8,3,9,5];
+		var b = [];
+		var c = [];
+		
+		for(var i = 0; i < a.length; i++){
+			b.push(a.slice(a.length-i-1, a.length)[0]);
+		}
+
+		alert(b);
+
+		for(i = 0; i < b.length; i++){
+			c.unshift(b[i]);
+		}
+
+		alert(c);
+	</script>
+</body>
+</html>

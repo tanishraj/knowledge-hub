@@ -1,0 +1,15 @@
+<div class="fuid-container mt-5 mb-5">
+    <div class="container">
+      <h1 class="text-center mb-3">Area Of Circle (Property Binding + Event Binding)</h1>
+  
+      <div class="form-group">
+        <label for="radius">Radius:</label>
+        <input type="text" class="form-control" id="radius" [(ngModel)]="radius" />
+      </div>
+
+      <div class="form-group">
+          <input type="button" class="btn btn-primary" value="Calculate Area" (click)=calculateArea()/>
+          <input type="button" class="btn btn-primary ml-2" value="Calculate Circumferance" (click)=calculateCircum()/>
+      </div>
+    </div>
+  </div>

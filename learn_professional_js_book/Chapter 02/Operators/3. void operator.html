@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Void Operator</title>
+</head>
+<body>
+    <h2>Void Operator</h2>
+    <p>The void operator returns undefined for any value. This is typically
+    use to void outputting a value that should not be output, such as when
+    calling a javascript function from HTML <a> element. TO o this properly
+    the function can not return a valid value; other wise the browser erases the page
+    and display only the result of the function.</p>
+
+    <a href="javascript:window.open('about:blank')">Click Me</a>
+
+    <a href="javascript:void(window.open('about:blank'))">Click Me</a>
+</body>
+</html>

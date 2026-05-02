@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sequencing</title>
+</head>
+<body>
+    <h2>Sequencing</h2>
+    <p>It takes a mousedown event followed by a mouseup event on the same target before a click event fires.
+        Likewise, to get a dblclick event to fire, it takes the following sequence of events on the same target:</p>
+
+    <ol>
+        <li>mousedown</li>
+        <li>mouseup</li>
+        <li>click</li>
+        <li>mousedown</li>
+        <li>mouseup</li>
+        <li>click</li>
+        <li>dblclick</li>
+    </ol>
+
+    <p><strong>Note: </strong> 6 events will be triggered before a double click event is called.</p>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>No Function Overloading</title>
+</head>
+<body>
+    <h2>No Function Overloading</h2>
+    <p>ECMAScript functions can not be overloaded. This may come as a surprise, considering ECMAScript
+    closely resembles other higher level programming language that support overloading. You can define two
+    functions with the same name in the same scope without an error; however the last function becomes
+    the one that is used.</p>
+
+    <script type="text/javascript">
+        function fnAdd(iNum1, iNum2){
+            return iNum1 + iNum2;
+        }
+
+        document.write("Addition is = "+ fnAdd(10, 20));
+
+        function fnAdd(iNum1, iNum2, iNum3){
+            return iNum1 + iNum2 + iNum3;
+        }
+
+        document.write("<br/>Addition is = "+ fnAdd(10, 20, 30));
+
+    </script>
+</body>
+</html>

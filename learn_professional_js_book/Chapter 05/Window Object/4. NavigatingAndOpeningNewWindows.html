@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Navigating And Opening New Windows</title>
+</head>
+<body>
+    <h2>Navigating And Opening New Windows</h2>
+    <p>Using JS, it is possible to navigate to URLs and open new browser windows using
+    the window.open() method. This method accepts four arguments: the URL of the page to load
+    in the new window, the name of the new window, a string of features, and a boolean value
+    indicating whether the loaded page should take the place of the currently loaded page.</p>
+
+    <h3>Attributes we can apply</h3>
+    <ul>
+        <li><strong>left:</strong> Indicate the left co-ordinate of the new window. This can not be negative number.</li>
+        <li><strong>top:</strong> Indicate the top co-ordinate of the new window. This can not be a negative number.</li>
+        <li><strong>height:</strong> set the height of the new window. This can not be a number less than 100.</li>
+        <li><strong>width:</strong> set the width of the new window. This can not be less than 100.</li>
+        <li><strong>resizable:</strong> determines if the window can be resized by dragging on its border. The default is no.</li>
+        <li><strong>scrollable:</strong> determines if the window allows scrolling if the content can not fit in the viewport. The default is no.</li>
+        <li><strong>toolbar:</strong> determines if the new windows has its own toolbar. The default is no.</li>
+        <li><strong>status:</strong> Determines if the new window has its status bar showing. The default is no.</li>
+        <li><strong>location:</strong> determines if the new window has its location showing. The default is no.</li>
+    </ul>
+
+    <button onclick="openBrowser()">Click Me To Open Browser New Window</button>
+
+    <script type="text/javascript">
+        function openBrowser() {
+            window.open("http://www.google.com/","Google Page","height=200px, width=250px, top=10, left=10, resizable, scrollable, toolbar, status, location");
+        }
+    </script>
+</body>
+</html>

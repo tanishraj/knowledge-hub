@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detecting Netscape Communicator 4.x</title>
+</head>
+<body>
+    <h2>Detecting Netscape Communicator 4.x</h2>
+    <p>
+        Although Netscape Communicator is a dinosaur in the light of today’s standards-compliant browsers,
+        it still has a pretty significant user base around the world. To start, remember the user-agent string from Netscape Communicator 4.79:
+    </p>
+
+    <script type="text/javascript">
+        var isNS4 = !isIE && !isOpera && !isMoz && !isKHTML && (sUserAgent.indexOf("Mozilla") == 0) && (navigator.appName == "Netscape") && (fAppVersion >= 4.0 && fAppVersion < 5.0);
+
+        var isMinNS4 = isMinNS4_5 = isMinNS4_7 = isMinNS4_8 = false;
+        if (isNS4) {
+            isMinNS4 = true;
+            isMinNS4_5 = fAppVersion >= 4.5;
+            isMinNS4_7 = fAppVersion >= 4.7;
+            isMinNS4_8 = fAppVersion >= 4.8;
+        }
+    </script>
+</body>
+</html>

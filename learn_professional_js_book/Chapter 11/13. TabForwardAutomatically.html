@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab forward automatically</title>
+    <script src="formutil.js"></script>
+</head>
+<body>
+    <h2>Tab forward automatically</h2>
+    <p>When a text box can only accept a certain number of characters, wouldn’t it make sense to automatically
+        tab to the next field? This is done quite frequently when entering data such as social security numbers or
+        product ID numbers. This behavior is easy to mimic in JavaScript.</p>
+
+    <h3>Example:</h3>
+    <p>Enter your phone number below (U.S. style ###-###-####):</p>
+    <form method="post" action="javascript:alert('Submitted')">
+        <input type="text" size="3" maxlength="3" value="" onkeyup="FormUtil.tabForward(this)" />
+        <input type="text" size="3" maxlength="3" value="" onkeyup="FormUtil.tabForward(this)" />
+        <input type="text" size="4" maxlength="4" value="" onkeyup="FormUtil.tabForward(this)" /><br />
+        <input type="submit" value="Submit Form" />
+    </form>
+</body>
+</html>

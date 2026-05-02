@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assignment Event</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div class="container my-3">
+        <h1>Assignment Event</h1>
+        <p>When listening for keyboard events, we often need to check for common key codes. Vue also allows adding key modifiers for v-on when listening for key events:</p>
+
+        <p>Remembering all the keyCodes is a hassle, so Vue provides aliases for the most commonly used keys:
+            <ul>
+                <li>.enter</li>
+                <li>.tab</li>
+                <li>.delete (captures both “Delete” and “Backspace” keys)</li>
+                <li>.esc</li>
+                <li>.space</li>
+                <li>.up</li>
+                <li>.down</li>
+                <li>.left</li>
+                <li>.right</li>
+            </ul>
+        </p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <!-- This is single keyboard events modifiers -->
+            <p>Single Event Modifiers:</p>
+            <input type="text" class="form-control" v-on:keyup.enter="alertMe()" placeholder="Hit Enter to see the alert"/>
+
+            <!-- You can combine multiple keyboard event modifiers all together -->
+            <p class="mt-4">Multiple Event Modifiers:</p>
+            <input type="text" class="form-control" v-on:keyup.enter.space="alertMe()" placeholder="Hit enter or space to see the alert"/>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+            },
+
+            methods: {
+                alertMe: function(){
+                    alert("Alert");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

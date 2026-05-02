@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Constructor Paradigms</title>
+</head>
+<body>
+    <h2>Constructor Paradigms</h2>
+    <p>Creating a constructor is just as easy as defining a factory function, if not easier.
+        The first step is selection of the class name, which becomes the name of the constructor.
+        Traditionally, this name begins with a capital letter to differentiate it from variable name,
+        which typically begins with lowercase letters.</p>
+
+    <script type="text/javascript">
+        function Car(sColor, iDoors, iMpg){
+            this.color = sColor;
+            this.doors = iDoors;
+            this.mpg = iMpg;
+            this.showColor = function(){
+                document.write("<br/>Color is = " + this.color);
+            }
+        }
+
+        var oCar1 = new Car("Red", 4, 25);
+        var oCar2 = new Car("Green", 5, 50);
+
+        oCar1.showColor();
+        oCar2.showColor();
+
+    </script>
+</body>
+</html>

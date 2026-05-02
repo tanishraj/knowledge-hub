@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>replace() Method</title>
+</head>
+<body>
+    <h2>replace() Method</h2>
+    <p>replace() method is used to replace all the occurances of a substring with a different string.</p>
+
+    <script type="text/javascript">
+        //replace() works on strings
+        var sToChange = "The sky is red.";
+        var sChanged = sToChange.replace("red","blue");
+        document.write("After replacing red with blue, the sentence is = " + sChanged);
+
+        //replace() works on regular expressions as well.
+        sToChange = "The sky is red.";
+        var reRed = /red/;
+        sChanged = sToChange.replace(reRed, "grey");
+        document.write("<br/>After replacing red with blue, the sentence is = " + sChanged);
+
+        //replace() works on functions as well.
+        sToChange = "The sky is red.";
+        var reRed = /red/;
+        sChanged = sToChange.replace(reRed, function(sMatch){
+            return "orange";
+        });
+        document.write("<br/>After replacing red with blue, the sentence is = " + sChanged);
+
+        //replace() works on regular expressions as well.
+        sToChange = "The sky is red. red is an awesome color.";
+        var reRed = /red/g;
+        sChanged = sToChange.replace(reRed, "grey");
+        document.write("<br/>After replacing red with blue, the sentence is = " + sChanged);
+
+        //replace() works on functions as well.
+        sToChange = "The sky is red. Red is an awesome color.";
+        var reRed = /red/gi;
+        sChanged = sToChange.replace(reRed, function(sMatch){
+            return "orange";
+        });
+        document.write("<br/>After replacing red with blue, the sentence is = " + sChanged);
+
+    </script>
+</body>
+</html>

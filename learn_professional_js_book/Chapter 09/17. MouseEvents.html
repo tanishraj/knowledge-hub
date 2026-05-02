@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mouse events</title>
+</head>
+<body>
+    <h2>Mouse events</h2>
+    <p>Mouse events are the most commonly used group of events on the Web. They include the following:</p>
+    <ul>
+        <li><strong>click —</strong> Occurs when the user clicks the left mouse button (not if the right mouse button is
+            used). Also occurs when focus is on a button and the user presses the Enter key.</li>
+        <li><strong>dblclick —</strong> Occurs when the user double clicks the left mouse button (not if the right mouse
+            button is used).</li>
+        <li><strong>mousedown —</strong> Occurs when the user pushes any mouse button down.</li>
+        <li><strong>mouseout —</strong> Occurs when the cursor is over an element and the user moves it outside the
+            boundaries of the element.</li>
+        <li><strong>mouseover —</strong> Occurs when the cursor is outside of an element and the user moves it over the
+            element.</li>
+        <li><strong>mouseup —</strong> Occurs when the user releases any mouse button.</li>
+        <li><strong>mousemove —</strong> Occurs repeatedly when the cursor is over an element.</li>
+    </ul>
+
+    <h3>Example:</h3>
+    <p>Use your mouse to click and double click the red square.</p>
+    <div style="width: 100px; height: 100px; background-color: red"
+         onmouseover="handleEvent(event)"
+         onmouseout="handleEvent(event)"
+         onmousedown="handleEvent(event)"
+         onmouseup="handleEvent(event)"
+         onclick="handleEvent(event)"
+         ondblclick="handleEvent(event)" id="div1"></div>
+    <p><textarea id="txt1" rows="15" cols="50"></textarea></p>
+
+    <script type="text/javascript">
+        function handleEvent(oEvent) {
+        var oTextbox = document.getElementById("txt1");
+        oTextbox.value += "\n" + oEvent.type;
+        }
+    </script>
+</body>
+</html>

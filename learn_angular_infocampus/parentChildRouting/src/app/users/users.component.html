@@ -1,0 +1,11 @@
+<div class="row">
+<ul class="nav flex-column col-sm-6">
+	<li class="nav-item" *ngFor="let user of users">
+		<a class="nav-link active" [routerLink]="['info',user.id]">{{user.name}}</a>
+	</li>
+</ul>
+<div class="col-sm-6">
+	<p *ngIf="errorMessage.length>0">{{errorMessage}}</p>
+	<router-outlet></router-outlet>
+</div>
+</div>

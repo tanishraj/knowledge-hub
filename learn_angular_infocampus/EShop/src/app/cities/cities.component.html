@@ -1,0 +1,54 @@
+<div class="fuid-container mt-5 mb-5">
+	<div class="container">
+		<h1 class="text-center mb-3">Cities Lists (Seperate Objects)</h1>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>City Name</th>
+					<th>Population</th>
+					<th>Mayor</th>
+					<th>Area</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{city1.name}}</td>
+					<td>{{city1.population}}</td>
+					<td>{{city1.mayor}}</td>
+					<td>{{city1.area}}</td>
+				</tr>
+				<tr>
+					<td>{{city2.name}}</td>
+					<td>{{city2.population}}</td>
+					<td>{{city2.mayor}}</td>
+					<td>{{city2.area}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<div class="fuid-container mt-5">
+	<div class="container">
+		<h1 class="text-center mb-3">Cities Lists (Array Objects)</h1>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>City Name</th>
+					<th>Population</th>
+					<th>Mayor</th>
+					<th>Area</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let x of cities">
+					<td>{{x.name}}</td>
+					<td>{{x.population}}</td>
+					<td>{{x.mayor}}</td>
+					<td>{{x.area}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

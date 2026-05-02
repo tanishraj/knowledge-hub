@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Keeping track of elements when using v-for</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Keeping track of elements when using v-for</h1>
+        <p></p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <button class="btn btn-primary" @click="ingredients.push('spices')">Add New Item</button>
+            <ul>
+                <li v-for="(ingredient, index) in ingredients" :key="ingredient">({{index}}) {{ingredient}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                ingredients: ['meat', 'fruit', 'cookies']
+            },
+
+            computed: {
+                
+            }
+        })
+    </script>
+</body>
+
+</html>

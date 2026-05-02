@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resize Event</title>
+</head>
+<body>
+    <h2>Resize Event</h2>
+    <p>At times your Web page may change depending on the size of the browser window. For this case, you
+        can use the resize event to determine when to change these dynamic elements.</p>
+
+    <h3>Output:</h3>
+    <textarea id="txtOutput" cols="50" rows="10"></textarea>
+
+    <script type="text/javascript">
+        var txtOutput = document.getElementById("txtOutput");
+        window.onresize = function(){
+            txtOutput.value += ("Resized to " + window.innerHeight + "px, " + window.innerWidth + "px" + "\n");
+        }
+    </script>
+</body>
+</html>

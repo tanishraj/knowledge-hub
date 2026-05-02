@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Object Comparision</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	// METHOD #1
+	var a = {
+		x: 10,
+		y: 20
+	}
+
+	var b = {
+		m: 100,
+		n: 200
+	}
+	console.log(a === b); // false, as both the variables are pointing to different memory location
+	a = b;
+	console.log(a === b); // true, as both the variables are pinting to the same memory locations
+
+
+	// METHOD #2
+	var a = {
+		x: 10,
+		y: 20
+	}
+
+	var b = {
+		m: 100,
+		n: 200
+	}
+	console.log(JSON.stringify(a) ===  JSON.stringify(b)); // false, as the values of both the variables are not same
+	a = b;
+	console.log(JSON.stringify(a) ===  JSON.stringify(b)); // true, as the values of both the variables are same
+
+	// METHOD #3
+	var a = {
+		x: 10,
+		y: 20
+	}
+
+	var b = {
+		m: 100,
+		n: 200,
+		o: 12
+	}
+
+	console.log(compareObject(a,b));
+
+	function compareObject(x,y){
+		var aPropNames = Object.getOwnPropertyNames(x);
+		var bPropNames = Object.getOwnPropertyNames(y);
+
+		if(aPropNames.length != bPropNames.length){
+			return false;
+		}
+
+		for(var i=0; i<aPropNames.length;i++){
+			var propName = aPropNames[i];
+			if(x[propName] !== y[propName]){
+				return false;
+			}
+		}
+
+		return true;
+	}
+</script>
+</body>
+</html>

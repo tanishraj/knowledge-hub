@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Greedy Quantifiers</title>
+</head>
+<body>
+    <h2>Greedy Quantifiers</h2>
+    <p>A greedy quantifiers starts by looking at the entire string for a match. If no match is found, it eliminates the last character
+    in the string and tries again. If the match is still not found, the last chracter is again discarded and the process repeats
+    until a match is found or the string is left with no characters. All the quantifiers discussed to this point have been greedy.</p>
+
+    <script type="text/javascript">
+    	var re1 = /.*bbb/g;
+    	document.write("<br/> " + re1.test("abbbaabbbaaabbb1234"));
+    	document.write("<br/> " + re1.test("abbbaabbbaaabbb123"));
+    	document.write("<br/> " + re1.test("abbbaabbbaaabbb12"));
+    	document.write("<br/> " + re1.test("abbbaabbbaaabbb1"));
+    	document.write("<br/> " + re1.test("abbbaabbbaaabbb"));
+    </script>
+</body>
+</html>

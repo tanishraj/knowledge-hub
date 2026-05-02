@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Combination Classes</title>
+</head>
+<body>
+    <h2>Combination Classes</h2>
+    <p>A combination class is a character class that is made up of several other charaters. FOr instance, suppose you want to match
+    all letters a through m, number 1 to 4, and the new line character. That class look like this...<br/>
+    [a-m1-4\n]
+    </p>
+
+    <script type="text/javascript">
+    	var sToMatch = "A very old man was walking in the street from last 1 or 2 or 5 hours.";
+    	var reCombine = /[a-m1-4]/gi;
+    	var arrMatches = sToMatch.match(reCombine);
+
+    	document.write("All the matches are = ");
+    	for(var temp in arrMatches){
+    		document.write("<br/>" + arrMatches[temp]);
+    	}
+    </script>
+</body>
+</html>

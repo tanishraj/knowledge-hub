@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predefined Classes</title>
+</head>
+<body>
+    <h2>Predefined Classes</h2>
+    <p>Because some patterns are used over and over again, a set of predefined characcters classes is used to
+    make it easy for you to specify some complex classes. The following table lists all the predefined classes.</p>
+
+    <table border="1">
+    	<tr>
+    		<th>Code</th>
+    		<th>Equal To</th>
+    		<th>Matches</th>
+    	</tr>
+    	<tr>
+    		<td>.</td>
+    		<td>[^\n\r]</td>
+    		<td>Any Character except new line and carriage return.</td>
+    	</tr>
+    	<tr>
+    		<td>\d</td>
+    		<td>[0-9]</td>
+    		<td>A digit</td>
+    	</tr>
+    	<tr>
+    		<td>\D</td>
+    		<td>[^0-9]</td>
+    		<td>A non digit</td>
+    	</tr>
+    	<tr>
+    		<td>\s</td>
+    		<td>[ \t\n\x0B\f\r]</td>
+    		<td>A white space character</td>
+    	</tr>
+    	<tr>
+    		<td>\S</td>
+    		<td>[^\t\n\x0B\f\r]</td>
+    		<td>A non white space character</td>
+    	</tr>
+    	<tr>
+    		<td>\w</td>
+    		<td>[a-zA-z_0-9]</td>
+    		<td>A word character (all letters, all numbers and an underscore)</td>
+    	</tr>
+    	<tr>
+    		<td>\W</td>
+    		<td>[^a-zA-Z_0-9]</td>
+    		<td>A non word character</td>
+    	</tr>
+    </table>
+
+    <script type="text/javascript">
+        //Using range classes
+    	var sToMatch = "567 9838 abc";
+    	var reThreeNums = /[0-9][0-9][0-9]/;
+    	document.write("<br/>Matches are = " + sToMatch.match(reThreeNums));
+
+        //Using predefined classes
+        var sToMatch = "567 9838 abc";
+        var reThreeNums = /\d\d\d/;
+        document.write("<br/>Matches are = " + sToMatch.match(reThreeNums));
+    </script>
+</body>
+</html>

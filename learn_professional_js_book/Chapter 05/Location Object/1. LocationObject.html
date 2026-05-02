@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location Object</title>
+</head>
+<body>
+    <h2>Location Object</h2>
+    <p>One of the most useful object in the BOM is location, which is a property of both window object and
+    document object(this is where a lack of standards leads to some real confusion). The location object represents
+    the URL loaded in a new window and, as an added bonus, it also parses the URL into various segments.</p>
+
+    <h3>Properties</h3>
+    <ul>
+        <li><strong>hash: </strong> if the URL contains a pound sign(#), this returns the content after it.
+        (for example: http://www.somewhere.com/index#section1) has a hash equal to #secton1.</li>
+        <li><strong>host: </strong> The name of the server.</li>
+        <li><strong>hostname: </strong> Most often equal to host, this sometimes eliminates the www.from the front.</li>
+        <li><strong>href: </strong> The full url of the currently loaded page.</li>
+        <li><strong>pathname: </strong> Everything after the host in the URL. for example: the path for
+        http://www.somewhere.com/pictures/index.html is /pictures/index.html</li>
+        <li><strong>port: </strong> The port of the request if specified in the URL. By default most URLs
+        don't include the port as part of the URL so this property is typically blank.</li>
+        <li><strong>protocol: </strong> The protocol used in the URL. This is everything before the two forward slashes
+        in the URL.</li>
+        <li><strong>search: </strong> otherwise known as query string. This is everything after a question mark in a URL
+        performing a GET request.</li>
+    </ul>
+
+    <script type="text/javascript">
+        setTimeout(function(){
+            location.href = "http://www.google.com/";
+        }, 2000)
+    </script>
+</body>
+</html>

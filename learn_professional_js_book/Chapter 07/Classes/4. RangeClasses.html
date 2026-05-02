@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Range Classes</title>
+</head>
+<body>
+    <h2>Range Classes</h2>
+    <p>Suppose that you want to match any alphabet character, but you really dont want to type every letter in the alphabet
+    Instead, you can use a range class to specify a range between a-z. The key here is a dash(-), which should be reading as
+    through instead of minus(-).</p>
+
+    <p>Note that [a-z] matches only the lower case letters unless the regular expression is set to case sensitive by using 
+    the i-option. To match only upper case letters you must use [A-Z].</p>
+
+    <script type="text/javascript">
+    	var sToMatch = "num1, num2, num3, num4, num5, num6, num7, num8, num9";
+    	var reOneToFour = /num[1-5]/gi;
+    	var arrMatches = sToMatch.match(reOneToFour);
+    	document.write("All the matches are = ");
+    	for(var temp in arrMatches){
+    		document.write("<br/>" + arrMatches[temp]);
+    	}
+    </script>
+</body>
+</html>

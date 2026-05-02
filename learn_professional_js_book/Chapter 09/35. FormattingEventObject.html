@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formatting the event object</title>
+</head>
+<body>
+    <h2>Formatting the event object</h2>
+    <p>One of the best ways to deal with the discrepancies between event objects in IE and the DOM is to make
+        them behave as similarly as possible. Because more browsers use the DOM event model, it only makes
+        sense to make the IE event model match the DOM event model more closely.</p>
+
+    <script type="text/javascript" src="detect.js"></script>
+    <script type="text/javascript">
+        var EventUtil = new Object;
+
+        EventUtil.formatEvent = function (oEvent) {
+            if (isIE && isWin) {
+                oEvent.charCode = (oEvent.type == "keypress") ? oEvent.keyCode : 0;
+                oEvent.eventPhase = 2;
+                oEvent.isChar = (oEvent.charCode > 0);
+                oEvent.pageX = oEvent.clientX + document.body.scrollLeft;
+                oEvent.pageY = oEvent.clientY + document.body.scrollTop;
+                oEvent.preventDefault = function () {
+                    this.returnValue = false;
+                };
+                if (oEvent.type == "mouseout") {
+                    oEvent.relatedTarget = oEvent.toElement;
+                } else if (oEvent.type == "mouseover") {
+                    oEvent.relatedTarget = oEvent.fromElement;
+                }
+                oEvent.stopPropagation = function () {
+                    this.cancelBubble = true;
+                };
+                oEvent.target = oEvent.srcElement;
+                oEvent.time = (new Date).getTime();
+            }
+            return oEvent;
+        };
+
+    </script>
+
+    <p>However, this method isn’t intended to be used alone. Instead, it is intended to be used inside of another method
+        that gets a reference to the event object.</p>
+</body>
+</html>

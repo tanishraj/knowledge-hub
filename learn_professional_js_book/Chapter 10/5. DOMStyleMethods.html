@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Style Methods</title>
+</head>
+<body>
+    <h2>DOM Style Methods</h2>
+    <p>The DOM also described several methods for the style object, all designed to interact with individual
+        parts of the CSS style definition:</p>
+
+    <ul>
+        <li><strong>getPropertyValue(propertyName) —</strong> Returns the string value of the CSS property
+            propertyName. The property must be specified in CSS style, such as “background-color”
+            instead of “backgroundColor”.</li>
+        <li><strong>getPropertyPriority() —</strong> Returns the string “important” if the CSS property
+            “!important” is specified in the rule; otherwise it returns an empty string</li>
+        <li><strong>item(index) — </strong> Returns the name of the CSS property at the given index, such as
+            “background-color”</li>
+        <li><strong>removeProperty(propertyName) —</strong> Removes propertyName from the CSS definition</li>
+        <li><strong>setProperty(propertyName, value, priority) —</strong> Sets the CSS property propertyName
+            to value with the given priority (either “important” or an empty string)</li>
+    </ul>
+
+    <h3>Example:</h3>
+    <div id="div1" style="background-color: red; height: 50px; width: 50px"></div>
+    <br />
+    <input type="button" value="Use Methods" onclick="useMethods()" />
+
+    <script type="text/javascript">
+        function useMethods() {
+            var oDiv = document.getElementById("div1");
+            alert(oDiv.style.item(0)); //outputs "background-color"
+            alert(oDiv.style.getPropertyValue("background-color"));
+            alert(oDiv.style.removeProperty("background-color"));
+        }
+    </script>
+</body>
+</html>

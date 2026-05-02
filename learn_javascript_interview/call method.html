@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>
+			Call() in functions
+		</title>
+		<script>
+			function product(name, price){
+				this.name = name;
+				this.price = price;
+			}
+
+			function food(name, price){
+				product.call(this, name, price);
+				this.category = 'food';
+			}
+			
+			var rice = new food('Rice', 5);
+			console.log(rice.name, rice.price, rice.category);
+		</script>
+	</head>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slice Method</title>
+</head>
+<body>
+    <h2>slice Method</h2>
+    <p>slice method trims the value of an array.</p>
+
+    <script type="text/javascript">
+        var sNames = ["Tanish","Tanu", "Nick", "Vikash"];
+        document.write("Before slicing any value, array is: <br/>" + sNames.valueOf() + " <br/>and array size is = " + sNames.length);
+
+        sNames = sNames.slice(1);
+        document.write("<br/><br/>Before slicing any value, array is: <br/>" + sNames.valueOf() + " <br/>and array size is = " + sNames.length);
+
+        sNames = sNames.slice(2,3);
+        document.write("<br/><br/>Before slicing any value, array is: <br/>" + sNames.valueOf() + " <br/>and array size is = " + sNames.length);
+
+    </script>
+</body>
+</html>

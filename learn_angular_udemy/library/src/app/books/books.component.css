@@ -1,0 +1,13 @@
+table{
+    max-width: 300px;
+    width: 100%;
+    display: table;
+    margin: 30px auto 0;
+    background: #eee;
+    border: 1px solid #ccc;
+}
+
+tr, th, td{
+    border: 1px solid #ccc;
+    text-align: center;
+}

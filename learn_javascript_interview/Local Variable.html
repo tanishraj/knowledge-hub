@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Local Variables</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// Global variable.
+		var a = "Dot Net Tricks !";
+		
+		function Show() {
+			// A local variable is declared in this function.
+			var a = "Hello World !";
+
+			alert("Value of 'a' inside the function " + a); //Hello World !
+		}
+
+		alert("Value of 'a' outside the function : " + a); //Dot Net Tricks !
+		Show();
+	</script>
+</body>
+</html>

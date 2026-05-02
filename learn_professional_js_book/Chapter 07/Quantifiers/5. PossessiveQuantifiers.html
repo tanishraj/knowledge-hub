@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Possessive Quantifiers</title>
+</head>
+<body>
+    <h2>Possessive Quantifiers</h2>
+    <p>A possessive quantifier only tries to match against the entire string. If the entire string does not produce a 
+    match, no further attempt is made. Possessive quantifiers are, in a manner of speaking, a one-shot deal.</p>
+
+    <script type="text/javascript">
+    	var re3 = /.*+bbb/g;
+    	document.write("<br/> " + re3.test("abbbaabbbaaabbb1234"));
+    </script>
+</body>
+</html>

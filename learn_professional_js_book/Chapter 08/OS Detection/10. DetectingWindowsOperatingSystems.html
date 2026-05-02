@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detecting Windows operating systems</title>
+</head>
+<body>
+    <h2>Detecting Windows operating systems</h2>
+    <p>It seems like every other year a new version of the Windows operating system is released. For a long
+        time, Microsoft has had two separate versions of Windows: one for home use and one for business use.
+        The home use version was called simply called Windows. The business version was called Windows NT.
+        Little overlap occurred between the two versions. The one exception, however, was the user interface. In
+        2001, Microsoft decided to merge the home and business versions into a new product, Windows XP. This
+        new operating system combines the stability and security of Windows NT with the user-friendliness of
+        traditional Windows.</p>
+
+    <script type="text/javascript">
+        var isWin = (navigator.platform == "Win32") || (navigator.platform == "Windows");
+        var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform == "Macintosh");
+
+        var isUnix = (navigator.platform == "X11") && !isWin && !isMac;
+
+        if (isWin) {
+            isWin95 = sUserAgent.indexOf("Win95") > -1
+                || sUserAgent.indexOf("Windows 95") > -1;
+            isWin98 = sUserAgent.indexOf("Win98") > -1
+                || sUserAgent.indexOf("Windows 98") > -1;
+            isWinME = sUserAgent.indexOf("Win 9x 4.90") > -1
+                || sUserAgent.indexOf("Windows ME") > -1;
+            isWin2K = sUserAgent.indexOf("Windows NT 5.0") > -1
+                || sUserAgent.indexOf("Windows 2000") > -1;
+            isWinXP = sUserAgent.indexOf("Windows NT 5.1") > -1
+                || sUserAgent.indexOf("Windows XP") > -1;
+            isWinNT4 = sUserAgent.indexOf("WinNT") > -1
+                || sUserAgent.indexOf("Windows NT") > -1
+                || sUserAgent.indexOf("WinNT4.0") > -1
+                || sUserAgent.indexOf("Windows NT 4.0") > -1
+                && (!isWinME && !isWin2K && !isWinXP);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blocking invalid characters</title>
+    <script type="text/javascript" src="detect.js"></script>
+    <script type="text/javascript" src="eventutil.js"></script>
+    <script type="text/javascript" src="textutil.js"></script>
+</head>
+<body>
+    <h2>Blocking invalid characters</h2>
+    <p>We can block invalid characters using JS.</p>
+
+    <h3>Example:</h3>
+    <form method="post" action="javascript:alert('Submitted')">
+        <textarea rows="10" cols="50" invalidchars="0123456789" onkeypress="return TextUtil.blockChars(this, event)"></textarea><br/>
+        <input type="submit" value="Submit Form" />
+    </form>
+</body>
+</html>

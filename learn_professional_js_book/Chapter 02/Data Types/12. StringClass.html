@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>String Class</title>
+</head>
+<body>
+    <h2>String Class</h2>
+    <script type="text/javascript">
+        var oStringObject = new String("Hello World!");
+        document.write("Value of string object is = " + oStringObject);
+
+        //Converting string object to string primitive
+        val = oStringObject.valueOf();
+        document.write("<br/>Value of string object = " + val);
+
+        //Converting string object to string primitive
+        val = oStringObject.toString();
+        document.write("<br/>Value of string object = " + val);
+
+        //Length of the string
+        val = oStringObject.length;
+        document.write("<br/>Length of string object = " + val);
+
+        //Character on position 1
+        val = oStringObject.charAt(1);
+        document.write("<br/>Character in 1 position in string object = " + val);
+
+        //CharCode on position 1
+        val = oStringObject.charCodeAt(1);
+        document.write("<br/>CharCode in 1 position in string object = " + val);
+
+        //Concat another string
+        val = oStringObject.concat(" Hello INDIA.");
+        document.write("<br/>After concatenation = " + val);
+
+        //Concat using + symbol
+        val = oStringObject + " Hello INDIA";
+        document.write("<br/>After concatenation = " + val);
+
+        //indexOf() Method
+        val = oStringObject.indexOf("o");
+        document.write("<br/>index of e in the string = " + val);
+
+        //lastIndexOf() Method
+        val = oStringObject.lastIndexOf("o");
+        document.write("<br/>Last index of e in the string = " + val);
+
+        //localeCompare() Method
+        val = oStringObject.localeCompare("Apple");
+        document.write("<br/>Comparison status = " + val);
+
+        //localeCompare() Method
+        val = oStringObject.localeCompare("Hallo");
+        document.write("<br/>Comparison status = " + val);
+
+        //localeCompare() Method
+        val = oStringObject.localeCompare("Yellow");
+        document.write("<br/>Comparison status = " + val);
+
+        //localeCompare() Method
+        val = oStringObject.localeCompare("Hello World!");
+        document.write("<br/>Comparison status = " + val);
+
+        //Slice String
+        val = oStringObject.slice(3);
+        document.write("<br/>Sliced string = " + val);
+
+        //subStr String
+        val = oStringObject.substr(3);
+        document.write("<br/>sub string = " + val);
+
+        //Slice String
+        val = oStringObject.slice(-3);
+        document.write("<br/>Sliced string = " + val);
+
+        //subStr String
+        val = oStringObject.substr(-3);
+        document.write("<br/>sub string = " + val);
+
+        //Slice String
+        val = oStringObject.slice(3, 7);
+        document.write("<br/>Sliced string = " + val);
+
+        //subStr String
+        val = oStringObject.substr(3, 7);
+        document.write("<br/>sub string = " + val);
+
+        //upperCase
+        val = oStringObject.toUpperCase();
+        document.write("<br/>upperCase = " + val);
+
+        //lowerCase
+        val = oStringObject.toLowerCase();
+        document.write("<br/>lowerCase = " + val);
+    </script>
+</body>
+</html>

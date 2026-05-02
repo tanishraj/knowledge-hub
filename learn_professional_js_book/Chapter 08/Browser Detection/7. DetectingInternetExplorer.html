@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detecting Internet Explorer</title>
+</head>
+<body>
+    <h2>Detecting Internet Explorer</h2>
+    <p>As discussed earlier, the IE user-agent string is quite unique. Recall the user-agent string for IE 6.0:</p>
+
+    <script type="text/javascript">
+        var isIE = sUserAgent.indexOf("compatible") > -1 && sUserAgent.indexOf("MSIE") > -1 && !isOpera;
+        var isMinIE4 = isMinIE5 = isMinIE5_5 = isMinIE6 = false;
+
+        if (isIE) {
+            var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+            reIE.test(sUserAgent);
+            var fIEVersion = parseFloat(RegExp["$1"]);
+            isMinIE4 = fIEVersion >= 4;
+            isMinIE5 = fIEVersion >= 5;
+            isMinIE5_5 = fIEVersion >= 5.5;
+            isMinIE6 = fIEVersion >= 6.0;
+        }
+    </script>
+</body>
+</html>

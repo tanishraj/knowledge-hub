@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Array Slice Method</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(1, 3); //Orange, Lemon
+		console.log(citrus);
+
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(1, 10); //Orange, Lemon, Apple, Mango
+		console.log(citrus);
+
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(); //Banana, Orange, Lemon, Apple, Mango
+		console.log(citrus);
+
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(1); //Orange, Lemon, Apple, Mango
+		console.log(citrus);
+
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(0); //Banana, Orange, Lemon, Apple, Mango
+		console.log(citrus);
+
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(-0); //Banana, Orange, Lemon, Apple, Mango
+		console.log(citrus);
+
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(-0, -3); //Banana, Orange
+		console.log(citrus);
+
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(-1, -3); //""
+		console.log(citrus);
+
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(-3, -1); //Lemon, Apple
+		console.log(citrus);
+
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(-3, 4); //Lemon, Apple
+		console.log(citrus);
+
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(NaN, 3); //Banana, Orange, Lemon
+		console.log(citrus);
+
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(NaN); //Banana, Orange, Lemon, Apple, Mango
+		console.log(citrus);
+
+		var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+		var citrus = fruits.slice(NaN, NaN); //""
+		console.log(citrus);
+	</script>
+</body>
+</html>

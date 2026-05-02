@@ -1,0 +1,7 @@
+<button class="btn btn-primary" (click)="onAdd()">Add Course</button>
+<ul>
+  <li *ngFor = "let name of names">
+    {{name.id}} - {{name.callingName}} 
+    <button class="btn btn-danger" (click)="onDel(name)">Delete</button>
+  </li>
+</ul>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interval And Timeouts</title>
+</head>
+<body>
+    <h2>Interval And Timeouts</h2>
+    <p>Java developers are familiar with wait() method of object, which causes the program to stop and wait a
+    a specified amount of time before continuing on to the next line of code. This is very useful piece of functionality
+    and unfortunately, one that JS does not support.</p>
+    <p>JS supports timeouts and intervals, which effectively tells the browser when certain code should be executed.
+    Timeouts execute the given code after a specified number of milliseconds. Interval executes given code repeatedly, waiting a
+    specified number of milliseconds in between.</p>
+
+    <script type="text/javascript">
+        function sayHello() {
+            alert("Hello, Tanish!!");
+        }
+
+        setTimeout(sayHello, 5000);
+    </script>
+</body>
+</html>

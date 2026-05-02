@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Getting Key Code</title>
+</head>
+<body>
+    <h2>Getting Key Code</h2>
+    <p>During a keydown or keyup event, you can retrieve the code for the key that was pressed by using the
+        keyCode property:</p>
+    <p>var iKeyCode = oEvent.keyCode;</p>
+    <p>The keyCode property always contains a code the represents the key pressed, which may or may not
+        represent a character. For example, the Enter (or Return) key has a keyCode of 13, the space bar has a
+        keyCode of 32, and the BackSpace key has a keyCode of 8.</p>
+
+    <input type="text" id="div1"/>
+
+    <script type="text/javascript">
+        var oDiv = document.getElementById("div1");
+
+        function handleEvent(oEvent) {
+            alert(oEvent.keyCode);
+        }
+
+        oDiv.onkeyup = handleEvent;
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Splice Method</title>
+</head>
+<body>
+    <h2>Splice Method</h2>
+    <p>The purpose of this method is to insert items into the middle of an array. The variety of
+    ways splice() uses to insert these items. It can perform deletion, Replacement without delete,
+    Replacement with delete.</p>
+
+    <script type="text/javascript">
+        var aNames = ["Tanish","Vikash","Tannu","Nick"];
+        document.write("Array values: <br/>" + aNames.toString());
+
+        //delete
+        aNames.splice(1,2);
+        document.write("<br/><br/>After deletion: <br/>" + aNames.toString());
+
+        //replace without delete
+        aNames = ["Tanish","Vikash","Tannu","Nick"];
+        aNames.splice(1,0,"Red","Green");
+        document.write("<br/><br/>Replace Without delete: <br/>" + aNames.toString());
+
+        //replace without delete
+        aNames = ["Tanish","Vikash","Tannu","Nick"];
+        aNames.splice(2,2,"Red","Green");
+        document.write("<br/><br/>Replace With delete: <br/>" + aNames.toString());
+    </script>
+</body>
+</html>

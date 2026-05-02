@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>selectFrom() Method</title>
+</head>
+<body>
+    <h2>selectFrom() Method</h2>
+    <p>Using this method, its easy to select a random item from and array.</p>
+
+    <script type="text/javascript">
+        function selectFrom(iFirstValue, iLastValue){
+            var iChoices = iLastValue - iFirstValue + 1;
+            return Math.floor(Math.random() * iChoices + iFirstValue);
+        }
+
+        var aColors = ["Red","Green","Blue","Yellow"];
+        document.write("Random color is = " + aColors[selectFrom(0, aColors.length-1)]);
+        document.write("<br/>Random color is = " + aColors[selectFrom(2, 3)]);
+        document.write("<br/>Random color is = " + aColors[selectFrom(1, 2)]);
+    </script>
+</body>
+</html>

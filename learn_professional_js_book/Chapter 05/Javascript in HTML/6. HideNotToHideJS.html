@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Hide Or Not To Hide JS</title>
+</head>
+<body>
+    <h2>To Hide Or Not To Hide JS</h2>
+    <p>When JS was first introduced, only one browser supported it, so concern arose ober how the non supporting browsers
+    would deal with the script tag and the code contained within it. To that end, a format was devised to hide code from older
+    browsers (which is a phrase that can still be found in the source code of a great many websites on the internet today)
+    The following method uses HTML comments around inline code so that other browsers wont render the code to the screen.</p>
+
+    <script type="text/javascript">
+        <!-- Hide From Older Browser
+            function sayHi() {
+                alert("Hi");
+            }
+
+            sayHi();
+        //-->
+    </script>
+</body>
+</html>

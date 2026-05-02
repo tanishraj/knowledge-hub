@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Load And Unload Events</title>
+</head>
+<body>
+    <h2>Load And Unload Events</h2>
+    <p>Can you still assign an event handler to document.body.onload? Yes, you can. The problem is that
+        document.body doesn’t exist until the page has loaded the body tag. This means that if you try to
+    assign the event handler in the head element, where it should be done, you get an error. Try it for
+    yourself:</p>
+
+    <script type="text/javascript">
+        document.body.onload = function(){
+            alert("Loaded.");
+        }
+    </script>
+</body>
+</html>

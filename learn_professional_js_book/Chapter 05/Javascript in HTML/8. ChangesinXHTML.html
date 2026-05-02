@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Changes in XHTML</title>
+</head>
+<body>
+    <h2>changes in XHTML</h2>
+    <p>Recently, with the advent o the XHTML standard, the script tag has undergone
+    a change. Instead of the language attribute, the tag is now expected to have a type attribute
+    to indicate the MIME type of the inline code or external file being included; the MIME type for JS
+    is "text/javascript".</p>
+
+    <script type="text/javascript">
+        function compare(iNum1, iNum2) {
+            if(iNum1 > iNum2){
+                return iNum1;
+            }
+            else{
+                return iNum2;
+            }
+        }
+
+        document.write("Max Number is = " + compare(10,15));
+    </script>
+
+    <p>Above code is not valid in XHTML. > shud be treated as &gt; in XHTML.</p>
+
+    <script type="text/javascript">
+        //<![CDATA][
+        function compare(iNum1, iNum2) {
+            if(iNum1 > iNum2){
+                return iNum1;
+            }
+            else{
+                return iNum2;
+            }
+        }
+
+        document.write("Max Number is = " + compare(10,8));
+    //]]>
+    </script>
+</body>
+</html>

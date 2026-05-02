@@ -1,0 +1,20 @@
+@import './base.css';
+
+#app {
+  margin: 0 auto;
+}
+
+a,
+.green {
+  font-size: large;
+  text-decoration: none;
+  color: #898ffb;
+  font-weight: 500;
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: hsla(160, 100%, 37%, 1);
+  }
+}

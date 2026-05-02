@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form field commonalities</title>
+</head>
+<body>
+    <h2>Form field commonalities</h2>
+    <p>All form fields (except for hidden fields) contain common properties, methods, and events:</p>
+
+    <ul>
+        <li>The disabled property is used both to indicate whether the control is disabled as well as to
+            actually disable the control (a disabled control doesn’t allow any user input, but gives no visual
+            indication that the control is disabled).</li>
+        <li>The form property is a pointer back to the form of which the field is a part.</li>
+        <li>The blur() method causes the form field to lose focus (by shifting the focus elsewhere).</li>
+        <li>The focus() method causes the form field to gain focus (the control is selected for keyboard
+            interaction).</li>
+        <li>The blur event occurs when the field loses focus; the onblur event handler is then executed.</li>
+        <li>The focus event occurs when the field gains focus; the onfocus event handler is then executed.</li>
+    </ul>
+
+    <h3>Example:</h3>
+    <form method="post" name="simpleForm" action="handlepost.jsp">
+        <!-- regular textbox -->
+        <label for="txtName">Name:</label><br />
+        <input type="text" id="txtName" name="txtName" /><br />
+
+        <!-- password textbox -->
+        <label for="txtPassword">Password:</label><br />
+        <input type="password" id="txtPassword" name="txtPassword"/><br />
+
+        <!-- age comboxbox (drop-down) -->
+        <label for="selAge">Age:</label><br />
+        <select name="selAge" id="selAge">
+            <option>18-21</option>
+            <option>22-25</option>
+            <option>26-29</option>
+            <option>30-35</option>
+            <option>Over 35</option>
+        </select><br />
+
+        <!-- multiline textbox -->
+        <label for="txtComments">Comments:</label><br />
+        <textarea rows="10" cols="50" id="txtComments" name="txtComments"></textarea><br />
+
+        <!-- submit button -->
+        <input type="submit" value="Submit Form" />
+    </form>
+
+    <script type="text/javascript">
+        var oForm = document.forms['simpleForm'];
+        var txtName = oForm.txtName;
+        txtName.disabled = true;
+
+    </script>
+</body>
+</html>

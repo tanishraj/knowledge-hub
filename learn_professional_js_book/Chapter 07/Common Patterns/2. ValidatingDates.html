@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validating dates</title>
+</head>
+<body>
+    <h2>Validating dates</h2>
+    <p>Most developers cringe at the idea
+    of letting a user manually enter a date. Many different date patterns are used around the world, not to
+    mention the internationalized month and day names! Many sites use three form fields for date entry,
+    usually comprised of two combo boxes (one with month names, the other with day numbers) and a text
+    field for the year (although sometimes this, too, is a combo box). Although this approach is okay, it still
+    leaves users wanting to type in a date, which is much faster than tabbing through three fields and clicking
+    up or down to select an item in a combo box.</p>
+
+    <script type="text/javascript">
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1;
+
+        var yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd = '0'+dd;
+        }
+        
+        if(mm<10) {
+            mm = '0'+mm;
+        }
+
+        var today = dd+'/'+mm+'/'+yyyy;
+        document.write("Today's Date is = " + today);
+
+        // This pattern only matches the pattern but not the exact number of day months and years
+        var reDate = /\d{1,2}\/\d{1,2}\/\d{4}/;
+        document.write("<br/>is Date matches the pattern? " + reDate.test(today));
+
+        // Below is the pattern for the day of the month
+        var reDay = /0[1-9]|[12][0-9]|3[01]/;
+
+        // Below is the pattern for the month of year
+        var reMonth = /0[1-9]|1[0-2]/;
+
+        // Below is the pattern for the year
+        var reYear = /19|20\d{2}/;
+
+        // Final pattern for date is
+        var reDate = /(?:0[1-9]|[12][0-9]|3[01])\/(?:0[1-9]|1[0-2])\/(?:19|20\d{2})/;
+
+        //Its time to test the date pattern
+        function isValidDate(sText) {
+            var reDate = /(?:0[1-9]|[12][0-9]|3[01])\/(?:0[1-9]|1[0-2])\/(?:19|20\d{2})/;
+            return reDate.test(sText);
+        }
+
+        document.write("<br/>" + isValidDate("10/12/2014"));
+        document.write("<br/>" + isValidDate("10/10/1914"));
+        document.write("<br/>" + isValidDate("28/02/1857"));
+        document.write("<br/>" + isValidDate("31/12/2014"));
+        document.write("<br/>" + isValidDate("32/12/2014"));
+        document.write("<br/>" + isValidDate("10/13/2014"));
+    </script>
+</body>
+</html>

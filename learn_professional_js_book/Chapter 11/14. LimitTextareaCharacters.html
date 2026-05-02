@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Limit textarea characters</title>
+    <script type="text/javascript" src="textutil.js"></script>
+</head>
+<body>
+    <h2>Limit textarea characters</h2>
+    <p>We can limit the text area characters using Javascript features.</p>
+
+    <h3>Example:</h3>
+    <textarea rows="10" cols="50" maxlength="50" onkeypress="return TextUtil.isNotMax(this)"></textarea>
+
+</body>
+</html>

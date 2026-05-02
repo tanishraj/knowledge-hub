@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dragged Item Events</title>
+</head>
+<body>
+    <h2>Dragged Item Events</h2>
+    <p>When an item is dragged, the following events fire (in this order):</p>
+    <ul>
+        <li>dragstart</li>
+        <li>drag</li>
+        <li>dragend</li>
+    </ul>
+
+    <p>At the moment you hold a mouse button down and begin to move the mouse, the dragstart event
+        fires on the item that is being dragged. By default, this event fires on an image or text selection being
+        dragged. The cursor changes to the no-drop symbol (a circle with a line through it) indicating that the
+        item cannot be dropped on itself. You can use the ondragstart event handler to run JavaScript code as
+        the dragging begins.</p>
+
+</body>
+</html>

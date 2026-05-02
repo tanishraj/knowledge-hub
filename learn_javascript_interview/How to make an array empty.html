@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>How to make an array empty</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var arr = new Array('Tanish','Ajay','Kunal','Nikhil','Siam');
+		document.write("Length of the array is = " + arr.length + "<br/>");
+		for(temp in arr){
+			document.write(arr[temp] + ",");
+		}
+
+		//After setting array to null
+		arr = [];
+		document.write("<br/>Length of the array is = " + arr.length + "<br/>");
+		for(temp in arr){
+			document.write(arr[temp] + ",");
+		}
+
+		//Second Method
+		var arr = new Array('Tanish','Ajay','Kunal','Nikhil','Siam');
+		document.write("<br/><br/>Length of the array is = " + arr.length + "<br/>");
+		for(temp in arr){
+			document.write(arr[temp] + ",");
+		}
+
+		//After setting array to null
+		arr.length = 0;
+		document.write("<br/>Length of the array is = " + arr.length + "<br/>");
+		for(temp in arr){
+			document.write(arr[temp] + ",");
+		}
+
+
+		//Third Method
+		var arr = new Array('Tanish','Ajay','Kunal','Nikhil','Siam');
+		document.write("<br/><br/>Length of the array is = " + arr.length + "<br/>");
+		for(temp in arr){
+			document.write(arr[temp] + ",");
+		}
+
+		//After setting array to null
+		arr.splice(0,arr.length);
+		document.write("<br/>Length of the array is = " + arr.length + "<br/>");
+		for(temp in arr){
+			document.write(arr[temp] + ",");
+		}
+
+
+		//Fourth Method
+		var arr = new Array('Tanish','Ajay','Kunal','Nikhil','Siam');
+		document.write("<br/><br/>Length of the array is = " + arr.length + "<br/>");
+		for(temp in arr){
+			document.write(arr[temp] + ",");
+		}
+
+		//After setting array to null
+		while(arr.length>0){
+			arr.pop();
+		}
+		document.write("<br/>Length of the array is = " + arr.length + "<br/>");
+		for(temp in arr){
+			document.write(arr[temp] + ",");
+		}
+	</script>
+</body>
+</html>

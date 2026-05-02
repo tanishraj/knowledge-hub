@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        var numbers = [12, 10, 15, 11, 14, 13, 16];
+            function bubbleSort(array) {
+                var next2last = array.length - 1,
+                    holder,
+                    swapOccured,
+                    index,
+                    nextIndex;
+                array.some(function () {
+                    swapOccured = false;
+                    for (index = 0; index < next2last; index += 1) {
+                        nextIndex = index + 1;
+                        if (array[index] > array[nextIndex]) {
+                            holder = array[nextIndex];
+                            array[nextIndex] = array[index];
+                            array[index] = holder;
+                            swapOccured = true;
+                        }
+                    }
+                    if (!swapOccured) {
+                        return true;
+                    }
+                    return false;
+                });
+            }
+            bubbleSort(numbers);
+            console.log(numbers);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

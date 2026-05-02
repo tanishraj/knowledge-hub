@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dropEffect and effectAllowed</title>
+</head>
+<body>
+    <h2>dropEffect and effectAllowed</h2>
+    <p>The dataTransfer object can be used to do more than simply transport data to and fro; it can also be
+        used to determine what type of actions can be done with the dragged item and the drop target. You
+        accomplish this by using two properties: dropEffect and effectAllowed.</p>
+
+    <p>The dropEffect property is set on the drop target to determine which type of drop behavior is allowed.
+        These are four possible values:</p>
+
+    <h3>dropEffect Properties:</h3>
+    <ul>
+        <li><strong>none —</strong> A dragged item cannot be dropped here. This is the default value for everything but
+            text boxes.</li>
+        <li><strong>move — </strong> Indicates that the dragged item should be moved to the drop target.</li>
+        <li><strong>copy — </strong> Indicates that the dragged item should be copied to the drop target.</li>
+        <li><strong>link — </strong> Indicates that the drop target will navigate to the dragged item (but only if it is a URL).</li>
+    </ul>
+
+    <p><strong>Note: </strong> The dropEffect property is useless unless you also set the effectAllowed property on the dragged
+        item. This property indicates which dropEffect is allowed for the dragged item. The possible values
+        are the following:</p>
+
+    <h3>effectAllowed Properties:</h3>
+    <ul>
+        <li><strong>uninitialized</strong> No action has been set for the dragged item.</li>
+        <li><strong>none</strong> No action is allowed on the dragged item.</li>
+        <li><strong>copy</strong> Only dropEffect “copy” is allowed.</li>
+        <li><strong>link</strong> Only dropEffect “link” is allowed.</li>
+        <li><strong>move</strong> Only dropEffect “move” is allowed.</li>
+        <li><strong>copyLink</strong> dropEffects “copy” and “link” are allowed.</li>
+        <li><strong>copyMove</strong> dropEffects “copy” and “move” are allowed.</li>
+        <li><strong>linkMove</strong> dropEffects “link” and “move” are allowed.</li>
+        <li><strong>all</strong> All dropEffects are allowed.</li>
+    </ul>
+
+    <h3>Example:</h3>
+    <p>Try dragging the text in the textbox to the red square.
+        The text will be "moved" to the red square.</p>
+    <p><input type="text" value="drag this text" ondragstart="handleDragDropoEvent(event)" />
+    <div style="background-color: red; height: 100px; width: 100px"
+         ondragenter="handleDragDropoEvent(event)"
+         ondragover="handleDragDropoEvent(event)"
+         ondrop="handleDragDropoEvent(event)"></div>
+    </p>
+
+    <script type="text/javascript">
+        function handleDragDropoEvent(oEvent) {
+
+            switch(oEvent.type) {
+                case "dragstart":
+                    oEvent.dataTransfer.effectAllowed = "move";
+                    break;
+
+                case "dragenter":
+                    oEvent.dataTransfer.dropEffect = "move";
+                    break;
+
+                case "dragover":
+                    oEvent.returnValue = false;
+                    break;
+                case "drop":
+                    oEvent.returnValue = false;
+                    oEvent.srcElement.innerHTML = oEvent.dataTransfer.getData("text");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>outerText and outerHTML</title>
+</head>
+<body>
+    <h2>outerText and outerHTML</h2>
+    <p>Along with innerText and innerHTML, Internet Explorer 4.0 also introduced outerText and
+        outerHTML, which do exactly the same thing as their inner counterparts except that they
+        replace the node in question. For example, setting outerText on a div tag removes it and
+        replaces it with a text node. Consider the following line of code:</p>
+
+    <h3>Example:</h3>
+    <div><span id="para">This is an existing paragraph.</span></div>
+
+    <script type="text/javascript">
+        var oDiv = document.getElementById("para");
+
+        oDiv.outerHTML += "<p>This is a paragraph.</p>";
+        oDiv.outerText += "\nThis para is added through the Javascript.";
+    </script>
+</body>
+</html>

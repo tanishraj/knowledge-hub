@@ -1,0 +1,12 @@
+<!-- <style>
+    /* Inline CSS Styles*/
+    .glyphicon{
+        font-size: 40px;
+        cursor: pointer;
+        color: blue;;
+    }
+</style> -->
+
+<span class="glyphicon" [class.glyphicon-star]="isFavorite" [class.glyphicon-star-empty]="!isFavorite" (click)="onClick()"></span>
+
+<span class="glyphicon glyphicon-user"></span>

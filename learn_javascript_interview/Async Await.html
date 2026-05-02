@@ -1,0 +1,67 @@
+<html>
+
+<head>
+	<title>
+		Async and Await in Javascript
+	</title>
+	<script>
+
+		// Normal Function
+		function add(x, y) {
+			return (x + y);
+		}
+
+		// Async Function
+		async function add(x, y) {
+			return (x + y);
+		}
+
+		// Asynchronous Function Using Promises
+		function doubleAfter2Seconds(x) {
+			return new Promise(resolve => {
+				setTimeout(() => {
+					console.log("Hello There"); // Will print after 2 seconds
+					resolve(x * 2); // resolved after 2 seconds
+				}, 2000);
+			})
+		}
+
+		doubleAfter2Seconds(2).then((r) => {
+			console.log("Promises values are = ", r);
+		});
+
+		// What happens when you run the few more values and add the results
+		function addPromise(x) {
+			return new Promise(resolve => {
+				doubleAfter2Seconds(10).then((a) => {
+					doubleAfter2Seconds(20).then((b) => {
+						doubleAfter2Seconds(30).then((c) => {
+							resolve(x + a + b + c);
+						})
+					})
+				})
+			});
+		}
+
+		addPromise(10).then((sum) => {
+			console.log("Sum of all values are = ", sum);
+		});
+
+		// Its much easier with Async/Await
+		async function addPromiseUsingAsyncAndAwait(x){
+			const a = await doubleAfter2Seconds(10);
+			const b = await doubleAfter2Seconds(20);
+			const c = await doubleAfter2Seconds(30);
+			
+			console.log("Async/Await output is = ", x + a + b + c);
+		}
+
+		addPromiseUsingAsyncAndAwait(10);
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

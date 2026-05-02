@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag Only A Part Of The Text</title>
+</head>
+<body>
+    <h2>Drag Only A Part Of The Text</h2>
+    <h3>Example:</h3>
+    <p>Highlight some of the text in the textbox on the left and drag it
+        into the textbox on the right.</p>
+    <input type="text" value="drag this text" /><input type="text" ondrop="handleDrop()" />
+
+    <script type="text/javascript">
+        function handleDrop() {
+            alert("Dropped!");
+        }
+    </script>
+</body>
+</html>

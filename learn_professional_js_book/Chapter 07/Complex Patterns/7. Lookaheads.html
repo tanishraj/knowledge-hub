@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lookaheads</title>
+</head>
+<body>
+    <h2>Lookaheads</h2>
+    <p>Sometimes you may want to capture a particular group of characters only if they appear before another
+    set of characters. Using lookaheads makes this process easy.</p>
+    <p>Alookahead is just what it sounds like: It tells the regular expression evaluator to look ahead any number
+    of characters without losing its spot. There are both positive and negative lookaheads. Positive lookaheads
+    check whether a certain set of characters comes next. Negative lookaheads determine if a certain set of
+    characters does not come next.</p>
+    <p>A positive lookahead is created by enclosing a pattern between (?= and ). Note that this is not a group,
+    even though it uses parentheses.</p>
+    <p>A positive lookahead is created by enclosing a pattern between (?! and ). Note that this is not a group,
+    even though it uses parentheses.</p>
+
+    <script type="text/javascript">
+        var sToMatch1 = "bedroom";
+        var sToMatch2 = "bedding";
+        var reBed = /(bed(?=room))/;
+        document.write(reBed.test("<br/>" + sToMatch1)); //outputs "true"
+        document.write("<br/>" + RegExp.$1); //outputs "bed"
+        document.write("<br/>" + reBed.test(sToMatch2)); //outputs "false"
+    </script>
+
+    <script type="text/javascript">
+        var sToMatch1 = "bedroom";
+        var sToMatch2 = "bedding";
+        var reBed = /(bed(?!room))/;
+        document.write("<br/><br/>" + reBed.test(sToMatch1)); //outputs “false”
+        document.write("<br/>" + reBed.test(sToMatch2)); //outputs “true”
+        document.write("<br/>" + RegExp.$1); //outputs “bed”
+    </script>
+</body>
+</html>

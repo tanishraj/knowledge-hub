@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue JS Instance</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Vue JS Instance</h1>
+        <p>So far we have only been working with one instance of Vue JS but can we really create more than one instance for more than one elements. For an example, here is #app id for which we have create the instance and targeting the DOM element to initialize the instace of the Vue JS.</p>
+        <ul>
+            <li>
+                <strong>Can we create more than one Vue JS instance in the same application?</strong>
+                <p>Yes</p>
+            </li>
+            <li>
+                <strong>Can we access the Vue JS instance properties from outside?</strong>
+                <p>Yes</p>
+            </li>
+        </ul>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <h5>{{title}}</h5>
+            <button class="btn btn-primary" @click="show">Show Paragraph</button>
+            <p class="pt-2" v-if="showParagraph">This is not always visible.</p>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                title: 'Vue JS instance',
+                showParagraph: false
+            },
+
+            methods: {
+                show: function() {
+                    this.showParagraph = true;
+                    this.updateTitle("Vue JS instance (updated)");
+                },
+
+                updateTitle: function(title){
+                    this.title = title;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

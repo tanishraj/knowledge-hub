@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registering components locally and globally</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Registering components locally and globally</h1>
+        <p>
+            <strong>Example: </strong>
+        </p>
+        <div id="app">
+            <my-cmp></my-cmp>
+            <my-cmp></my-cmp>
+        </div>
+
+        <hr/>
+
+        <div id="app2">
+            <my-cmp></my-cmp>
+            <my-cmp></my-cmp>
+        </div>
+    </div>
+
+    <script>
+
+        // local component
+        var localComponent = {
+            data: function () {
+                return {
+                    status: 'Normal'
+                }
+            },
+
+            template: '<h3>Server status: <span class="text-danger">{{status}}</span> <button @click="changeStatus" class="btn btn-primary">Change Status</button></h3>',
+
+            methods: {
+                changeStatus: function () {
+                    this.status = "Very Slow"
+                }
+            }
+        }
+
+        // global component
+        Vue.component('my-cmp', {
+            data: function () {
+                return {
+                    status: 'critical'
+                }
+            },
+
+            template: '<h3>Server status: <span class="text-danger">{{status}}</span> <button @click="changeStatus" class="btn btn-primary">Change Status</button></h3>',
+
+            methods: {
+                changeStatus: function () {
+                    this.status = "up and running"
+                }
+            }
+        })
+
+        new Vue({
+            el: '#app',
+        })
+
+        new Vue({
+            el: '#app2',
+
+            components: {
+                'my-cmp': localComponent
+            }
+        })
+    </script>
+</body>
+
+</html>

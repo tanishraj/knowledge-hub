@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retrieving/changing a text box value</title>
+</head>
+<body>
+    <h2>Retrieving/changing a text box value</h2>
+    <p>Even though they are different elements, both input type=”text” and textarea support the
+        same property, value, to retrieve the text contained in the text box. Consider the following example:</p>
+
+    <h3>Example:</h3>
+    <form method="post" name="simpleForm" action="javascript:alert('Submitted')" >
+        <!-- regular textbox -->
+        <label for="txtName">Name:</label><br />
+        <input type="text" id="txtName" name="txtName" /><br />
+
+        <!-- password textbox -->
+        <label for="txtPassword">Password:</label><br />
+        <input type="password" id="txtPassword" name="txtPassword"/><br />
+
+        <!-- age comboxbox (drop-down) -->
+        <label for="selAge">Age:</label><br />
+        <select name="selAge" id="selAge">
+            <option>18-21</option>
+            <option>22-25</option>
+            <option>26-29</option>
+            <option>30-35</option>
+            <option>Over 35</option>
+        </select><br />
+
+        <!-- multiline textbox -->
+        <label for="txtComments">Comments:</label><br />
+        <textarea rows="10" cols="50" id="txtComments" name="txtComments"></textarea><br />
+
+        <!-- submit button -->
+        <input type="button" value="Set Values To Form" onclick="setValues()"/>
+        <input type="button" value="Get Values Of Form" onclick="getValues()" />
+    </form>
+
+    <script type="text/javascript">
+        function getValues() {
+            var oTextbox1 = document.getElementById("txtName");
+            var oTextbox2 = document.getElementById("txtPassword");
+            alert("The value of txt1 is \"" + oTextbox1.value + "\"\n" + "The value of txt2 is \"" + oTextbox2.value + "\"");
+        }
+
+        function setValues() {
+            var oTextbox1 = document.getElementById("txtName");
+            var oTextbox2 = document.getElementById("txtPassword");
+            oTextbox1.value = "Tanish Raj";
+            oTextbox2.value = "Nick";
+        }
+    </script>
+</body>
+</html>

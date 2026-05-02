@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hybrid Method</title>
+</head>
+<body>
+    <h2>Hybrid Method</h2>
+    <p>You may have noticed that this method of inheritance uses the constructor paradigms
+    to define classes without any use of prototyping. The main problem with object masquerading is that
+    you must use the constructor paradigms, which is not optimal. But if you go with prototype
+    chaining, you loose the capability to have constructor with arguments. In this case developer needs
+    to use both at the same time.</p>
+
+    <script type="text/javascript">
+        function ClassA(sColor){
+            this.color = sColor;
+        }
+
+        ClassA.prototype.sayColor = function(){
+            document.write("<br/>Color is = " + this.color);
+        }
+
+        function ClassB(sColor, name){
+            ClassA.call(this, sColor);
+            this.name = name;
+        }
+
+        ClassB.prototype = new ClassA();
+
+        ClassB.prototype.sayName = function(){
+            document.write("<br/>Name is = " + this.name);
+        }
+
+        var objA = new ClassA();
+        var objB = new ClassB();
+
+        objA.color = "Red";
+        objB.name = "Tanish";
+
+        objA.sayColor();
+        objB.sayName();
+    </script>
+</body>
+</html>

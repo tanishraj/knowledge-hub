@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Multiple Event Handler</title>
+</head>
+<body>
+<h2>DOM Multiple Event Handler</h2>
+
+<div id="div1">Click Me</div>
+
+<script type="text/javascript">
+    var fnClick1 = function () {
+        alert("Clicked!");
+    };
+    var fnClick2 = function () {
+        alert("Also Clicked!");
+    };
+
+    var oDiv = document.getElementById("div1");
+    oDiv.addEventListener("click", fnClick1); //add the event handler
+    oDiv.addEventListener("click", fnClick2);
+    //oDiv.removeEventListener("click", fnClick, false); //remove the event handler
+</script>
+</body>
+</html>

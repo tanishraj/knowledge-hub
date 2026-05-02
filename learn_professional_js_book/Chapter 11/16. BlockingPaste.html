@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blocking paste</title>
+    <script type="text/javascript" src="detect.js"></script>
+    <script type="text/javascript" src="eventutil.js"></script>
+    <script type="text/javascript" src="textutil.js"></script>
+</head>
+<body>
+    <h2>Blocking paste</h2>
+    <p>We can stop the user's habit of pasting words.</p>
+
+    <h3>Example:</h3>
+    <p>Try typing in the textbox. You can only type number characters. And you cannot paste any values.</p>
+    <form method="post" action="javascript:alert('Submitted')">
+            <textarea rows="10" cols="50" validchars="0123456789"
+                      onkeypress="return TextUtil.allowChars(this, event, true)"
+                      onpaste="return false" oncontextmenu="return false"></textarea><br/>
+        <input type="submit" value="Submit Form" />
+    </form>
+</body>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating Elements Using Methods</title>
+</head>
+<body>
+    <h2>Creating Elements Using Methods</h2>
+    <p><button onclick="createMessage()">Click Me to Add Message</button></p>
+    <script type="text/javascript">
+        function createMessage() {
+            var oP = document.createElement("p");
+            var oText = document.createTextNode("Hello World!!");
+
+            oP.appendChild(oText);
+            document.body.appendChild(oP);
+        }
+    </script>
+</body>
+</html>

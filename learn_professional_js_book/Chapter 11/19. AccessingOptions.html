@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Accessing Options</h2>
+    <p>The HTML DOM defines each select element to have a collection called options, which is the list
+        of all option elements for the control. To get the display text and value of an option, you can
+        use normal DOM functionality:</p>
+
+    <h3>Example:</h3>
+    <select name="selAge" id="selAge">
+        <option value="1">18-21</option>
+        <option value="2">22-25</option>
+        <option value="3">26-29</option>
+        <option value="4">30-35</option>
+        <option value="5">Over 35</option>
+    </select>
+
+    <script type="text/javascript">
+        oListbox = document.getElementById("selAge");
+        alert(oListbox.options[1].firstChild.nodeValue); //output display text
+        alert(oListbox.options[1].getAttribute("value")); //output value
+        alert("There are " + oListbox.options.length + " in the list.");
+    </script>
+</body>
+</html>

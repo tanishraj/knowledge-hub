@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>global Pattern</title>
+</head>
+<body>
+    <h2>g short form of global</h2>
+    <p>global (g) is used as the second parameter in the RE. which allows the patterns to match on all occurances
+    of the pattern.</p>
+
+    <script type="text/javascript">
+        var sToMatch = "cat";
+
+        //Simplest Regular Expression Pattern (compares all occurances)
+        var reCat = new RegExp("cat","g");
+        document.write("is cat match the pattern cat = " + reCat.test(sToMatch));
+
+
+        sToMatch = /dog/g;
+        document.write("<br/>is dog match the pattern cat = " + reCat.test(sToMatch));
+    </script>
+</body>
+</html>

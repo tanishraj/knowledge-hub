@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Instance Life Cycle</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Vue Instance Life Cycle</h1>
+        <p>Below are the life cycle for the Vue Instance</p>
+        <ul>
+            <li>beforeCreate</li>
+            <li>created</li>
+            <li>beforeMount</li>
+            <li>mounted</li>
+            <li>beforeUpdate</li>
+            <li>updated</li>
+            <li>activated</li>
+            <li>deactivated</li>
+            <li>beforeDestory</li>
+            <li>destroyed</li>
+        </ul>
+
+        <div id="app">
+            <h1>{{title}}</h1>
+
+            <button class="btn btn-primary" @click="title = 'changed'">Update Title</button>
+            <button class="btn btn-danger" @click="destroy">Destroy</button>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                title: 'The Vue JS instance'
+            },
+
+            beforeCreate: function(){
+                console.log('Before Create function.');
+            },
+
+            created: function(){
+                console.log('Created function.');
+            },
+
+            beforeMount: function(){
+                console.log('Before mount function.');
+            },
+
+            mounted: function(){
+                console.log('mounted function.');
+            },
+
+            beforeUpdate: function(){
+                console.log('Before updated function.');
+            },
+
+            updated: function(){
+                console.log('updated function.');
+            },
+
+            beforeDestroy: function(){
+                console.log('Before destroy function.');
+            },
+
+            destroyed: function(){
+                console.log('destroyed function.');
+            },
+
+            methods: {
+                destroy: function(){
+                    this.$destroy();
+                }
+            }
+            
+        })
+    </script>
+</body>
+
+</html>

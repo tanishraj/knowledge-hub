@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submitting forms</title>
+</head>
+<body>
+    <h2>Submitting forms</h2>
+    <p>In regular HTML, you submit the form by using a Submit button or an image that acts like a Submit
+        button:</p>
+
+    <p>When the user clicks either one of these buttons (image type button, or input type button), the form is
+        submitted without requiring any additional coding. If you press Enter on the keyboard when one of these
+        types of buttons is present, the browser submits the form as if the button were clicked.</p>
+
+
+    <h3>Example:</h3>
+    <form method="post" name="simpleForm" action="handlepost.jsp">
+        <!-- regular textbox -->
+        <label for="txtName">Name:</label><br />
+        <input type="text" id="txtName" name="txtName" /><br />
+
+        <!-- password textbox -->
+        <label for="txtPassword">Password:</label><br />
+        <input type="password" id="txtPassword" name="txtPassword"/><br />
+
+        <!-- age comboxbox (drop-down) -->
+        <label for="selAge">Age:</label><br />
+        <select name="selAge" id="selAge">
+            <option>18-21</option>
+            <option>22-25</option>
+            <option>26-29</option>
+            <option>30-35</option>
+            <option>Over 35</option>
+        </select><br />
+
+        <!-- multiline textbox -->
+        <label for="txtComments">Comments:</label><br />
+        <textarea rows="10" cols="50" id="txtComments" name="txtComments"></textarea><br />
+
+        <!-- submit button -->
+        <input type="submit" value="Submit Form" onclick="submitForm();" />
+    </form>
+
+    <script type="text/javascript">
+        oForm = document.forms["simpleForm"];
+        function submitForm() {
+            alert("Form is about to be submitted.");
+            oForm.submit();
+        }
+    </script>
+</body>
+</html>

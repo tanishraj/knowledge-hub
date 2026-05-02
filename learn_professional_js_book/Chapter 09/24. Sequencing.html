@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sequencing</title>
+</head>
+<body>
+    <h2>Sequencing</h2>
+    <p>When the user presses a character key once, the following sequence of events occurs:</p>
+
+    <ol>
+        <li>keydown</li>
+        <li>keypress</li>
+        <li>keyup</li>
+    </ol>
+
+    <p>If the user presses a non-character key once, such as Shift, the following event sequence takes place:</p>
+
+    <ol>
+        <li>keydown</li>
+        <li>keyup</li>
+    </ol>
+
+    <p><strong>Note: </strong> If the user presses a character key and holds it down, keydown and keypress are fired repeatedly, one
+        after the other, until the key is released; if the user presses and holds down a non-character key, only the
+        keydown event fires repeatedly.</p>
+</body>
+</html>

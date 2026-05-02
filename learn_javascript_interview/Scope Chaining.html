@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Scope Chaining</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        var myVar;
+
+        //myVar is not a local varibale so it will look for one level up and that is global scope in this case
+        function b(){
+            console.log(myVar);
+        }
+
+        function a(){
+            var myVar = 2;
+
+            b();
+        }
+
+        //gloabl variable is assigned with 1 here
+        myVar = 1;
+
+        a(); // 1
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Prototype Method</title>
+</head>
+<body>
+    <h2>Dynamic Prototype Method</h2>
+    <p>For developers coming from other languages, using the hybrid constructor/prototype paradigms is a little jarring
+    After all, most object oriented languages provide some sort of visual encapsulation of properties and methods
+     when defining classes.</p>
+
+    <script type="text/javascript">
+        function Car(sColor, iDoors, iMpg){
+            this.color = sColor;
+            this.doors = iDoors;
+            this.mpg = iMpg;
+            this.drivers = new Array("Tanish","Vikash");
+
+            if(typeof Car._initialized == "undefined"){
+                Car.prototype.showColor = function () {
+                    document.write("Color is = " + this.color);
+                }
+
+                Car._initialized = true;
+            }
+        }
+
+        var oCar1 = new Car("Red", 4, 25);
+        oCar1.showColor;
+    </script>
+</body>
+</html>

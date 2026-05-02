@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accessing Form Fields</title>
+</head>
+<body>
+    <h2>Accessing Form Fields</h2>
+    <p>Every form field, whether it is a button, text box, or other, is contained in the form’s elements collection.
+    You can access the various fields in the collection by using their name attributes or their positions
+    in the collection:</p>
+
+    <h3>Different ways for accessing form fields</h3>
+    <ul>
+        <li>var oFirstField = oForm.elements[0]; //get the first form field</li>
+        <li>var oTextbox1 = oForm.elements["textbox1"];//get the field with the name “textbox1”</li>
+        <li>var oTextbox1 = oForm.textbox1; //get the field with the name "textbox1"</li>
+        <li>var oTextbox1 = oForm["text box 1"]; //get the field with the name “text box 1”</li>
+    </ul>
+</body>
+</html>

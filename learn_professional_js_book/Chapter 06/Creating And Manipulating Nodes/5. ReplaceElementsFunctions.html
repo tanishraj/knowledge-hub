@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Replace Elements Functions</title>
+</head>
+<body>
+    <h2>Replace Elements Functions</h2>
+    <p>Naturally, if you can add a node you can also remove a node, which is where the removeChild()
+        method comes in. This method accepts one argument, the node to remove, and then returns that node as the function
+        value.</p>
+
+    <p><button onclick="replaceMessage()">Click Me to Replace the Message</button></p>
+
+    <div>Hello World!!</div>
+
+    <script type="text/javascript">
+        function replaceMessage() {
+            var oNewP = document.createElement("div");
+            var oText = document.createTextNode("Hello Universe");
+            oNewP.appendChild(oText);
+            var oOldP = document.body.getElementsByTagName("div")[0];
+            oOldP.parentNode.replaceChild(oNewP,oOldP);
+        }
+    </script>
+</body>
+</html>

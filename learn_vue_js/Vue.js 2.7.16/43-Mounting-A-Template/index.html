@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mouting A template</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Mouting A template</h1>
+        <p>By mounting a template we can not reuse it on multiple places. Instead, it is better practice to use Component.</p>
+
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <h5>{{title}}</h5>
+            <button class="btn btn-primary" @click="show">Show Paragraph</button>
+            <p class="pt-2" v-if="showParagraph">This is not always visible.</p>
+        </div>
+
+        <div id="app1">
+            <h5>{{title}}</h5>
+            <button class="btn btn-primary" @click="show" ref="myButton">Show Paragraph</button>
+            <p class="pt-2" v-if="showParagraph">This is not always visible.</p>
+        </div>
+
+        <div id="app2">
+        </div>
+
+        <div id="app3">
+            
+        </div>
+
+        <!-- You can see here that component is called twice but it is priting only once, this is where it is better to use components instead of template -->
+        <hello></hello>
+        <hello></hello>
+    </div>
+
+    <script>
+
+        var vm1 = new Vue({
+            el: '#app',
+
+            data: {
+                title: "Title from outside",
+                showParagraph: false
+            },
+
+            methods: {
+                show: function () {
+                    this.showParagraph = true;
+                    this.updateTitle("Vue JS instance (updated)");
+                    this.$refs.myButton.innerText = "Test button";
+                },
+
+                updateTitle: function (title) {
+                    this.title = title;
+                }
+            },
+
+            watch: {
+                title: function(value){
+                    alert("title changed, new value: ", + value);
+                }
+            }
+        })
+
+
+
+        var vm2 = new Vue({
+            el: '#app1',
+
+            data: {
+                title: "Title from outside",
+                showParagraph: false
+            },
+
+            methods: {
+                show: function () {
+                    this.showParagraph = true;
+                    this.updateTitle("Vue JS instance (updated)");
+                },
+
+                updateTitle: function (title) {
+                    this.title = title;
+                }
+            }
+        })
+
+        var vm3 = new Vue({
+            template: '<h1>Hello!!</h1>'
+        })
+
+        vm3.$mount();
+        document.getElementById('app2').appendChild(vm3.$el);
+        
+        var vm4 = new Vue({
+            el: 'hello',
+            template: '<h1>Hello again!!</h1>'
+        })
+
+    </script>
+</body>
+
+</html>

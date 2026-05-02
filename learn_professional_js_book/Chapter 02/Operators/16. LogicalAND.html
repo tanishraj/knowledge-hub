@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logical AND</title>
+</head>
+<body>
+    <h2>Logical AND</h2>
+    <p>The logical AND operator in ECMAScript is indicated by the double ampersand (&&). Logical AND can be used with any
+    type of operand, not just boolean values. When either operand is not a primitive boolean, logical AND does not always
+    return a boolean value.</p>
+
+    <ul>
+        <li>If the operand is an object and one is boolean, the object is returned.</li>
+        <li>If both operands are objects, the second operand is returned.</li>
+        <li>If either operand is null, null is returned.</li>
+        <li>If either operand is NaN, NaN is returned.</li>
+        <li>If either operand is undefined, an error occurs.</li>
+    </ul>
+
+    <script type="text/javascript">
+        //bTrue = true;
+        //var bResult = (bTrue && bUnknown); //Error
+        //document.write(bResult);
+
+        var bFalse = false;
+        var bResult = (bFalse && bUnknown);
+        alert(bResult);
+    </script>
+</body>
+</html>

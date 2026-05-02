@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating an Autosuggest Text Box</title>
+    <script type="text/javascript" src="listutil.js"></script>
+    <script type="text/javascript" src="textutil.js"></script>
+</head>
+<body>
+    <h2>Creating an Autosuggest Text Box</h2>
+    <p>Let’s face it, people really don’t enjoy filling out forms, especially when values need to be typed in.
+        That’s why applications like Microsoft Outlook incorporate autosuggest text boxes, which are text boxes
+        that examine the first few characters a user has typed and then suggests a word (or multiple words)
+        from a given list that may complete his entry. Web browsers also work in this way when you are typing
+        a Web address. With a little bit of JavaScript trickery, it’s possible to create the same type of behavior in
+        Web forms.</p>
+
+    <p>Type in a color in lowercase:<br />
+        <input type="text" value="" id="txtColor" onkeyup="TextUtil.autosuggest(this, arrColors, 'lstColors')" /><br />
+        <select id="lstColors" size="5" style="width: 200px" onclick="setText(this, 'txtColor')"></select>
+    </p>
+
+
+    <script type="text/javascript">
+        var arrColors = ["red", "orange", "yellow", "green", "blue", "indigo",
+            "violet", "brown", "black", "tan", "ivory", "navy",
+            "aqua", "white", "purple", "pink", "gray", "silver"];
+        arrColors.sort();
+
+        function setText(oListbox, sTextboxId) {
+            var oTextbox = document.getElementById(sTextboxId);
+            if (oListbox.selectedIndex > -1) {
+                oTextbox.value = oListbox.options[oListbox.selectedIndex].text;
+            }
+        }
+    </script>
+</body>
+</html>

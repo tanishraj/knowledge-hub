@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>How can we delete a value from an array</title>
+</head>
+<body>
+	<script type="text/JavaScript">
+ 
+	    var arr = [5, 15, 110, 210, 550];
+
+	    for(temp in arr){
+			document.write(arr[temp] + ",");
+		}
+
+	    var index = arr.indexOf(210);
+	 
+	    if (index > -1) {
+	       arr.splice(index, 1);
+	    }
+	    document.write("<br/><br/>")
+	    for(temp in arr){
+			document.write(arr[temp] + ",");
+		}
+
+		document.write("<br/><br/>")
+		delete arr[3];
+	    for(temp in arr){
+			document.write(arr[temp] + ",");
+		}
+	</script>
+</body>
+</html>

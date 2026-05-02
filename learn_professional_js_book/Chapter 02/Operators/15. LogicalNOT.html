@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logical NOT</title>
+</head>
+<body>
+    <h2>Logical NOT</h2>
+    <p>Logical NOT operator in ECMAScript is same as in C and Java, indicated by an exclamation point
+    (!). Unlike logical OR and logical AND operators, the logical NOT always returns a boolean value.</p>
+    <ul>
+        <li>If the operand is an object, false is returned.</li>
+        <li>If the operand is the number 0, true is returned.</li>
+        <li>If the operand is any number other than 0, false is returned.</li>
+        <li>If the operand is null, true is returned.</li>
+        <li>If the operand is NaN, true is returned.</li>
+        <li>If the operand is undefined, an error occurs.</li>
+    </ul>
+
+    <script type="text/javascript">
+        var bFalse = false;
+        var sBlue = 'blue';
+        var iZero = 0;
+        var iThreeFourFive = 345;
+        var oObject = new Object();
+
+        document.write("<br/>The boolean value of bFalse is = " + (!!bFalse));
+        document.write("<br/>The boolean value of sBlue is = " + (!!sBlue));
+        document.write("<br/>The boolean value of iZero is = " + (!!iZero));
+        document.write("<br/>The boolean value of iThreeFourFive is = " + (!!iThreeFourFive));
+        document.write("<br/>The boolean value of oObject is = " + (!!oObject));
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Class</title>
+</head>
+<body>
+    <h2>Number Class</h2>
+    <script type="text/javascript">
+        var oNumberObject = new Number(55);
+        var iNum = oNumberObject.valueOf();
+        document.write("Value of iNum = " + iNum);
+
+        val = iNum.toFixed(2);
+        document.write("<br/>Value of iNum to 2 fixed position = " + val);
+
+        val = iNum.toPrecision(1);
+        document.write("<br/>Value of iNum to 1 precision position = " + val);
+
+        val = iNum.toExponential(2);
+        document.write("<br/>Value of iNum to 1 exponential position = " + val);
+    </script>
+</body>
+</html>

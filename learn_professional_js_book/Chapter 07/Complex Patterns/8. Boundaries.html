@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Boundaries</title>
+</head>
+<body>
+    <h2>Boundaries</h2>
+    <p>Boundaries are used in regular expressions to indicate the location of a pattern. The following table lists
+    the available boundaries:</p>
+    <p>
+        <table border="1">
+            <tr>
+                <th>Boundary</th>
+                <th>Description</th>
+            </tr>
+
+            <tr>
+                <td>^</td>
+                <td>Beginning of the line</td>
+            </tr>
+
+            <tr>
+                <td>$</td>
+                <td>End of the line</td>
+            </tr>
+
+            <tr>
+                <td>\b</td>
+                <td>Word boundary</td>
+            </tr>
+
+            <tr>
+                <td>\B</td>
+                <td>Non-word boundary</td>
+            </tr>
+
+        </table>
+    </p>
+
+    <script type="text/javascript">
+        var sToMatch = "Important word is the last one.";
+        var reLastWord = /(\w+)\.$/;
+        reLastWord.test(sToMatch);
+        document.write(RegExp.$1); //outputs "one"
+    </script>
+
+    <script type="text/javascript">
+        var sToMatch = "Important word is the last one.";
+        var reFirstWord = /^(\w+)/;
+        reFirstWord.test(sToMatch);
+        document.write("<br/>" + RegExp.$1); //outputs "Important"
+    </script>
+</body>
+</html>

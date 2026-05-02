@@ -1,0 +1,21 @@
+<div class="fuid-container mt-5 mb-5">
+    <div class="container">
+      <h1 class="text-center mb-3">Addition Of Two Number (Event Binding &amp; Property Binding)</h1>
+  
+      <div class="form-group">
+        <label for="additionNum1">Num 1:</label>
+        <input type="text" class="form-control" id="additionNum1" [(ngModel)]="a"/>
+      </div>
+
+      <div class="form-group">
+          <label for="additionNum2">Num 2:</label>
+          <input type="text" class="form-control" id="additionNum2" [(ngModel)]="b"/>
+        </div>
+
+        <div class="form-group">
+            <input type="button" class="btn btn-primary" value="Click To Add" (click)=addNums()/>
+        </div>
+
+        <p><strong>Addtion is: </strong> {{addNums()}}</p>
+    </div>
+  </div>

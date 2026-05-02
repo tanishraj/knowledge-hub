@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logical OR</title>
+</head>
+<body>
+    <h2>Logical OR</h2>
+    <p>The logical OR operator in ECMAScript is the same as in Java, using the double pipe (||).
+    Just like Logical AND, if either operand is no a boolean, logical OR will not always return
+    a boolean value:</p>
+    <ul>
+        <li>If one operand is an object and one is a boolean, the object is returned.</li>
+        <li>If both operands are objects, the first operand is returned.</li>
+        <li>if both operands are null, null is returned.</li>
+        <li>if either operand is NaN, NaN is returned.</li>
+        <li>If either operand is undefined, an error occurs.</li>
+    </ul>
+
+    <script type="text/javascript">
+        var bTrue = true;
+        var bResult = (bTrue || bUnknown);
+        document.write(bResult);
+
+        //var bFalse = false;
+        //bResult = (bFalse || bUnknown); //Error
+        //document.write(bResult);
+    </script>
+</body>
+</html>

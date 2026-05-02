@@ -1,0 +1,22 @@
+
+<div class="fuid-container mt-5 mb-5">
+    <div class="container">
+		<h1 class="text-center mb-3">Calculator</h1>
+		  
+		<div class="form-group">
+			<label for="calculatorNum1">Num 1:</label>
+			<input type="text" class="form-control" id="calculatorNum1" [(ngModel)]="a"/>
+		</div>
+
+		<div class="form-group">
+			<label for="calculatorNum2">Num 2:</label>
+			<input type="text" class="form-control" id="calculatorNum2" [(ngModel)]="b"/>
+		</div>
+
+		<div class="form-group">
+			<input type="button" class="btn btn-primary" value="Add" (click)=addNums()/>
+			<input type="button" class="btn btn-primary ml-2" value="Subtract" (click)=subNums()/>
+		</div>
+    </div>
+</div>
+  

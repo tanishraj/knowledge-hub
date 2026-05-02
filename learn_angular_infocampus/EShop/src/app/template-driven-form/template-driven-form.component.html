@@ -1,0 +1,39 @@
+<div class="container-fluid mt-5 mb-5">
+	<div class="container">
+		<h1 class="text-center mb-2">Template Driven Forms</h1>
+		<form class="form" #frm="ngForm">
+			<div class="form-group">
+				<label for="templateName">Name:</label>
+				<input type="text" ngModel #name="ngModel" pattern="^[a-zA-Z ]*$" id="templateName" class="form-control" name="name" minlength="3" required />
+				<div class="text-danger" *ngIf="name.errors && name.dirty">
+					<span *ngIf="name.errors['required']">Name is required.</span>
+					<span *ngIf="name.errors['minlength']">Minimum 3 characters required.</span>
+					<span *ngIf="name.errors['maxlength']">Maximum 10 characters allowed.</span>
+					<span *ngIf="name.errors['pattern']">Only Characters Allowed.</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="templateEmail">Email:</label>
+				<input type="email" ngModel #email="ngModel" id="templateEmail" class="form-control" name="email" required minlength="3" maxlength="20"/>
+				<div class="text-danger" *ngIf="email.errors && email.touched">
+					<span *ngIf="email.errors['required']">Email is required.</span>
+					<span *ngIf="email.errors['minlength']">Minimum 3 characters required.</span>
+					<span *ngIf="email.errors['maxLength']">Maximum 10 characters allowed.</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<input type="button" [disabled]="!frm.valid" class="btn btn-primary" value="Display Form Values" (click)=displayRecords() />
+				<input type="button" class="btn btn-warning ml-2" value="Reset All" (click)="reset()"/>
+			</div>
+		</form>
+
+		<br/>
+		<div *ngIf="displayData!=false">
+			<h2>Form Data is:</h2>
+			<p>Name: {{FormData.name}}</p>
+			<p>Email: {{FormData.email}}</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>split() Method</title>
+</head>
+<body>
+    <h2>split() Method</h2>
+    <p>split() method is used to split a string into mutiple substrings and returns them in an array.</p>
+
+    <script type="text/javascript">
+        //split() example using string character
+        var sColor = "Red, Green, Blue, Orange, White";
+        //split on basis of comma
+        var arrColor = sColor.split(",");
+        document.write("Color names are = ");
+        for(var temp in arrColor){
+            document.write("<br/>" + arrColor[temp]);
+        }
+
+        //split() example using regular expressions
+        var sColor = "Red, Green, Blue, Orange, White";
+        reComma = /\,/;
+        //split on basis of comma
+        var arrColor = sColor.split(reComma);
+        document.write("<br/><br/>Color names are = ");
+        for(var temp in arrColor){
+            document.write("<br/>" + arrColor[temp]);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Using all drag-and-drop events</title>
+</head>
+<body>
+    <h2>Using all drag-and-drop events</h2>
+    <p>The tricky part of handling system drag and drop is understanding the relationship between the dragged
+        item events and the drop target events. Generally speaking, the dragged item events always fire first,
+        except in the case of the drop event, which fires before dragend. The following example allows you to
+        explore the relationship between these sets of events:</p>
+
+    <h3>Example:</h3>
+    <p>Try dragging the text from the left textbox to the right one.</p>
+    <p><input type="text" value="drag this text"
+              ondragstart="handleDragDropEvent(event)" ondrag="handleDragDropEvent(event)"
+              ondragend="handleDragDropEvent(event)" />
+        <input type="text" ondragenter="handleDragDropEvent(event)"
+               ondragover="handleDragDropEvent(event)" ondragleave="handleDragDropEvent(event)"
+               ondrop="handleDragDropEvent(event)" /></p>
+    <p><textarea rows="10" cols="25" readonly="readonly" id="txt1"></textarea></p>
+
+
+    <script type="text/javascript">
+        function handleDragDropEvent(oEvent) {
+            var oTextbox = document.getElementById("txt1");
+            oTextbox.value +=  oEvent.type + "\n";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Back References On Groups</title>
+</head>
+<body>
+    <h2>Back References On Groups</h2>
+    <p>Backreferences can also be used in the expressions that defines the groups. You do this by using the special
+    escape sequesnces \1, \2 and so on.</p>
+
+    <script type="text/javascript">
+        var sToMatch = "dogdog";
+        var reNumbers = /(dog)\1/;
+        document.write("" + reNumbers.test(sToMatch));
+        document.write("<br/>" + RegExp.$1);
+    </script>
+</body>
+</html>

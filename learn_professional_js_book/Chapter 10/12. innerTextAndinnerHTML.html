@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>innerText</title>
+</head>
+<body>
+    <h2>innerText and innerHTML</h2>
+    <p>Despite the advantages that the DOM brought to dynamically modifying documents, it wasn’t enough
+        for the developers at Microsoft. Internet Explorer 4.0 introduced two properties on all elements designed
+        to ease the manipulation of the document called innerText and innerHTML.</p>
+
+    <h3>Example:</h3>
+    <div id="para"></div>
+
+    <script type="text/javascript">
+        var oDiv = document.getElementById("para");
+
+        oDiv.innerText = "Hello, I am the first sentence in this div. \n";
+        oDiv.innerText += " One more sentence in this div </div>\n";
+
+        oDiv.innerHTML += "<strong style='color: #f00;'>Hello there i am inner HTML content.</strong>"
+
+    </script>
+</body>
+</html>

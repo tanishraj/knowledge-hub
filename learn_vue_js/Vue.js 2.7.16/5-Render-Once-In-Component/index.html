@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM Interaction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Render once in component or template:</h1>
+        <p>WRender the element and component once only. On subsequent re-renders, the element/component and all its children will be treated as static content and skipped. This can be used to optimize update performance.</p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <div>
+                <!-- <h1>{{ greeting }}</h1> <!-- In this case "Hello There" will be printed out here -->
+                <!-- <p>{{ sayHello() }}</p> <!-- In this case "Hello There" will be printed out here -->
+            </div>
+
+            <div>
+                <h1 v-once>{{ greeting }}</h1> <!-- In this case "Hello There" will be printed out here -->
+                <p>{{ sayHello() }}</p> <!-- In this case "Hello There" will be printed out here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                greeting: "Hello Vue JS",
+                link: 'http://www.tanishraj.com/'
+            },
+
+            methods: {
+                    sayHello: function() {
+                        this.greeting = "Hello There";
+                        return this.greeting; // greeting can not be accessed without this keyword
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

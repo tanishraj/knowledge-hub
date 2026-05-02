@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Even Properties Examples</title>
+</head>
+<body>
+    <h2>Even Properties Examples</h2>
+    <p>Type some characters into the first textbox.</p>
+
+    <h3>Input Text:</h3>
+    <p><textarea name="txtInput" id="txtInput" cols="50" rows="10"></textarea></p>
+
+    <h3>Output Text:</h3>
+    <p><textarea name="txtOutput" id="txtOutput" cols="50" rows="10"></textarea></p>
+
+    <script type="text/javascript">
+        var txtinput = document.getElementById("txtInput");
+        
+        var handleEvent = function (oEvent) {
+            var txtOutput = document.getElementById("txtOutput");
+            txtOutput.value += oEvent.type + "\n";
+            txtOutput.value += "target is " + (oEvent.target || oEvent.srcElement).id + "\n";
+            txtOutput.value += "keyCode is " + oEvent.keyCode + "\n";
+            txtOutput.value += "charCode is " + oEvent.charCode + "\n";
+
+            var arrKeys = new Array();
+            if(oEvent.shiftKey){
+                arrKeys.push("Shift Key");
+            }
+            if(oEvent.ctrlKey){
+                arrKeys.push("Ctrl Key");
+            }
+            if(oEvent.altKey){
+                arrKeys.push("Alt Key");
+            }
+
+            txtOutput.value += "Keys down are " + arrKeys + "\n\n";
+        }
+
+        txtinput.addEventListener("keyup", handleEvent, false);
+        txtinput.addEventListener("keypress", handleEvent, false);
+        txtinput.addEventListener("keydown", handleEvent, false);
+
+    </script>
+</body>
+</html>

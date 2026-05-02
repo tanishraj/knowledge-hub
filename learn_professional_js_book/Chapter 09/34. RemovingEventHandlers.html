@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Removing Event Handlers</title>
+</head>
+<body>
+    <h2>Removing Event Handlers</h2>
+    <p>Of course, you can’t just add event handlers; you must also create a way to remove them. To this end,
+        the EventUtil object gets another method called removeEventHandler(). As you may expect, this
+        method accepts the same parameters as addEventHandler() and uses pretty much the same algorithm:</p>
+
+    <div id="button">Click Me</div>
+
+    <script type="text/javascript">
+        var EventUtil = new Object;
+
+        EventUtil.addEventHandler = function (oTarget, sEventType, fnHandler) {
+            if (oTarget.addEventListener) {
+                //for DOM-compliant browsers
+                oTarget.addEventListener(sEventType, fnHandler, false);
+            }
+            else if (oTarget.attachEvent) {
+                //for IE
+                oTarget.attachEvent("on" + sEventType, fnHandler);
+            }
+            else {
+                //for all others
+                oTarget["on" + sEventType] = fnHandler;
+            }
+        };
+
+
+        EventUtil.removeEventHandler = function (oTarget, sEventType, fnHandler) {
+            if (oTarget.removeEventListener) {
+                //for DOM-compliant browsers
+                oTarget.removeEventListener(sEventType, fnHandler, false);
+            }
+            else if (oTarget.detachEvent) {
+                //for IE
+                oTarget.detachEvent("on" + sEventType, fnHandler);
+            }
+            else {
+                //for all others
+                oTarget["on" + sEventType] = null;
+            }
+        };
+
+        var messageAlert = function(){
+            alert("Hello how are you?");
+            EventUtil.removeEventHandler(oButton, "click", messageAlert)
+        }
+
+        var oButton = document.getElementById("button");
+        EventUtil.addEventHandler(oButton, "click", messageAlert);
+    </script>
+</body>
+</html>

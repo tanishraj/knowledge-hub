@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>match() Method</title>
+</head>
+<body>
+    <h2>match() Method</h2>
+    <p>match() method is almost similar to exec() method, but there is only one difference that exec() method is applies on
+    regular expressions where as match() method is applies on exec() method.</p>
+
+    <script type="text/javascript">
+        var sToMatch = "a bat, a cat, a fAt baT, a faT cat";
+        var reAt = /at/;
+
+        //Below line of code will print only the first occurance of the match since we have not defined global sign in pattern
+        document.write("All matches found are = " + sToMatch.match(reAt));
+
+        //Below code will print all occurances of matches excluding case sensitive
+        reAt = /at/g;
+        arrMatches = sToMatch.match(reAt);
+        document.write("<br/>All matches found are = " + arrMatches.length);
+
+        //Below code will print all occurances of matches including case sensitive
+        reAt = /at/gi;
+        arrMatches = sToMatch.match(reAt);
+        document.write("<br/>All matches found are = " + arrMatches.length);
+    </script>
+</body>
+</html>

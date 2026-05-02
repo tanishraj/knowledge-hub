@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Preventing the default behavior for an event</title>
+</head>
+<body>
+    <h2>Preventing the default behavior for an event</h2>
+    <p>To prevent the default behavior for an event in IE, you must set the returnValue property to false:</p>
+    <p>oEvent.returnValue = false; (FOR IE)</p>
+
+    <p>In Mozilla, you just call the preventDefault() method:</p>
+    <p>oEvent.preventDefault(); (FOR MOZILLA)</p>
+
+    <script src="detect.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        document.body.oncontextmenu = function (oEvent) {
+            if (isIE) {
+                oEvent = window.event;
+                oEvent.returnValue = false;
+            } else {
+                oEvent.preventDefault();
+            }
+        };
+    </script>
+</body>
+</html>

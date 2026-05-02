@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Looping through list of numbers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Looping through list of numbers</h1>
+        <p>
+            You can also use v-for to iterate through n timesof the numbers.
+        </p>
+        <p><strong>Example:</strong></p>
+        <div id="app">
+            <h5>List of Numbers:</h5>
+            <ul>
+                <li v-for="n in 10">{{n}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: {
+                
+            },
+
+            computed: {
+                
+            }
+        })
+    </script>
+</body>
+
+</html>

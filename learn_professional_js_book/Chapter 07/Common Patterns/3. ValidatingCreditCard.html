@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validating Master Credit Cards</title>
+</head>
+<body>
+    <h2>Validating Master Credit Cards</h2>
+    <p>If you own or operate an e-commerce site, chances are you need to deal with credit card validation. Not
+    every incorrect credit card number is a fraudulent buyer; sometimes people just mistype or hit Enter too
+    early. To prevent a trip back to the server, you can create some basic patterns to determine if a given
+    credit card number is valid.</p>
+    <p>To start, consider a MasterCard credit card number, which must contain 16 digits. Of those 16 digits, the
+    first two digits must be a number between 51 and 55.</p>
+
+    <script type="text/javascript">
+        function isValidMasterCard(sText) {
+            var reMasterCard = /^(5[1-5]\d{2})[\s\-]?(\d{4})[\s\-]?(\d{4})[\s\-]?(\d{4})$/;
+            if (reMasterCard.test(sText)) {
+                var sCardNum = RegExp.$1 + RegExp.$2 + RegExp.$3 + RegExp.$4;
+                return luhnCheckSum(sCardNum);
+                } else {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>exec() Method</title>
+</head>
+<body>
+    <h2>exec() Method</h2>
+    <p>exec() method is similar to test() method. But there is a major difference between test() and exec() is,
+    test() method always check for the first occurance and returns true if matches found with the pattern. where as
+    exec() method always check for all occurances and return an array containing all matches.</p>
+
+    <script type="text/javascript">
+        var sToMatch = "a bat, a cat, a fAt baT, a faT cat";
+        var reAt = /at/;
+
+        //Below line of code will print only the first occurance of the match since we have not defined global sign in pattern
+        document.write("All matches found are = " + reAt.exec(sToMatch));
+
+        //Below code will print all occurances of matches
+        reAt = /at/gi;
+        arrMatches = reAt.exec(sToMatch);
+        document.write("<br/>All matches found are = " + arrMatches.length);
+    </script>
+</body>
+</html>

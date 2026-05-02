@@ -1,0 +1,13 @@
+<h2 class="text-center">Handling UnExpected Errors</h2>
+<small class="text-center d-block">We are going to handle the unexpected error with app specific errors because error of response type object can cause "Seperation of Concern"</small>
+<div class="form-group">
+  <input (keyup.enter)="createPost(title)" #title type="text" class="form-control mt-2 mb-3" placeholder="Add Your New Post">
+
+  <ul class="list-group">
+      <li class="list-group-item" *ngFor="let post of posts">
+        <button (click)="updatePost(post)" type="button" class="btn btn-primary btn-sm">Update</button>
+        <button (click)="deletePost(post)" type="button" class="btn btn-danger ml-2 btn-sm">Delete</button>
+        {{post.title}}
+      </li>
+    </ul>
+</div>

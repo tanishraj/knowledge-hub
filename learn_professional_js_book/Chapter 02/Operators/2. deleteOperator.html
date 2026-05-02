@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Operator</title>
+</head>
+<body>
+    <h2>Delete Operator</h2>
+    <p>The delete operator erases a reference to an object property
+    or method that was previously defined.</p>
+
+    <script type="text/javascript">
+        var o = new Object();
+        o.name = "Tanish";
+        o.age = 25;
+        document.write("Name is = " + o.name + " and age is = " + o.age);
+
+        delete o.age;
+        document.write("<br/>After deleting age reference Name is = " + o.name + " and age is = " + o.age);
+
+    </script>
+</body>
+</html>

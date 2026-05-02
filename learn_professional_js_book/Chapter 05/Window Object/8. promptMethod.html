@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prompt() Method</title>
+</head>
+<body>
+    <h2>prompt() Method</h2>
+    <p>It used to take input from user at run time.</p>
+
+    <p><strong>Example:</strong></p>
+    <button onclick="addTwoNumbers()">Add Two Numbers</button>
+
+    <script type="text/javascript">
+        function addTwoNumbers() {
+            var a = prompt("Enter the first number:");
+            var b = prompt("Enter the second number:");
+
+            var c = parseInt(a) + parseInt(b);
+            document.write("Addition of " + a + " and " + b + " = " + c);
+        }
+    </script>
+</body>
+</html>

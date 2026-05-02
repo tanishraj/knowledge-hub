@@ -1,0 +1,6 @@
+<span class="glyphicon" 
+  [ngClass]= "{
+    'glyphicon-star': isRated,
+    'glyphicon-star-empty': !isRated
+  }"
+ (click)="toggleStar()">

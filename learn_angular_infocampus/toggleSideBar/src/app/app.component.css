@@ -1,0 +1,9 @@
+.main-content {
+	width: 75%;
+	float: right;
+}
+
+.side-content{
+	width: 25%;
+	float: left;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detecting Opera</title>
+</head>
+<body>
+    <h2>Detecting Opera</h2>
+    <p>The simplest and best way to begin browser detection is to start with the problem browsers, such as
+        Opera and Safari. If you determine that a browser is not one of these, it is much easier to determine
+        when a browser is legitimately IE or Mozilla.</p>
+
+    <script type="text/javascript">
+        //Below code determines whether browser is OPERA browser or something else
+        var isMinOpera4 = isMinOpera5 = isMinOpera6 = isMinOpera7 = isMinOpera7_5 = false;
+        var sUserAgent = navigator.userAgent;
+        var fAppVersion = parseFloat(navigator.appVersion);
+        var isOpera = ((sUserAgent.indexOf("Opera")) > -1);
+
+        if (isOpera) {
+            var fOperaVersion;
+
+            if (navigator.appName == "Opera") {
+                fOperaVersion = fAppVersion;
+            }
+            else {
+                var reOperaVersion = new RegExp("Opera(\\d +\\.\\d +)")
+                ;
+                reOperaVersion.test(sUserAgent);
+                fOperaVersion = parseFloat(RegExp["$1"]);                    ;
+            }
+            isMinOpera4 = fOperaVersion >= 4;
+            isMinOpera5 = fOperaVersion >= 5;
+            isMinOpera6 = fOperaVersion >= 6;
+            isMinOpera7 = fOperaVersion >= 7;
+            isMinOpera7_5 = fOperaVersion >= 7.5;
+        }
+
+    </script>
+</body>
+</html>

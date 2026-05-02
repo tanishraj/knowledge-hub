@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detecting Macintosh operating systems</title>
+</head>
+<body>
+    <h2>Detecting Macintosh operating systems</h2>
+    <p>Believe it or not, this is actually an easy part of the trek into the client’s machine. Traditionally, Macintosh
+        browsers would not tell you the operating system being used; the only information they provided was
+        whether the Macintosh was using a 68000 processor or a PowerPC processor. Only recently have browsers
+        begun to report the MacOS X as the operating system, meaning that testing for MacOS X is trustworthy
+        if you find “MacOS X” in the user-agent string. If it’s not there, however, the user could still be using
+        MacOS X but not have a browser that reports it. For this reason, it’s best to stick to the old method of
+        checking the processor.</p>
+
+    <script type="text/javascript">
+        var isMac68K = isMacPPC = false;
+
+        if (isMac) {
+            isMac68K = sUserAgent.indexOf("Mac_68000") > -1
+                || sUserAgent.indexOf("68K") > -1;
+            isMacPPC = sUserAgent.indexOf("Mac_PowerPC") > -1
+                || sUserAgent.indexOf("PPC") > -1;
+        }
+    </script>
+</body>
+</html>

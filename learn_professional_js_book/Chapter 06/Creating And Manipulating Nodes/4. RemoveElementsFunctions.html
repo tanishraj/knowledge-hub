@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remove Elements Functions</title>
+</head>
+<body>
+    <h2>Remove Elements Functions</h2>
+    <p>Naturally, if you can add a node you can also remove a node, which is where the removeChild()
+    method comes in. This method accepts one argument, the node to remove, and then returns that node as the function
+    value.</p>
+
+    <p><button onclick="removeMessage()">Click Me to remove the Message</button></p>
+
+    <p>Hello World!!</p>
+
+    <script type="text/javascript">
+        function removeMessage() {
+            var oP = document.body.getElementsByTagName("p")[2];
+            document.body.removeChild(oP);
+        }
+    </script>
+</body>
+</html>

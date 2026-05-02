@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Udemy Instructor Form</h2><hr/>
+  <form role="form" class="col-sm-5" #f="ngForm" name="ngForm">
+    <div class="form-group" [ngClass]="(course.touched) && (course.valid ? 'has-success' : 'has-error')">
+      <label for="course">Course Name:</label>
+      <input class="form-control" minlength="5" required ngModel #course="ngModel" name="course" type="text"  id="course"/>
+      <div class="alert alert-danger" *ngIf="course.touched && !course.valid">
+        <div *ngIf="course.errors.minlength">Course name should be minimum 5 characters.</div>
+        <div *ngIf="course.errors.required">Course name must be provided.</div>
+      </div>
+    </div>
+    <div class="form-group" [ngClass]="(category.touched) && (category.valid ? 'has-success' : 'has-error')">
+      <label for="category">Course Category:</label>
+      <select required ngModel #category="ngModel" name="category" id="category" class="form-control">
+        <option *ngFor="let category of categorties" [ngValue]="category.id">{{category.name}}</option>
+      </select>
+      <div class="alert alert-danger" *ngIf="category.touched && !category.valid">
+        <div *ngIf="course.errors.required">Course category must be provided.</div>
+      </div>
+    </div>
+    <div class="checkbox">
+      <label><input ngModel name="moneyBack" type="checkbox"> 30 days money back guaruntee</label>
+    </div>
+    <button type="submit" [disabled]="!f.valid" class="btn btn-default">Create</button>
+    
+  <hr/>
+  <div class="panel-head">{{f.value | json}}</div>
+  </form>
+</div>

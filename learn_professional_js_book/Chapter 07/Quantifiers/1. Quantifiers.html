@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quantifiers - Simple Quantifiers</title>
+</head>
+<body>
+    <h2>Quantifiers</h2>
+    <p>Quantifiers enables you to  specify how many times a particular pattern should occur. You can specify both hard values
+    (for example, this character should appear three times) and soft values(for example this character should appear atleast 
+    once but can repeat any number of times) when setting how many times a pattern should occur.</p>
+
+    <h3>Simple Quantifiers</h3>
+    <table border="1">
+    	<tr>
+    		<th>Code</th>
+    		<th>Description</th>
+    	</tr>
+    	<tr>
+    		<td>?</td>
+    		<td>Either zero or one occurance</td>
+    	</tr>
+    	<tr>
+    		<td>*</td>
+    		<td>Zero or more occurance</td>
+    	</tr>
+    	<tr>
+    		<td>+</td>
+    		<td>One or more occurance</td>
+    	</tr>
+    	<tr>
+    		<td>{n}</td>
+    		<td>Exactly n occurance</td>
+    	</tr>
+    	<tr>
+    		<td>{n,m}</td>
+    		<td>At least n but not more than m occurances</td>
+    	</tr>
+    	<tr>
+    		<td>{n,}</td>
+    		<td>Atleast n occurances</td>
+    	</tr>
+    </table>
+
+    <script type="text/javascript">
+    	//Example for ? (0 or 1 occurance)
+    	var sToMatch = "bd, bad";
+    	var reToMatch = /ba?d/g;
+    	var arrMatches = sToMatch.match(reToMatch)
+    	document.write("<br/>matches are = ");
+    	for(var temp in arrMatches){
+    		document.write("<br/>" + arrMatches[temp]);
+    	}
+
+    	//Example for * (zero or more occurances)
+    	var sToMatch = "bd, bad, baad, baaad";
+    	var reToMatch = /ba*d/g;
+    	var arrMatches = sToMatch.match(reToMatch)
+    	document.write("<br/><br/>matches are = ");
+    	for(var temp in arrMatches){
+    		document.write("<br/>" + arrMatches[temp]);
+    	}
+
+    	//Example for + (one or more occurances)
+    	var sToMatch = "bd, bad, baad, baaad, baaaad";
+    	var reToMatch = /ba+d/g;
+    	var arrMatches = sToMatch.match(reToMatch)
+    	document.write("<br/><br/>matches are = ");
+    	for(var temp in arrMatches){
+    		document.write("<br/>" + arrMatches[temp]);
+    	}
+
+    	//Example for n (3 occurances)
+    	var sToMatch = "bd, bad, baad, baaad";
+    	var reToMatch = /ba{3}d/g;
+    	var arrMatches = sToMatch.match(reToMatch)
+    	document.write("<br/><br/>matches are = ");
+    	for(var temp in arrMatches){
+    		document.write("<br/>" + arrMatches[temp]);
+    	}
+
+    	//Example for n,m (minimum n times and maximum m occurances)
+    	var sToMatch = "bd, bad, baad, baaad";
+    	var reToMatch = /ba{0,2}d/g;
+    	var arrMatches = sToMatch.match(reToMatch)
+    	document.write("<br/><br/>matches are = ");
+    	for(var temp in arrMatches){
+    		document.write("<br/>" + arrMatches[temp]);
+    	}
+
+    	//Example for n, (atleast n occurances)
+    	var sToMatch = "bd, bad, baad, baaad";
+    	var reToMatch = /ba{2}d/g;
+    	var arrMatches = sToMatch.match(reToMatch)
+    	document.write("<br/><br/>matches are = ");
+    	for(var temp in arrMatches){
+    		document.write("<br/>" + arrMatches[temp]);
+    	}
+    </script>
+</body>
+</html>
