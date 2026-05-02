@@ -234,6 +234,343 @@ git config --global user.email "newemail@example.com"
 
 Remember, the email you use in your Git configuration should match the email you use for your remote Git services (like GitHub, GitLab, or Bitbucket) to ensure your commits are properly attributed to your account.
 
+## First-Time GitHub Setup
+
+This section is for setting up GitHub on a new computer for the first time. It covers:
+
+1. Installing and checking Git
+2. Configuring your Git username and email
+3. Creating an SSH key
+4. Adding the SSH key to GitHub
+5. Testing the SSH connection
+6. Creating and using a GitHub Personal Access Token
+
+### Step 1: Check That Git Is Installed
+
+Before connecting your computer to GitHub, make sure Git is available.
+
+```
+git --version
+```
+
+If Git is installed, you will see a version number, for example:
+
+```
+git version 2.45.0
+```
+
+If the command is not found, install Git first:
+
+- macOS with Homebrew:
+
+  ```
+  brew install git
+  ```
+
+- Windows:
+
+  Download and install Git from [git-scm.com](https://git-scm.com/download/win).
+
+### Step 2: Configure Your Git Username
+
+Git needs to know your name because every commit stores the author's name.
+
+```
+git config --global user.name "Your Name"
+```
+
+Example:
+
+```
+git config --global user.name "John Doe"
+```
+
+The `--global` option means this name will be used for all Git repositories on your computer.
+
+### Step 3: Configure Your Git Email
+
+Git also stores an email address with every commit. Ideally, use the same email address that is connected to your GitHub account.
+
+```
+git config --global user.email "your-email@example.com"
+```
+
+Example:
+
+```
+git config --global user.email "john@example.com"
+```
+
+### Step 4: Check Your Git Configuration
+
+Run these commands to confirm your name and email were saved correctly:
+
+```
+git config --global user.name
+git config --global user.email
+```
+
+You can also view all global Git settings with:
+
+```
+git config --global --list
+```
+
+### Step 5: Set the Default Branch Name
+
+Many modern GitHub repositories use `main` as the default branch name. You can configure Git to use `main` when you create a new repository.
+
+```
+git config --global init.defaultBranch main
+```
+
+This affects new repositories created with `git init`.
+
+### Step 6: Create an SSH Key
+
+SSH keys let your computer securely connect to GitHub without typing your GitHub password every time.
+
+Run this command and replace the email with your GitHub email:
+
+```
+ssh-keygen -t ed25519 -C "your-email@example.com"
+```
+
+When Git asks where to save the key, press `Enter` to use the default location:
+
+```
+~/.ssh/id_ed25519
+```
+
+When Git asks for a passphrase, you can either:
+
+- Press `Enter` to leave it empty
+- Type a passphrase for extra security
+
+Using a passphrase is more secure, but you may need to unlock the key when using it.
+
+### Step 7: Start the SSH Agent
+
+The SSH agent keeps your private key available in the background so Git can use it.
+
+On macOS or Linux, run:
+
+```
+eval "$(ssh-agent -s)"
+```
+
+You should see output similar to:
+
+```
+Agent pid 12345
+```
+
+### Step 8: Add Your SSH Key to the SSH Agent
+
+Add your new private key to the SSH agent:
+
+```
+ssh-add ~/.ssh/id_ed25519
+```
+
+If you used a passphrase, you may be asked to enter it.
+
+### Step 9: Copy Your Public SSH Key
+
+You need to copy the public key, not the private key.
+
+The public key file ends with `.pub`:
+
+```
+~/.ssh/id_ed25519.pub
+```
+
+On macOS, copy it with:
+
+```
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+On Windows Git Bash, display it with:
+
+```
+cat ~/.ssh/id_ed25519.pub
+```
+
+Then copy the full output.
+
+Important:
+
+- Share the `.pub` public key with GitHub.
+- Never share the private key file, which is `~/.ssh/id_ed25519`.
+
+### Step 10: Add the SSH Key to GitHub
+
+In GitHub:
+
+1. Open GitHub in your browser.
+2. Click your profile picture.
+3. Go to **Settings**.
+4. Open **SSH and GPG keys**.
+5. Click **New SSH key**.
+6. Add a clear title, such as `MacBook Pro` or `Work Laptop`.
+7. Paste your public SSH key.
+8. Click **Add SSH key**.
+
+### Step 11: Test the GitHub SSH Connection
+
+Run:
+
+```
+ssh -T git@github.com
+```
+
+The first time, you may see a message asking if you trust GitHub's host fingerprint. Type:
+
+```
+yes
+```
+
+If everything is working, you should see a message like:
+
+```
+Hi username! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+This means your SSH setup is working.
+
+### Step 12: Use SSH URLs When Cloning Repositories
+
+When cloning from GitHub, prefer the SSH URL.
+
+SSH URL format:
+
+```
+git@github.com:username/repository-name.git
+```
+
+Example:
+
+```
+git clone git@github.com:john/my-project.git
+```
+
+If you already cloned a repository using HTTPS, you can switch it to SSH:
+
+```
+git remote set-url origin git@github.com:username/repository-name.git
+```
+
+Check the remote URL with:
+
+```
+git remote -v
+```
+
+### Step 13: Create a GitHub Personal Access Token
+
+A GitHub Personal Access Token, often called a PAT, is used when a tool needs to authenticate with GitHub over HTTPS or the GitHub API.
+
+You may need a token for:
+
+- Pushing to GitHub over HTTPS
+- Using GitHub CLI or other developer tools
+- Connecting GitHub to CI/CD tools
+- Accessing private repositories through scripts or integrations
+
+For normal Git command-line work, SSH is usually easier. But it is still useful to know how Personal Access Tokens work.
+
+### Step 14: Generate a Personal Access Token on GitHub
+
+In GitHub:
+
+1. Click your profile picture.
+2. Go to **Settings**.
+3. Open **Developer settings**.
+4. Open **Personal access tokens**.
+5. Choose **Fine-grained tokens** when possible.
+6. Click **Generate new token**.
+7. Give the token a clear name, such as `Local Git Access`.
+8. Choose an expiration date.
+9. Select the repositories the token can access.
+10. Select only the permissions you need.
+11. Generate the token.
+12. Copy the token immediately.
+
+Important:
+
+- GitHub shows the token only once.
+- Do not commit the token into code.
+- Do not share the token in screenshots, messages, or documentation.
+- If a token is exposed, delete it and create a new one.
+
+### Step 15: Use a Personal Access Token with HTTPS
+
+If you clone with an HTTPS URL:
+
+```
+git clone https://github.com/username/repository-name.git
+```
+
+GitHub may ask for your username and password when you push or pull.
+
+Use:
+
+- Username: your GitHub username
+- Password: your Personal Access Token
+
+Your GitHub account password will not work for Git command-line authentication over HTTPS. Use the token instead.
+
+### Step 16: Save HTTPS Credentials Safely
+
+Git can store your HTTPS credentials so you do not need to enter the token every time.
+
+On macOS:
+
+```
+git config --global credential.helper osxkeychain
+```
+
+On Windows:
+
+```
+git config --global credential.helper manager
+```
+
+After this, the next time you enter your GitHub username and token, Git will save them securely using your operating system's credential manager.
+
+### Step 17: Recommended Setup
+
+For most developers, the best first-time setup is:
+
+1. Configure Git username and email.
+2. Use SSH for normal clone, pull, and push commands.
+3. Use a Personal Access Token only for HTTPS, API access, GitHub CLI, CI/CD, or third-party tools.
+4. Keep both your SSH private key and Personal Access Tokens secret.
+
+### Quick First-Time Setup Command Checklist
+
+Use this checklist after replacing the example name and email:
+
+```
+git --version
+git config --global user.name "Your Name"
+git config --global user.email "your-email@example.com"
+git config --global init.defaultBranch main
+git config --global --list
+ssh-keygen -t ed25519 -C "your-email@example.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+pbcopy < ~/.ssh/id_ed25519.pub
+ssh -T git@github.com
+```
+
+After copying the public key, add it to GitHub under:
+
+```
+GitHub Settings > SSH and GPG keys > New SSH key
+```
+
 ## What is Git SSH?
 
 Git SSH (Secure Shell) is a secure network protocol used for remote communication and operations with Git repositories. It provides a way to access, manage, and transfer data to and from remote Git servers securely. SSH uses encryption to ensure that all data transmitted between the client and the server is protected from eavesdropping, tampering, and other security threats.
