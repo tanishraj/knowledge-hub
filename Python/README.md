@@ -67,7 +67,7 @@ A structured reference for the Python lesson slides. The original slide deck is 
 ## 1. Variables
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![1. Variables](<Lessons/1. Variables.png>)
 
@@ -96,7 +96,7 @@ print(type(name))
 ## 1.1. Local and Global Variable
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![1.1. Local and Global Variable](<Lessons/1.1. Local and Global Variable.png>)
 
@@ -127,7 +127,7 @@ show()
 ## 2. Data Types
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![2. Data Types](<Lessons/2. Data Types.png>)
 
@@ -159,7 +159,7 @@ print(type(student))
 ## 3. Operators
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![3. Operators](<Lessons/3. Operators.png>)
 
@@ -191,7 +191,7 @@ print(a > 5 and b < 5)
 ## 3.1. is vs ==
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![3.1. is vs ==](<Lessons/3.1. is vs ==.png>)
 
@@ -219,7 +219,7 @@ print(a is b)  # False
 ## 4. Input and Output
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![4. Input and Output](<Lessons/4. Input and Output.png>)
 
@@ -245,7 +245,7 @@ print("Age:", age)
 ## 5. Typecasting
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![5. Typecasting](<Lessons/5. Typecasting.png>)
 
@@ -276,7 +276,7 @@ print(message)
 ## 5.1. Typecasting
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![5.1. Typecasting](<Lessons/5.1. Typecasting.png>)
 
@@ -306,7 +306,7 @@ print(marks + 5)
 ## 6. Conditional Statements
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![6. Conditional Statements](<Lessons/6. Conditional Statements.png>)
 
@@ -337,7 +337,7 @@ else:
 ## 6.1 Conditional-Shorthand
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![6.1 Conditional-Shorthand](<Lessons/6.1 Conditional-Shorthand.png>)
 
@@ -364,7 +364,7 @@ print(status)
 ## 7. Match Case
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![7. Match Case](<Lessons/7. Match Case.png>)
 
@@ -397,7 +397,7 @@ match command:
 ## 8. Loops
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![8. Loops](<Lessons/8. Loops.png>)
 
@@ -423,7 +423,7 @@ for number in range(5):
 ## 8.1. Enumerate
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![8.1. Enumerate](<Lessons/8.1. Enumerate.png>)
 
@@ -451,7 +451,7 @@ for index, name in enumerate(names, start=1):
 ## 9. Functions
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![9. Functions](<Lessons/9. Functions.png>)
 
@@ -477,7 +477,7 @@ def add(a, b):
 ## 9.1. Lambda Function
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![9.1. Lambda Function](<Lessons/9.1. Lambda Function.png>)
 
@@ -506,7 +506,7 @@ students.sort(key=lambda student: student[1])
 ## 10. Strings
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![10. Strings](<Lessons/10. Strings.png>)
 
@@ -536,7 +536,7 @@ print(len(message))
 ## 10.1. String Methods
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![10.1. String Methods](<Lessons/10.1. String Methods.png>)
 
@@ -566,7 +566,7 @@ print("red,green,blue".split(","))
 ## 10.2 String formatting
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![10.2 String formatting](<Lessons/10.2 String formatting.png>)
 
@@ -595,7 +595,7 @@ print("Name: {}, Age: {}".format(name, age))
 ## 10.3 F-String
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![10.3 F-String](<Lessons/10.3 F-String.png>)
 
@@ -622,7 +622,7 @@ print(f"{name} is {age} years old")
 ## 11. Lists
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![11. Lists](<Lessons/11. Lists.png>)
 
@@ -648,7 +648,7 @@ items.append("bag")
 ## 11.1. List Methods
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![11.1. List Methods](<Lessons/11.1. List Methods.png>)
 
@@ -679,7 +679,7 @@ print(removed)
 ## 12. Tuples
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![12. Tuples](<Lessons/12. Tuples.png>)
 
@@ -709,7 +709,7 @@ single_item = (5,)
 ## 12.1. Tuples Methods
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![12.1. Tuples Methods](<Lessons/12.1. Tuples Methods.png>)
 
@@ -737,7 +737,7 @@ print(numbers.index(3))
 ## 13. Docstrings
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![13. Docstrings](<Lessons/13. Docstrings.png>)
 
@@ -766,7 +766,7 @@ print(greet.__doc__)
 ## 14. Sets
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![14. Sets](<Lessons/14. Sets.png>)
 
@@ -794,7 +794,7 @@ print(2 in numbers)
 ## 14.1 Sets Methods
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![14.1 Sets Methods](<Lessons/14.1 Sets Methods.png>)
 
@@ -824,7 +824,7 @@ print(a.difference(b))
 ## 15. Dictionary
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![15. Dictionary](<Lessons/15. Dictionary.png>)
 
@@ -850,7 +850,7 @@ print(student["name"])
 ## 15.1. Dictionary
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![15.1. Dictionary](<Lessons/15.1. Dictionary.png>)
 
@@ -879,7 +879,7 @@ print(student.get("email", "Not provided"))
 ## 15.2. Dictionary Methods
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![15.2. Dictionary Methods](<Lessons/15.2. Dictionary Methods.png>)
 
@@ -909,7 +909,7 @@ student.update({"age": 19})
 ## 16. Exception Handling
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![16. Exception Handling](<Lessons/16. Exception Handling.png>)
 
@@ -937,7 +937,7 @@ except ValueError:
 ## 17. Exception Handling
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![17. Exception Handling](<Lessons/17. Exception Handling.png>)
 
@@ -970,7 +970,7 @@ except ZeroDivisionError as error:
 ## 18. Virtual-Environment
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![18. Virtual-Environment](<Lessons/18. Virtual-Environment.png>)
 
@@ -998,7 +998,7 @@ pip freeze > requirements.txt
 ## 19 Modules
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![19 Modules](<Lessons/19 Modules.png>)
 
@@ -1029,7 +1029,7 @@ print(math_utils.add(2, 3))
 ## 19.1. Import-Statement
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![19.1. Import-Statement](<Lessons/19.1. Import-Statement.png>)
 
@@ -1060,7 +1060,7 @@ print(dt.date.today())
 ## 19.2. Import __name__=__main__
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![19.2. Import __name__=__main__](<Lessons/19.2. Import __name__=__main__.png>)
 
@@ -1089,7 +1089,7 @@ if __name__ == "__main__":
 ## 19.3. OS Module
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![19.3. OS Module](<Lessons/19.3. OS Module.png>)
 
@@ -1119,7 +1119,7 @@ os.makedirs("example", exist_ok=True)
 ## 19.4. File Module
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![19.4. File Module](<Lessons/19.4. File Module.png>)
 
@@ -1145,7 +1145,7 @@ with open("notes.txt", "w") as file:
 ## 19.5. File Methods
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![19.5. File Methods](<Lessons/19.5. File Methods.png>)
 
@@ -1175,7 +1175,7 @@ print(position)
 ## 20. OOPs
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![20. OOPs](<Lessons/20. OOPs.png>)
 
@@ -1202,7 +1202,7 @@ class Student:
 ## 20.1. Access Modifiers
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![20.1. Access Modifiers](<Lessons/20.1. Access Modifiers.png>)
 
@@ -1231,7 +1231,7 @@ class Account:
 ## 20.2. Inheritance
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![20.2. Inheritance](<Lessons/20.2. Inheritance.png>)
 
@@ -1264,7 +1264,7 @@ Dog().speak()
 ## 20.2.1. Inheritance Types
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![20.2.1. Inheritance Types](<Lessons/20.2.1. Inheritance Types.png>)
 
@@ -1296,7 +1296,7 @@ class C(B):
 ## 20.3. Static Methods
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![20.3. Static Methods](<Lessons/20.3. Static Methods.png>)
 
@@ -1324,7 +1324,7 @@ class Math:
 ## 20.4. Instance vs Class Variables
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![20.4. Instance vs Class Variables](<Lessons/20.4. Instance vs Class Variables.png>)
 
@@ -1355,7 +1355,7 @@ student = Student("Rahul")
 ## 20.5 Class Methods
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![20.5 Class Methods](<Lessons/20.5 Class Methods.png>)
 
@@ -1385,7 +1385,7 @@ class User:
 ## 20.6. Super Keyword
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![20.6. Super Keyword](<Lessons/20.6. Super Keyword.png>)
 
@@ -1417,7 +1417,7 @@ class Student(Person):
 ## 21. Decorators Intro
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![21. Decorators Intro](<Lessons/21. Decorators Intro.png>)
 
@@ -1453,7 +1453,7 @@ greet()
 ## 21.1. Decorators With Examples
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![21.1. Decorators With Examples](<Lessons/21.1. Decorators With Examples.png>)
 
@@ -1488,7 +1488,7 @@ print(add(2, 3))
 ## 21.2. Getters and Setters
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![21.2. Getters and Setters](<Lessons/21.2. Getters and Setters.png>)
 
@@ -1522,7 +1522,7 @@ class Person:
 ## 22. dir, __dict__, help
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![22. dir, __dict__, help](<Lessons/22. dir, __dict__, help.png>)
 
@@ -1556,7 +1556,7 @@ help(str)
 ## 23. Dunder Methods
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![23. Dunder Methods](<Lessons/23. Dunder Methods.png>)
 
@@ -1588,7 +1588,7 @@ print(Student("Rahul"))
 ## 24. Method Overriding
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![24. Method Overriding](<Lessons/24. Method Overriding.png>)
 
@@ -1622,7 +1622,7 @@ class Square(Shape):
 ## 25. Operator Overloading
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![25. Operator Overloading](<Lessons/25. Operator Overloading.png>)
 
@@ -1658,7 +1658,7 @@ print(result.x, result.y)
 ## 26. Time Module
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![26. Time Module](<Lessons/26. Time Module.png>)
 
@@ -1689,7 +1689,7 @@ print(end - start)
 ## 27. Walrus Operator
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![27. Walrus Operator](<Lessons/27. Walrus Operator.png>)
 
@@ -1717,7 +1717,7 @@ if (count := len(numbers)) > 3:
 ## 28. SHutil Module
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![28. SHutil Module](<Lessons/28. SHutil Module.png>)
 
@@ -1745,7 +1745,7 @@ shutil.move("backup.txt", "archive/backup.txt")
 ## 29. Requests Module
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![29. Requests Module](<Lessons/29. Requests Module.png>)
 
@@ -1774,7 +1774,7 @@ print(response.json())
 ## 30. Generators
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![30. Generators](<Lessons/30. Generators.png>)
 
@@ -1801,7 +1801,7 @@ def count_up_to(n):
 ## Mini Projects
 
 <details>
-<summary>View lesson slide</summary>
+<summary>Cheatsheet Slide</summary>
 
 ![Mini Projects](<Lessons/Mini Projects.png>)
 
