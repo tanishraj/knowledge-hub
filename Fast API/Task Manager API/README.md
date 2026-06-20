@@ -1,56 +1,33 @@
 # Task Manager API - Python FastAPI
 
-A beginner-friendly REST API built with **Python** and **FastAPI**.
+A beginner-friendly backend project built with **FastAPI**.
 
-This project teaches the basic backend development flow using a simple **Task Manager API**. You will learn how to create, read, update, and delete tasks using HTTP methods like `GET`, `POST`, `PATCH`, and `DELETE`.
-
----
-
-## Table of Contents
-
-1. [What This Project Does](#what-this-project-does)
-2. [What You Will Learn](#what-you-will-learn)
-3. [Prerequisites](#prerequisites)
-4. [Backend Basics](#backend-basics)
-5. [Project Setup](#project-setup)
-6. [Create a Virtual Environment](#create-a-virtual-environment)
-7. [Activate the Virtual Environment](#activate-the-virtual-environment)
-8. [Install Dependencies](#install-dependencies)
-9. [Project Structure](#project-structure)
-10. [Complete Code](#complete-code)
-11. [Run the API](#run-the-api)
-12. [Open API Documentation](#open-api-documentation)
-13. [API Endpoints](#api-endpoints)
-14. [How the Code Works](#how-the-code-works)
-15. [Testing the API](#testing-the-api)
-16. [Common Errors and Fixes](#common-errors-and-fixes)
-17. [Important Notes](#important-notes)
-18. [Next Steps](#next-steps)
+This project is designed as the **final project after learning FastAPI basics**.  
+It teaches you how real backend applications are structured: authentication, database models, protected routes, ownership rules, and API testing.
 
 ---
 
-## What This Project Does
+## Project Goal
 
-This API allows users to manage tasks.
+Build a backend API where users can:
 
-You can:
+- Register an account
+- Login with email and password
+- Receive a JWT access token
+- Create their own tasks
+- View only their own tasks
+- Update only their own tasks
+- Delete only their own tasks
 
-- Create a task
-- Get all tasks
-- Get a single task by ID
-- Update a task
-- Delete a task
+This is a very common real-world backend pattern.
 
-Example task:
+Examples:
 
-```json
-{
-  "id": 1,
-  "title": "Learn FastAPI",
-  "description": "Build a beginner API",
-  "completed": false
-}
-```
+- Todo app backend
+- Project management backend
+- Notes app backend
+- Issue tracker backend
+- Personal productivity backend
 
 ---
 
@@ -58,153 +35,293 @@ Example task:
 
 By building this project, you will learn:
 
-- What an API is
-- What backend development means
-- How HTTP methods work
-- How to create routes in FastAPI
-- How to accept request data
-- How to return response data
-- How to validate data using Pydantic
-- How to use status codes
-- How to handle errors
-- How to run a FastAPI server using Uvicorn
-- How to test APIs using Swagger UI
+- FastAPI app structure
+- API routing
+- Request and response schemas
+- Database models
+- User registration
+- Password hashing
+- Login authentication
+- JWT token creation
+- Protected routes
+- Current logged-in user dependency
+- User-owned data
+- CRUD operations
+- Error handling
+- Testing basics
+- Docker basics
+- Deployment preparation
 
 ---
 
-## Prerequisites
+## Tech Stack
 
-You should already know basic Python:
+Recommended beginner stack:
 
-- Variables
-- Functions
-- Lists
-- Dictionaries
-- Loops
-- Classes basics
-- Type hints basics
-
-You should have Python installed.
-
-Check your Python version:
-
-```bash
-python3 --version
-```
-
-Recommended version:
-
-```text
-Python 3.10 or above
-```
-
-Why Python 3.10+?
-
-Because this project uses syntax like:
-
-```python
-str | None
-```
-
-This syntax works in Python 3.10 and above.
-
-If you are using Python 3.9, use this style instead:
-
-```python
-from typing import Optional
-
-description: Optional[str] = None
-```
-
----
-
-## Backend Basics
-
-### What is Backend?
-
-The backend is the part of an application that runs on the server.
-
-It usually handles:
-
-- Business logic
-- Database operations
-- Authentication
-- APIs
-- File uploads
-- Security
-- Communication with frontend
-
-Example:
-
-```text
-Frontend: React app
-Backend: FastAPI app
-Database: PostgreSQL / SQLite / MongoDB
-```
-
-The frontend sends a request to the backend, and the backend sends a response.
-
----
-
-### What is an API?
-
-API means **Application Programming Interface**.
-
-In simple words:
-
-> An API is a way for two applications to communicate with each other.
-
-Example:
-
-A React frontend asks the backend:
-
-```text
-Give me all tasks
-```
-
-The backend returns:
-
-```json
-[
-  {
-    "id": 1,
-    "title": "Learn FastAPI",
-    "completed": false
-  }
-]
-```
-
----
-
-### Common HTTP Methods
-
-| Method | Meaning | Example |
-|---|---|---|
-| `GET` | Read data | Get all tasks |
-| `POST` | Create data | Create a new task |
-| `PATCH` | Partially update data | Update task title only |
-| `PUT` | Replace full data | Replace entire task |
-| `DELETE` | Delete data | Delete a task |
-
----
-
-### Common HTTP Status Codes
-
-| Status Code | Meaning |
+| Tool | Purpose |
 |---|---|
-| `200` | Success |
-| `201` | Created successfully |
-| `204` | Deleted successfully, no response body |
-| `400` | Bad request |
-| `404` | Not found |
-| `422` | Validation error |
-| `500` | Server error |
+| Python | Programming language |
+| FastAPI | Web API framework |
+| Uvicorn | Development server |
+| SQLAlchemy / SQLModel | Database ORM |
+| SQLite | Beginner database |
+| Pydantic | Data validation |
+| Passlib / bcrypt | Password hashing |
+| Python-Jose / PyJWT | JWT authentication |
+| Pytest | Testing |
+| Docker | Containerization |
+
+For beginners, start with **SQLite**.  
+Later, you can move to **PostgreSQL**.
 
 ---
 
-## Project Setup
+## API Features
 
-Create a folder for your project:
+### Public Routes
+
+These routes do not require login.
+
+| Method | Route | Purpose |
+|---|---|---|
+| GET | `/health` | Check if API is running |
+| POST | `/auth/register` | Create a new user |
+| POST | `/auth/login` | Login and receive access token |
+
+---
+
+### Protected Routes
+
+These routes require a valid JWT token.
+
+| Method | Route | Purpose |
+|---|---|---|
+| GET | `/me` | Get current logged-in user |
+| GET | `/tasks` | List current user's tasks |
+| POST | `/tasks` | Create a task for current user |
+| GET | `/tasks/{task_id}` | Get one task owned by current user |
+| PATCH | `/tasks/{task_id}` | Update one task owned by current user |
+| DELETE | `/tasks/{task_id}` | Delete one task owned by current user |
+
+---
+
+## API Rules
+
+The API must follow these rules:
+
+- Users can only see their own tasks.
+- Users can only update their own tasks.
+- Users can only delete their own tasks.
+- Task title is required.
+- Task priority can only be:
+  - `low`
+  - `medium`
+  - `high`
+- Password should never be returned in API responses.
+- Password should never be stored as plain text.
+- Protected routes require a valid token.
+
+---
+
+## Data Models
+
+### User Model
+
+Database fields:
+
+| Field | Type | Description |
+|---|---|---|
+| `id` | int | Unique user id |
+| `name` | str | User's name |
+| `email` | str | User's email address |
+| `password_hash` | str | Hashed password |
+| `created_at` | datetime | Account creation time |
+
+Important:
+
+Never return `password_hash` from the API response.
+
+---
+
+### Task Model
+
+Database fields:
+
+| Field | Type | Description |
+|---|---|---|
+| `id` | int | Unique task id |
+| `title` | str | Task title |
+| `description` | str or null | Optional task description |
+| `completed` | bool | Task completion status |
+| `priority` | str | `low`, `medium`, or `high` |
+| `owner_id` | int | User id of task owner |
+| `created_at` | datetime | Task creation time |
+| `updated_at` | datetime | Last task update time |
+
+---
+
+## Suggested Project Structure
+
+```text
+app/
+├── main.py
+├── database.py
+├── core/
+│   ├── config.py
+│   └── security.py
+├── models/
+│   ├── user.py
+│   └── task.py
+├── schemas/
+│   ├── user.py
+│   ├── task.py
+│   └── auth.py
+├── routers/
+│   ├── auth.py
+│   ├── users.py
+│   └── tasks.py
+├── services/
+│   ├── auth_service.py
+│   └── task_service.py
+└── tests/
+    ├── test_auth.py
+    └── test_tasks.py
+```
+
+---
+
+## What Each Folder Means
+
+### `app/main.py`
+
+The entry point of your FastAPI app.
+
+Responsibilities:
+
+- Create FastAPI app
+- Include routers
+- Add health route
+- Start app configuration
+
+---
+
+### `app/database.py`
+
+Database setup file.
+
+Responsibilities:
+
+- Create database engine
+- Create database session
+- Provide database dependency
+- Create tables during development
+
+---
+
+### `app/core/config.py`
+
+Application configuration.
+
+Responsibilities:
+
+- Store app settings
+- Read environment variables
+- Store database URL
+- Store JWT secret key
+- Store token expiry time
+
+---
+
+### `app/core/security.py`
+
+Security helper functions.
+
+Responsibilities:
+
+- Hash password
+- Verify password
+- Create JWT token
+- Decode JWT token
+
+---
+
+### `app/models/`
+
+Database models live here.
+
+Examples:
+
+- User table model
+- Task table model
+
+These represent how data is stored in the database.
+
+---
+
+### `app/schemas/`
+
+Pydantic request and response models live here.
+
+Examples:
+
+- Register request schema
+- Login request schema
+- User response schema
+- Task create schema
+- Task update schema
+- Task response schema
+
+These represent how data enters and leaves your API.
+
+---
+
+### `app/routers/`
+
+API route files live here.
+
+Examples:
+
+- Auth routes
+- User routes
+- Task routes
+
+Routers keep your API clean instead of putting everything in `main.py`.
+
+---
+
+### `app/services/`
+
+Business logic lives here.
+
+Examples:
+
+- Create user
+- Authenticate user
+- Create task
+- Check task ownership
+- Update task
+- Delete task
+
+Services keep route files simple.
+
+---
+
+### `app/tests/`
+
+Test files live here.
+
+Examples:
+
+- Test register
+- Test login
+- Test create task
+- Test user cannot access another user's task
+
+---
+
+## Setup Instructions
+
+### 1. Create Project Folder
 
 ```bash
 mkdir task-manager-api
@@ -213,77 +330,54 @@ cd task-manager-api
 
 ---
 
-## Create a Virtual Environment
-
-A virtual environment keeps project packages separate from other Python projects.
-
-Create virtual environment:
+### 2. Create Virtual Environment
 
 ```bash
 python3 -m venv .venv
 ```
 
-This creates a folder:
-
-```text
-.venv/
-```
-
-That folder stores the Python environment and installed packages for this project.
-
----
-
-## Activate the Virtual Environment
-
-### macOS / Linux
+Activate it:
 
 ```bash
 source .venv/bin/activate
 ```
 
-After activation, your terminal should show:
-
-```text
-(.venv)
-```
-
-Example:
-
-```text
-(.venv) tanish@MacBook task-manager-api %
-```
-
-### Windows
+On Windows:
 
 ```bash
 .venv\Scripts\activate
 ```
 
+You should see:
+
+```text
+(.venv)
+```
+
+in your terminal.
+
 ---
 
-## Install Dependencies
+### 3. Create `requirements.txt`
 
-Install FastAPI:
+Create a file named:
 
-```bash
-python -m pip install "fastapi[standard]"
+```text
+requirements.txt
 ```
 
-This installs FastAPI and the standard tools needed to run the app.
+Add:
 
-You can check installed packages:
-
-```bash
-python -m pip list
+```txt
+fastapi[standard]
+sqlalchemy
+passlib[bcrypt]
+python-jose[cryptography]
+python-multipart
+pytest
 ```
 
-Save packages to `requirements.txt`:
-
-```bash
-python -m pip freeze > requirements.txt
-```
-
-Install packages later from `requirements.txt`:
+Then install:
 
 ```bash
 python -m pip install -r requirements.txt
@@ -291,227 +385,673 @@ python -m pip install -r requirements.txt
 
 ---
 
-## Project Structure
+### 4. Run the App
 
-For this beginner project, keep it simple:
-
-```text
-task-manager-api/
-├── main.py
-├── requirements.txt
-├── README.md
-└── .venv/
-```
-
-Explanation:
-
-| File / Folder | Purpose |
-|---|---|
-| `main.py` | Main FastAPI application file |
-| `requirements.txt` | List of installed Python packages |
-| `README.md` | Project documentation |
-| `.venv/` | Virtual environment folder |
-
-Do not push `.venv` to GitHub.
-
-Add this to `.gitignore`:
-
-```gitignore
-.venv/
-__pycache__/
-*.pyc
-```
-
----
-
-## Complete Code
-
-Create a file named:
-
-```text
-main.py
-```
-
-Add this code:
-
-```python
-from fastapi import FastAPI, HTTPException, Response, status
-from pydantic import BaseModel, Field
-
-app = FastAPI(title="Task API")
-
-
-class TaskCreate(BaseModel):
-    title: str = Field(min_length=3)
-    description: str | None = None
-    completed: bool = False
-
-
-class TaskUpdate(BaseModel):
-    title: str | None = Field(default=None, min_length=3)
-    description: str | None = None
-    completed: bool | None = None
-
-
-class TaskResponse(BaseModel):
-    id: int
-    title: str
-    description: str | None
-    completed: bool
-
-
-TASKS: list[dict] = []
-NEXT_ID = 1
-
-
-@app.get("/")
-def home():
-    return {"message": "Welcome to Task Manager API"}
-
-
-@app.get("/tasks", response_model=list[TaskResponse])
-def list_tasks():
-    return TASKS
-
-
-@app.post(
-    "/tasks",
-    response_model=TaskResponse,
-    status_code=status.HTTP_201_CREATED,
-)
-def create_task(task: TaskCreate):
-    global NEXT_ID
-
-    new_task = {
-        "id": NEXT_ID,
-        "title": task.title,
-        "description": task.description,
-        "completed": task.completed,
-    }
-
-    TASKS.append(new_task)
-    NEXT_ID += 1
-
-    return new_task
-
-
-@app.get("/tasks/{task_id}", response_model=TaskResponse)
-def get_task(task_id: int):
-    for task in TASKS:
-        if task["id"] == task_id:
-            return task
-
-    raise HTTPException(status_code=404, detail="Task not found.")
-
-
-@app.patch("/tasks/{task_id}", response_model=TaskResponse)
-def update_task(task_id: int, task_update: TaskUpdate):
-    for task in TASKS:
-        if task["id"] == task_id:
-            update_data = task_update.model_dump(exclude_unset=True)
-            task.update(update_data)
-            return task
-
-    raise HTTPException(status_code=404, detail="Task not found.")
-
-
-@app.delete("/tasks/{task_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_task(task_id: int):
-    for index, task in enumerate(TASKS):
-        if task["id"] == task_id:
-            TASKS.pop(index)
-            return Response(status_code=status.HTTP_204_NO_CONTENT)
-
-    raise HTTPException(status_code=404, detail="Task not found.")
-```
-
----
-
-## Run the API
-
-Run this command from the same folder where `main.py` exists:
+If your app is inside `app/main.py`, run:
 
 ```bash
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
-Meaning:
-
-```text
-main → main.py file
-app  → FastAPI app variable inside main.py
---reload → restart server automatically when code changes
-```
-
-If your file is named `server.py`, run:
-
-```bash
-uvicorn server:app --reload
-```
-
-If your FastAPI variable is named `api`, run:
-
-```bash
-uvicorn main:api --reload
-```
-
-Expected output:
-
-```text
-Uvicorn running on http://127.0.0.1:8000
-```
-
-Open in browser:
+Open:
 
 ```text
 http://127.0.0.1:8000
 ```
 
----
-
-## Open API Documentation
-
-FastAPI automatically creates API documentation.
-
-Open Swagger UI:
+Swagger docs:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-Open ReDoc:
+---
 
-```text
-http://127.0.0.1:8000/redoc
+## Environment Variables
+
+Create a `.env` file later when you add settings.
+
+Example:
+
+```env
+APP_NAME=Task Manager API
+DATABASE_URL=sqlite:///./task_manager.db
+SECRET_KEY=change-this-secret-key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```
 
-Swagger UI is very useful for beginners because you can test APIs directly from the browser.
+Important:
+
+Never commit real secret keys to GitHub.
 
 ---
 
-## API Endpoints
+## Build Order
 
-### 1. Home Route
+Follow this exact order as a beginner.
+
+---
+
+## Step 1: Health Route
+
+Create a simple route to check if the API is running.
+
+Endpoint:
 
 ```http
-GET /
+GET /health
+```
+
+Example response:
+
+```json
+{
+  "status": "ok",
+  "message": "Task Manager API is running"
+}
+```
+
+Why this step matters:
+
+Before adding database and auth, first make sure your FastAPI app works.
+
+---
+
+## Step 2: Database Connection
+
+Create a database connection.
+
+Start with SQLite:
+
+```text
+sqlite:///./task_manager.db
+```
+
+Why SQLite first?
+
+- Easy to use
+- No separate database server required
+- Good for learning
+- Database is stored as a local file
+
+Later you can move to PostgreSQL.
+
+---
+
+## Step 3: User Model
+
+Create the database model for users.
+
+Fields:
+
+```text
+id
+name
+email
+password_hash
+created_at
+```
+
+Important rules:
+
+- `email` should be unique.
+- `password_hash` stores hashed password.
+- Do not store plain password.
+
+---
+
+## Step 4: Register Route
+
+Endpoint:
+
+```http
+POST /auth/register
+```
+
+Request body:
+
+```json
+{
+  "name": "Tanish",
+  "email": "tanish@example.com",
+  "password": "secret123"
+}
+```
+
+Response body:
+
+```json
+{
+  "id": 1,
+  "name": "Tanish",
+  "email": "tanish@example.com",
+  "created_at": "2026-06-20T10:00:00"
+}
+```
+
+Rules:
+
+- Email should be unique.
+- Password should be hashed before saving.
+- Password should not be returned.
+
+---
+
+## Step 5: Password Hashing
+
+Never store this:
+
+```text
+secret123
+```
+
+Store something like this:
+
+```text
+$2b$12$wJ8...
+```
+
+You need two helper functions:
+
+```python
+hash_password(password)
+verify_password(plain_password, hashed_password)
+```
+
+The register route uses `hash_password`.
+
+The login route uses `verify_password`.
+
+---
+
+## Step 6: Login Route
+
+Endpoint:
+
+```http
+POST /auth/login
+```
+
+Request body:
+
+```json
+{
+  "email": "tanish@example.com",
+  "password": "secret123"
+}
+```
+
+Response body:
+
+```json
+{
+  "access_token": "jwt_token_here",
+  "token_type": "bearer"
+}
+```
+
+Rules:
+
+- Check if user exists.
+- Verify password.
+- If valid, create JWT token.
+- If invalid, return `401 Unauthorized`.
+
+---
+
+## Step 7: JWT Creation
+
+JWT means JSON Web Token.
+
+After login, the API returns a token.
+
+The frontend stores this token and sends it with protected requests.
+
+Header format:
+
+```http
+Authorization: Bearer your_token_here
+```
+
+JWT should contain user identity, usually user id or email.
+
+Example payload:
+
+```json
+{
+  "sub": "1",
+  "exp": 1718888888
+}
+```
+
+---
+
+## Step 8: Current User Dependency
+
+Create a dependency that:
+
+1. Reads token from request header.
+2. Decodes token.
+3. Gets user id from token.
+4. Finds user in database.
+5. Returns current user.
+
+This dependency will be used by protected routes.
+
+Example idea:
+
+```python
+def get_current_user():
+    ...
+```
+
+Routes using this dependency are protected.
+
+---
+
+## Step 9: Task Model
+
+Create the database model for tasks.
+
+Fields:
+
+```text
+id
+title
+description
+completed
+priority
+owner_id
+created_at
+updated_at
+```
+
+Important:
+
+`owner_id` connects a task to a user.
+
+This is how the API knows who owns which task.
+
+---
+
+## Step 10: Create Task
+
+Endpoint:
+
+```http
+POST /tasks
+```
+
+Protected route.
+
+Request body:
+
+```json
+{
+  "title": "Learn FastAPI Auth",
+  "description": "Build login and JWT flow",
+  "priority": "high"
+}
+```
+
+Response body:
+
+```json
+{
+  "id": 1,
+  "title": "Learn FastAPI Auth",
+  "description": "Build login and JWT flow",
+  "completed": false,
+  "priority": "high",
+  "owner_id": 1,
+  "created_at": "2026-06-20T10:00:00",
+  "updated_at": "2026-06-20T10:00:00"
+}
+```
+
+Rule:
+
+The task owner should be the current logged-in user.
+
+Do not allow user to pass `owner_id` manually from request body.
+
+---
+
+## Step 11: List Only Current User's Tasks
+
+Endpoint:
+
+```http
+GET /tasks
+```
+
+Protected route.
+
+Response body:
+
+```json
+[
+  {
+    "id": 1,
+    "title": "Learn FastAPI Auth",
+    "description": "Build login and JWT flow",
+    "completed": false,
+    "priority": "high",
+    "owner_id": 1,
+    "created_at": "2026-06-20T10:00:00",
+    "updated_at": "2026-06-20T10:00:00"
+  }
+]
+```
+
+Important database filter:
+
+```text
+owner_id == current_user.id
+```
+
+This prevents users from seeing other users' tasks.
+
+---
+
+## Step 12: Get One Task
+
+Endpoint:
+
+```http
+GET /tasks/{task_id}
+```
+
+Protected route.
+
+Rules:
+
+- Find task by `task_id`.
+- Check task belongs to current user.
+- If task does not exist, return `404`.
+- If task belongs to another user, also return `404`.
+
+Returning `404` is common because you do not want to reveal that another user's task exists.
+
+---
+
+## Step 13: Update Task
+
+Endpoint:
+
+```http
+PATCH /tasks/{task_id}
+```
+
+Protected route.
+
+Request body:
+
+```json
+{
+  "completed": true
+}
+```
+
+Rules:
+
+- User can update only their own task.
+- PATCH should allow partial update.
+- Use `exclude_unset=True` when converting Pydantic model to dictionary.
+
+Example:
+
+```python
+update_data = task_update.model_dump(exclude_unset=True)
+```
+
+This prevents missing fields from overwriting existing values.
+
+---
+
+## Step 14: Delete Task
+
+Endpoint:
+
+```http
+DELETE /tasks/{task_id}
+```
+
+Protected route.
+
+Rules:
+
+- User can delete only their own task.
+- If deleted successfully, return `204 No Content`.
+- Do not return response body with `204`.
+
+---
+
+## Step 15: Tests
+
+Start with these tests.
+
+### Auth Tests
+
+File:
+
+```text
+app/tests/test_auth.py
+```
+
+Test cases:
+
+- Register user successfully
+- Cannot register same email twice
+- Login with correct credentials
+- Login fails with wrong password
+- `/me` works with valid token
+- `/me` fails without token
+
+---
+
+### Task Tests
+
+File:
+
+```text
+app/tests/test_tasks.py
+```
+
+Test cases:
+
+- Create task with token
+- Cannot create task without token
+- List only current user's tasks
+- Get own task
+- Cannot get another user's task
+- Update own task
+- Cannot update another user's task
+- Delete own task
+- Cannot delete another user's task
+
+---
+
+## Step 16: Dockerfile
+
+Create a `Dockerfile` later.
+
+Basic example:
+
+```dockerfile
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+Build image:
+
+```bash
+docker build -t task-manager-api .
+```
+
+Run container:
+
+```bash
+docker run -p 8000:8000 task-manager-api
+```
+
+---
+
+## Step 17: Deployment
+
+Beginner-friendly deployment options:
+
+- Render
+- Railway
+- Fly.io
+- DigitalOcean
+- AWS later
+
+Before deployment:
+
+- Use PostgreSQL instead of SQLite
+- Move secrets to environment variables
+- Add CORS configuration
+- Add proper logging
+- Add production Dockerfile
+- Add migrations with Alembic
+
+---
+
+## Endpoint Details
+
+---
+
+## `GET /health`
+
+Purpose:
+
+Check if the API is alive.
+
+Response:
+
+```json
+{
+  "status": "ok",
+  "message": "Task Manager API is running"
+}
+```
+
+---
+
+## `POST /auth/register`
+
+Purpose:
+
+Create a new user account.
+
+Request:
+
+```json
+{
+  "name": "Tanish",
+  "email": "tanish@example.com",
+  "password": "secret123"
+}
+```
+
+Success response:
+
+```json
+{
+  "id": 1,
+  "name": "Tanish",
+  "email": "tanish@example.com",
+  "created_at": "2026-06-20T10:00:00"
+}
+```
+
+Error response if email exists:
+
+```json
+{
+  "detail": "Email already registered"
+}
+```
+
+---
+
+## `POST /auth/login`
+
+Purpose:
+
+Login user and return token.
+
+Request:
+
+```json
+{
+  "email": "tanish@example.com",
+  "password": "secret123"
+}
+```
+
+Success response:
+
+```json
+{
+  "access_token": "jwt_token_here",
+  "token_type": "bearer"
+}
+```
+
+Error response:
+
+```json
+{
+  "detail": "Invalid email or password"
+}
+```
+
+---
+
+## `GET /me`
+
+Purpose:
+
+Get currently logged-in user.
+
+Requires header:
+
+```http
+Authorization: Bearer your_token_here
 ```
 
 Response:
 
 ```json
 {
-  "message": "Welcome to Task Manager API"
+  "id": 1,
+  "name": "Tanish",
+  "email": "tanish@example.com",
+  "created_at": "2026-06-20T10:00:00"
 }
 ```
 
 ---
 
-### 2. Get All Tasks
+## `GET /tasks`
 
-```http
-GET /tasks
-```
+Purpose:
+
+Get current user's tasks.
+
+Requires token.
 
 Response:
 
@@ -520,93 +1060,33 @@ Response:
   {
     "id": 1,
     "title": "Learn FastAPI",
-    "description": "Build a task manager API",
-    "completed": false
+    "description": "Build Task Manager API",
+    "completed": false,
+    "priority": "medium",
+    "owner_id": 1,
+    "created_at": "2026-06-20T10:00:00",
+    "updated_at": "2026-06-20T10:00:00"
   }
 ]
 ```
 
 ---
 
-### 3. Create a Task
+## `POST /tasks`
 
-```http
-POST /tasks
-```
+Purpose:
 
-Request body:
+Create task.
 
-```json
-{
-  "title": "Learn FastAPI",
-  "description": "Build a beginner project",
-  "completed": false
-}
-```
+Requires token.
 
-Response status:
-
-```text
-201 Created
-```
-
-Response body:
+Request:
 
 ```json
 {
-  "id": 1,
-  "title": "Learn FastAPI",
-  "description": "Build a beginner project",
-  "completed": false
-}
-```
-
----
-
-### 4. Get Single Task
-
-```http
-GET /tasks/1
-```
-
-Response:
-
-```json
-{
-  "id": 1,
-  "title": "Learn FastAPI",
-  "description": "Build a beginner project",
-  "completed": false
-}
-```
-
-If task does not exist:
-
-```json
-{
-  "detail": "Task not found."
-}
-```
-
-Status code:
-
-```text
-404 Not Found
-```
-
----
-
-### 5. Update a Task
-
-```http
-PATCH /tasks/1
-```
-
-Request body:
-
-```json
-{
-  "completed": true
+  "title": "Learn JWT",
+  "description": "Understand auth flow",
+  "priority": "high"
 }
 ```
 
@@ -615,517 +1095,488 @@ Response:
 ```json
 {
   "id": 1,
-  "title": "Learn FastAPI",
-  "description": "Build a beginner project",
+  "title": "Learn JWT",
+  "description": "Understand auth flow",
+  "completed": false,
+  "priority": "high",
+  "owner_id": 1,
+  "created_at": "2026-06-20T10:00:00",
+  "updated_at": "2026-06-20T10:00:00"
+}
+```
+
+---
+
+## `GET /tasks/{task_id}`
+
+Purpose:
+
+Get one task.
+
+Requires token.
+
+Response:
+
+```json
+{
+  "id": 1,
+  "title": "Learn JWT",
+  "description": "Understand auth flow",
+  "completed": false,
+  "priority": "high",
+  "owner_id": 1,
+  "created_at": "2026-06-20T10:00:00",
+  "updated_at": "2026-06-20T10:00:00"
+}
+```
+
+---
+
+## `PATCH /tasks/{task_id}`
+
+Purpose:
+
+Partially update a task.
+
+Requires token.
+
+Request examples:
+
+```json
+{
   "completed": true
 }
 ```
 
-This is a partial update. You only send the fields you want to change.
+```json
+{
+  "title": "Learn FastAPI JWT",
+  "priority": "medium"
+}
+```
+
+Response:
+
+```json
+{
+  "id": 1,
+  "title": "Learn FastAPI JWT",
+  "description": "Understand auth flow",
+  "completed": true,
+  "priority": "medium",
+  "owner_id": 1,
+  "created_at": "2026-06-20T10:00:00",
+  "updated_at": "2026-06-20T11:00:00"
+}
+```
 
 ---
 
-### 6. Delete a Task
+## `DELETE /tasks/{task_id}`
+
+Purpose:
+
+Delete one task.
+
+Requires token.
+
+Success response:
 
 ```http
-DELETE /tasks/1
-```
-
-Response status:
-
-```text
 204 No Content
 ```
 
-There is no response body for `204`.
+There should be no JSON response body.
 
 ---
 
-## How the Code Works
+## Suggested Beginner Commit Plan
 
-### Importing FastAPI
+Use this commit order:
 
-```python
-from fastapi import FastAPI, HTTPException, Response, status
+```text
+01 - initial FastAPI app with health route
+02 - add database connection
+03 - add user model and schema
+04 - add register route
+05 - add password hashing
+06 - add login route
+07 - add JWT token creation
+08 - add current user dependency
+09 - add task model and schema
+10 - add create task route
+11 - add list current user's tasks
+12 - add get single task route
+13 - add update task route
+14 - add delete task route
+15 - add auth tests
+16 - add task tests
+17 - add Dockerfile
+18 - add deployment config
 ```
-
-This imports FastAPI tools.
-
-| Import | Purpose |
-|---|---|
-| `FastAPI` | Creates the app |
-| `HTTPException` | Sends error responses |
-| `Response` | Sends custom responses |
-| `status` | Provides readable status code names |
 
 ---
 
-### Creating the App
+## Beginner Concepts You Should Understand
 
-```python
-app = FastAPI(title="Task API")
+### What is Authentication?
+
+Authentication means:
+
+```text
+Who are you?
 ```
 
-This creates the FastAPI application.
+Example:
 
-The `title` appears in Swagger documentation.
+User logs in with email and password.
 
 ---
 
-### Pydantic Models
+### What is Authorization?
 
-Pydantic models define and validate data.
+Authorization means:
 
-#### TaskCreate
-
-Used when creating a task.
-
-```python
-class TaskCreate(BaseModel):
-    title: str = Field(min_length=3)
-    description: str | None = None
-    completed: bool = False
+```text
+What are you allowed to do?
 ```
 
-Rules:
+Example:
 
-- `title` is required
-- `title` must have at least 3 characters
-- `description` is optional
-- `completed` is optional and defaults to `False`
+A user can delete their own task, but not another user's task.
 
 ---
 
-#### TaskUpdate
+### What is Password Hashing?
 
-Used when updating a task.
+Password hashing means converting a password into a secure unreadable value.
 
-```python
-class TaskUpdate(BaseModel):
-    title: str | None = Field(default=None, min_length=3)
-    description: str | None = None
-    completed: bool | None = None
+Never store plain passwords.
+
+Bad:
+
+```text
+secret123
 ```
 
-All fields are optional because `PATCH` means partial update.
+Good:
+
+```text
+$2b$12$kjf...
+```
 
 ---
 
-#### TaskResponse
+### What is JWT?
 
-Used when returning a task from the API.
+JWT is a token that proves the user is logged in.
 
-```python
-class TaskResponse(BaseModel):
-    id: int
-    title: str
-    description: str | None
-    completed: bool
+Flow:
+
+```text
+User logs in
+API returns token
+Frontend stores token
+Frontend sends token with protected API requests
+API validates token
+API knows current user
 ```
-
-This controls the shape of the response.
 
 ---
 
-### Temporary In-Memory Storage
+### What is a Protected Route?
 
-```python
-TASKS: list[dict] = []
-NEXT_ID = 1
+A protected route requires a token.
+
+Example:
+
+```http
+GET /tasks
 ```
 
-This stores tasks inside a Python list.
-
-Important:
-
-> This is temporary storage. If you restart the server, all tasks will be lost.
-
-Later, you should replace this with a database like SQLite or PostgreSQL.
+This should not work unless the user is logged in.
 
 ---
 
-### Creating a Task
+### What is Ownership?
 
-```python
-@app.post("/tasks", response_model=TaskResponse, status_code=status.HTTP_201_CREATED)
-def create_task(task: TaskCreate):
+Ownership means data belongs to a specific user.
+
+Example:
+
+```text
+Task owner_id = User id
 ```
 
-This route accepts task data from the request body.
+So when user 1 requests tasks:
 
-FastAPI automatically validates the body using `TaskCreate`.
+```text
+only return tasks where owner_id = 1
+```
 
-Example request:
+---
+
+### What is CRUD?
+
+CRUD means:
+
+```text
+Create
+Read
+Update
+Delete
+```
+
+Task routes are CRUD routes.
+
+---
+
+## Common Mistakes
+
+### Returning Password Hash
+
+Do not return this:
 
 ```json
 {
-  "title": "Learn FastAPI"
+  "password_hash": "$2b$12$..."
 }
 ```
 
-FastAPI converts that JSON into a Python object:
-
-```python
-task.title
-```
+Create a response schema that excludes password fields.
 
 ---
 
-### Updating a Task
+### Allowing User to Pass `owner_id`
 
-```python
-update_data = task_update.model_dump(exclude_unset=True)
-```
-
-This converts the Pydantic model into a dictionary.
-
-`exclude_unset=True` means:
-
-> Only include fields that the user actually sent.
-
-Example request:
+Do not allow this request:
 
 ```json
 {
-  "completed": true
+  "title": "Task",
+  "owner_id": 5
 }
 ```
 
-Then `update_data` becomes:
+The backend should set `owner_id` from the logged-in user.
 
-```python
+---
+
+### Forgetting Token Header
+
+Protected routes need:
+
+```http
+Authorization: Bearer your_token_here
+```
+
+---
+
+### Returning Body with `204`
+
+This is wrong:
+
+```json
 {
-    "completed": True
+  "message": "Deleted"
 }
 ```
 
-Then this line updates the task:
+when status code is `204`.
+
+For `204`, return no body.
+
+---
+
+### Updating Fields to `None` Accidentally
+
+For PATCH routes, use:
 
 ```python
-task.update(update_data)
+model_dump(exclude_unset=True)
+```
+
+This only updates fields sent by the user.
+
+---
+
+## Stretch Features
+
+Add these after the main project works.
+
+### Pagination
+
+Example:
+
+```http
+GET /tasks?limit=10&offset=0
 ```
 
 ---
 
-### Deleting a Task
+### Search by Title
 
-```python
-@app.delete("/tasks/{task_id}", status_code=status.HTTP_204_NO_CONTENT)
-```
+Example:
 
-`204 No Content` means the delete was successful, but no response body is returned.
-
-That is why we return:
-
-```python
-return Response(status_code=status.HTTP_204_NO_CONTENT)
+```http
+GET /tasks?search=fastapi
 ```
 
 ---
 
-## Testing the API
+### Filter by Completed Status
 
-### Test using Swagger UI
+Example:
 
-1. Run the server:
+```http
+GET /tasks?completed=true
+```
+
+---
+
+### Due Date
+
+Add field:
+
+```text
+due_date
+```
+
+---
+
+### Team / Project Support
+
+Allow tasks to belong to teams or projects.
+
+---
+
+### Role-Based Permissions
+
+Example roles:
+
+```text
+admin
+member
+viewer
+```
+
+---
+
+### Email Verification
+
+Send email after registration and verify account.
+
+---
+
+### Password Reset
+
+Allow user to reset password using email token.
+
+---
+
+## Suggested Learning Strategy
+
+Do not build everything at once.
+
+Build in this order:
+
+1. Make one route work.
+2. Test it in Swagger.
+3. Add one model.
+4. Test it.
+5. Add one auth feature.
+6. Test it.
+7. Add one task feature.
+8. Test it.
+
+Small steps are better than copying a full project.
+
+---
+
+## Final Goal
+
+At the end, you should be able to run:
 
 ```bash
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
-2. Open:
+Then open:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
-3. Try endpoints in this order:
+And test:
 
 ```text
-POST /tasks
-GET /tasks
-GET /tasks/{task_id}
-PATCH /tasks/{task_id}
-DELETE /tasks/{task_id}
+Register user
+Login user
+Copy token
+Authorize in Swagger
+Create task
+List tasks
+Update task
+Delete task
 ```
+
+If this works, you have built a real backend API.
 
 ---
 
-### Test using curl
+## Project Status Checklist
 
-#### Create task
-
-```bash
-curl -X POST "http://127.0.0.1:8000/tasks" \
-  -H "Content-Type: application/json" \
-  -d '{"title":"Learn FastAPI","description":"Build API","completed":false}'
-```
-
-#### Get all tasks
-
-```bash
-curl "http://127.0.0.1:8000/tasks"
-```
-
-#### Get one task
-
-```bash
-curl "http://127.0.0.1:8000/tasks/1"
-```
-
-#### Update task
-
-```bash
-curl -X PATCH "http://127.0.0.1:8000/tasks/1" \
-  -H "Content-Type: application/json" \
-  -d '{"completed":true}'
-```
-
-#### Delete task
-
-```bash
-curl -X DELETE "http://127.0.0.1:8000/tasks/1"
-```
-
----
-
-## Common Errors and Fixes
-
-### Error: `zsh: command not found: pip`
-
-Use:
-
-```bash
-python3 -m pip install package-name
-```
-
-Inside virtual environment, use:
-
-```bash
-python -m pip install package-name
-```
-
----
-
-### Error: `ModuleNotFoundError: No module named fastapi`
-
-FastAPI is not installed in the active environment.
-
-Fix:
-
-```bash
-source .venv/bin/activate
-python -m pip install "fastapi[standard]"
-```
-
----
-
-### Error: `description: str | None = None` is not working
-
-You are probably using Python 3.9 or lower.
-
-Fix 1: Upgrade to Python 3.10+.
-
-Fix 2: Use `Optional`:
-
-```python
-from typing import Optional
-
-description: Optional[str] = None
-```
-
----
-
-### Error: `Address already in use`
-
-Another server is already running on port `8000`.
-
-Fix:
-
-```bash
-uvicorn main:app --reload --port 8001
-```
-
-Open:
+Use this checklist while building.
 
 ```text
-http://127.0.0.1:8001/docs
+[ ] Health route works
+[ ] Database connection works
+[ ] User model created
+[ ] Register route works
+[ ] Password is hashed
+[ ] Duplicate email is blocked
+[ ] Login route works
+[ ] JWT token is returned
+[ ] Protected route blocks unauthenticated user
+[ ] /me returns current user
+[ ] Task model created
+[ ] Create task works
+[ ] List tasks returns only current user's tasks
+[ ] Get task checks ownership
+[ ] Update task checks ownership
+[ ] Delete task checks ownership
+[ ] Password is never returned
+[ ] Tests added
+[ ] Dockerfile added
+[ ] README completed
 ```
 
 ---
 
-### Folder Created: `__pycache__`
+## Git Ignore
 
-This is normal.
-
-Python creates `__pycache__` to store compiled cache files.
-
-You can delete it safely:
-
-```bash
-rm -rf __pycache__
-```
-
-But Python will create it again when you run the app.
-
-Add it to `.gitignore`:
+Create `.gitignore`:
 
 ```gitignore
+.venv/
 __pycache__/
 *.pyc
+.env
+task_manager.db
+.pytest_cache/
 ```
 
 ---
 
-## Important Notes
+## Recommended Next Step
 
-### This project does not use a database yet
-
-Right now tasks are stored in memory:
-
-```python
-TASKS: list[dict] = []
-```
-
-That means:
-
-- Data exists only while the server is running
-- Data is lost when the server restarts
-- This is okay for beginner learning
-
-Next step is to add a database.
-
----
-
-### This project does not have authentication yet
-
-Anyone can create, update, or delete tasks.
-
-Later, you can add:
-
-- User registration
-- Login
-- Password hashing
-- JWT token authentication
-- Protected routes
-
----
-
-### This project is beginner-friendly, not production-ready
-
-Before using in production, you should add:
-
-- Database
-- Authentication
-- Environment variables
-- Logging
-- Tests
-- Error handling improvements
-- Docker
-- Deployment setup
-
----
-
-## Next Steps
-
-After completing this project, learn these topics in order:
-
-1. SQLite database
-2. SQLModel or SQLAlchemy
-3. Project folder structure
-4. Dependency injection using `Depends`
-5. Environment variables
-6. JWT authentication
-7. Password hashing
-8. Testing with `pytest`
-9. CORS for frontend connection
-10. Docker deployment
-
-Recommended next project:
+Start with this:
 
 ```text
-Task Manager API with SQLite Database and JWT Login
+Step 1: Create app/main.py and add GET /health
 ```
 
----
+Do not start with JWT or database immediately.
 
-## Useful Commands
-
-### Create virtual environment
-
-```bash
-python3 -m venv .venv
-```
-
-### Activate virtual environment
-
-```bash
-source .venv/bin/activate
-```
-
-### Install FastAPI
-
-```bash
-python -m pip install "fastapi[standard]"
-```
-
-### Save dependencies
-
-```bash
-python -m pip freeze > requirements.txt
-```
-
-### Install dependencies
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-### Run server
-
-```bash
-uvicorn main:app --reload
-```
-
-### Stop server
-
-Press:
-
-```text
-CTRL + C
-```
-
-### Deactivate virtual environment
-
-```bash
-deactivate
-```
-
----
-
-## Official References
-
-- FastAPI Documentation: https://fastapi.tiangolo.com/
-- FastAPI Tutorial: https://fastapi.tiangolo.com/tutorial/
-- Response Model: https://fastapi.tiangolo.com/tutorial/response-model/
-- Response Status Code: https://fastapi.tiangolo.com/tutorial/response-status-code/
-- Uvicorn Documentation: https://www.uvicorn.org/
-
----
-
-## Summary
-
-You have built a simple backend API using FastAPI.
-
-You learned:
-
-- How to create API routes
-- How to validate request data
-- How to return response data
-- How to handle errors
-- How to use HTTP status codes
-- How to run a backend server
-- How to test APIs using Swagger UI
-
-This is your first step toward backend development with Python.
+First make the app run.
 
