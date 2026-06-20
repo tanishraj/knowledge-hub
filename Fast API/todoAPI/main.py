@@ -2,8 +2,7 @@ from fastapi import FastAPI, status, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
 
-app = FastAPI(title="Task API")
-
+app = FastAPI(title="Todo API")
 
 class TaskCreate(BaseModel):
     title:str = Field(min_length=3)
