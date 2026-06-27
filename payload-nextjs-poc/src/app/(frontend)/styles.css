@@ -32,6 +32,13 @@ body {
   font-family: 'Avenir Next', 'Segoe UI', sans-serif;
 }
 
+body.ui-platform-shell {
+  background:
+    radial-gradient(circle at top, rgba(97, 208, 197, 0.18), transparent 32%),
+    radial-gradient(circle at 85% 15%, rgba(249, 115, 22, 0.2), transparent 24%),
+    linear-gradient(180deg, #0c1629 0%, var(--bg) 52%, #030712 100%);
+}
+
 main {
   min-height: 100vh;
 }
@@ -99,7 +106,6 @@ p {
 }
 
 .lead,
-.empty-page-state p,
 .hero-block__subheadline {
   margin-top: 20px;
   max-width: 42rem;
@@ -113,42 +119,6 @@ p {
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 28px;
-}
-
-.primary-link,
-.secondary-link,
-.hero-block__button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  padding: 0 22px;
-  border-radius: 999px;
-  text-decoration: none;
-  transition:
-    transform 160ms ease,
-    opacity 160ms ease,
-    background-color 160ms ease;
-}
-
-.primary-link,
-.hero-block__button {
-  background: linear-gradient(135deg, var(--highlight), #fb923c);
-  color: #1a0c05;
-  font-weight: 700;
-}
-
-.secondary-link {
-  border: 1px solid rgba(180, 195, 221, 0.28);
-  color: var(--text);
-  background: rgba(15, 23, 42, 0.35);
-}
-
-.primary-link:hover,
-.secondary-link:hover,
-.hero-block__button:hover {
-  transform: translateY(-1px);
-  opacity: 0.95;
 }
 
 .checklist {
@@ -190,6 +160,33 @@ p {
   z-index: 1;
 }
 
+.hero-block__cta {
+  display: inline-flex;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.portal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.empty-page-meta {
+  margin-top: 12px;
+  color: var(--highlight-soft);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
 .empty-page-state code,
 .landing-panel code {
   padding: 0.1rem 0.35rem;
@@ -209,5 +206,9 @@ p {
   .hero-block {
     padding: 28px 22px;
     border-radius: 22px;
+  }
+
+  .metric-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,5 +1,7 @@
 import { BlockRenderer } from '@/components/BlockRenderer'
 import { getPageBySlug } from '@/lib/getPageBySlug'
+import { EmptyState } from '@tanishraj/ui-kit'
+import { Compass, LayoutTemplate } from 'lucide-react'
 
 type PageProps = {
   params: Promise<{
@@ -14,15 +16,21 @@ export default async function PreviewPage({ params }: PageProps) {
   if (!page) {
     return (
       <div className="page-shell">
-        <section className="empty-page-state">
-          <p className="eyebrow">Tenant-aware routing</p>
-          <h1>Use a tenant slug in the URL.</h1>
-          <p>
-            In multi-tenant mode, visit pages with a path like <code>/acme/home</code>.
-            You can also use <code>/preview/{slug}</code> only when that page slug is unique
-            across all tenants.
-          </p>
-        </section>
+        <EmptyState
+          className="empty-page-state"
+          description={
+            <>
+              In multi-tenant mode, visit pages with a path like <code>/acme/home</code>.
+              You can also use <code>/preview/{slug}</code> only when that page slug is unique
+              across all tenants.
+            </>
+          }
+          icon={<Compass size={32} />}
+          size="lg"
+          title="Use a tenant slug in the URL."
+        >
+          <div className="empty-page-meta">Tenant-aware routing</div>
+        </EmptyState>
       </div>
     )
   }
@@ -32,11 +40,15 @@ export default async function PreviewPage({ params }: PageProps) {
       {page.layout?.length ? (
         <BlockRenderer layout={page.layout} />
       ) : (
-        <section className="empty-page-state">
-          <p className="eyebrow">Draft page found</p>
-          <h1>{page.title}</h1>
-          <p>Add a block in Payload Admin and publish the page to see it rendered here.</p>
-        </section>
+        <EmptyState
+          className="empty-page-state"
+          description="Add a block in Payload Admin and publish the page to see it rendered here."
+          icon={<LayoutTemplate size={32} />}
+          size="lg"
+          title={page.title}
+        >
+          <div className="empty-page-meta">Draft page found</div>
+        </EmptyState>
       )}
     </div>
   )

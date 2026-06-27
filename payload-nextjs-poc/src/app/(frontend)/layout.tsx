@@ -1,4 +1,6 @@
 import React from 'react'
+import '@tanishraj/ui-kit/globals.css'
+import '@tanishraj/ui-kit/theme-indigo.css'
 import './styles.css'
 
 export const metadata = {
@@ -11,7 +13,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
-      <body>
+      <body className="ui-platform-shell">
         <main>{children}</main>
       </body>
     </html>

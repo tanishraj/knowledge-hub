@@ -1,6 +1,8 @@
 import { BlockRenderer } from '@/components/BlockRenderer'
 import { getPageBySlug } from '@/lib/getPageBySlug'
 import { getTenantBySlug } from '@/lib/getTenantBySlug'
+import { EmptyState } from '@tanishraj/ui-kit'
+import { LayoutTemplate } from 'lucide-react'
 import { notFound } from 'next/navigation'
 
 type PageProps = {
@@ -32,11 +34,15 @@ export default async function TenantCmsPage({ params }: PageProps) {
       {page.layout?.length ? (
         <BlockRenderer layout={page.layout} />
       ) : (
-        <section className="empty-page-state">
-          <p className="eyebrow">{tenantDoc.name}</p>
-          <h1>{page.title}</h1>
-          <p>Add a block in Payload Admin and publish the page to see it rendered here.</p>
-        </section>
+        <EmptyState
+          className="empty-page-state"
+          description="Add a block in Payload Admin and publish the page to see it rendered here."
+          icon={<LayoutTemplate size={32} />}
+          size="lg"
+          title={page.title}
+        >
+          <div className="empty-page-meta">{tenantDoc.name}</div>
+        </EmptyState>
       )}
     </div>
   )
