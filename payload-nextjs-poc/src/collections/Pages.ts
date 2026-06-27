@@ -12,6 +12,37 @@ export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
     baseFilter: tenantBaseFilter,
+    livePreview: {
+      breakpoints: [
+        {
+          name: 'desktop',
+          label: 'Desktop',
+          width: 1440,
+          height: 900,
+        },
+        {
+          name: 'tablet',
+          label: 'Tablet',
+          width: 834,
+          height: 1112,
+        },
+        {
+          name: 'mobile',
+          label: 'Mobile',
+          width: 390,
+          height: 844,
+        },
+      ],
+      url: ({ data }) => {
+        if (!data?.id) {
+          return null
+        }
+
+        const appURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+
+        return `${appURL}/preview/page/${data.id}`
+      },
+    },
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'tenant', 'updatedAt'],
   },

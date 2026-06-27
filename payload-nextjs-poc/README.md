@@ -13,6 +13,7 @@ This project is a simple Payload CMS + Next.js proof of concept created inside `
 - `Hero Section` block editable in the Payload admin
 - Frontend rendering for `/tenant-slug/page-slug`
 - Optional unique-slug preview at `/preview/page-slug`
+- Payload Live Preview for pages at `/preview/page/:id`
 
 ## Local setup
 
@@ -37,6 +38,13 @@ This project is a simple Payload CMS + Next.js proof of concept created inside `
 - Customer users log into the same `/admin` panel
 - Customer users only see and edit pages and uploads tied to their own tenant
 - Tenant and role are stored on the auth user so access checks work across requests
+
+## Live preview
+
+- Open any page inside Payload admin
+- Save the page once so it has a document ID
+- Toggle `Live Preview` in the admin edit view
+- Payload loads `/preview/page/:id` in an iframe and streams form changes to that page
 
 ## Key files
 

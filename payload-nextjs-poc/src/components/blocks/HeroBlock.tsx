@@ -1,6 +1,4 @@
 import type { HeroBlockData } from '@/types/cms'
-import { Badge, Link, Text } from '@tanishraj/ui-kit'
-import { ArrowRight } from 'lucide-react'
 
 export function HeroBlock({
   headline,
@@ -12,28 +10,13 @@ export function HeroBlock({
     <section className="hero-block">
       <div className="hero-block__glow" />
       <div className="hero-block__content">
-        <div className="hero-block__eyebrow">
-          <Badge size="sm" variant="info">
-            Payload-powered content block
-          </Badge>
-        </div>
+        <p className="hero-block__eyebrow">Payload-powered content block</p>
         <h1>{headline}</h1>
-        {subheadline ? (
-          <Text as="p" className="hero-block__subheadline" size="lg" tone="caption">
-            {subheadline}
-          </Text>
-        ) : null}
+        {subheadline ? <p className="hero-block__subheadline">{subheadline}</p> : null}
         <div className="hero-block__actions">
-          <Link
-            className="hero-block__cta"
-            href={buttonLink}
-            size="lg"
-            trailingIcon={ArrowRight}
-            underline="none"
-            variant="primary"
-          >
+          <a className="hero-block__button" href={buttonLink}>
             {buttonText}
-          </Link>
+          </a>
         </div>
       </div>
     </section>
