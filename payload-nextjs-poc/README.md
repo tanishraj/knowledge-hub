@@ -72,9 +72,65 @@ Core config lives in `src/payload.config.ts:1`.
 
 ---
 
-## 4. Step-by-step: how the app is wired
+## 4. Entity relationships
 
-### 4.1 Payload bootstraps everything
+```mermaid
+erDiagram
+    TENANTS ||--o{ USERS : "has many"
+    TENANTS ||--o{ PAGES : "owns"
+    TENANTS ||--o{ MEDIA : "owns"
+    PAGES ||--o{ HERO_BLOCK : "contains in layout"
+
+    TENANTS {
+        id id
+        string name
+        string slug
+    }
+
+    USERS {
+        id id
+        string email
+        string role
+        relation tenant
+    }
+
+    PAGES {
+        id id
+        relation tenant
+        string title
+        string slug
+        blocks layout
+        boolean draft
+    }
+
+    MEDIA {
+        id id
+        relation tenant
+        string filename
+        string alt
+    }
+
+    HERO_BLOCK {
+        string headline
+        string subheadline
+        string buttonText
+        string buttonLink
+    }
+```
+
+How to read it:
+
+- one `Tenant` can have many `Users`
+- one `Tenant` can own many `Pages`
+- one `Tenant` can own many `Media` items
+- one `Page` can contain block entries in `layout`
+- right now the only implemented block type is `Hero`
+
+---
+
+## 5. Step-by-step: how the app is wired
+
+### 5.1 Payload bootstraps everything
 
 `src/payload.config.ts:1` is the entry point for the CMS.
 
@@ -90,7 +146,7 @@ This is the file that makes Payload aware of the rest of the app.
 
 ---
 
-### 4.2 Tenants are the root of isolation
+### 5.2 Tenants are the root of isolation
 
 `src/collections/Tenants.ts:1`
 
@@ -110,7 +166,7 @@ Access model:
 
 ---
 
-### 4.3 Users are auth users and carry tenant context
+### 5.3 Users are auth users and carry tenant context
 
 `src/collections/Users.ts:1`
 
@@ -131,7 +187,7 @@ That means later access checks can read the user’s tenant and role from the re
 
 ---
 
-### 4.4 Pages belong to tenants and are built from blocks
+### 5.4 Pages belong to tenants and are built from blocks
 
 `src/collections/Pages.ts:1`
 
@@ -165,7 +221,7 @@ to coexist safely.
 
 ---
 
-### 4.5 Media also belongs to tenants
+### 5.5 Media also belongs to tenants
 
 `src/collections/Media.ts:1`
 
@@ -178,7 +234,7 @@ This keeps uploaded assets aligned with the same ownership rules as content.
 
 ---
 
-### 4.6 Access control is centralized
+### 5.6 Access control is centralized
 
 `src/access/tenantAccess.ts:1`
 
@@ -208,7 +264,7 @@ This keeps the logic reusable and prevents tenant rules from being duplicated ac
 
 ---
 
-### 4.7 Tenant is auto-attached for customer users
+### 5.7 Tenant is auto-attached for customer users
 
 `src/hooks/attachTenantFromUser.ts:1`
 
@@ -222,9 +278,9 @@ This prevents customer users from creating content outside their own tenant.
 
 ---
 
-## 5. Frontend routing: how pages are resolved
+## 6. Frontend routing: how pages are resolved
 
-### 5.1 Home page
+### 6.1 Home page
 
 `src/app/(frontend)/page.tsx:1`
 
@@ -243,7 +299,7 @@ The landing UI is composed via:
 
 ---
 
-### 5.2 Tenant page route
+### 6.2 Tenant page route
 
 `src/app/(frontend)/[tenant]/[slug]/page.tsx:1`
 
@@ -266,7 +322,7 @@ This route is the clearest example of tenant-aware frontend rendering.
 
 ---
 
-### 5.3 Unique slug preview route
+### 6.3 Unique slug preview route
 
 `src/app/(frontend)/preview/[slug]/page.tsx:1`
 
@@ -283,7 +339,7 @@ That means `/preview/home` only works when `home` is globally unique.
 
 ---
 
-### 5.4 Draft preview route used by Payload
+### 6.4 Draft preview route used by Payload
 
 `src/app/(frontend)/preview/page/[id]/page.tsx:1`
 
@@ -311,9 +367,9 @@ So when an editor changes a draft in Payload, the iframe updates in real time.
 
 ---
 
-## 6. Rendering flow: from stored block data to UI
+## 7. Rendering flow: from stored block data to UI
 
-### 6.1 Block definition in Payload
+### 7.1 Block definition in Payload
 
 `src/blocks/Hero.ts:1`
 
@@ -324,7 +380,7 @@ Editors configure:
 - button text
 - button link
 
-### 6.2 Block renderer
+### 7.2 Block renderer
 
 `src/components/BlockRenderer.tsx:1`
 
@@ -334,7 +390,7 @@ Right now:
 
 - if `blockType === 'hero'`, render `HeroBlock`
 
-### 6.3 React block implementation
+### 7.3 React block implementation
 
 `src/components/blocks/HeroBlock.tsx:1`
 
@@ -352,7 +408,7 @@ Payload admin block form
 
 ---
 
-## 7. Admin tenant scoping helpers
+## 8. Admin tenant scoping helpers
 
 Two custom admin components support tenant scoping in list views:
 
@@ -372,7 +428,7 @@ The real protection still comes from collection access rules.
 
 ---
 
-## 8. UI layer
+## 9. UI layer
 
 The frontend now uses shared UI primitives from:
 
@@ -401,31 +457,31 @@ This keeps the POC looking closer to a product portal rather than a default scaf
 
 ---
 
-## 9. End-to-end content lifecycle
+## 10. End-to-end content lifecycle
 
 Here is the full editorial flow.
 
-### 9.1 Initial setup
+### 10.1 Initial setup
 
 1. Start the app.
 2. Go to `/admin`.
 3. Create the first admin user.
 
-### 9.2 Create a tenant
+### 10.2 Create a tenant
 
 1. Open `Tenants`.
 2. Create a tenant like:
    - name: `Acme Bakery`
    - slug: `acme`
 
-### 9.3 Create a customer user
+### 10.3 Create a customer user
 
 1. Open `Users`.
 2. Create a user with:
    - role: `Customer`
    - tenant: `Acme Bakery`
 
-### 9.4 Create a page
+### 10.4 Create a page
 
 1. Open `Pages`.
 2. Create a page:
@@ -435,7 +491,7 @@ Here is the full editorial flow.
 3. Add a `Hero Section` block.
 4. Publish the page.
 
-### 9.5 View the portal page
+### 10.5 View the portal page
 
 Open:
 
@@ -450,7 +506,7 @@ What happens:
 
 ---
 
-## 10. Local development
+## 11. Local development
 
 ### Install
 
@@ -481,7 +537,7 @@ Scripts live in `package.json:1`.
 
 ---
 
-## 11. Important environment variables
+## 12. Important environment variables
 
 This POC expects the usual Payload runtime values, especially:
 
@@ -497,7 +553,7 @@ Usage examples in code:
 
 ---
 
-## 12. Important files and what they do
+## 13. Important files and what they do
 
 ### Core config
 
@@ -544,7 +600,7 @@ Usage examples in code:
 
 ---
 
-## 13. What is intentionally simple in this POC
+## 14. What is intentionally simple in this POC
 
 This repo is deliberately lightweight.
 
@@ -560,7 +616,7 @@ That is good for a POC because it keeps the architecture easy to inspect.
 
 ---
 
-## 14. Suggested next improvements
+## 15. Suggested next improvements
 
 If this POC grows, the next logical steps are:
 
@@ -574,7 +630,7 @@ If this POC grows, the next logical steps are:
 
 ---
 
-## 15. Quick mental model
+## 16. Quick mental model
 
 If you only remember one thing, remember this:
 
@@ -598,3 +654,217 @@ Live Preview
 ```
 
 That is the whole POC in one picture.
+
+---
+
+## 17. Sequence diagrams / request flow
+
+This section shows the most important runtime flows in sequence form.
+
+### 17.0 Request lifecycle at a glance
+
+```mermaid
+flowchart TD
+    A[Browser requests route] --> B{Which route?}
+
+    B -->|/admin| C[Payload admin route]
+    B -->|/:tenant/:slug| D[Next.js tenant page route]
+    B -->|/preview/:slug| E[Unique slug preview route]
+    B -->|/preview/page/:id| F[Draft live preview route]
+
+    C --> G[Payload auth + admin UI]
+    G --> H[Collection access rules evaluate user role and tenant]
+
+    D --> I[getTenantBySlug]
+    I --> J[getPageBySlug by tenant + slug]
+    J --> K[BlockRenderer]
+    K --> L[HeroBlock or other blocks]
+    L --> M[Rendered portal UI]
+
+    E --> N[getPageBySlug by slug only]
+    N --> O{Slug unique?}
+    O -->|Yes| K
+    O -->|No| P[Render preview guidance / fallback]
+
+    F --> Q[payload.auth from request headers]
+    Q --> R[findByID draft true]
+    R --> S[PageLivePreview]
+    S --> T[useLivePreview subscription]
+    T --> U[Live-updating preview iframe]
+
+    H --> V[Admin sees allowed records/actions]
+    M --> W[Tenant user sees tenant-scoped content]
+```
+
+What this diagram shows:
+
+- Next.js owns the route entry points
+- Payload owns auth, admin, collections, and access control
+- frontend rendering is driven by Payload data
+- tenant-specific pages flow through tenant resolution before rendering
+- live preview uses a separate authenticated preview path
+
+---
+
+### 17.1 Admin login flow
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant Next as Next.js app
+    participant Admin as Payload admin
+    participant Auth as Payload auth
+    participant Access as Access rules
+
+    User->>Next: Open /admin
+    Next->>Admin: Serve Payload admin route
+    Admin-->>User: Show login form
+    User->>Auth: Submit email + password
+    Auth->>Auth: Validate against Users collection
+    Auth-->>Admin: Create authenticated session / token
+    Admin->>Access: Load collections and evaluate permissions
+    Access->>Access: Read user.role and user.tenant from request/JWT
+    Admin-->>User: Show all data or tenant-scoped data
+```
+
+What matters here:
+
+- the `Users` collection is the auth source
+- `role` and `tenant` are saved into JWT
+- later collection access rules use that request context directly
+
+---
+
+### 17.2 Tenant page rendering flow
+
+Example URL:
+
+```text
+/acme/home
+```
+
+```mermaid
+sequenceDiagram
+    actor Browser
+    participant Route as Next.js tenant route
+    participant Tenants as getTenantBySlug()
+    participant Pages as getPageBySlug()
+    participant Renderer as BlockRenderer
+    participant Hero as HeroBlock
+
+    Browser->>Route: Request /acme/home
+    Route->>Route: Read tenant="acme", slug="home"
+    Route->>Tenants: Resolve tenant by slug
+    Tenants-->>Route: Return tenant document
+    Route->>Pages: Resolve page by slug + tenantId
+    Pages-->>Route: Return page with layout blocks
+    Route->>Renderer: Render layout
+    Renderer->>Hero: Render hero block
+    Hero-->>Browser: Display tenant page UI
+```
+
+What matters here:
+
+- tenant resolution happens first
+- page lookup is tenant-aware
+- rendering is driven by saved block data, not hardcoded page content
+
+---
+
+### 17.3 Unique slug preview flow
+
+Example URL:
+
+```text
+/preview/home
+```
+
+```mermaid
+sequenceDiagram
+    actor Browser
+    participant Route as Next.js preview route
+    participant Pages as getPageBySlug()
+    participant Guard as Uniqueness guard
+
+    Browser->>Route: Request /preview/home
+    Route->>Route: Read slug="home"
+    Route->>Pages: Query Pages without tenant filter
+    Pages-->>Route: Return up to 2 matching docs
+    Route->>Guard: Check result count
+    Guard-->>Route: Return null if slug is duplicated
+    Route-->>Browser: Render only when slug is globally unique
+```
+
+What matters here:
+
+- this route is intentionally conservative
+- it avoids showing the wrong tenant’s content when slugs are duplicated
+
+---
+
+### 17.4 Live preview rendering flow
+
+This is the draft preview flow used inside Payload admin.
+
+```mermaid
+sequenceDiagram
+    actor Editor
+    participant PagesConfig as Pages collection config
+    participant Iframe as Payload admin iframe
+    participant Route as Next.js preview/page/[id] route
+    participant Auth as payload.auth()
+    participant Payload as Payload findByID(draft: true)
+    participant Preview as PageLivePreview
+    participant Live as useLivePreview()
+
+    Editor->>PagesConfig: Open Page document in admin
+    PagesConfig-->>Iframe: Build /preview/page/:id
+    Iframe->>Route: Load preview route
+    Route->>Auth: Authenticate current editor from headers
+    Auth-->>Route: Return authenticated user
+    Route->>Payload: Fetch page by ID with draft: true
+    Payload-->>Preview: Return initialData
+    Preview->>Live: Subscribe to live preview updates
+    Editor->>PagesConfig: Change fields in admin form
+    PagesConfig-->>Live: Stream updated draft data
+    Live-->>Preview: Push latest content
+    Preview-->>Iframe: Re-render near real time
+```
+
+What matters here:
+
+- live preview uses the page ID, not the public slug route
+- draft content is fetched with `draft: true`
+- the preview route requires an authenticated Payload user
+
+---
+
+### 17.5 Admin tenant filtering flow
+
+This is the list-view filtering convenience used by admins.
+
+```mermaid
+sequenceDiagram
+    actor AdminUser as Admin user
+    participant Admin as Payload admin
+    participant Notice as TenantScopeNotice
+    participant Select as TenantScopeSelect
+    participant Filter as tenantBaseFilter / selectedTenantBaseFilter
+    participant Query as Payload list query
+
+    AdminUser->>Admin: Open Pages / Media / Users list
+    Admin->>Notice: Render beforeList component
+    Notice->>Query: Fetch tenant options
+    Notice-->>Select: Render tenant dropdown
+    AdminUser->>Select: Choose tenant
+    Select->>Admin: Update URL query ?tenant=<id>
+    Admin->>Filter: Read selected tenant from request
+    Filter->>Query: Apply tenant filter
+    Query-->>AdminUser: Return tenant-scoped list results
+```
+
+What matters here:
+
+- this improves the admin workflow
+- it does not replace access control
+- real security still comes from collection access rules
