@@ -1,0 +1,35 @@
+.tenant-scope-notice {
+  border: 1px solid var(--theme-elevation-150);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+}
+
+.tenant-scope-select {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+  max-width: 360px;
+}
+
+.tenant-scope-select__label {
+  color: var(--theme-elevation-700);
+  flex: 0 0 auto;
+  font-weight: 600;
+}
+
+.tenant-scope-select__input {
+  background: var(--theme-input-bg);
+  border: 1px solid var(--theme-elevation-150);
+  border-radius: 8px;
+  color: var(--theme-text);
+  flex: 1 1 auto;
+  min-height: 40px;
+  padding: 0 0.875rem;
+}
+
+.tenant-scope-select__input:focus {
+  border-color: var(--theme-success-500);
+  outline: var(--accessibility-outline);
+  outline-offset: var(--accessibility-outline-offset);
+}

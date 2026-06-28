@@ -1,6 +1,7 @@
 import {
   canManageTenantContent,
   canReadTenantContent,
+  getDefaultTenantValue,
   isAdminFieldAccess,
   tenantBaseFilter,
 } from '@/access/tenantAccess'
@@ -12,6 +13,9 @@ export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
     baseFilter: tenantBaseFilter,
+    components: {
+      beforeList: ['@/components/admin/TenantScopeNotice#TenantScopeNotice'],
+    },
     livePreview: {
       breakpoints: [
         {
@@ -74,13 +78,7 @@ export const Pages: CollectionConfig = {
         create: isAdminFieldAccess,
         update: isAdminFieldAccess,
       },
-      defaultValue: ({ user }) => {
-        if (!user?.tenant) {
-          return null
-        }
-
-        return typeof user.tenant === 'object' ? user.tenant.id : user.tenant
-      },
+      defaultValue: ({ req, user }) => getDefaultTenantValue({ req, user }),
     },
     {
       name: 'title',

@@ -12,6 +12,33 @@ const impossibleWhere: Where = {
   },
 }
 
+type SearchParamsLike =
+  | PayloadRequest['query']
+  | Record<string, number | string | string[] | undefined>
+  | URLSearchParams
+  | null
+  | undefined
+
+const getFirstValue = (
+  value: number | string | string[] | unknown,
+): number | string | null => {
+  if (Array.isArray(value)) {
+    return getFirstValue(value[0])
+  }
+
+  if (typeof value === 'number' || typeof value === 'string') {
+    return value
+  }
+
+  return null
+}
+
+const getTenantWhere = (field: string, tenantId: number | string): Where => ({
+  [field]: {
+    equals: tenantId,
+  },
+})
+
 export const getTenantId = (user?: TenantUser | null): number | string | null => {
   if (!user?.tenant) {
     return null
@@ -22,6 +49,41 @@ export const getTenantId = (user?: TenantUser | null): number | string | null =>
   }
 
   return user.tenant
+}
+
+export const getSelectedTenantId = (
+  searchParams: SearchParamsLike,
+): number | string | null => {
+  if (!searchParams) {
+    return null
+  }
+
+  if (searchParams instanceof URLSearchParams) {
+    return getFirstValue(searchParams.get('tenant'))
+  }
+
+  return getFirstValue(searchParams.tenant)
+}
+
+export const getSelectedTenantIdFromRequest = (
+  req: PayloadRequest,
+): number | string | null =>
+  getSelectedTenantId(req.searchParams) ?? getSelectedTenantId(req.query)
+
+export const getDefaultTenantValue = ({
+  req,
+  user,
+}: {
+  req: PayloadRequest
+  user?: TenantUser | null
+}): number | string | null => {
+  const currentUser = user ?? null
+
+  if (isAdminUser(currentUser)) {
+    return getSelectedTenantIdFromRequest(req)
+  }
+
+  return getTenantId(currentUser)
 }
 
 export const isAdminUser = (user?: TenantUser | null) => user?.role === 'admin'
@@ -96,15 +158,48 @@ export const canReadTenantContent: Access = ({ req: { user } }) => {
     return false
   }
 
-  return {
-    tenant: {
-      equals: tenantId,
-    },
-  }
+  return getTenantWhere('tenant', tenantId)
 }
 
-export const tenantBaseFilter = ({ req }: { req: PayloadRequest }) => {
+export const selectedTenantBaseFilter = ({
+  field = 'tenant',
+  req,
+}: {
+  field?: string
+  req: PayloadRequest
+}) => {
   const currentUser = req.user as TenantUser | null | undefined
+
+  if (!currentUser || !isAdminUser(currentUser)) {
+    return null
+  }
+
+  const selectedTenantId = getSelectedTenantIdFromRequest(req)
+
+  if (!selectedTenantId) {
+    return null
+  }
+
+  return getTenantWhere(field, selectedTenantId)
+}
+
+export const tenantBaseFilter = ({
+  field = 'tenant',
+  req,
+}: {
+  field?: string
+  req: PayloadRequest
+}) => {
+  const currentUser = req.user as TenantUser | null | undefined
+
+  const adminFilter = selectedTenantBaseFilter({
+    field,
+    req,
+  })
+
+  if (adminFilter) {
+    return adminFilter
+  }
 
   if (!currentUser || isAdminUser(currentUser)) {
     return null
@@ -116,9 +211,5 @@ export const tenantBaseFilter = ({ req }: { req: PayloadRequest }) => {
     return impossibleWhere
   }
 
-  return {
-    tenant: {
-      equals: tenantId,
-    },
-  }
+  return getTenantWhere(field, tenantId)
 }

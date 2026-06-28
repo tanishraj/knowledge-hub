@@ -1,6 +1,7 @@
 import {
   canManageTenantContent,
   canReadTenantContent,
+  getDefaultTenantValue,
   isAdminFieldAccess,
   tenantBaseFilter,
 } from '@/access/tenantAccess'
@@ -11,6 +12,9 @@ export const Media: CollectionConfig = {
   slug: 'media',
   admin: {
     baseFilter: tenantBaseFilter,
+    components: {
+      beforeList: ['@/components/admin/TenantScopeNotice#TenantScopeNotice'],
+    },
     defaultColumns: ['filename', 'alt', 'tenant', 'updatedAt'],
   },
   access: {
@@ -40,13 +44,7 @@ export const Media: CollectionConfig = {
         create: isAdminFieldAccess,
         update: isAdminFieldAccess,
       },
-      defaultValue: ({ user }) => {
-        if (!user?.tenant) {
-          return null
-        }
-
-        return typeof user.tenant === 'object' ? user.tenant.id : user.tenant
-      },
+      defaultValue: ({ req, user }) => getDefaultTenantValue({ req, user }),
     },
   ],
   upload: true,

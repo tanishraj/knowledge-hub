@@ -1,6 +1,7 @@
 'use client'
 
 import { BlockRenderer } from '@/components/BlockRenderer'
+import { PortalEmptyState } from '@/components/PortalEmptyState'
 import type { PageDocument } from '@/types/cms'
 import { RefreshRouteOnSave, useLivePreview } from '@payloadcms/live-preview-react'
 import { useRouter } from 'next/navigation'
@@ -26,11 +27,11 @@ export function PageLivePreview({ initialData }: Props) {
         {data.layout?.length ? (
           <BlockRenderer layout={data.layout} />
         ) : (
-          <section className="empty-page-state">
-            <p className="eyebrow">Live preview</p>
-            <h1>{data.title}</h1>
-            <p>Start typing in Payload Admin to watch this page update in real time.</p>
-          </section>
+          <PortalEmptyState
+            description="Start typing in Payload Admin to watch this page update in real time."
+            eyebrow="Live preview"
+            title={data.title}
+          />
         )}
       </div>
     </>

@@ -1,4 +1,6 @@
 import { BlockRenderer } from '@/components/BlockRenderer'
+import { PortalButtonLink } from '@/components/PortalButtonLink'
+import { PortalEmptyState } from '@/components/PortalEmptyState'
 import { getPageBySlug } from '@/lib/getPageBySlug'
 
 type PageProps = {
@@ -14,15 +16,21 @@ export default async function PreviewPage({ params }: PageProps) {
   if (!page) {
     return (
       <div className="page-shell">
-        <section className="empty-page-state">
-          <p className="eyebrow">Tenant-aware routing</p>
-          <h1>Use a tenant slug in the URL.</h1>
-          <p>
+        <PortalEmptyState
+          description={
+            <>
             In multi-tenant mode, visit pages with a path like <code>/acme/home</code>.
             You can also use <code>/preview/{slug}</code> only when that page slug is unique
             across all tenants.
-          </p>
-        </section>
+            </>
+          }
+          eyebrow="Tenant-aware routing"
+          title="Use a tenant slug in the URL."
+        >
+          <PortalButtonLink appearance="outline" href="/" variant="default">
+            Back home
+          </PortalButtonLink>
+        </PortalEmptyState>
       </div>
     )
   }
@@ -32,11 +40,15 @@ export default async function PreviewPage({ params }: PageProps) {
       {page.layout?.length ? (
         <BlockRenderer layout={page.layout} />
       ) : (
-        <section className="empty-page-state">
-          <p className="eyebrow">Draft page found</p>
-          <h1>{page.title}</h1>
-          <p>Add a block in Payload Admin and publish the page to see it rendered here.</p>
-        </section>
+        <PortalEmptyState
+          description="Add a block in Payload Admin and publish the page to see it rendered here."
+          eyebrow="Draft page found"
+          title={page.title}
+        >
+          <PortalButtonLink appearance="outline" href="/admin" variant="default">
+            Open admin
+          </PortalButtonLink>
+        </PortalEmptyState>
       )}
     </div>
   )

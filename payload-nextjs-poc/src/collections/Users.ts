@@ -1,14 +1,21 @@
 import {
+  getDefaultTenantValue,
   isAdminAccess,
   isAdminFieldAccess,
   isAdminOrSelfAccess,
   isAdminUser,
+  selectedTenantBaseFilter,
 } from '@/access/tenantAccess'
 import type { CollectionConfig } from 'payload'
 
 export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
+    baseFilter: selectedTenantBaseFilter,
+    components: {
+      beforeList: ['@/components/admin/TenantScopeNotice#TenantScopeNotice'],
+    },
+    defaultColumns: ['email', 'role', 'tenant', 'updatedAt'],
     useAsTitle: 'email',
     hidden: ({ user }) => !isAdminUser(user),
   },
@@ -32,6 +39,7 @@ export const Users: CollectionConfig = {
         create: isAdminFieldAccess,
         update: isAdminFieldAccess,
       },
+      defaultValue: ({ req, user }) => getDefaultTenantValue({ req, user }),
       saveToJWT: true,
     },
     {

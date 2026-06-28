@@ -1,4 +1,8 @@
+'use client'
+
+import { PortalButtonLink } from '@/components/PortalButtonLink'
 import type { HeroBlockData } from '@/types/cms'
+import { Badge, Text } from '@tanishraj/ui-kit'
 
 export function HeroBlock({
   headline,
@@ -7,17 +11,26 @@ export function HeroBlock({
   buttonText,
 }: HeroBlockData) {
   return (
-    <section className="hero-block">
-      <div className="hero-block__glow" />
+    <section className="portal-surface hero-block">
       <div className="hero-block__content">
-        <p className="hero-block__eyebrow">Payload-powered content block</p>
-        <h1>{headline}</h1>
-        {subheadline ? <p className="hero-block__subheadline">{subheadline}</p> : null}
-        <div className="hero-block__actions">
-          <a className="hero-block__button" href={buttonLink}>
-            {buttonText}
-          </a>
-        </div>
+        <Badge className="portal-badge" size="sm" variant="primary">
+          Payload-powered content block
+        </Badge>
+        <Text as="h1" className="hero-block__title" size="6xl" weight="bold">
+          {headline}
+        </Text>
+        {subheadline ? (
+          <Text as="p" className="hero-block__subheadline" size="lg" tone="caption">
+            {subheadline}
+          </Text>
+        ) : null}
+        {buttonText && buttonLink ? (
+          <div className="hero-block__actions">
+            <PortalButtonLink appearance="filled" href={buttonLink} size="lg" variant="primary">
+              {buttonText}
+            </PortalButtonLink>
+          </div>
+        ) : null}
       </div>
     </section>
   )

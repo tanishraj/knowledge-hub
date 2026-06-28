@@ -1,4 +1,6 @@
 import { BlockRenderer } from '@/components/BlockRenderer'
+import { PortalButtonLink } from '@/components/PortalButtonLink'
+import { PortalEmptyState } from '@/components/PortalEmptyState'
 import { getPageBySlug } from '@/lib/getPageBySlug'
 import { getTenantBySlug } from '@/lib/getTenantBySlug'
 import { notFound } from 'next/navigation'
@@ -32,11 +34,15 @@ export default async function TenantCmsPage({ params }: PageProps) {
       {page.layout?.length ? (
         <BlockRenderer layout={page.layout} />
       ) : (
-        <section className="empty-page-state">
-          <p className="eyebrow">{tenantDoc.name}</p>
-          <h1>{page.title}</h1>
-          <p>Add a block in Payload Admin and publish the page to see it rendered here.</p>
-        </section>
+        <PortalEmptyState
+          description="Add a block in Payload Admin and publish the page to see it rendered here."
+          eyebrow={tenantDoc.name}
+          title={page.title}
+        >
+          <PortalButtonLink appearance="outline" href="/admin" variant="default">
+            Open admin
+          </PortalButtonLink>
+        </PortalEmptyState>
       )}
     </div>
   )

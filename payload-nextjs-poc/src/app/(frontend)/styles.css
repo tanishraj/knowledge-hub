@@ -1,35 +1,26 @@
-:root {
-  --bg: #07111f;
-  --bg-accent: #13253f;
-  --card: rgba(10, 18, 32, 0.72);
-  --card-border: rgba(166, 191, 255, 0.18);
-  --text: #f5f7fb;
-  --muted: #b4c3dd;
-  --highlight: #f97316;
-  --highlight-soft: #ffd9bf;
-  --secondary: #61d0c5;
-  --shadow: 0 30px 80px rgba(2, 6, 23, 0.45);
-}
-
 * {
   box-sizing: border-box;
 }
 
 html {
   background:
-    radial-gradient(circle at top, rgba(97, 208, 197, 0.18), transparent 32%),
-    radial-gradient(circle at 85% 15%, rgba(249, 115, 22, 0.2), transparent 24%),
-    linear-gradient(180deg, #0c1629 0%, var(--bg) 52%, #030712 100%);
-  color: var(--text);
-  font-size: 18px;
+    radial-gradient(circle at top left, rgb(79 70 229 / 0.08), transparent 28%),
+    linear-gradient(
+      180deg,
+      var(--background-color-default) 0%,
+      var(--background-color-default-hovered) 100%
+    );
+  color: var(--text-color-default);
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  color: var(--text);
-  font-family: 'Avenir Next', 'Segoe UI', sans-serif;
+  background: transparent;
+  color: var(--text-color-default);
+  font-family: var(--font-body);
 }
 
 main {
@@ -41,15 +32,12 @@ a {
 }
 
 code {
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--border-color-default);
+  border-radius: 9999px;
+  background: var(--background-color-default);
   font-family: 'SFMono-Regular', 'Roboto Mono', monospace;
   font-size: 0.92em;
-}
-
-h1,
-h2,
-h3 {
-  font-family: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
-  letter-spacing: -0.04em;
 }
 
 p {
@@ -58,155 +46,134 @@ p {
 
 .landing-shell,
 .page-shell {
-  width: min(1120px, calc(100% - 32px));
+  width: min(1080px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 72px 0;
+  padding: 56px 0 72px;
 }
 
-.landing-panel,
-.empty-page-state,
-.hero-block {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--card-border);
-  border-radius: 28px;
-  background: var(--card);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(18px);
+.portal-surface {
+  border: 1px solid var(--border-color-default);
+  border-radius: 24px;
+  background: var(--base-white);
+  box-shadow:
+    0 8px 24px rgb(15 23 42 / 0.06),
+    0 2px 6px rgb(15 23 42 / 0.04);
 }
 
-.landing-panel,
-.empty-page-state {
-  padding: 40px;
+.portal-badge {
+  margin-bottom: 18px;
 }
 
-.eyebrow,
-.hero-block__eyebrow {
-  margin-bottom: 16px;
-  color: var(--highlight-soft);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+.portal-hero,
+.hero-block,
+.portal-empty-state,
+.ui-kit-demo__surface {
+  padding: 32px;
 }
 
-.landing-panel h1,
-.empty-page-state h1,
-.hero-block h1 {
+.portal-hero__title,
+.hero-block__title {
   margin: 0;
-  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  max-width: 12ch;
+  letter-spacing: -0.05em;
   line-height: 0.96;
 }
 
-.lead,
-.hero-block__subheadline {
-  margin-top: 20px;
+.portal-lead,
+.hero-block__subheadline,
+.ui-kit-demo__lead {
+  margin-top: 18px;
   max-width: 42rem;
-  color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.7;
+}
+
+.action-row,
+.hero-block__actions,
+.portal-empty-state__actions,
+.ui-kit-demo__actions,
+.ui-kit-demo__modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .action-row,
 .hero-block__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
   margin-top: 28px;
 }
 
-.primary-link,
-.secondary-link,
-.hero-block__button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  padding: 0 22px;
-  border-radius: 999px;
-  text-decoration: none;
-  transition:
-    transform 160ms ease,
-    opacity 160ms ease,
-    background-color 160ms ease;
+.portal-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.primary-link,
-.hero-block__button {
-  background: linear-gradient(135deg, var(--highlight), #fb923c);
-  color: #1a0c05;
-  font-weight: 700;
-}
-
-.secondary-link {
-  border: 1px solid rgba(180, 195, 221, 0.28);
-  color: var(--text);
-  background: rgba(15, 23, 42, 0.35);
-}
-
-.primary-link:hover,
-.secondary-link:hover,
-.hero-block__button:hover {
-  transform: translateY(-1px);
-  opacity: 0.95;
-}
-
-.checklist {
-  margin-top: 32px;
-  padding: 20px 22px;
-  border-radius: 20px;
-  background: rgba(15, 23, 42, 0.4);
-  border: 1px solid rgba(180, 195, 221, 0.14);
-}
-
-.checklist p {
-  margin-bottom: 12px;
-  font-weight: 700;
-}
-
-.checklist ul {
+.portal-checklist__list {
+  display: grid;
+  gap: 12px;
   margin: 0;
-  padding-left: 20px;
-  color: var(--muted);
-  line-height: 1.7;
+  padding: 0;
+  list-style: none;
 }
 
-.hero-block {
-  padding: 56px 40px;
+.portal-checklist__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 14px 16px;
+  border: 1px solid var(--border-color-default);
+  border-radius: 16px;
+  background: var(--background-color-default);
 }
 
-.hero-block__glow {
-  position: absolute;
-  inset: auto -80px -140px auto;
-  width: 300px;
-  height: 300px;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(97, 208, 197, 0.44), transparent 68%);
-  pointer-events: none;
+.ui-kit-demo {
+  margin-top: 28px;
+}
+
+.ui-kit-demo__copy {
+  margin-bottom: 20px;
+}
+
+.ui-kit-demo__title {
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+
+.ui-kit-demo__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.portal-empty-state__content,
+.portal-empty-state__copy {
+  align-items: flex-start;
+  text-align: left;
 }
 
 .hero-block__content {
-  position: relative;
-  z-index: 1;
-}
-
-.empty-page-state code,
-.landing-panel code {
-  padding: 0.1rem 0.35rem;
-  border-radius: 999px;
-  background: rgba(148, 163, 184, 0.14);
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 768px) {
   .landing-shell,
   .page-shell {
-    width: min(100% - 20px, 1120px);
+    width: min(100% - 20px, 1080px);
     padding: 24px 0 40px;
   }
 
-  .landing-panel,
-  .empty-page-state,
-  .hero-block {
-    padding: 28px 22px;
-    border-radius: 22px;
+  .portal-hero,
+  .hero-block,
+  .portal-empty-state,
+  .ui-kit-demo__surface {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .portal-hero__title,
+  .hero-block__title {
+    max-width: none;
   }
 }
