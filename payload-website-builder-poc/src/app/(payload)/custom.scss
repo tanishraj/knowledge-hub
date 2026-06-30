@@ -1,0 +1,12 @@
+.field-type.blocks .blocks-field .blocks-field__row {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.field-type.blocks .blocks-field .collapsible__content {
+  border-top: 1px solid var(--theme-elevation-100);
+}
+
+.field-type.blocks .blocks-field .blocks-field__row-label {
+  font-weight: 600;
+}

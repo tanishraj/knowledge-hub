@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background:
+    radial-gradient(circle at top left, rgb(56 189 248 / 0.14), transparent 30%),
+    radial-gradient(circle at right center, rgb(249 115 22 / 0.12), transparent 26%),
+    linear-gradient(180deg, oklch(0.99 0 0) 0%, oklch(0.97 0.01 280) 100%);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: transparent;
+  color: oklch(0.2 0.03 265);
+  font-family:
+    'Plus Jakarta Sans',
+    Inter,
+    system-ui,
+    sans-serif;
+}
+
+main {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-shell {
+  display: grid;
+  gap: 2rem;
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0 72px;
+}
+
+@media (max-width: 768px) {
+  .page-shell {
+    width: min(100% - 20px, 1200px);
+    padding: 20px 0 40px;
+  }
+}
