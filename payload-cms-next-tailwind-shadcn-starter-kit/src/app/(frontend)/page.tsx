@@ -1,20 +1,35 @@
-import { headers as getHeaders } from 'next/headers.js'
-import { getPayload } from 'payload'
-import { fileURLToPath } from 'url'
-
-import config from '@/payload.config'
 import '../../styles/globals.css'
 import { Hero36 } from '@/components/hero36'
 
-export default async function HomePage() {
-  const headers = await getHeaders()
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-  const { user } = await payload.auth({ headers })
-
-  const fileURL = `vscode://file/${fileURLToPath(import.meta.url)}`
-
+export default function HomePage() {
   return (
-      <Hero36/>
+    <Hero36
+      badge={{ text: 'Payload + Next.js Starter Kit' }}
+      heading="Build content-rich apps faster with Payload, Next.js, and shadcn/ui"
+      description="This starter kit gives you a clean Payload 3 foundation with authentication, media uploads, Tailwind styling, generated types, and reusable frontend components so you can start shipping features instead of wiring boilerplate."
+      cards={[
+        {
+          title: 'CMS-ready architecture',
+          description:
+            'Payload is already configured with auth, media, SQLite, and generated types so you can model content and start building immediately.',
+          href: '/admin',
+          icon: 'database',
+        },
+        {
+          title: 'Reusable landing page blocks',
+          description:
+            'Use polished frontend sections like Hero36 as a foundation for marketing pages, product surfaces, and future Payload-driven layouts.',
+          href: 'https://ui.shadcn.com',
+          icon: 'blocks',
+        },
+        {
+          title: 'Fast local iteration',
+          description:
+            'Develop quickly with Next.js, Tailwind, and shadcn/ui while keeping your frontend and Payload schema in the same codebase.',
+          href: 'https://payloadcms.com/docs',
+          icon: 'rocket',
+        },
+      ]}
+    />
   )
 }

@@ -1,37 +1,55 @@
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Blocks,
+  Database,
+  LayoutPanelTop,
+  LucideIcon,
+  Rocket,
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 
 import { cn } from "@/lib/utils";
 
-interface HeroCard {
+export interface Hero36Card {
   title: string;
   description: string;
-  image?: Image;
-  icon?: React.ReactNode;
+  image?: Hero36Image;
+  icon?: Hero36IconName | React.ReactNode;
   href?: string;
 }
-interface Image {
+export interface Hero36Image {
   src: string;
   alt: string;
   srcDark?: string;
 }
-interface Badge {
+export interface Hero36Badge {
   text: string;
   announcement?: string;
   url?: string;
 }
 
-interface HeroCardsProps {
-  badge?: Badge;
+export interface Hero36Props {
+  badge?: Hero36Badge;
   heading: string;
   description?: string;
-  cards: HeroCard[];
+  cards: Hero36Card[];
   className?: string;
 }
 
-interface Hero36Props extends HeroCardsProps {}
 type Props = Partial<Hero36Props>;
+
+const hero36Icons = {
+  blocks: Blocks,
+  database: Database,
+  layout: LayoutPanelTop,
+  rocket: Rocket,
+} satisfies Record<string, LucideIcon>;
+
+export type Hero36IconName = keyof typeof hero36Icons;
+
+const isHero36IconName = (value: string): value is Hero36IconName =>
+  value in hero36Icons;
 
 const defaultProps: Hero36Props = {
   badge: { text: "New Release" },
@@ -40,51 +58,60 @@ const defaultProps: Hero36Props = {
     "Finely crafted components built with React, Tailwind and shadcn/ui. Developers can copy and paste these blocks directly into their project.",
   cards: [
     {
-      title: "Product Design",
+      title: "Page Builder",
       description:
-        "Create beautiful, functional interfaces that delight your users and drive engagement.",
-      image: {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/photos5/simone-hutsch-2BwaAhZtNYA-unsplash.jpg",
-        alt: "Architectural interior",
-      },
+        "Compose reusable landing page sections with a polished hero, card layouts, and clear calls to action.",
+      icon: "layout",
     },
     {
-      title: "Development",
+      title: "Typed CMS",
       description:
-        "Build robust, scalable applications with modern tools and best practices.",
-      image: {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/photos5/simone-hutsch-5oYbG-sEImY-unsplash.jpg",
-        alt: "Modern workspace",
-      },
+        "Model content in Payload and keep your frontend aligned with generated TypeScript types.",
+      icon: "database",
     },
     {
-      title: "Marketing",
+      title: "Fast Launches",
       description:
-        "Reach your audience with data-driven strategies that deliver real results.",
-      image: {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/photos5/simone-hutsch-9__Q24sJqKg-unsplash.jpg",
-        alt: "Creative studio",
-      },
-    },
-    {
-      title: "Custom Builds",
-      description:
-        "Tailored solutions for your unique vision and business goals.",
-      image: {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/photos5/simone-hutsch-cX5tYHCNJeI-unsplash.jpg",
-        alt: "Design detail",
-      },
-    },
-    {
-      title: "Collaboration",
-      description:
-        "Work together seamlessly with tools built for modern product teams.",
-      image: {
-        src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/image-set/modern/photos5/simone-hutsch-duxeKbu9FDE-unsplash.jpg",
-        alt: "Team environment",
-      },
+        "Ship quickly with Next.js, Tailwind, shadcn/ui, and a clean Payload starter foundation.",
+      icon: "rocket",
     },
   ],
+};
+
+const renderCardVisual = (card: Hero36Card) => {
+  if (card.image) {
+    return (
+      <div className="mb-6 flex aspect-square w-16 items-center justify-center overflow-hidden rounded-lg md:w-20 lg:mb-8">
+        <img
+          src={card.image.src}
+          alt={card.image.alt}
+          className="h-full w-full object-cover object-center"
+        />
+      </div>
+    );
+  }
+
+  if (typeof card.icon === "string") {
+    const Icon = isHero36IconName(card.icon) ? hero36Icons[card.icon] : null;
+
+    if (Icon) {
+      return (
+        <div className="mb-6 flex size-16 items-center justify-center rounded-2xl border border-primary/15 bg-primary/10 text-primary md:size-20 lg:mb-8">
+          <Icon className="size-8 md:size-10" />
+        </div>
+      );
+    }
+  }
+
+  if (card.icon) {
+    return (
+      <div className="mb-6 flex size-16 items-center justify-center rounded-2xl border border-primary/15 bg-primary/10 text-primary md:size-20 lg:mb-8">
+        {card.icon}
+      </div>
+    );
+  }
+
+  return null;
 };
 
 const Hero36 = (props: Props) => {
@@ -129,15 +156,7 @@ const Hero36 = (props: Props) => {
               index === 1 && "md:translate-y-4",
             )}
           >
-            {item.image && (
-              <div className="mb-6 flex aspect-square w-16 items-center justify-center overflow-hidden rounded-lg md:w-20 lg:mb-8">
-                <img
-                  src={item.image.src}
-                  alt={item.image.alt}
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
-            )}
+            {renderCardVisual(item)}
             <h3 className="mb-3 text-lg font-semibold md:text-xl">
               {item.title}
             </h3>
