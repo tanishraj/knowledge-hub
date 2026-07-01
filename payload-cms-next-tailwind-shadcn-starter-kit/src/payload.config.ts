@@ -10,6 +10,7 @@ import { Media } from './collections/Media'
 import { SEOSettings } from './globals/SEOSettings'
 import { SiteSettings } from './globals/SiteSettings'
 import { ThemeSettings } from './globals/ThemeSettings'
+import { withTrash } from './plugins/withTrash'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -34,5 +35,5 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [],
+  plugins: [withTrash()],
 })
