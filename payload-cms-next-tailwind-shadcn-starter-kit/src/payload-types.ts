@@ -328,7 +328,20 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface SiteSetting {
   id: number;
   siteName: string;
+  siteDescription?: string | null;
   logo?: (number | null) | Media;
+  favicon?: (number | null) | Media;
+  defaultSocialImage?: (number | null) | Media;
+  contactEmail?: string | null;
+  contactPhone?: string | null;
+  address?: string | null;
+  googleMapEmbedUrl?: string | null;
+  socialLinks?: {
+    facebook?: string | null;
+    instagram?: string | null;
+    linkedin?: string | null;
+    youtube?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -350,7 +363,22 @@ export interface ThemeSetting {
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
   siteName?: T;
+  siteDescription?: T;
   logo?: T;
+  favicon?: T;
+  defaultSocialImage?: T;
+  contactEmail?: T;
+  contactPhone?: T;
+  address?: T;
+  googleMapEmbedUrl?: T;
+  socialLinks?:
+    | T
+    | {
+        facebook?: T;
+        instagram?: T;
+        linkedin?: T;
+        youtube?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
