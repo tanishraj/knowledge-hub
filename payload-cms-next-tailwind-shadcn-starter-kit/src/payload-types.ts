@@ -90,10 +90,12 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     'theme-setting': ThemeSetting;
+    'seo-settings': SeoSetting;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'theme-setting': ThemeSettingSelect<false> | ThemeSettingSelect<true>;
+    'seo-settings': SeoSettingsSelect<false> | SeoSettingsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -358,6 +360,26 @@ export interface ThemeSetting {
   createdAt?: string | null;
 }
 /**
+ * Default SEO values used when a page does not provide its own overrides.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-settings".
+ */
+export interface SeoSetting {
+  id: number;
+  defaultTitle?: string | null;
+  /**
+   * Example: %s | Your Site Name
+   */
+  titleTemplate?: string | null;
+  defaultDescription?: string | null;
+  defaultImage?: (number | null) | Media;
+  robots?: ('index,follow' | 'noindex,follow' | 'index,nofollow' | 'noindex,nofollow') | null;
+  googleSiteVerification?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
@@ -391,6 +413,21 @@ export interface ThemeSettingSelect<T extends boolean = true> {
   themeColor?: T;
   colorScheme?: T;
   themeLogo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "seo-settings_select".
+ */
+export interface SeoSettingsSelect<T extends boolean = true> {
+  defaultTitle?: T;
+  titleTemplate?: T;
+  defaultDescription?: T;
+  defaultImage?: T;
+  robots?: T;
+  googleSiteVerification?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -7,6 +7,7 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { SEOSettings } from './globals/SEOSettings'
 import { SiteSettings } from './globals/SiteSettings'
 import { ThemeSettings } from './globals/ThemeSettings'
 
@@ -21,7 +22,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media],
-  globals: [SiteSettings, ThemeSettings],
+  globals: [SiteSettings, ThemeSettings, SEOSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
