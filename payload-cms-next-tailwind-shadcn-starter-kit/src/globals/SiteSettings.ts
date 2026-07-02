@@ -43,11 +43,6 @@ export const SiteSettings: GlobalConfig = {
                 },
               ],
             },
-            {
-              name: 'defaultSocialImage',
-              type: 'upload',
-              relationTo: 'media',
-            },
           ],
         },
         {

@@ -520,7 +520,6 @@ export interface SiteSetting {
   siteDescription?: string | null;
   logo?: (number | null) | Media;
   favicon?: (number | null) | Media;
-  defaultSocialImage?: (number | null) | Media;
   contactEmail?: string | null;
   contactPhone?: string | null;
   address?: string | null;
@@ -582,7 +581,6 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   siteDescription?: T;
   logo?: T;
   favicon?: T;
-  defaultSocialImage?: T;
   contactEmail?: T;
   contactPhone?: T;
   address?: T;
