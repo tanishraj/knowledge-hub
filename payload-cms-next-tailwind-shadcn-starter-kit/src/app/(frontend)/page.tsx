@@ -1,6 +1,14 @@
 import '../../styles/globals.css'
 import { Hero36 } from '@/components/hero36'
 
+import type { Metadata } from 'next'
+
+export function generateMetadata(): Metadata {
+  return {
+    title: 'Home',
+  }
+}
+
 export default function HomePage() {
   return (
     <Hero36
