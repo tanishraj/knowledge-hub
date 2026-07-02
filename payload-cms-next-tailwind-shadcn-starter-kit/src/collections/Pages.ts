@@ -15,6 +15,7 @@ export const Pages: CollectionConfig = {
       name: 'slug',
       type: 'text',
       required: true,
+      unique: true,
     },
     {
       name: 'content',
