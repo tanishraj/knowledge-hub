@@ -144,7 +144,7 @@ export interface Page {
   /**
    * Compose the page with reusable frontend sections.
    */
-  layout?: Hero36Block[] | null;
+  layout?: (Hero36Block | Footer2Block)[] | null;
   content?: {
     root: {
       type: string;
@@ -213,6 +213,37 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Footer2Block".
+ */
+export interface Footer2Block {
+  description?: string | null;
+  sections?:
+    | {
+        title: string;
+        links?:
+          | {
+              name: string;
+              href: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  copyright?: string | null;
+  legalLinks?:
+    | {
+        name: string;
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'footer2';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -330,6 +361,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         hero36?: T | Hero36BlockSelect<T>;
+        footer2?: T | Footer2BlockSelect<T>;
       };
   content?: T;
   metaTitle?: T;
@@ -361,6 +393,36 @@ export interface Hero36BlockSelect<T extends boolean = true> {
         visualType?: T;
         icon?: T;
         image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Footer2Block_select".
+ */
+export interface Footer2BlockSelect<T extends boolean = true> {
+  description?: T;
+  sections?:
+    | T
+    | {
+        title?: T;
+        links?:
+          | T
+          | {
+              name?: T;
+              href?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  copyright?: T;
+  legalLinks?:
+    | T
+    | {
+        name?: T;
+        href?: T;
         id?: T;
       };
   id?: T;

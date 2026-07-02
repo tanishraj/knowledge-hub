@@ -14,6 +14,28 @@ type PageProps = {
   }>
 }
 
+type RichTextNode = {
+  children?: RichTextNode[]
+  text?: string
+  type?: string
+}
+
+const hasVisibleRichTextContent = (node?: RichTextNode | null): boolean => {
+  if (!node) {
+    return false
+  }
+
+  if (typeof node.text === 'string' && node.text.trim().length > 0) {
+    return true
+  }
+
+  if (!node.children?.length) {
+    return false
+  }
+
+  return node.children.some((child) => hasVisibleRichTextContent(child))
+}
+
 const getPageBySlug = cache(async (slug: string) => {
   const payload = await getPayload({
     config: configPromise,
@@ -55,10 +77,12 @@ export default async function CmsPage({ params }: PageProps) {
     notFound()
   }
 
+  const hasContent = hasVisibleRichTextContent(page.content?.root)
+
   return (
     <>
       <RenderBlocks blocks={page.layout} />
-      {page.content && (
+      {page.content && hasContent && (
         <section className="py-16 md:py-24">
           <div className="container">
             <div className="prose prose-neutral max-w-3xl">

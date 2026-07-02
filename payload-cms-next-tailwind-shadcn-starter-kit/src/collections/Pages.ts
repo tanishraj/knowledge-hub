@@ -1,5 +1,6 @@
 import { slugField, type CollectionConfig } from 'payload'
 
+import { Footer2Block } from '../blocks/Footer2/config'
 import { Hero36Block } from '../blocks/Hero36/config'
 
 export const Pages: CollectionConfig = {
@@ -36,7 +37,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Hero36Block],
+              blocks: [Hero36Block, Footer2Block],
               admin: {
                 initCollapsed: true,
                 description: 'Compose the page with reusable frontend sections.',
