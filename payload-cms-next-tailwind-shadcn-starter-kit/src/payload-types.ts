@@ -91,12 +91,12 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     'site-settings': SiteSetting;
-    'theme-setting': ThemeSetting;
+    'theme-settings': ThemeSetting;
     'seo-settings': SeoSetting;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
-    'theme-setting': ThemeSettingSelect<false> | ThemeSettingSelect<true>;
+    'theme-settings': ThemeSettingsSelect<false> | ThemeSettingsSelect<true>;
     'seo-settings': SeoSettingsSelect<false> | SeoSettingsSelect<true>;
   };
   locale: null;
@@ -473,14 +473,21 @@ export interface SiteSetting {
   createdAt?: string | null;
 }
 /**
+ * Control the frontend color palette, mode, and brand assets.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "theme-setting".
+ * via the `definition` "theme-settings".
  */
 export interface ThemeSetting {
   id: number;
+  /**
+   * Select the primary accent palette used across the frontend.
+   */
   themeColor: 'default' | 'blue' | 'amber';
+  /**
+   * Choose whether the site follows the system preference or forces light/dark mode.
+   */
   colorScheme: 'system' | 'light' | 'dark';
-  themeLogo?: (number | null) | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -532,12 +539,11 @@ export interface SiteSettingsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "theme-setting_select".
+ * via the `definition` "theme-settings_select".
  */
-export interface ThemeSettingSelect<T extends boolean = true> {
+export interface ThemeSettingsSelect<T extends boolean = true> {
   themeColor?: T;
   colorScheme?: T;
-  themeLogo?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
