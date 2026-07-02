@@ -5,6 +5,7 @@ import React, { cache } from 'react'
 import '../../styles/globals.css'
 
 import type { Metadata } from 'next'
+import type { Media } from '@/payload-types'
 
 export const dynamic = 'force-dynamic'
 
@@ -15,7 +16,7 @@ const getFrontendGlobals = cache(async () => {
     config: configPromise,
   })
 
-  const [themeSettings, seoSettings] = await Promise.all([
+  const [themeSettings, seoSettings, siteSettings] = await Promise.all([
     payload.findGlobal({
       slug: 'theme-settings',
       depth: 0,
@@ -24,10 +25,15 @@ const getFrontendGlobals = cache(async () => {
       slug: 'seo-settings',
       depth: 0,
     }),
+    payload.findGlobal({
+      slug: 'site-settings',
+      depth: 1,
+    }),
   ])
 
   return {
     seoSettings,
+    siteSettings,
     themeSettings,
   }
 })
@@ -49,8 +55,16 @@ function getRobotsMetadata(value: string | null | undefined): Metadata['robots']
   }
 }
 
+function getMediaUrl(media: number | Media | null | undefined): string | undefined {
+  if (!media || typeof media === 'number') {
+    return undefined
+  }
+
+  return media.url || undefined
+}
+
 export async function generateMetadata(): Promise<Metadata> {
-  const { seoSettings } = await getFrontendGlobals()
+  const { seoSettings, siteSettings } = await getFrontendGlobals()
   const defaultTitle = seoSettings.defaultTitle || defaultSiteTitle
   const title = seoSettings.titleTemplate
     ? {
@@ -58,10 +72,18 @@ export async function generateMetadata(): Promise<Metadata> {
         template: seoSettings.titleTemplate,
       }
     : defaultTitle
+  const faviconUrl = getMediaUrl(siteSettings.favicon)
 
   return {
     title,
     description: seoSettings.defaultDescription || defaultSiteDescription,
+    icons: faviconUrl
+      ? {
+          icon: faviconUrl,
+          shortcut: faviconUrl,
+          apple: faviconUrl,
+        }
+      : undefined,
     robots: getRobotsMetadata(seoSettings.robots),
     verification: {
       google: seoSettings.googleSiteVerification || undefined,
