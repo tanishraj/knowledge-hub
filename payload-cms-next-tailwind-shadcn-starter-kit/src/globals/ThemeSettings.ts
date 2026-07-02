@@ -5,7 +5,7 @@ export const ThemeSettings: GlobalConfig = {
   label: 'Theme Settings',
   admin: {
     group: 'Settings',
-    description: 'Control the frontend color palette, mode, and brand assets.',
+    description: 'Control the frontend theme preset and light or dark mode behavior.',
   },
   fields: [
     {
@@ -14,7 +14,7 @@ export const ThemeSettings: GlobalConfig = {
       defaultValue: 'default',
       required: true,
       admin: {
-        description: 'Select the primary accent palette used across the frontend.',
+        description: 'Select which frontend theme preset is loaded for the site.',
       },
       options: [
         {
@@ -26,8 +26,8 @@ export const ThemeSettings: GlobalConfig = {
           value: 'blue',
         },
         {
-          label: 'Amber',
-          value: 'amber',
+          label: 'Sera',
+          value: 'sera',
         },
       ],
     },

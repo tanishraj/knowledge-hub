@@ -473,7 +473,7 @@ export interface SiteSetting {
   createdAt?: string | null;
 }
 /**
- * Control the frontend color palette, mode, and brand assets.
+ * Control the frontend theme preset and light or dark mode behavior.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "theme-settings".
@@ -481,9 +481,9 @@ export interface SiteSetting {
 export interface ThemeSetting {
   id: number;
   /**
-   * Select the primary accent palette used across the frontend.
+   * Select which frontend theme preset is loaded for the site.
    */
-  themeColor: 'default' | 'blue' | 'amber';
+  themeColor: 'default' | 'blue' | 'sera';
   /**
    * Choose whether the site follows the system preference or forces light/dark mode.
    */

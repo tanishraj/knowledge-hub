@@ -11,6 +11,8 @@ export const metadata = {
 
 export const dynamic = 'force-dynamic'
 
+const validThemeColors = new Set(['default', 'blue', 'sera'])
+
 const systemThemeScript = `
 (() => {
   const root = document.documentElement
@@ -44,7 +46,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   })
 
   const colorScheme = themeSettings.colorScheme ?? 'system'
-  const themeColor = themeSettings.themeColor ?? 'default'
+  const rawThemeColor = String(themeSettings.themeColor ?? 'default')
+  const savedThemeColor = rawThemeColor === 'amber' ? 'sera' : rawThemeColor
+  const themeColor = validThemeColors.has(savedThemeColor) ? savedThemeColor : 'default'
   const htmlClassName = colorScheme === 'dark' ? 'dark' : undefined
   const htmlStyle =
     colorScheme === 'system'

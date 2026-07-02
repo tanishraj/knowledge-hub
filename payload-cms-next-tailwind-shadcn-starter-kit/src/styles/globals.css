@@ -1,61 +1,29 @@
 /* 
 Uncomment to import Google fonts if you want to use them in your project.
 */
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital%2Copsz%2Cwght@0%2C14..32%2C100..900;1%2C14..32%2C100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital%2Cwght@0%2C400..900;1%2C400..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital%2Copsz%2Cwght@0%2C14..32%2C100..900;1%2C14..32%2C100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital%2Cwght@0%2C400..900;1%2C400..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap');
 
-
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @plugin "@tailwindcss/typography";
-@import "tw-animate-css";
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import './themes/theme-default.css';
+@import './themes/theme-blue.css';
+@import './themes/theme-sera.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
-
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
-
-  --radius: 8px;
-
   --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
   --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
-  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10);
-  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10);
-  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
-  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
 
   /* Shadcnblocks.com Colors */
@@ -70,65 +38,14 @@ Uncomment to import Google fonts if you want to use them in your project.
   --warning: oklch(0.769 0.288 70.08);
 
   /* Fonts */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-serif: 'Playfair Display', ui-serif, Georgia, serif;
 
-  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-text: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-text: 'Inter', ui-sans-serif, system-ui, sans-serif;
 
-  --font-handwriting: "Caveat", cursive;
-
-  /* Magicui Colors */
-  --color-1: oklch(66.2% 0.225 25.9);
-  --color-2: oklch(60.4% 0.26 302);
-  --color-3: oklch(69.6% 0.165 251);
-  --color-4: oklch(80.2% 0.134 225);
-  --color-5: oklch(90.7% 0.231 133);
-}
-.dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.92 0.004 286.32);
-  --primary-foreground: oklch(0.21 0.006 285.885);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.552 0.016 285.938);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.552 0.016 285.938);
-
-  /* Shadcnblocks.com Colors */
-  --gradient-1: oklch(0.643 0.4075 269.926);
-  --gradient-2: oklch(0.727 0.4675 144.688);
-  --gradient-3: oklch(0.701 0.3775 339.956);
-
-  /* Alerts */
-  --error: oklch(0.704 0.191 22.216);
-  --success: oklch(0.34 0.69 165.96);
-  --info: oklch(0.36 0.68 241.16);
-  --warning: oklch(0.769 0.288 70.08);
+  --font-handwriting: 'Caveat', cursive;
 
   /* Magicui Colors */
   --color-1: oklch(66.2% 0.225 25.9);
@@ -256,19 +173,13 @@ Uncomment to import Google fonts if you want to use them in your project.
       height: 0;
     }
     to {
-      height: var(
-        --radix-accordion-content-height,
-        var(--accordion-panel-height, auto)
-      );
+      height: var(--radix-accordion-content-height, var(--accordion-panel-height, auto));
     }
   }
 
   @keyframes accordion-up {
     from {
-      height: var(
-        --radix-accordion-content-height,
-        var(--accordion-panel-height, auto)
-      );
+      height: var(--radix-accordion-content-height, var(--accordion-panel-height, auto));
     }
     to {
       height: 0;
@@ -292,28 +203,28 @@ Uncomment to import Google fonts if you want to use them in your project.
 
   @keyframes progress {
     from {
-      width: "0%";
+      width: '0%';
     }
     to {
-      width: "100%";
+      width: '100%';
     }
   }
 
   @keyframes infiniteSlider {
     0% {
-      transform: "translateX(0)";
+      transform: 'translateX(0)';
     }
     100% {
-      transform: "translateX(calc(-250px * 5))";
+      transform: 'translateX(calc(-250px * 5))';
     }
   }
 
   @keyframes infiniteSliderReverse {
     0% {
-      transform: "translateX(calc(-250px * 5))";
+      transform: 'translateX(calc(-250px * 5))';
     }
     100% {
-      transform: "translateX(0)";
+      transform: 'translateX(0)';
     }
   }
 
@@ -667,10 +578,12 @@ Uncomment to import Google fonts if you want to use them in your project.
 
   @keyframes orbit {
     0% {
-      transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+      transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px))
+        rotate(calc(var(--angle) * -1deg));
     }
     100% {
-      transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+      transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px))
+        rotate(calc((var(--angle) * -1deg) - 360deg));
     }
   }
 
@@ -739,6 +652,10 @@ Uncomment to import Google fonts if you want to use them in your project.
       background-position: 200%;
     }
   }
+  --font-heading: var(--font-heading);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 @utility container {
@@ -750,7 +667,7 @@ Uncomment to import Google fonts if you want to use them in your project.
   button {
     cursor: pointer;
   }
-  [class*="border"] {
+  [class*='border'] {
     @apply border-border;
   }
   button > a {
@@ -765,10 +682,62 @@ Uncomment to import Google fonts if you want to use them in your project.
   body {
     @apply bg-background text-foreground;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
   }
-  p, span, a, li, blockquote, cite, code, pre, small, strong, em, b, i, u, s, mark, del, ins, sub, sup, tt, var, dfn, abbr, acronym, q, cite, code, kbd, samp, time, address, big, cite, code, dfn, em, img, kbd, q, samp, small, strike, strong, sub, sup, tt, var {
+  p,
+  span,
+  a,
+  li,
+  blockquote,
+  cite,
+  code,
+  pre,
+  small,
+  strong,
+  em,
+  b,
+  i,
+  u,
+  s,
+  mark,
+  del,
+  ins,
+  sub,
+  sup,
+  tt,
+  var,
+  dfn,
+  abbr,
+  acronym,
+  q,
+  cite,
+  code,
+  kbd,
+  samp,
+  time,
+  address,
+  big,
+  cite,
+  code,
+  dfn,
+  em,
+  img,
+  kbd,
+  q,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var {
     font-family: var(--font-text);
   }
   .maplibregl-popup-content {
@@ -776,6 +745,9 @@ Uncomment to import Google fonts if you want to use them in your project.
   }
   .maplibregl-popup-tip {
     @apply hidden!;
+  }
+  html {
+    @apply font-sans;
   }
 }
 
@@ -808,7 +780,7 @@ Uncomment to import Google fonts if you want to use them in your project.
 /* helps prevent CLS when dialogs/modals lock scroll */
 body[data-scroll-locked] {
   margin-right: 0px !important; /* For LTR layout */
-  margin-left: 0px !important;  /* For RTL layout */
+  margin-left: 0px !important; /* For RTL layout */
   overflow: visible !important;
 }
 
@@ -816,61 +788,61 @@ body[data-scroll-locked] {
 /* @import "shadcn/tailwind.css"; */
 /* The latest (Feb 24th 2026) shadcn init and create flows install the shadcn npm dependancy which contains extra css styles for shadcn components */
 @custom-variant data-open {
-  &:where([data-state="open"]),
-  &:where([data-open]:not([data-open="false"])) {
+  &:where([data-state='open']),
+  &:where([data-open]:not([data-open='false'])) {
     @slot;
   }
 }
 
 @custom-variant data-closed {
-  &:where([data-state="closed"]),
-  &:where([data-closed]:not([data-closed="false"])) {
+  &:where([data-state='closed']),
+  &:where([data-closed]:not([data-closed='false'])) {
     @slot;
   }
 }
 
 @custom-variant data-checked {
-  &:where([data-state="checked"]),
-  &:where([data-checked]:not([data-checked="false"])) {
+  &:where([data-state='checked']),
+  &:where([data-checked]:not([data-checked='false'])) {
     @slot;
   }
 }
 
 @custom-variant data-unchecked {
-  &:where([data-state="unchecked"]),
-  &:where([data-unchecked]:not([data-unchecked="false"])) {
+  &:where([data-state='unchecked']),
+  &:where([data-unchecked]:not([data-unchecked='false'])) {
     @slot;
   }
 }
 
 @custom-variant data-selected {
-  &:where([data-selected="true"]) {
+  &:where([data-selected='true']) {
     @slot;
   }
 }
 
 @custom-variant data-disabled {
-  &:where([data-disabled="true"]),
-  &:where([data-disabled]:not([data-disabled="false"])) {
+  &:where([data-disabled='true']),
+  &:where([data-disabled]:not([data-disabled='false'])) {
     @slot;
   }
 }
 
 @custom-variant data-active {
-  &:where([data-state="active"]),
-  &:where([data-active]:not([data-active="false"])) {
+  &:where([data-state='active']),
+  &:where([data-active]:not([data-active='false'])) {
     @slot;
   }
 }
 
 @custom-variant data-horizontal {
-  &:where([data-orientation="horizontal"]) {
+  &:where([data-orientation='horizontal']) {
     @slot;
   }
 }
 
 @custom-variant data-vertical {
-  &:where([data-orientation="vertical"]) {
+  &:where([data-orientation='vertical']) {
     @slot;
   }
 }
