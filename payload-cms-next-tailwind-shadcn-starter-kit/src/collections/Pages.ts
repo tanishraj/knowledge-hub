@@ -1,4 +1,6 @@
-import type { CollectionConfig } from 'payload'
+import { slugField, type CollectionConfig } from 'payload'
+
+import { Hero36Block } from '../blocks/Hero36/config'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -22,21 +24,24 @@ export const Pages: CollectionConfig = {
       type: 'text',
       required: true,
     },
-    {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      unique: true,
-      admin: {
-        position: 'sidebar',
-      }
-    },
+    slugField({
+      useAsSlug: 'title',
+    }),
     {
       type: 'tabs',
       tabs: [
         {
           label: 'Content',
           fields: [
+            {
+              name: 'layout',
+              type: 'blocks',
+              blocks: [Hero36Block],
+              admin: {
+                initCollapsed: true,
+                description: 'Compose the page with reusable frontend sections.',
+              },
+            },
             {
               name: 'content',
               type: 'richText',
@@ -83,4 +88,3 @@ export const Pages: CollectionConfig = {
     },
   ],
 }
-

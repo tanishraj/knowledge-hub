@@ -128,13 +128,23 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Flexible website pages with reusable layout blocks, SEO controls, and publishing settings.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
 export interface Page {
   id: number;
   title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
   slug: string;
+  /**
+   * Compose the page with reusable frontend sections.
+   */
+  layout?: Hero36Block[] | null;
   content?: {
     root: {
       type: string;
@@ -150,9 +160,39 @@ export interface Page {
     };
     [k: string]: unknown;
   } | null;
+  metaTitle: string;
+  metaDescription: string;
+  /**
+   * Use this for nested page hierarchies like /services/web-development.
+   */
+  parent?: (number | null) | Page;
+  showInNavigation?: boolean | null;
   updatedAt: string;
   createdAt: string;
   deletedAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Hero36Block".
+ */
+export interface Hero36Block {
+  badge?: {
+    text?: string | null;
+  };
+  heading: string;
+  description?: string | null;
+  cards: {
+    title: string;
+    description: string;
+    href?: string | null;
+    visualType: 'icon' | 'image';
+    icon?: ('blocks' | 'database' | 'layout' | 'rocket') | null;
+    image?: (number | null) | Media;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'hero36';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -284,11 +324,47 @@ export interface PayloadMigration {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
+  generateSlug?: T;
   slug?: T;
+  layout?:
+    | T
+    | {
+        hero36?: T | Hero36BlockSelect<T>;
+      };
   content?: T;
+  metaTitle?: T;
+  metaDescription?: T;
+  parent?: T;
+  showInNavigation?: T;
   updatedAt?: T;
   createdAt?: T;
   deletedAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Hero36Block_select".
+ */
+export interface Hero36BlockSelect<T extends boolean = true> {
+  badge?:
+    | T
+    | {
+        text?: T;
+      };
+  heading?: T;
+  description?: T;
+  cards?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        href?: T;
+        visualType?: T;
+        icon?: T;
+        image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
