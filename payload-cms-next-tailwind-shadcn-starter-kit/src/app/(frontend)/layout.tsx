@@ -10,6 +10,7 @@ import type { Media } from '@/payload-types'
 export const dynamic = 'force-dynamic'
 
 const validThemeColors = new Set(['default', 'blue', 'sera'])
+const defaultSiteURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
 
 const getFrontendGlobals = cache(async () => {
   const payload = await getPayload({
@@ -23,7 +24,7 @@ const getFrontendGlobals = cache(async () => {
     }),
     payload.findGlobal({
       slug: 'seo-settings',
-      depth: 0,
+      depth: 1,
     }),
     payload.findGlobal({
       slug: 'site-settings',
@@ -60,7 +61,11 @@ function getMediaUrl(media: number | Media | null | undefined): string | undefin
     return undefined
   }
 
-  return media.url || undefined
+  if (!media.url) {
+    return undefined
+  }
+
+  return new URL(media.url, defaultSiteURL).toString()
 }
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -72,9 +77,11 @@ export async function generateMetadata(): Promise<Metadata> {
         template: seoSettings.titleTemplate,
       }
     : defaultTitle
+  const defaultImageUrl = getMediaUrl(seoSettings.defaultImage)
   const faviconUrl = getMediaUrl(siteSettings.favicon)
 
   return {
+    metadataBase: new URL(defaultSiteURL),
     title,
     description: seoSettings.defaultDescription || defaultSiteDescription,
     icons: faviconUrl
@@ -84,7 +91,22 @@ export async function generateMetadata(): Promise<Metadata> {
           apple: faviconUrl,
         }
       : undefined,
+    openGraph: defaultImageUrl
+      ? {
+          images: [
+            {
+              url: defaultImageUrl,
+            },
+          ],
+        }
+      : undefined,
     robots: getRobotsMetadata(seoSettings.robots),
+    twitter: defaultImageUrl
+      ? {
+          card: 'summary_large_image',
+          images: [defaultImageUrl],
+        }
+      : undefined,
     verification: {
       google: seoSettings.googleSiteVerification || undefined,
     },
