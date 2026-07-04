@@ -2,10 +2,9 @@ import { Navbar12 } from '@/components/navbar12'
 import type {
   HeaderNavbar12Block as HeaderNavbar12BlockData,
   Media,
-  Page,
   SiteSetting,
 } from '@/payload-types'
-import { getPageHref } from '@/lib/pagePaths'
+import { resolveCmsLink } from '@/lib/cmsLinks'
 
 type NavbarLink = {
   openInNewTab?: boolean
@@ -23,30 +22,18 @@ const isMediaDoc = (value: number | Media | null | undefined): value is Media =>
   return typeof value === 'object' && value !== null
 }
 
-const getLinkUrl = (item: {
-  linkType?: 'page' | 'custom' | null
-  page?: number | Page | null
-  url?: string | null
-}): string | undefined => {
-  if (item.linkType === 'page') {
-    return getPageHref(item.page)
-  }
-
-  return item.url ?? undefined
-}
-
 const mapNavigationChild = (child: NavigationChildItem): NavbarLink | null => {
-  const url = getLinkUrl(child)
+  const { href, openInNewTab } = resolveCmsLink(child)
 
-  if (!url) {
+  if (!href) {
     return null
   }
 
   return {
     title: child.label,
     description: child.description ?? undefined,
-    url,
-    openInNewTab: child.openInNewTab ?? undefined,
+    url: href,
+    openInNewTab,
   }
 }
 
@@ -62,16 +49,16 @@ const mapNavigationItem = (item: NavigationItem): NavbarLink | null => {
     }
   }
 
-  const url = getLinkUrl(item)
+  const { href, openInNewTab } = resolveCmsLink(item)
 
-  if (!url) {
+  if (!href) {
     return null
   }
 
   return {
     title: item.label,
-    url,
-    openInNewTab: item.openInNewTab ?? undefined,
+    url: href,
+    openInNewTab,
   }
 }
 
@@ -86,16 +73,16 @@ const mapAction = (
     return null
   }
 
-  const url = getLinkUrl(item)
+  const { href, openInNewTab } = resolveCmsLink(item)
 
-  if (!url) {
+  if (!href) {
     return null
   }
 
   return {
     title: item.label,
-    url,
-    openInNewTab: item.openInNewTab ?? undefined,
+    url: href,
+    openInNewTab,
   }
 }
 

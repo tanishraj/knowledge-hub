@@ -1,5 +1,7 @@
 import type { Block } from 'payload'
 
+import { createCmsLinkFields } from '@/fields/cmsLinkFields'
+
 export const Footer2Block: Block = {
   slug: 'footer2',
   interfaceName: 'Footer2Block',
@@ -47,11 +49,7 @@ export const Footer2Block: Block = {
               type: 'text',
               required: true,
             },
-            {
-              name: 'href',
-              type: 'text',
-              required: true,
-            },
+            ...createCmsLinkFields(),
           ],
         },
       ],
@@ -76,11 +74,7 @@ export const Footer2Block: Block = {
           type: 'text',
           required: true,
         },
-        {
-          name: 'href',
-          type: 'text',
-          required: true,
-        },
+        ...createCmsLinkFields(),
       ],
     },
   ],

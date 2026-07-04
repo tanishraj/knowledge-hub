@@ -4,6 +4,7 @@ import { cache } from 'react'
 
 import { Footer2 } from '@/components/footer2'
 import type { Footer2Block as Footer2BlockData, Media, SiteSetting } from '@/payload-types'
+import { resolveCmsLink } from '@/lib/cmsLinks'
 
 const isMediaDoc = (value: number | Media | null | undefined): value is Media => {
   return typeof value === 'object' && value !== null
@@ -33,18 +34,44 @@ export async function Footer2BlockComponent(props: Footer2BlockData) {
         }
       : undefined
 
-  const sections = props.sections?.map((section) => ({
-    title: section.title,
-    links: (section.links ?? []).map((link) => ({
-      name: link.name,
-      href: link.href,
-    })),
-  }))
+  const sections = props.sections?.map((section) => {
+    const links = (section.links ?? []).flatMap((link) => {
+      const { href, openInNewTab } = resolveCmsLink(link)
 
-  const legalLinks = props.legalLinks?.map((link) => ({
-    name: link.name,
-    href: link.href,
-  }))
+      if (!href) {
+        return []
+      }
+
+      return [
+        {
+          name: link.name,
+          href,
+          openInNewTab,
+        },
+      ]
+    })
+
+    return {
+      title: section.title,
+      links,
+    }
+  })
+
+  const legalLinks = props.legalLinks?.flatMap((link) => {
+    const { href, openInNewTab } = resolveCmsLink(link)
+
+    if (!href) {
+      return []
+    }
+
+    return [
+      {
+        name: link.name,
+        href,
+        openInNewTab,
+      },
+    ]
+  })
 
   return (
     <Footer2

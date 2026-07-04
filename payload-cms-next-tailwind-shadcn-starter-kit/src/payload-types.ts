@@ -334,7 +334,10 @@ export interface Footer2Block {
         links?:
           | {
               name: string;
-              href: string;
+              linkType: 'page' | 'custom';
+              page?: (number | null) | Page;
+              url?: string | null;
+              openInNewTab?: boolean | null;
               id?: string | null;
             }[]
           | null;
@@ -345,7 +348,10 @@ export interface Footer2Block {
   legalLinks?:
     | {
         name: string;
-        href: string;
+        linkType: 'page' | 'custom';
+        page?: (number | null) | Page;
+        url?: string | null;
+        openInNewTab?: boolean | null;
         id?: string | null;
       }[]
     | null;
@@ -614,7 +620,10 @@ export interface Footer2BlockSelect<T extends boolean = true> {
           | T
           | {
               name?: T;
-              href?: T;
+              linkType?: T;
+              page?: T;
+              url?: T;
+              openInNewTab?: T;
               id?: T;
             };
         id?: T;
@@ -624,7 +633,10 @@ export interface Footer2BlockSelect<T extends boolean = true> {
     | T
     | {
         name?: T;
-        href?: T;
+        linkType?: T;
+        page?: T;
+        url?: T;
+        openInNewTab?: T;
         id?: T;
       };
   id?: T;

@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 interface FooterLink {
   name: string
   href: string
+  openInNewTab?: boolean
 }
 interface FooterSection {
   title: string
@@ -121,7 +122,13 @@ const Footer2 = (props: Props) => {
                 <ul className="space-y-4 text-sm text-muted-foreground">
                   {section.links.map((link, linkIdx) => (
                     <li key={linkIdx} className="font-medium hover:text-primary">
-                      <a href={link.href}>{link.name}</a>
+                      <a
+                        href={link.href}
+                        target={link.openInNewTab ? '_blank' : undefined}
+                        rel={link.openInNewTab ? 'noreferrer noopener' : undefined}
+                      >
+                        {link.name}
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -133,7 +140,13 @@ const Footer2 = (props: Props) => {
             <ul className="flex gap-4">
               {legalLinks?.map((link, linkIdx) => (
                 <li key={linkIdx} className="underline hover:text-primary">
-                  <a href={link.href}>{link.name}</a>
+                  <a
+                    href={link.href}
+                    target={link.openInNewTab ? '_blank' : undefined}
+                    rel={link.openInNewTab ? 'noreferrer noopener' : undefined}
+                  >
+                    {link.name}
+                  </a>
                 </li>
               ))}
             </ul>
