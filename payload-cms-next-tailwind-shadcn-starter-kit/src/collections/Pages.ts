@@ -4,6 +4,8 @@ import type { Page } from '@/payload-types'
 
 import { Hero36Block } from '../blocks/Hero36/config'
 import { createRedirectsForChangedPagePath } from '../hooks/createRedirectsForChangedPagePath'
+import { populatePageUrlPreview } from '../hooks/populatePageUrlPreview'
+import { preventReferencedPageUnpublish } from '../hooks/preventReferencedPageUnpublish'
 import {
   syncNavigationLinkAfterChange,
   syncNavigationLinkAfterDelete,
@@ -78,8 +80,10 @@ export const Pages: CollectionConfig = {
     read: () => true,
   },
   hooks: {
+    afterRead: [populatePageUrlPreview],
     afterChange: [syncNavigationLinkAfterChange, createRedirectsForChangedPagePath],
     afterDelete: [syncNavigationLinkAfterDelete],
+    beforeChange: [preventReferencedPageUnpublish],
   },
   versions: {
     drafts: true,
@@ -129,6 +133,16 @@ export const Pages: CollectionConfig = {
         {
           label: 'Settings',
           fields: [
+            {
+              name: 'publicUrlPreview',
+              label: 'Public URL',
+              type: 'text',
+              virtual: true,
+              admin: {
+                readOnly: true,
+                description: 'Resolved from the current saved slug and parent hierarchy.',
+              },
+            },
             {
               name: 'parent',
               type: 'relationship',

@@ -1,4 +1,53 @@
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig, RelationshipFieldSingleValidation } from 'payload'
+
+const extractPageID = (
+  value: number | { id: number | string } | null | undefined,
+): number | string | null => {
+  if (typeof value === 'number' || typeof value === 'string') {
+    return value
+  }
+
+  if (typeof value === 'object' && value !== null) {
+    return value.id
+  }
+
+  return null
+}
+
+const validatePublishedFrontPage: RelationshipFieldSingleValidation = async (value, { req }) => {
+  const pageID = extractPageID(value as number | { id: number | string } | null | undefined)
+
+  if (pageID == null) {
+    return true
+  }
+
+  const result = await req.payload.find({
+    collection: 'pages',
+    where: {
+      and: [
+        {
+          id: {
+            equals: pageID,
+          },
+        },
+        {
+          _status: {
+            equals: 'published',
+          },
+        },
+      ],
+    },
+    depth: 0,
+    limit: 1,
+    req,
+  })
+
+  if (result.docs.length === 0) {
+    return 'Front Page must reference a published page.'
+  }
+
+  return true
+}
 
 export const PageSettings: GlobalConfig = {
   slug: 'page-settings',
@@ -16,6 +65,26 @@ export const PageSettings: GlobalConfig = {
     {
       type: 'tabs',
       tabs: [
+        {
+          label: 'Front Page',
+          fields: [
+            {
+              name: 'homepage',
+              label: 'Front Page',
+              type: 'relationship',
+              relationTo: 'pages',
+              filterOptions: {
+                _status: {
+                  equals: 'published',
+                },
+              },
+              validate: validatePublishedFrontPage,
+              admin: {
+                description: 'Choose which published page should render at the root URL (/).',
+              },
+            },
+          ],
+        },
         {
           label: 'Header',
           fields: [

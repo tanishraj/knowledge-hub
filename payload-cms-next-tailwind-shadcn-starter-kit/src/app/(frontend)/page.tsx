@@ -1,28 +1,17 @@
 import '../../styles/globals.css'
 
 import type { Metadata } from 'next'
-import { notFound, permanentRedirect, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 import { PageContent } from './PageContent'
-import { getPageBySlug, getPageMetadataBySlug } from './pageData'
-import { getRedirectByPath } from '@/lib/redirects'
+import { getHomepageMetadata, getHomepagePage } from './pageData'
 
 export async function generateMetadata(): Promise<Metadata> {
-  return getPageMetadataBySlug('home')
+  return getHomepageMetadata()
 }
 
 export default async function HomePage() {
-  const matchedRedirect = await getRedirectByPath('/')
-
-  if (matchedRedirect) {
-    if (matchedRedirect.permanent) {
-      permanentRedirect(matchedRedirect.destination)
-    }
-
-    redirect(matchedRedirect.destination)
-  }
-
-  const page = await getPageBySlug('home')
+  const page = await getHomepagePage()
 
   if (!page) {
     notFound()

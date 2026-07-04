@@ -158,6 +158,10 @@ export interface Page {
   metaTitle: string;
   metaDescription: string;
   /**
+   * Resolved from the current saved slug and parent hierarchy.
+   */
+  publicUrlPreview?: string | null;
+  /**
    * Use this for nested page hierarchies like /services/web-development.
    */
   parent?: (number | null) | Page;
@@ -242,7 +246,7 @@ export interface NavigationLink {
   _status?: ('draft' | 'published') | null;
 }
 /**
- * Map old URLs to new destinations during migrations and ongoing URL changes.
+ * Map old URLs to new destinations during migrations and ongoing URL changes. Some redirects may be auto-generated when a published page URL changes.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
@@ -551,6 +555,7 @@ export interface PagesSelect<T extends boolean = true> {
       };
   metaTitle?: T;
   metaDescription?: T;
+  publicUrlPreview?: T;
   parent?: T;
   showInNavigation?: T;
   updatedAt?: T;
@@ -815,6 +820,10 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface PageSetting {
   id: number;
   /**
+   * Choose which published page should render at the root URL (/).
+   */
+  homepage?: (number | null) | Page;
+  /**
    * Choose which saved header preset should render site-wide.
    */
   activeHeader?: (number | null) | Header;
@@ -896,6 +905,7 @@ export interface SeoSetting {
  * via the `definition` "page-settings_select".
  */
 export interface PageSettingsSelect<T extends boolean = true> {
+  homepage?: T;
   activeHeader?: T;
   activeFooter?: T;
   _status?: T;

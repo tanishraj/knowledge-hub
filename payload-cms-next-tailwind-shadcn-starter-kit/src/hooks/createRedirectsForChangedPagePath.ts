@@ -42,13 +42,31 @@ const findExistingRedirect = async (
   return result.docs[0] ?? null
 }
 
+const getHomepageID = async (req: PayloadRequest): Promise<number | null> => {
+  const pageSettings = await req.payload.findGlobal({
+    slug: 'page-settings',
+    depth: 0,
+    req,
+  })
+
+  return getRelationshipID(pageSettings.homepage as number | Page | null | undefined)
+}
+
 const createRedirectIfMissing = async ({
+  destination,
   fromPath,
-  pageID,
   req,
 }: {
+  destination:
+    | {
+        type: 'custom'
+        url: string
+      }
+    | {
+        pageID: number
+        type: 'page'
+      }
   fromPath: string
-  pageID: number
   req: PayloadRequest
 }) => {
   const normalizedFromPath = normalizeRedirectPath(fromPath)
@@ -62,9 +80,10 @@ const createRedirectIfMissing = async ({
     collection: 'redirects',
     data: {
       fromPath: normalizedFromPath,
-      destinationType: 'page',
-      page: pageID,
+      destinationType: destination.type === 'page' ? 'page' : 'custom',
+      page: destination.type === 'page' ? destination.pageID : undefined,
       statusCode: '301',
+      url: destination.type === 'custom' ? destination.url : undefined,
       enabled: true,
       _status: 'published',
     },
@@ -164,8 +183,11 @@ const createDescendantRedirects = async ({
     }
 
     await createRedirectIfMissing({
+      destination: {
+        pageID: descendant.id,
+        type: 'page',
+      },
       fromPath: oldDescendantPath,
-      pageID: descendant.id,
       req,
     })
   }
@@ -193,10 +215,20 @@ export const createRedirectsForChangedPagePath: CollectionAfterChangeHook<Page> 
   }
 
   const pageID = typeof doc.id === 'number' ? doc.id : Number(doc.id)
+  const homepageID = await getHomepageID(req)
 
   await createRedirectIfMissing({
+    destination:
+      homepageID === pageID
+        ? {
+            type: 'custom',
+            url: '/',
+          }
+        : {
+            pageID,
+            type: 'page',
+          },
     fromPath: oldPath,
-    pageID,
     req,
   })
 

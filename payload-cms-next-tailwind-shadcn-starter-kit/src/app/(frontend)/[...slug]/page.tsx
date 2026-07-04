@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound, permanentRedirect, redirect } from 'next/navigation'
 
 import { PageContent } from '../PageContent'
-import { getPageByPath, getPageMetadataByPath } from '../pageData'
+import { getHomepagePath, getPageByPath, getPageMetadataByPath } from '../pageData'
 import { getRedirectByPath } from '@/lib/redirects'
 
 type PageProps = {
@@ -18,7 +18,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CmsPage({ params }: PageProps) {
   const { slug } = await params
-  const matchedRedirect = await getRedirectByPath(`/${slug.join('/')}`)
+  const pathname = `/${slug.join('/')}`
+  const homepagePath = await getHomepagePath()
+
+  if (homepagePath && pathname === homepagePath) {
+    permanentRedirect('/')
+  }
+
+  const matchedRedirect = await getRedirectByPath(pathname)
 
   if (matchedRedirect) {
     if (matchedRedirect.permanent) {
