@@ -5,8 +5,9 @@ import React, { cache } from 'react'
 import '../../styles/globals.css'
 
 import type { Metadata } from 'next'
+import { RenderFooter } from '@/blocks/renderFooter'
 import { RenderHeader } from '@/blocks/renderHeader'
-import type { Header, Media } from '@/payload-types'
+import type { Footer, Header, Media } from '@/payload-types'
 
 export const dynamic = 'force-dynamic'
 
@@ -41,6 +42,10 @@ const getFrontendGlobals = cache(async () => {
     typeof pageSettings.activeHeader === 'number'
       ? pageSettings.activeHeader
       : pageSettings.activeHeader?.id
+  const activeFooterID =
+    typeof pageSettings.activeFooter === 'number'
+      ? pageSettings.activeFooter
+      : pageSettings.activeFooter?.id
   const activeHeader: Header | null =
     activeHeaderID != null
       ? await payload.findByID({
@@ -49,8 +54,17 @@ const getFrontendGlobals = cache(async () => {
           depth: 10,
         })
       : null
+  const activeFooter: Footer | null =
+    activeFooterID != null
+      ? await payload.findByID({
+          collection: 'footers',
+          id: activeFooterID,
+          depth: 10,
+        })
+      : null
 
   return {
+    activeFooter,
     activeHeader,
     seoSettings,
     siteSettings,
@@ -155,7 +169,7 @@ const systemThemeScript = `
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
-  const { activeHeader, siteSettings, themeSettings } = await getFrontendGlobals()
+  const { activeFooter, activeHeader, siteSettings, themeSettings } = await getFrontendGlobals()
 
   const colorScheme = themeSettings.colorScheme ?? 'system'
   const rawThemeColor = String(themeSettings.themeColor ?? 'default')
@@ -183,6 +197,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <body>
         <RenderHeader header={activeHeader} siteSettings={siteSettings} />
         <main className={activeHeader ? 'pt-[3.75rem]' : undefined}>{children}</main>
+        <RenderFooter footer={activeFooter} />
       </body>
     </html>
   )

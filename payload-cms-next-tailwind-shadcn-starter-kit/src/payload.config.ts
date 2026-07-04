@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
 import { Users } from './collections/Users'
+import { Footers } from './collections/Footers'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Headers } from './collections/Headers'
@@ -25,7 +26,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Pages, Headers, Media, Users],
+  collections: [Pages, Headers, Footers, Media, Users],
   globals: [PageSettings, SiteSettings, ThemeSettings, SEOSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

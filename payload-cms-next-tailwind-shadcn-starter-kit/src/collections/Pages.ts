@@ -2,7 +2,6 @@ import { slugField, type CollectionConfig, type RelationshipFieldSingleValidatio
 
 import type { Page } from '@/payload-types'
 
-import { Footer2Block } from '../blocks/Footer2/config'
 import { Hero36Block } from '../blocks/Hero36/config'
 
 const extractPageID = (value: number | Page | null | undefined): number | null => {
@@ -87,7 +86,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Hero36Block, Footer2Block],
+              blocks: [Hero36Block],
               admin: {
                 initCollapsed: true,
                 description: 'Compose the page with reusable frontend sections.',

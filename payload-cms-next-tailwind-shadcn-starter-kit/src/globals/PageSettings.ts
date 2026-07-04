@@ -26,6 +26,19 @@ export const PageSettings: GlobalConfig = {
             },
           ],
         },
+        {
+          label: 'Footer',
+          fields: [
+            {
+              name: 'activeFooter',
+              type: 'relationship',
+              relationTo: 'footers',
+              admin: {
+                description: 'Choose which saved footer preset should render site-wide.',
+              },
+            },
+          ],
+        },
       ],
     },
   ],

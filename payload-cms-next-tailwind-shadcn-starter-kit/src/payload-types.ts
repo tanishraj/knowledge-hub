@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     pages: Page;
     headers: Header;
+    footers: Footer;
     media: Media;
     users: User;
     'payload-kv': PayloadKv;
@@ -80,6 +81,7 @@ export interface Config {
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     headers: HeadersSelect<false> | HeadersSelect<true>;
+    footers: FootersSelect<false> | FootersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -148,7 +150,7 @@ export interface Page {
   /**
    * Compose the page with reusable frontend sections.
    */
-  layout?: (Hero36Block | Footer2Block)[] | null;
+  layout?: Hero36Block[] | null;
   content?: {
     root: {
       type: string;
@@ -217,37 +219,6 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Footer2Block".
- */
-export interface Footer2Block {
-  description?: string | null;
-  sections?:
-    | {
-        title: string;
-        links?:
-          | {
-              name: string;
-              href: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  copyright?: string | null;
-  legalLinks?:
-    | {
-        name: string;
-        href: string;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'footer2';
 }
 /**
  * Reusable site header presets powered by header layout blocks.
@@ -329,6 +300,60 @@ export interface HeaderNavbar12Block {
   blockType: 'headerNavbar12';
 }
 /**
+ * Reusable site footer presets powered by footer layout blocks.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footers".
+ */
+export interface Footer {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  /**
+   * Select the footer block variant to use for this preset.
+   */
+  layout: Footer2Block[];
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Footer2Block".
+ */
+export interface Footer2Block {
+  description?: string | null;
+  sections?:
+    | {
+        title: string;
+        links?:
+          | {
+              name: string;
+              href: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  copyright?: string | null;
+  legalLinks?:
+    | {
+        name: string;
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'footer2';
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -385,6 +410,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'headers';
         value: number | Header;
+      } | null)
+    | ({
+        relationTo: 'footers';
+        value: number | Footer;
       } | null)
     | ({
         relationTo: 'media';
@@ -448,7 +477,6 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         hero36?: T | Hero36BlockSelect<T>;
-        footer2?: T | Footer2BlockSelect<T>;
       };
   content?: T;
   metaTitle?: T;
@@ -480,36 +508,6 @@ export interface Hero36BlockSelect<T extends boolean = true> {
         visualType?: T;
         icon?: T;
         image?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Footer2Block_select".
- */
-export interface Footer2BlockSelect<T extends boolean = true> {
-  description?: T;
-  sections?:
-    | T
-    | {
-        title?: T;
-        links?:
-          | T
-          | {
-              name?: T;
-              href?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  copyright?: T;
-  legalLinks?:
-    | T
-    | {
-        name?: T;
-        href?: T;
         id?: T;
       };
   id?: T;
@@ -580,6 +578,54 @@ export interface HeaderNavbar12BlockSelect<T extends boolean = true> {
         page?: T;
         url?: T;
         openInNewTab?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footers_select".
+ */
+export interface FootersSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  layout?:
+    | T
+    | {
+        footer2?: T | Footer2BlockSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  deletedAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Footer2Block_select".
+ */
+export interface Footer2BlockSelect<T extends boolean = true> {
+  description?: T;
+  sections?:
+    | T
+    | {
+        title?: T;
+        links?:
+          | T
+          | {
+              name?: T;
+              href?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  copyright?: T;
+  legalLinks?:
+    | T
+    | {
+        name?: T;
+        href?: T;
+        id?: T;
       };
   id?: T;
   blockName?: T;
@@ -676,6 +722,10 @@ export interface PageSetting {
    * Choose which saved header preset should render site-wide.
    */
   activeHeader?: (number | null) | Header;
+  /**
+   * Choose which saved footer preset should render site-wide.
+   */
+  activeFooter?: (number | null) | Footer;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -747,6 +797,7 @@ export interface SeoSetting {
  */
 export interface PageSettingsSelect<T extends boolean = true> {
   activeHeader?: T;
+  activeFooter?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
