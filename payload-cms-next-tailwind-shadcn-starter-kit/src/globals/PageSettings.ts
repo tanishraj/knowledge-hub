@@ -9,6 +9,9 @@ export const PageSettings: GlobalConfig = {
   access: {
     read: () => true,
   },
+  versions: {
+    drafts: true,
+  },
   fields: [
     {
       type: 'tabs',

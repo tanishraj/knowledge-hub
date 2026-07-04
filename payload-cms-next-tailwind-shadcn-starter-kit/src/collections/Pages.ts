@@ -16,7 +16,10 @@ const extractPageID = (value: number | Page | null | undefined): number | null =
   return null
 }
 
-const validateParentRelationship: RelationshipFieldSingleValidation = async (value, { id, req }) => {
+const validateParentRelationship: RelationshipFieldSingleValidation = async (
+  value,
+  { id, req },
+) => {
   const parentID = extractPageID(value as number | Page | null | undefined)
 
   if (!parentID || id == null) {
@@ -61,11 +64,15 @@ export const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
-    description: 'Flexible website pages with reusable layout blocks, SEO controls, and publishing settings.',
+    description:
+      'Flexible website pages with reusable layout blocks, SEO controls, and publishing settings.',
     listSearchableFields: ['title', 'slug'],
   },
   access: {
     read: () => true,
+  },
+  versions: {
+    drafts: true,
   },
   timestamps: true,
   fields: [

@@ -7,6 +7,9 @@ export const SEOSettings: GlobalConfig = {
     group: 'Settings',
     description: 'Default SEO values used when a page does not provide its own overrides.',
   },
+  versions: {
+    drafts: true,
+  },
   fields: [
     {
       name: 'defaultTitle',

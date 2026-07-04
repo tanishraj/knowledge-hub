@@ -6,6 +6,9 @@ export const SiteSettings: GlobalConfig = {
   admin: {
     group: 'Settings',
   },
+  versions: {
+    drafts: true,
+  },
   fields: [
     {
       type: 'tabs',

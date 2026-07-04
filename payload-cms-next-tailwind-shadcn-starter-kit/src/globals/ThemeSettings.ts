@@ -7,6 +7,9 @@ export const ThemeSettings: GlobalConfig = {
     group: 'Settings',
     description: 'Control the frontend theme preset and light or dark mode behavior.',
   },
+  versions: {
+    drafts: true,
+  },
   fields: [
     {
       name: 'themeColor',

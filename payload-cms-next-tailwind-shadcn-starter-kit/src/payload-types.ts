@@ -176,6 +176,7 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   deletedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -210,6 +211,7 @@ export interface Media {
   updatedAt: string;
   createdAt: string;
   deletedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
   url?: string | null;
   thumbnailURL?: string | null;
   filename?: string | null;
@@ -492,6 +494,7 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   deletedAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -651,6 +654,7 @@ export interface MediaSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   deletedAt?: T;
+  _status?: T;
   url?: T;
   thumbnailURL?: T;
   filename?: T;
@@ -738,6 +742,7 @@ export interface PageSetting {
    * Choose which saved footer preset should render site-wide.
    */
   activeFooter?: (number | null) | Footer;
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -761,6 +766,7 @@ export interface SiteSetting {
     linkedin?: string | null;
     youtube?: string | null;
   };
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -780,6 +786,7 @@ export interface ThemeSetting {
    * Choose whether the site follows the system preference or forces light/dark mode.
    */
   colorScheme: 'system' | 'light' | 'dark';
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -800,6 +807,7 @@ export interface SeoSetting {
   defaultImage?: (number | null) | Media;
   robots?: ('index,follow' | 'noindex,follow' | 'index,nofollow' | 'noindex,nofollow') | null;
   googleSiteVerification?: string | null;
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -810,6 +818,7 @@ export interface SeoSetting {
 export interface PageSettingsSelect<T extends boolean = true> {
   activeHeader?: T;
   activeFooter?: T;
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -835,6 +844,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         linkedin?: T;
         youtube?: T;
       };
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -846,6 +856,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
 export interface ThemeSettingsSelect<T extends boolean = true> {
   themeColor?: T;
   colorScheme?: T;
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -861,6 +872,7 @@ export interface SeoSettingsSelect<T extends boolean = true> {
   defaultImage?: T;
   robots?: T;
   googleSiteVerification?: T;
+  _status?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
