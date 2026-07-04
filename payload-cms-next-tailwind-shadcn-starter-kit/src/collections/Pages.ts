@@ -99,10 +99,6 @@ export const Pages: CollectionConfig = {
                 description: 'Compose the page with reusable frontend sections.',
               },
             },
-            {
-              name: 'content',
-              type: 'richText',
-            },
           ],
         },
         {

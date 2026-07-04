@@ -151,21 +151,6 @@ export interface Page {
    * Compose the page with reusable frontend sections.
    */
   layout?: Hero36Block[] | null;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
   metaTitle: string;
   metaDescription: string;
   /**
@@ -486,7 +471,6 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         hero36?: T | Hero36BlockSelect<T>;
       };
-  content?: T;
   metaTitle?: T;
   metaDescription?: T;
   parent?: T;

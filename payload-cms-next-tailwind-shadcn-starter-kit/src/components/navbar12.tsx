@@ -341,7 +341,11 @@ const DesktopNavigationMenu = ({
             className="flex max-h-8 items-center gap-2 text-lg font-semibold tracking-tighter"
           >
             {logo.src && (
-              <img src={logo.src} alt={logo.alt ?? "logo"} className="inline-block size-8" />
+              <img
+                src={logo.src}
+                alt={logo.alt ?? "logo"}
+                className="inline-block h-10 w-auto shrink-0 object-contain"
+              />
             )}
             {logo.title ? <span className="hidden md:inline-block">{logo.title}</span> : null}
           </LinkAnchor>
