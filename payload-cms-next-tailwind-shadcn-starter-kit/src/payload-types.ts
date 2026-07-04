@@ -352,6 +352,8 @@ export interface Footer {
  * via the `definition` "Footer2Block".
  */
 export interface Footer2Block {
+  logoMode: 'siteSettingsLogo' | 'customLogo';
+  customLogo?: (number | null) | Media;
   description?: string | null;
   /**
    * Configure the footer sections for this footer layout.
@@ -649,6 +651,8 @@ export interface FootersSelect<T extends boolean = true> {
  * via the `definition` "Footer2Block_select".
  */
 export interface Footer2BlockSelect<T extends boolean = true> {
+  logoMode?: T;
+  customLogo?: T;
   description?: T;
   sections?:
     | T

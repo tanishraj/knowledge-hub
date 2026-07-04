@@ -9,6 +9,39 @@ export const Footer2Block: Block = {
   },
   fields: [
     {
+      name: 'logoMode',
+      type: 'radio',
+      required: true,
+      defaultValue: 'siteSettingsLogo',
+      options: [
+        {
+          label: 'Use Site Settings Logo',
+          value: 'siteSettingsLogo',
+        },
+        {
+          label: 'Use Custom Logo',
+          value: 'customLogo',
+        },
+      ],
+      admin: {
+        layout: 'horizontal',
+      },
+    },
+    {
+      name: 'customLogo',
+      type: 'upload',
+      relationTo: 'media',
+      filterOptions: {
+        mimeType: {
+          contains: 'image',
+        },
+      },
+      admin: {
+        condition: (_: unknown, siblingData: { logoMode?: 'siteSettingsLogo' | 'customLogo' | null }) =>
+          siblingData?.logoMode === 'customLogo',
+      },
+    },
+    {
       name: 'description',
       type: 'textarea',
     },

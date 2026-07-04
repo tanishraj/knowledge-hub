@@ -13,7 +13,10 @@ export function Footer2BlockComponent({
 }: Footer2BlockData & {
   siteSettings: SiteSetting
 }) {
-  const logoImage = isMediaDoc(siteSettings.logo) ? siteSettings.logo : null
+  const siteLogo = isMediaDoc(siteSettings.logo) ? siteSettings.logo : null
+  const customLogo = isMediaDoc(props.customLogo) ? props.customLogo : null
+  const logoImage =
+    props.logoMode === 'customLogo' ? customLogo ?? siteLogo : siteLogo ?? customLogo
   const logo =
     logoImage?.url && logoImage.alt
       ? {
