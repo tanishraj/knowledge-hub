@@ -37,7 +37,6 @@ const getFrontendGlobals = cache(async () => {
       depth: 1,
     }),
   ])
-
   const activeHeaderID =
     typeof pageSettings.activeHeader === 'number'
       ? pageSettings.activeHeader
@@ -169,7 +168,8 @@ const systemThemeScript = `
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
-  const { activeFooter, activeHeader, siteSettings, themeSettings } = await getFrontendGlobals()
+  const { activeFooter, activeHeader, siteSettings, themeSettings } =
+    await getFrontendGlobals()
 
   const colorScheme = themeSettings.colorScheme ?? 'system'
   const rawThemeColor = String(themeSettings.themeColor ?? 'default')
@@ -195,9 +195,15 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         )}
       </head>
       <body>
-        <RenderHeader header={activeHeader} siteSettings={siteSettings} />
+        <RenderHeader
+          header={activeHeader}
+          siteSettings={siteSettings}
+        />
         <main className={activeHeader ? 'pt-[3.75rem]' : undefined}>{children}</main>
-        <RenderFooter footer={activeFooter} />
+        <RenderFooter
+          footer={activeFooter}
+          siteSettings={siteSettings}
+        />
       </body>
     </html>
   )

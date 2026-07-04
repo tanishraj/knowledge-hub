@@ -1,7 +1,5 @@
 import type { Block } from 'payload'
 
-import { createCmsLinkFields } from '@/fields/cmsLinkFields'
-
 export const Footer2Block: Block = {
   slug: 'footer2',
   interfaceName: 'Footer2Block',
@@ -17,14 +15,13 @@ export const Footer2Block: Block = {
     {
       name: 'sections',
       type: 'array',
-      minRows: 1,
-      maxRows: 4,
       labels: {
         singular: 'Section',
         plural: 'Sections',
       },
       admin: {
         initCollapsed: true,
+        description: 'Configure the footer sections for this footer layout.',
       },
       fields: [
         {
@@ -47,9 +44,16 @@ export const Footer2Block: Block = {
             {
               name: 'name',
               type: 'text',
+              admin: {
+                description: 'Optional label override. Leave blank to use the reusable link title.',
+              },
+            },
+            {
+              name: 'link',
+              type: 'relationship',
+              relationTo: 'navigation-links',
               required: true,
             },
-            ...createCmsLinkFields(),
           ],
         },
       ],
@@ -72,9 +76,16 @@ export const Footer2Block: Block = {
         {
           name: 'name',
           type: 'text',
+          admin: {
+            description: 'Optional label override. Leave blank to use the reusable link title.',
+          },
+        },
+        {
+          name: 'link',
+          type: 'relationship',
+          relationTo: 'navigation-links',
           required: true,
         },
-        ...createCmsLinkFields(),
       ],
     },
   ],

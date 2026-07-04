@@ -1,28 +1,18 @@
-import configPromise from '@payload-config'
-import { getPayload } from 'payload'
-import { cache } from 'react'
-
 import { Footer2 } from '@/components/footer2'
 import type { Footer2Block as Footer2BlockData, Media, SiteSetting } from '@/payload-types'
-import { resolveCmsLink } from '@/lib/cmsLinks'
+import { resolveNavigationLink } from '@/lib/navigationLinks'
+import { resolveFooterSections } from '@/lib/navigationStructures'
 
 const isMediaDoc = (value: number | Media | null | undefined): value is Media => {
   return typeof value === 'object' && value !== null
 }
 
-const getSiteSettings = cache(async (): Promise<SiteSetting> => {
-  const payload = await getPayload({
-    config: configPromise,
-  })
-
-  return payload.findGlobal({
-    slug: 'site-settings',
-    depth: 1,
-  })
-})
-
-export async function Footer2BlockComponent(props: Footer2BlockData) {
-  const siteSettings = await getSiteSettings()
+export function Footer2BlockComponent({
+  siteSettings,
+  ...props
+}: Footer2BlockData & {
+  siteSettings: SiteSetting
+}) {
   const logoImage = isMediaDoc(siteSettings.logo) ? siteSettings.logo : null
   const logo =
     logoImage?.url && logoImage.alt
@@ -34,39 +24,19 @@ export async function Footer2BlockComponent(props: Footer2BlockData) {
         }
       : undefined
 
-  const sections = props.sections?.map((section) => {
-    const links = (section.links ?? []).flatMap((link) => {
-      const { href, openInNewTab } = resolveCmsLink(link)
+  const sections = resolveFooterSections(props)
 
-      if (!href) {
-        return []
-      }
+  const legalLinks = props.legalLinks?.flatMap((entry) => {
+    const { href, openInNewTab, title } = resolveNavigationLink(entry.link)
+    const name = entry.name?.trim() || title
 
-      return [
-        {
-          name: link.name,
-          href,
-          openInNewTab,
-        },
-      ]
-    })
-
-    return {
-      title: section.title,
-      links,
-    }
-  })
-
-  const legalLinks = props.legalLinks?.flatMap((link) => {
-    const { href, openInNewTab } = resolveCmsLink(link)
-
-    if (!href) {
+    if (!href || !name) {
       return []
     }
 
     return [
       {
-        name: link.name,
+        name,
         href,
         openInNewTab,
       },

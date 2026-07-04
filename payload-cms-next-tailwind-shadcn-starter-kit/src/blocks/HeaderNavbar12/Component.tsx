@@ -4,7 +4,8 @@ import type {
   Media,
   SiteSetting,
 } from '@/payload-types'
-import { resolveCmsLink } from '@/lib/cmsLinks'
+import { resolveNavigationLink } from '@/lib/navigationLinks'
+import { resolveHeaderNavigationItems } from '@/lib/navigationStructures'
 
 type NavbarLink = {
   openInNewTab?: boolean
@@ -14,52 +15,10 @@ type NavbarLink = {
   items?: NavbarLink[]
 }
 
-type NavigationItem = NonNullable<HeaderNavbar12BlockData['navigationItems']>[number]
-type NavigationChildItem = NonNullable<NavigationItem['children']>[number]
 type SecondaryAction = NonNullable<HeaderNavbar12BlockData['secondaryActions']>[number]
 
 const isMediaDoc = (value: number | Media | null | undefined): value is Media => {
   return typeof value === 'object' && value !== null
-}
-
-const mapNavigationChild = (child: NavigationChildItem): NavbarLink | null => {
-  const { href, openInNewTab } = resolveCmsLink(child)
-
-  if (!href) {
-    return null
-  }
-
-  return {
-    title: child.label,
-    description: child.description ?? undefined,
-    url: href,
-    openInNewTab,
-  }
-}
-
-const mapNavigationItem = (item: NavigationItem): NavbarLink | null => {
-  const children = (item.children ?? [])
-    .map((child) => mapNavigationChild(child))
-    .filter((child): child is NavbarLink => child !== null)
-
-  if (children.length > 0) {
-    return {
-      title: item.label,
-      items: children,
-    }
-  }
-
-  const { href, openInNewTab } = resolveCmsLink(item)
-
-  if (!href) {
-    return null
-  }
-
-  return {
-    title: item.label,
-    url: href,
-    openInNewTab,
-  }
 }
 
 const mapAction = (
@@ -73,14 +32,14 @@ const mapAction = (
     return null
   }
 
-  const { href, openInNewTab } = resolveCmsLink(item)
+  const { href, openInNewTab, title } = resolveNavigationLink(item.link)
 
-  if (!href) {
+  if (!href || !(item.label?.trim() || title)) {
     return null
   }
 
   return {
-    title: item.label,
+    title: item.label?.trim() || title || '',
     url: href,
     openInNewTab,
   }
@@ -105,9 +64,7 @@ export function HeaderNavbar12BlockComponent({
         }
       : undefined
 
-  const navigationItems = (block.navigationItems ?? [])
-    .map((item) => mapNavigationItem(item))
-    .filter((item): item is NavbarLink => item !== null)
+  const navigationItems = resolveHeaderNavigationItems(block)
 
   const secondaryButtons = (block.secondaryActions ?? [])
     .map((item) => mapAction(item))

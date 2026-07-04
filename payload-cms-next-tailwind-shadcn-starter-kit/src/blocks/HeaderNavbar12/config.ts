@@ -1,28 +1,4 @@
-import type { Block, Field } from 'payload'
-
-import { createCmsLinkFields } from '@/fields/cmsLinkFields'
-
-const createLinkFields = ({ includeDescription = false }: { includeDescription?: boolean } = {}): Field[] => {
-  const fields: Field[] = [
-    {
-      name: 'label',
-      type: 'text',
-      required: true,
-      dbName: 'label',
-    } as any,
-    ...createCmsLinkFields(),
-  ]
-
-  if (includeDescription) {
-    fields.splice(1, 0, {
-      name: 'description',
-      type: 'textarea',
-      dbName: 'desc',
-    } as any)
-  }
-
-  return fields
-}
+import type { Block } from 'payload'
 
 export const HeaderNavbar12Block: Block = {
   slug: 'headerNavbar12',
@@ -68,39 +44,68 @@ export const HeaderNavbar12Block: Block = {
     {
       name: 'navigationItems',
       type: 'array',
-      dbName: 'nav',
-      minRows: 1,
       labels: {
         singular: 'Navigation Item',
         plural: 'Navigation Items',
       },
       admin: {
         initCollapsed: true,
+        description: 'Configure the main navigation structure for this header.',
       },
       fields: [
-        ...createLinkFields(),
+        {
+          name: 'label',
+          type: 'text',
+          admin: {
+            description: 'Optional top-level label override. Leave blank to use the reusable link title.',
+          },
+        },
+        {
+          name: 'link',
+          type: 'relationship',
+          relationTo: 'navigation-links',
+          admin: {
+            description: 'Optional top-level destination. If children are added, this becomes the overview link.',
+          },
+        },
         {
           name: 'children',
           type: 'array',
-          dbName: 'child',
           labels: {
             singular: 'Dropdown Item',
             plural: 'Dropdown Items',
           },
           admin: {
             initCollapsed: true,
-            description: 'Add child items to turn this navigation item into a dropdown.',
           },
-          fields: createLinkFields({
-            includeDescription: true,
-          }),
-        } as any,
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              admin: {
+                description: 'Optional label override. Leave blank to use the reusable link title.',
+              },
+            },
+            {
+              name: 'description',
+              type: 'textarea',
+              admin: {
+                description: 'Optional description for dropdown items.',
+              },
+            },
+            {
+              name: 'link',
+              type: 'relationship',
+              relationTo: 'navigation-links',
+              required: true,
+            },
+          ],
+        },
       ],
-    } as any,
+    },
     {
       name: 'secondaryActions',
       type: 'array',
-      dbName: 'secondary',
       minRows: 0,
       maxRows: 2,
       labels: {
@@ -109,23 +114,47 @@ export const HeaderNavbar12Block: Block = {
       },
       admin: {
         initCollapsed: true,
-        description: 'Optional links shown to the right of the navigation.',
+        description: 'Optional reusable links shown to the right of the navigation.',
       },
-      fields: createLinkFields(),
-    } as any,
+      fields: [
+        {
+          name: 'label',
+          type: 'text',
+          admin: {
+            description: 'Optional label override. Leave blank to use the reusable link title.',
+          },
+        },
+        {
+          name: 'link',
+          type: 'relationship',
+          relationTo: 'navigation-links',
+          required: true,
+        },
+      ],
+    },
     {
       name: 'cta',
       label: 'Primary CTA',
       type: 'group',
-      dbName: 'cta',
       fields: [
         {
           name: 'enabled',
           type: 'checkbox',
           defaultValue: true,
         },
-        ...createLinkFields(),
+        {
+          name: 'label',
+          type: 'text',
+          admin: {
+            description: 'Optional button label override. Leave blank to use the reusable link title.',
+          },
+        },
+        {
+          name: 'link',
+          type: 'relationship',
+          relationTo: 'navigation-links',
+        },
       ],
-    } as any,
+    },
   ],
 }

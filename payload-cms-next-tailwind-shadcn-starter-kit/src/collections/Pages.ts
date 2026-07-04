@@ -3,6 +3,10 @@ import { slugField, type CollectionConfig, type RelationshipFieldSingleValidatio
 import type { Page } from '@/payload-types'
 
 import { Hero36Block } from '../blocks/Hero36/config'
+import {
+  syncNavigationLinkAfterChange,
+  syncNavigationLinkAfterDelete,
+} from '../hooks/syncNavigationLinkForPage'
 
 const extractPageID = (value: number | Page | null | undefined): number | null => {
   if (typeof value === 'number') {
@@ -70,6 +74,10 @@ export const Pages: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [syncNavigationLinkAfterChange],
+    afterDelete: [syncNavigationLinkAfterDelete],
   },
   versions: {
     drafts: true,
@@ -143,7 +151,9 @@ export const Pages: CollectionConfig = {
               name: 'showInNavigation',
               type: 'checkbox',
               defaultValue: false,
+              label: 'Sync to Navigation Links',
               admin: {
+                description: 'Create or maintain a reusable link record for this page.',
                 width: '50%',
               },
             },

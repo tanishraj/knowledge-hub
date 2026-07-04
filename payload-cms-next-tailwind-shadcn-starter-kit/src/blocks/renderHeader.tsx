@@ -19,7 +19,12 @@ export function RenderHeader({
 
   switch (block.blockType) {
     case 'headerNavbar12':
-      return <HeaderNavbar12BlockComponent block={block} siteSettings={siteSettings} />
+      return (
+        <HeaderNavbar12BlockComponent
+          block={block}
+          siteSettings={siteSettings}
+        />
+      )
     default:
       return null
   }

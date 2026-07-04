@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
+    'navigation-links': NavigationLink;
     headers: Header;
     footers: Footer;
     media: Media;
@@ -80,6 +81,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
+    'navigation-links': NavigationLinksSelect<false> | NavigationLinksSelect<true>;
     headers: HeadersSelect<false> | HeadersSelect<true>;
     footers: FootersSelect<false> | FootersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -157,6 +159,9 @@ export interface Page {
    * Use this for nested page hierarchies like /services/web-development.
    */
   parent?: (number | null) | Page;
+  /**
+   * Create or maintain a reusable link record for this page.
+   */
   showInNavigation?: boolean | null;
   updatedAt: string;
   createdAt: string;
@@ -208,6 +213,33 @@ export interface Media {
   focalY?: number | null;
 }
 /**
+ * Reusable destinations for menus, CTAs, legal links, and utility links.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation-links".
+ */
+export interface NavigationLink {
+  id: number;
+  title: string;
+  description?: string | null;
+  linkType: 'page' | 'custom';
+  page?: (number | null) | Page;
+  url?: string | null;
+  openInNewTab?: boolean | null;
+  /**
+   * Shows whether this reusable link is manually managed or synced from a page.
+   */
+  sourceType: 'manual' | 'pageSynced';
+  /**
+   * The page that currently owns this synced reusable link.
+   */
+  syncPage?: (number | null) | Page;
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
+}
+/**
  * Reusable site header presets powered by header layout blocks.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -237,24 +269,30 @@ export interface Header {
 export interface HeaderNavbar12Block {
   logoMode: 'siteSettingsLogo' | 'customLogo';
   customLogo?: (number | null) | Media;
+  /**
+   * Configure the main navigation structure for this header.
+   */
   navigationItems?:
     | {
-        label: string;
-        linkType: 'page' | 'custom';
-        page?: (number | null) | Page;
-        url?: string | null;
-        openInNewTab?: boolean | null;
         /**
-         * Add child items to turn this navigation item into a dropdown.
+         * Optional top-level label override. Leave blank to use the reusable link title.
          */
+        label?: string | null;
+        /**
+         * Optional top-level destination. If children are added, this becomes the overview link.
+         */
+        link?: (number | null) | NavigationLink;
         children?:
           | {
-              label: string;
+              /**
+               * Optional label override. Leave blank to use the reusable link title.
+               */
+              label?: string | null;
+              /**
+               * Optional description for dropdown items.
+               */
               description?: string | null;
-              linkType: 'page' | 'custom';
-              page?: (number | null) | Page;
-              url?: string | null;
-              openInNewTab?: boolean | null;
+              link: number | NavigationLink;
               id?: string | null;
             }[]
           | null;
@@ -262,25 +300,25 @@ export interface HeaderNavbar12Block {
       }[]
     | null;
   /**
-   * Optional links shown to the right of the navigation.
+   * Optional reusable links shown to the right of the navigation.
    */
   secondaryActions?:
     | {
-        label: string;
-        linkType: 'page' | 'custom';
-        page?: (number | null) | Page;
-        url?: string | null;
-        openInNewTab?: boolean | null;
+        /**
+         * Optional label override. Leave blank to use the reusable link title.
+         */
+        label?: string | null;
+        link: number | NavigationLink;
         id?: string | null;
       }[]
     | null;
-  cta: {
+  cta?: {
     enabled?: boolean | null;
-    label: string;
-    linkType: 'page' | 'custom';
-    page?: (number | null) | Page;
-    url?: string | null;
-    openInNewTab?: boolean | null;
+    /**
+     * Optional button label override. Leave blank to use the reusable link title.
+     */
+    label?: string | null;
+    link?: (number | null) | NavigationLink;
   };
   id?: string | null;
   blockName?: string | null;
@@ -315,16 +353,19 @@ export interface Footer {
  */
 export interface Footer2Block {
   description?: string | null;
+  /**
+   * Configure the footer sections for this footer layout.
+   */
   sections?:
     | {
         title: string;
         links?:
           | {
-              name: string;
-              linkType: 'page' | 'custom';
-              page?: (number | null) | Page;
-              url?: string | null;
-              openInNewTab?: boolean | null;
+              /**
+               * Optional label override. Leave blank to use the reusable link title.
+               */
+              name?: string | null;
+              link: number | NavigationLink;
               id?: string | null;
             }[]
           | null;
@@ -334,11 +375,11 @@ export interface Footer2Block {
   copyright?: string | null;
   legalLinks?:
     | {
-        name: string;
-        linkType: 'page' | 'custom';
-        page?: (number | null) | Page;
-        url?: string | null;
-        openInNewTab?: boolean | null;
+        /**
+         * Optional label override. Leave blank to use the reusable link title.
+         */
+        name?: string | null;
+        link: number | NavigationLink;
         id?: string | null;
       }[]
     | null;
@@ -399,6 +440,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'navigation-links';
+        value: number | NavigationLink;
       } | null)
     | ({
         relationTo: 'headers';
@@ -508,6 +553,24 @@ export interface Hero36BlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation-links_select".
+ */
+export interface NavigationLinksSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  linkType?: T;
+  page?: T;
+  url?: T;
+  openInNewTab?: T;
+  sourceType?: T;
+  syncPage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  deletedAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "headers_select".
  */
 export interface HeadersSelect<T extends boolean = true> {
@@ -535,19 +598,13 @@ export interface HeaderNavbar12BlockSelect<T extends boolean = true> {
     | T
     | {
         label?: T;
-        linkType?: T;
-        page?: T;
-        url?: T;
-        openInNewTab?: T;
+        link?: T;
         children?:
           | T
           | {
               label?: T;
               description?: T;
-              linkType?: T;
-              page?: T;
-              url?: T;
-              openInNewTab?: T;
+              link?: T;
               id?: T;
             };
         id?: T;
@@ -556,10 +613,7 @@ export interface HeaderNavbar12BlockSelect<T extends boolean = true> {
     | T
     | {
         label?: T;
-        linkType?: T;
-        page?: T;
-        url?: T;
-        openInNewTab?: T;
+        link?: T;
         id?: T;
       };
   cta?:
@@ -567,10 +621,7 @@ export interface HeaderNavbar12BlockSelect<T extends boolean = true> {
     | {
         enabled?: T;
         label?: T;
-        linkType?: T;
-        page?: T;
-        url?: T;
-        openInNewTab?: T;
+        link?: T;
       };
   id?: T;
   blockName?: T;
@@ -607,10 +658,7 @@ export interface Footer2BlockSelect<T extends boolean = true> {
           | T
           | {
               name?: T;
-              linkType?: T;
-              page?: T;
-              url?: T;
-              openInNewTab?: T;
+              link?: T;
               id?: T;
             };
         id?: T;
@@ -620,10 +668,7 @@ export interface Footer2BlockSelect<T extends boolean = true> {
     | T
     | {
         name?: T;
-        linkType?: T;
-        page?: T;
-        url?: T;
-        openInNewTab?: T;
+        link?: T;
         id?: T;
       };
   id?: T;
