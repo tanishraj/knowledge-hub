@@ -66,6 +66,7 @@ export const Pages: CollectionConfig = {
     plural: 'Pages',
   },
   admin: {
+    group: 'Content',
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
     description:

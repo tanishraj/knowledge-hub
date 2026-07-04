@@ -9,6 +9,7 @@ export const Footers: CollectionConfig = {
     plural: 'Footers',
   },
   admin: {
+    group: 'Site Structure',
     useAsTitle: 'title',
     defaultColumns: ['title', 'updatedAt'],
     description: 'Reusable site footer presets powered by footer layout blocks.',

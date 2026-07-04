@@ -102,11 +102,11 @@ const fields: Field[] = [
 export const NavigationLinks: CollectionConfig = {
   slug: 'navigation-links',
   labels: {
-    singular: 'Navigation Link',
-    plural: 'Navigation Links',
+    singular: 'Link',
+    plural: 'Links',
   },
   admin: {
-    group: 'Navigation',
+    group: 'Content',
     useAsTitle: 'title',
     defaultColumns: ['title', 'linkType', 'sourceType', 'updatedAt'],
     listSearchableFields: ['title', 'url'],

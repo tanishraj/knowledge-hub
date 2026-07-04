@@ -9,6 +9,7 @@ export const Headers: CollectionConfig = {
     plural: 'Headers',
   },
   admin: {
+    group: 'Site Structure',
     useAsTitle: 'title',
     defaultColumns: ['title', 'updatedAt'],
     description: 'Reusable site header presets powered by header layout blocks.',
