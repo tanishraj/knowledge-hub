@@ -8,6 +8,8 @@ import sharp from 'sharp'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
+import { Headers } from './collections/Headers'
+import { PageSettings } from './globals/PageSettings'
 import { SEOSettings } from './globals/SEOSettings'
 import { SiteSettings } from './globals/SiteSettings'
 import { ThemeSettings } from './globals/ThemeSettings'
@@ -23,8 +25,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Pages, Media, Users],
-  globals: [SiteSettings, ThemeSettings, SEOSettings],
+  collections: [Pages, Headers, Media, Users],
+  globals: [PageSettings, SiteSettings, ThemeSettings, SEOSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

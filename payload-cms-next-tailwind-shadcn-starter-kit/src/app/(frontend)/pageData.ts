@@ -4,6 +4,7 @@ import { cache } from 'react'
 
 import type { Metadata } from 'next'
 import type { Page } from '@/payload-types'
+import { getPageSlugSegments } from '@/lib/pagePaths'
 
 export const getPageBySlug = cache(async (slug: string): Promise<Page | null> => {
   const payload = await getPayload({
@@ -23,22 +24,6 @@ export const getPageBySlug = cache(async (slug: string): Promise<Page | null> =>
 
   return result.docs[0] ?? null
 })
-
-const isPageDoc = (value: number | Page | null | undefined): value is Page => {
-  return typeof value === 'object' && value !== null
-}
-
-const getParentSlugChain = (page: Page): string[] => {
-  const slugs: string[] = []
-  let currentParent = page.parent
-
-  while (isPageDoc(currentParent)) {
-    slugs.unshift(currentParent.slug)
-    currentParent = currentParent.parent
-  }
-
-  return slugs
-}
 
 const getPageByPathname = cache(async (pathname: string): Promise<Page | null> => {
   const segments = pathname.split('/').filter(Boolean)
@@ -69,7 +54,7 @@ const getPageByPathname = cache(async (pathname: string): Promise<Page | null> =
     return null
   }
 
-  const resolvedSegments = [...getParentSlugChain(page), page.slug]
+  const resolvedSegments = getPageSlugSegments(page)
 
   return resolvedSegments.join('/') === pathname ? page : null
 })

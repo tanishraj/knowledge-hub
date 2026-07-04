@@ -5,7 +5,8 @@ import React, { cache } from 'react'
 import '../../styles/globals.css'
 
 import type { Metadata } from 'next'
-import type { Media } from '@/payload-types'
+import { RenderHeader } from '@/blocks/renderHeader'
+import type { Header, Media } from '@/payload-types'
 
 export const dynamic = 'force-dynamic'
 
@@ -17,7 +18,11 @@ const getFrontendGlobals = cache(async () => {
     config: configPromise,
   })
 
-  const [themeSettings, seoSettings, siteSettings] = await Promise.all([
+  const [pageSettings, themeSettings, seoSettings, siteSettings] = await Promise.all([
+    payload.findGlobal({
+      slug: 'page-settings',
+      depth: 0,
+    }),
     payload.findGlobal({
       slug: 'theme-settings',
       depth: 0,
@@ -32,7 +37,21 @@ const getFrontendGlobals = cache(async () => {
     }),
   ])
 
+  const activeHeaderID =
+    typeof pageSettings.activeHeader === 'number'
+      ? pageSettings.activeHeader
+      : pageSettings.activeHeader?.id
+  const activeHeader: Header | null =
+    activeHeaderID != null
+      ? await payload.findByID({
+          collection: 'headers',
+          id: activeHeaderID,
+          depth: 10,
+        })
+      : null
+
   return {
+    activeHeader,
     seoSettings,
     siteSettings,
     themeSettings,
@@ -136,7 +155,7 @@ const systemThemeScript = `
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
-  const { themeSettings } = await getFrontendGlobals()
+  const { activeHeader, siteSettings, themeSettings } = await getFrontendGlobals()
 
   const colorScheme = themeSettings.colorScheme ?? 'system'
   const rawThemeColor = String(themeSettings.themeColor ?? 'default')
@@ -162,7 +181,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         )}
       </head>
       <body>
-        <main>{children}</main>
+        <RenderHeader header={activeHeader} siteSettings={siteSettings} />
+        <main className={activeHeader ? 'pt-[3.75rem]' : undefined}>{children}</main>
       </body>
     </html>
   )

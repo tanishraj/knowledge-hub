@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     pages: Page;
+    headers: Header;
     media: Media;
     users: User;
     'payload-kv': PayloadKv;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
+    headers: HeadersSelect<false> | HeadersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -90,11 +92,13 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
+    'page-settings': PageSetting;
     'site-settings': SiteSetting;
     'theme-settings': ThemeSetting;
     'seo-settings': SeoSetting;
   };
   globalsSelect: {
+    'page-settings': PageSettingsSelect<false> | PageSettingsSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'theme-settings': ThemeSettingsSelect<false> | ThemeSettingsSelect<true>;
     'seo-settings': SeoSettingsSelect<false> | SeoSettingsSelect<true>;
@@ -246,6 +250,85 @@ export interface Footer2Block {
   blockType: 'footer2';
 }
 /**
+ * Reusable site header presets powered by header layout blocks.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "headers".
+ */
+export interface Header {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  /**
+   * Select the header block variant to use for this preset.
+   */
+  layout: HeaderNavbar12Block[];
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeaderNavbar12Block".
+ */
+export interface HeaderNavbar12Block {
+  logoMode: 'siteSettingsLogo' | 'customLogo';
+  customLogo?: (number | null) | Media;
+  navigationItems?:
+    | {
+        label: string;
+        linkType: 'page' | 'custom';
+        page?: (number | null) | Page;
+        url?: string | null;
+        openInNewTab?: boolean | null;
+        /**
+         * Add child items to turn this navigation item into a dropdown.
+         */
+        children?:
+          | {
+              label: string;
+              description?: string | null;
+              linkType: 'page' | 'custom';
+              page?: (number | null) | Page;
+              url?: string | null;
+              openInNewTab?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional links shown to the right of the navigation.
+   */
+  secondaryActions?:
+    | {
+        label: string;
+        linkType: 'page' | 'custom';
+        page?: (number | null) | Page;
+        url?: string | null;
+        openInNewTab?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  cta: {
+    enabled?: boolean | null;
+    label: string;
+    linkType: 'page' | 'custom';
+    page?: (number | null) | Page;
+    url?: string | null;
+    openInNewTab?: boolean | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'headerNavbar12';
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -298,6 +381,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'headers';
+        value: number | Header;
       } | null)
     | ({
         relationTo: 'media';
@@ -430,6 +517,75 @@ export interface Footer2BlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "headers_select".
+ */
+export interface HeadersSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  layout?:
+    | T
+    | {
+        headerNavbar12?: T | HeaderNavbar12BlockSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  deletedAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeaderNavbar12Block_select".
+ */
+export interface HeaderNavbar12BlockSelect<T extends boolean = true> {
+  logoMode?: T;
+  customLogo?: T;
+  navigationItems?:
+    | T
+    | {
+        label?: T;
+        linkType?: T;
+        page?: T;
+        url?: T;
+        openInNewTab?: T;
+        children?:
+          | T
+          | {
+              label?: T;
+              description?: T;
+              linkType?: T;
+              page?: T;
+              url?: T;
+              openInNewTab?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  secondaryActions?:
+    | T
+    | {
+        label?: T;
+        linkType?: T;
+        page?: T;
+        url?: T;
+        openInNewTab?: T;
+        id?: T;
+      };
+  cta?:
+    | T
+    | {
+        enabled?: T;
+        label?: T;
+        linkType?: T;
+        page?: T;
+        url?: T;
+        openInNewTab?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
@@ -512,6 +668,19 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-settings".
+ */
+export interface PageSetting {
+  id: number;
+  /**
+   * Choose which saved header preset should render site-wide.
+   */
+  activeHeader?: (number | null) | Header;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings".
  */
 export interface SiteSetting {
@@ -571,6 +740,16 @@ export interface SeoSetting {
   googleSiteVerification?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-settings_select".
+ */
+export interface PageSettingsSelect<T extends boolean = true> {
+  activeHeader?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
