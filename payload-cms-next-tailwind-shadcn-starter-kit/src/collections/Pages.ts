@@ -3,6 +3,7 @@ import { slugField, type CollectionConfig, type RelationshipFieldSingleValidatio
 import type { Page } from '@/payload-types'
 
 import { Hero36Block } from '../blocks/Hero36/config'
+import { createRedirectsForChangedPagePath } from '../hooks/createRedirectsForChangedPagePath'
 import {
   syncNavigationLinkAfterChange,
   syncNavigationLinkAfterDelete,
@@ -77,7 +78,7 @@ export const Pages: CollectionConfig = {
     read: () => true,
   },
   hooks: {
-    afterChange: [syncNavigationLinkAfterChange],
+    afterChange: [syncNavigationLinkAfterChange, createRedirectsForChangedPagePath],
     afterDelete: [syncNavigationLinkAfterDelete],
   },
   versions: {

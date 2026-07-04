@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     pages: Page;
     'navigation-links': NavigationLink;
+    redirects: Redirect;
     headers: Header;
     footers: Footer;
     media: Media;
@@ -82,6 +83,7 @@ export interface Config {
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     'navigation-links': NavigationLinksSelect<false> | NavigationLinksSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     headers: HeadersSelect<false> | HeadersSelect<true>;
     footers: FootersSelect<false> | FootersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -234,6 +236,31 @@ export interface NavigationLink {
    * The page that currently owns this synced reusable link.
    */
   syncPage?: (number | null) | Page;
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * Map old URLs to new destinations during migrations and ongoing URL changes.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: number;
+  /**
+   * The old incoming path to redirect, for example /old-page or /services/web-design.html.
+   */
+  fromPath: string;
+  destinationType: 'page' | 'custom';
+  page?: (number | null) | Page;
+  url?: string | null;
+  /**
+   * Use 301 for permanent site migrations. Use 302 only for temporary routing changes.
+   */
+  statusCode: '301' | '302';
+  enabled?: boolean | null;
   updatedAt: string;
   createdAt: string;
   deletedAt?: string | null;
@@ -448,6 +475,10 @@ export interface PayloadLockedDocument {
         value: number | NavigationLink;
       } | null)
     | ({
+        relationTo: 'redirects';
+        value: number | Redirect;
+      } | null)
+    | ({
         relationTo: 'headers';
         value: number | Header;
       } | null)
@@ -566,6 +597,22 @@ export interface NavigationLinksSelect<T extends boolean = true> {
   openInNewTab?: T;
   sourceType?: T;
   syncPage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  deletedAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  fromPath?: T;
+  destinationType?: T;
+  page?: T;
+  url?: T;
+  statusCode?: T;
+  enabled?: T;
   updatedAt?: T;
   createdAt?: T;
   deletedAt?: T;
