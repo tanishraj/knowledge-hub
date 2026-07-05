@@ -376,7 +376,13 @@ export interface Redirect {
    */
   fromPath: string;
   destinationType: 'page' | 'custom';
+  /**
+   * Choose the page this old path should redirect to.
+   */
   page?: (number | null) | Page;
+  /**
+   * Enter an internal path or full external URL to redirect to.
+   */
   url?: string | null;
   /**
    * Use 301 for permanent site migrations. Use 302 only for temporary routing changes.
