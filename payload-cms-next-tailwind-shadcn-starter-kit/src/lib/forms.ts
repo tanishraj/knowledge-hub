@@ -40,6 +40,10 @@ export type SimpleFormField = {
 export type FormSubmissionValues = Record<string, unknown>
 export type FormSubmissionErrors = Record<string, string>
 
+export const FORM_HONEYPOT_FIELD_NAME = 'website'
+export const FORM_RATE_LIMIT_MAX_SUBMISSIONS = 5
+export const FORM_RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000
+
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export const isTextLikeFormFieldType = (type: FormFieldType): boolean => {

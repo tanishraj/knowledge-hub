@@ -2,6 +2,12 @@ import configPromise from '@payload-config'
 import { NextResponse } from 'next/server'
 import { getPayload } from 'payload'
 
+import {
+  getClientIPAddress,
+  isRateLimited,
+  isSpamHoneypotTriggered,
+  recordSubmissionAttempt,
+} from '@/lib/formSpamProtection'
 import { validateFormSubmission, type FormSubmissionValues, type SimpleFormField } from '@/lib/forms'
 import type { Form } from '@/payload-types'
 
@@ -75,6 +81,29 @@ export async function POST(
 
   const submissionValues =
     payloadBody?.values && typeof payloadBody.values === 'object' ? payloadBody.values : {}
+
+  if (isSpamHoneypotTriggered(submissionValues)) {
+    return NextResponse.json({
+      message: form.successMessage,
+    })
+  }
+
+  const ipAddress = getClientIPAddress(request)
+
+  if (isRateLimited({ formSlug: slug, ipAddress })) {
+    return NextResponse.json(
+      {
+        message: 'Too many submissions from this device. Please wait a few minutes and try again.',
+      },
+      { status: 429 },
+    )
+  }
+
+  recordSubmissionAttempt({
+    formSlug: slug,
+    ipAddress,
+  })
+
   const { errors, normalizedData } = validateFormSubmission({
     fields: toSimpleFields(form),
     values: submissionValues,

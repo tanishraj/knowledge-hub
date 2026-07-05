@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
-import type { SimpleFormField } from '@/lib/forms'
+import { FORM_HONEYPOT_FIELD_NAME, type SimpleFormField } from '@/lib/forms'
 import { cn } from '@/lib/utils'
 
 type ClientFormProps = {
@@ -26,9 +26,12 @@ export function ClientForm({
 }: ClientFormProps) {
   const initialValues = useMemo<Record<string, boolean | string>>(
     () =>
-      Object.fromEntries(
-        fields.map((field) => [field.name, field.type === 'checkbox' ? false : '']),
-      ),
+      ({
+        ...Object.fromEntries(
+          fields.map((field) => [field.name, field.type === 'checkbox' ? false : '']),
+        ),
+        [FORM_HONEYPOT_FIELD_NAME]: '',
+      }) as Record<string, boolean | string>,
     [fields],
   )
 
@@ -123,6 +126,22 @@ export function ClientForm({
             onSubmit={handleSubmit}
             noValidate
           >
+            <div
+              className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden"
+              aria-hidden="true"
+            >
+              <label htmlFor={FORM_HONEYPOT_FIELD_NAME}>Website</label>
+              <input
+                id={FORM_HONEYPOT_FIELD_NAME}
+                name={FORM_HONEYPOT_FIELD_NAME}
+                type="text"
+                autoComplete="off"
+                tabIndex={-1}
+                value={String(values[FORM_HONEYPOT_FIELD_NAME] ?? '')}
+                onChange={(event) => updateValue(FORM_HONEYPOT_FIELD_NAME, event.target.value)}
+              />
+            </div>
+
             {fields.map((field) => {
               const hasError = Boolean(errors[field.name])
               const fieldError = errors[field.name]
