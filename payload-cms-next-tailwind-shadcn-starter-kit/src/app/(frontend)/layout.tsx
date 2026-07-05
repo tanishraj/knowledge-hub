@@ -1,4 +1,5 @@
 import configPromise from '@payload-config'
+import Script from 'next/script'
 import { getPayload } from 'payload'
 import React, { cache } from 'react'
 
@@ -191,7 +192,11 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     >
       <head>
         {colorScheme === 'system' && (
-          <script dangerouslySetInnerHTML={{ __html: systemThemeScript }} />
+          <Script
+            id="system-theme-script"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{ __html: systemThemeScript }}
+          />
         )}
       </head>
       <body>

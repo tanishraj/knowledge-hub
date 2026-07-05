@@ -1,4 +1,8 @@
-import { slugField, type CollectionConfig, type RelationshipFieldSingleValidation } from 'payload'
+import {
+  slugField,
+  type CollectionConfig,
+  type RelationshipFieldSingleValidation,
+} from 'payload'
 
 import type { Page } from '@/payload-types'
 
@@ -110,7 +114,8 @@ export const Pages: CollectionConfig = {
               blocks: [Hero36Block],
               admin: {
                 initCollapsed: true,
-                description: 'Compose the page with reusable frontend sections.',
+                description:
+                  'Compose the page with reusable frontend sections.',
               },
             },
           ],

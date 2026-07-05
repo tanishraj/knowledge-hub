@@ -72,6 +72,7 @@ export interface Config {
     redirects: Redirect;
     headers: Header;
     footers: Footer;
+    'system-pages': SystemPage;
     media: Media;
     users: User;
     'payload-kv': PayloadKv;
@@ -86,6 +87,7 @@ export interface Config {
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     headers: HeadersSelect<false> | HeadersSelect<true>;
     footers: FootersSelect<false> | FootersSelect<true>;
+    'system-pages': SystemPagesSelect<false> | SystemPagesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -421,6 +423,101 @@ export interface Footer2Block {
   blockType: 'footer2';
 }
 /**
+ * Reusable presets for 404, maintenance, and coming soon experiences.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "system-pages".
+ */
+export interface SystemPage {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  /**
+   * Choose which system behavior this preset is intended for. Only matching presets appear in System Defaults.
+   */
+  type: '404' | 'maintenance' | 'comingSoon';
+  /**
+   * Choose one system block variant for this preset. The selected block must match the system page type.
+   */
+  layout: (System404Block | SystemMaintenanceBlock | SystemComingSoonBlock)[];
+  metaTitle: string;
+  metaDescription: string;
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "System404Block".
+ */
+export interface System404Block {
+  badge?: string | null;
+  heading: string;
+  description?: string | null;
+  supportingNote?: string | null;
+  primaryAction?: {
+    label?: string | null;
+    url?: string | null;
+  };
+  secondaryAction?: {
+    label?: string | null;
+    url?: string | null;
+  };
+  image?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'system404';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SystemMaintenanceBlock".
+ */
+export interface SystemMaintenanceBlock {
+  badge?: string | null;
+  heading: string;
+  description?: string | null;
+  supportingNote?: string | null;
+  primaryAction?: {
+    label?: string | null;
+    url?: string | null;
+  };
+  secondaryAction?: {
+    label?: string | null;
+    url?: string | null;
+  };
+  image?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'systemMaintenance';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SystemComingSoonBlock".
+ */
+export interface SystemComingSoonBlock {
+  badge?: string | null;
+  heading: string;
+  description?: string | null;
+  supportingNote?: string | null;
+  primaryAction?: {
+    label?: string | null;
+    url?: string | null;
+  };
+  secondaryAction?: {
+    label?: string | null;
+    url?: string | null;
+  };
+  image?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'systemComingSoon';
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -489,6 +586,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'footers';
         value: number | Footer;
+      } | null)
+    | ({
+        relationTo: 'system-pages';
+        value: number | SystemPage;
       } | null)
     | ({
         relationTo: 'media';
@@ -732,6 +833,104 @@ export interface Footer2BlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "system-pages_select".
+ */
+export interface SystemPagesSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  type?: T;
+  layout?:
+    | T
+    | {
+        system404?: T | System404BlockSelect<T>;
+        systemMaintenance?: T | SystemMaintenanceBlockSelect<T>;
+        systemComingSoon?: T | SystemComingSoonBlockSelect<T>;
+      };
+  metaTitle?: T;
+  metaDescription?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  deletedAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "System404Block_select".
+ */
+export interface System404BlockSelect<T extends boolean = true> {
+  badge?: T;
+  heading?: T;
+  description?: T;
+  supportingNote?: T;
+  primaryAction?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  secondaryAction?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SystemMaintenanceBlock_select".
+ */
+export interface SystemMaintenanceBlockSelect<T extends boolean = true> {
+  badge?: T;
+  heading?: T;
+  description?: T;
+  supportingNote?: T;
+  primaryAction?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  secondaryAction?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SystemComingSoonBlock_select".
+ */
+export interface SystemComingSoonBlockSelect<T extends boolean = true> {
+  badge?: T;
+  heading?: T;
+  description?: T;
+  supportingNote?: T;
+  primaryAction?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  secondaryAction?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
@@ -831,6 +1030,26 @@ export interface PageSetting {
    * Choose which saved footer preset should render site-wide.
    */
   activeFooter?: (number | null) | Footer;
+  /**
+   * Select a 404 system preset. Draft presets appear here, but the selected preset must be published before it can be used live.
+   */
+  notFoundPage?: (number | null) | SystemPage;
+  /**
+   * Select a maintenance system preset. Draft presets appear here, but the selected preset must be published before it can be used live.
+   */
+  maintenancePage?: (number | null) | SystemPage;
+  /**
+   * Select a coming soon system preset. Draft presets appear here, but the selected preset must be published before it can be used live.
+   */
+  comingSoonPage?: (number | null) | SystemPage;
+  /**
+   * Allow logged-in admins to continue seeing the normal site when a mode is active.
+   */
+  bypassForLoggedInAdmins?: boolean | null;
+  /**
+   * Choose which system page should override the public site. This affects all public routes, not only the homepage.
+   */
+  siteMode?: ('off' | 'maintenance' | 'comingSoon') | null;
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -908,6 +1127,11 @@ export interface PageSettingsSelect<T extends boolean = true> {
   homepage?: T;
   activeHeader?: T;
   activeFooter?: T;
+  notFoundPage?: T;
+  maintenancePage?: T;
+  comingSoonPage?: T;
+  bypassForLoggedInAdmins?: T;
+  siteMode?: T;
   _status?: T;
   updatedAt?: T;
   createdAt?: T;

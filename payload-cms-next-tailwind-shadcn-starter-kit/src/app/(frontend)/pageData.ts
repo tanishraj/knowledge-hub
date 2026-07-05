@@ -1,12 +1,16 @@
 import configPromise from '@payload-config'
-import { getPayload } from 'payload'
+import { headers } from 'next/headers'
+import { getPayload, type Where } from 'payload'
 import { cache } from 'react'
 
 import type { Metadata } from 'next'
-import type { Page } from '@/payload-types'
+import type { Page, SystemPage } from '@/payload-types'
 import { getPageHref, getPageSlugSegments } from '@/lib/pagePaths'
+import type { SystemPageType } from '@/lib/systemPageTypes'
 
-const extractPageID = (value: number | Page | null | undefined): number | null => {
+const extractRelationshipID = (
+  value: number | Page | SystemPage | null | undefined,
+): number | null => {
   if (typeof value === 'number') {
     return value
   }
@@ -29,6 +33,63 @@ const getPageSettings = cache(async () => {
   })
 })
 
+const canCurrentRequestBypassSystemModes = cache(async (): Promise<boolean> => {
+  const pageSettings = await getPageSettings()
+
+  if (!pageSettings.bypassForLoggedInAdmins) {
+    return false
+  }
+
+  const payload = await getPayload({
+    config: configPromise,
+  })
+
+  const authResult = await payload.auth({
+    canSetHeaders: false,
+    headers: new Headers(await headers()),
+  })
+
+  return Boolean(authResult.user)
+})
+
+const getPublishedPageByID = cache(
+  async ({
+    depth = 1,
+    id,
+  }: {
+    depth?: number
+    id: number
+  }): Promise<Page | null> => {
+    const payload = await getPayload({
+      config: configPromise,
+    })
+
+    const andConditions: Where[] = [
+      {
+        id: {
+          equals: id,
+        },
+      },
+      {
+        _status: {
+          equals: 'published',
+        },
+      },
+    ]
+
+    const result = await payload.find({
+      collection: 'pages',
+      where: {
+        and: andConditions,
+      },
+      depth,
+      limit: 1,
+    })
+
+    return result.docs[0] ?? null
+  },
+)
+
 export const getPageBySlug = cache(async (slug: string): Promise<Page | null> => {
   const payload = await getPayload({
     config: configPromise,
@@ -37,9 +98,18 @@ export const getPageBySlug = cache(async (slug: string): Promise<Page | null> =>
   const result = await payload.find({
     collection: 'pages',
     where: {
-      slug: {
-        equals: slug,
-      },
+      and: [
+        {
+          slug: {
+            equals: slug,
+          },
+        },
+        {
+          _status: {
+            equals: 'published',
+          },
+        },
+      ],
     },
     depth: 1,
     limit: 1,
@@ -63,9 +133,18 @@ const getPageByPathname = cache(async (pathname: string): Promise<Page | null> =
   const result = await payload.find({
     collection: 'pages',
     where: {
-      slug: {
-        equals: leafSlug,
-      },
+      and: [
+        {
+          slug: {
+            equals: leafSlug,
+          },
+        },
+        {
+          _status: {
+            equals: 'published',
+          },
+        },
+      ],
     },
     depth: segments.length,
     limit: 1,
@@ -87,37 +166,16 @@ export async function getPageByPath(segments: string[]): Promise<Page | null> {
 }
 
 export const getHomepagePage = cache(async (): Promise<Page | null> => {
-  const homepageID = extractPageID((await getPageSettings()).homepage)
+  const homepageID = extractRelationshipID((await getPageSettings()).homepage)
 
   if (homepageID == null) {
     return null
   }
 
-  const payload = await getPayload({
-    config: configPromise,
-  })
-
-  const result = await payload.find({
-    collection: 'pages',
-    where: {
-      and: [
-        {
-          id: {
-            equals: homepageID,
-          },
-        },
-        {
-          _status: {
-            equals: 'published',
-          },
-        },
-      ],
-    },
+  return getPublishedPageByID({
     depth: 1,
-    limit: 1,
+    id: homepageID,
   })
-
-  return result.docs[0] ?? null
 })
 
 export async function getHomepagePath(): Promise<string | null> {
@@ -131,9 +189,9 @@ export async function getHomepagePath(): Promise<string | null> {
   return href
 }
 
-export async function getPageMetadataBySlug(slug: string): Promise<Metadata> {
-  const page = await getPageBySlug(slug)
-
+const toPageMetadata = (
+  page: Pick<Page, 'metaDescription' | 'metaTitle'> | Pick<SystemPage, 'metaDescription' | 'metaTitle'> | null,
+): Metadata => {
   if (!page) {
     return {}
   }
@@ -142,30 +200,185 @@ export async function getPageMetadataBySlug(slug: string): Promise<Metadata> {
     title: page.metaTitle,
     description: page.metaDescription,
   }
+}
+
+const getPublishedSystemPageByID = cache(
+  async ({
+    depth = 1,
+    expectedType,
+    id,
+  }: {
+    depth?: number
+    expectedType?: SystemPageType
+    id: number
+  }): Promise<SystemPage | null> => {
+    const payload = await getPayload({
+      config: configPromise,
+    })
+
+    const andConditions: Where[] = [
+      {
+        id: {
+          equals: id,
+        },
+      },
+      {
+        _status: {
+          equals: 'published',
+        },
+      },
+    ]
+
+    if (expectedType) {
+      andConditions.push({
+        type: {
+          equals: expectedType,
+        },
+      })
+    }
+
+    const result = await payload.find({
+      collection: 'system-pages',
+      where: {
+        and: andConditions,
+      },
+      depth,
+      limit: 1,
+    })
+
+    return result.docs[0] ?? null
+  },
+)
+
+const getSystemBehaviorPages = cache(async () => {
+  const pageSettings = await getPageSettings()
+  const [notFoundPage, maintenancePage, comingSoonPage] = await Promise.all([
+    extractRelationshipID(pageSettings.notFoundPage)
+      ? getPublishedSystemPageByID({
+          depth: 10,
+          expectedType: '404',
+          id: extractRelationshipID(pageSettings.notFoundPage)!,
+        })
+      : Promise.resolve(null),
+    extractRelationshipID(pageSettings.maintenancePage)
+      ? getPublishedSystemPageByID({
+          depth: 10,
+          expectedType: 'maintenance',
+          id: extractRelationshipID(pageSettings.maintenancePage)!,
+        })
+      : Promise.resolve(null),
+    extractRelationshipID(pageSettings.comingSoonPage)
+      ? getPublishedSystemPageByID({
+          depth: 10,
+          expectedType: 'comingSoon',
+          id: extractRelationshipID(pageSettings.comingSoonPage)!,
+        })
+      : Promise.resolve(null),
+  ])
+
+  return {
+    bypassForLoggedInAdmins: Boolean(pageSettings.bypassForLoggedInAdmins),
+    comingSoonPage,
+    maintenancePage,
+    notFoundPage,
+    siteMode: pageSettings.siteMode ?? 'off',
+  }
+})
+
+export async function getSystemPageRenderState(_pathname: string): Promise<{
+  mode: 'comingSoon' | 'maintenance' | null
+  page: SystemPage | null
+}> {
+  const systemBehavior = await getSystemBehaviorPages()
+
+  if (systemBehavior.bypassForLoggedInAdmins && (await canCurrentRequestBypassSystemModes())) {
+    return {
+      mode: null,
+      page: null,
+    }
+  }
+
+  if (systemBehavior.siteMode === 'maintenance') {
+    return {
+      mode: 'maintenance',
+      page: systemBehavior.maintenancePage,
+    }
+  }
+
+  if (systemBehavior.siteMode === 'comingSoon') {
+    return {
+      mode: 'comingSoon',
+      page: systemBehavior.comingSoonPage,
+    }
+  }
+
+  return {
+    mode: null,
+    page: null,
+  }
+}
+
+export async function getManagedNotFoundPage(): Promise<SystemPage | null> {
+  return (await getSystemBehaviorPages()).notFoundPage
+}
+
+export async function getPageMetadataBySlug(slug: string): Promise<Metadata> {
+  return toPageMetadata(await getPageBySlug(slug))
 }
 
 export async function getPageMetadataByPath(segments: string[]): Promise<Metadata> {
+  const pathname = `/${segments.join('/')}`
+  const systemPageState = await getSystemPageRenderState(pathname)
+
+  if (systemPageState.page) {
+    return toPageMetadata(systemPageState.page)
+  }
+
+  if (systemPageState.mode === 'maintenance') {
+    return {
+      title: 'Maintenance',
+    }
+  }
+
+  if (systemPageState.mode === 'comingSoon') {
+    return {
+      title: 'Coming Soon',
+    }
+  }
+
   const page = await getPageByPath(segments)
 
-  if (!page) {
-    return {}
+  if (page) {
+    return toPageMetadata(page)
   }
 
-  return {
-    title: page.metaTitle,
-    description: page.metaDescription,
-  }
+  return toPageMetadata(await getManagedNotFoundPage())
 }
 
 export async function getHomepageMetadata(): Promise<Metadata> {
-  const page = await getHomepagePage()
+  const systemPageState = await getSystemPageRenderState('/')
 
-  if (!page) {
-    return {}
+  if (systemPageState.page) {
+    return toPageMetadata(systemPageState.page)
   }
 
-  return {
-    title: page.metaTitle,
-    description: page.metaDescription,
+  if (systemPageState.mode === 'maintenance') {
+    return {
+      title: 'Maintenance',
+    }
   }
+
+  if (systemPageState.mode === 'comingSoon') {
+    return {
+      title: 'Coming Soon',
+    }
+  }
+
+  const homepage = await getHomepagePage()
+
+  if (homepage) {
+    return toPageMetadata(homepage)
+  }
+
+  return toPageMetadata(await getManagedNotFoundPage())
 }

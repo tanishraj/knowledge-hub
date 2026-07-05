@@ -1,6 +1,6 @@
-import { RenderBlocks } from '@/blocks/renderBlocks'
-import type { Page } from '@/payload-types'
+import { getRenderableBlocks, RenderBlocks } from '@/blocks/renderBlocks'
+import type { Page, SystemPage } from '@/payload-types'
 
-export function PageContent({ page }: { page: Page }) {
-  return <RenderBlocks blocks={page.layout} />
+export function PageContent({ page }: { page: Page | SystemPage }) {
+  return <RenderBlocks blocks={getRenderableBlocks(page)} />
 }

@@ -12,6 +12,7 @@ import { NavigationLinks } from './collections/NavigationLinks'
 import { Pages } from './collections/Pages'
 import { Redirects } from './collections/Redirects'
 import { Headers } from './collections/Headers'
+import { SystemPages } from './collections/SystemPages'
 import { PageSettings } from './globals/PageSettings'
 import { SEOSettings } from './globals/SEOSettings'
 import { SiteSettings } from './globals/SiteSettings'
@@ -28,7 +29,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Pages, NavigationLinks, Redirects, Headers, Footers, Media, Users],
+  collections: [Pages, NavigationLinks, Redirects, Headers, Footers, SystemPages, Media, Users],
   globals: [PageSettings, SiteSettings, ThemeSettings, SEOSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
