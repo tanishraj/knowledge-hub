@@ -4,11 +4,11 @@ import { Logo, LogoImageDesktop, LogoImageMobile } from '@/components/shadcnbloc
 import { cn } from '@/lib/utils'
 
 interface FooterLink {
-  name: string
-  href: string
+  name: React.ReactNode
+  href?: string
 }
 interface FooterSection {
-  title: string
+  title: React.ReactNode
   links: FooterLink[]
 }
 interface FooterLogo {
@@ -20,15 +20,30 @@ interface FooterLogo {
 
 interface FooterBasicProps {
   logo?: FooterLogo
-  description?: string
+  description?: React.ReactNode
   sections?: FooterSection[]
-  copyright?: string
+  copyright?: React.ReactNode
   legalLinks?: FooterLink[]
   className?: string
 }
 
 interface Footer2Props extends FooterBasicProps {
+  copyrightProps?: React.HTMLAttributes<HTMLParagraphElement>
+  descriptionProps?: React.HTMLAttributes<HTMLParagraphElement>
+  legalLinkProps?: (
+    linkIndex: number,
+    link: FooterLink,
+  ) => React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined
   logoClassName?: string
+  sectionLinkProps?: (
+    sectionIndex: number,
+    linkIndex: number,
+    link: FooterLink,
+  ) => React.AnchorHTMLAttributes<HTMLAnchorElement> | undefined
+  sectionTitleProps?: (
+    sectionIndex: number,
+    section: FooterSection,
+  ) => React.HTMLAttributes<HTMLHeadingElement> | undefined
 }
 type Props = Partial<Footer2Props>
 
@@ -94,6 +109,8 @@ const Footer2 = (props: Props) => {
     ...defaultProps,
     ...props,
   }
+  const { copyrightProps, descriptionProps, legalLinkProps, sectionLinkProps, sectionTitleProps } =
+    props
 
   const visibleSections = (sections ?? []).slice(0, MAX_SECTIONS)
 
@@ -113,15 +130,37 @@ const Footer2 = (props: Props) => {
                   />
                 </a>
               </div>
-              <p className="mt-4 text-sm font-medium text-muted-foreground">{description}</p>
+              <p
+                {...descriptionProps}
+                className={cn(
+                  'mt-4 text-sm font-medium text-muted-foreground',
+                  descriptionProps?.className,
+                )}
+              >
+                {description}
+              </p>
             </div>
             {visibleSections.map((section, sectionIdx) => (
               <div key={sectionIdx}>
-                <h3 className="mb-4 text-sm font-semibold tracking-tight">{section.title}</h3>
+                <h3
+                  {...sectionTitleProps?.(sectionIdx, section)}
+                  className={cn(
+                    'mb-4 text-sm font-semibold tracking-tight',
+                    sectionTitleProps?.(sectionIdx, section)?.className,
+                  )}
+                >
+                  {section.title}
+                </h3>
                 <ul className="space-y-4 text-sm text-muted-foreground">
                   {section.links.map((link, linkIdx) => (
                     <li key={linkIdx} className="font-medium hover:text-primary">
-                      <a href={link.href}>{link.name}</a>
+                      <a
+                        {...sectionLinkProps?.(sectionIdx, linkIdx, link)}
+                        href={link.href}
+                        className={cn(!link.href && 'cursor-default')}
+                      >
+                        {link.name}
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -129,11 +168,19 @@ const Footer2 = (props: Props) => {
             ))}
           </div>
           <div className="mt-8 flex flex-col justify-between gap-4 border-t border-border pt-8 text-xs font-medium text-muted-foreground md:flex-row md:items-center">
-            <p>{copyright}</p>
+            <p {...copyrightProps} className={cn(copyrightProps?.className)}>
+              {copyright}
+            </p>
             <ul className="flex gap-4">
               {legalLinks?.map((link, linkIdx) => (
                 <li key={linkIdx} className="underline hover:text-primary">
-                  <a href={link.href}>{link.name}</a>
+                  <a
+                    {...legalLinkProps?.(linkIdx, link)}
+                    href={link.href}
+                    className={cn(!link.href && 'cursor-default')}
+                  >
+                    {link.name}
+                  </a>
                 </li>
               ))}
             </ul>

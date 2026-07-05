@@ -3,6 +3,8 @@ import { slugField, type CollectionConfig } from 'payload'
 import { Footer2Block } from '../blocks/Footer2/config'
 import { Hero36Block } from '../blocks/Hero36/config'
 
+const defaultPreviewURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+
 export const Pages: CollectionConfig = {
   slug: 'pages',
   labels: {
@@ -12,8 +14,45 @@ export const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
-    description: 'Flexible website pages with reusable layout blocks, SEO controls, and publishing settings.',
+    description:
+      'Flexible website pages with reusable layout blocks, SEO controls, and publishing settings.',
     listSearchableFields: ['title', 'slug'],
+    livePreview: {
+      breakpoints: [
+        {
+          name: 'desktop',
+          label: 'Desktop',
+          width: 1440,
+          height: 900,
+        },
+        {
+          name: 'tablet',
+          label: 'Tablet',
+          width: 834,
+          height: 1112,
+        },
+        {
+          name: 'mobile',
+          label: 'Mobile',
+          width: 390,
+          height: 844,
+        },
+      ],
+      url: ({ data }) => {
+        if (typeof data?.slug !== 'string' || !data.slug) {
+          return null
+        }
+
+        return `${defaultPreviewURL}/preview/${data.slug}`
+      },
+    },
+    components: {
+      edit: {
+        beforeDocumentControls: [
+          './components/admin/LivePreviewFieldBridge#LivePreviewFieldBridge',
+        ],
+      },
+    },
   },
   access: {
     read: () => true,
