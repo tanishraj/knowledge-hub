@@ -70,6 +70,31 @@ export const pages_blocks_hero36 = sqliteTable(
   ],
 )
 
+export const pages_blocks_form = sqliteTable(
+  'pages_blocks_form',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: text('id').primaryKey(),
+    form: integer('form_id').references(() => forms.id, {
+      onDelete: 'set null',
+    }),
+    blockName: text('block_name'),
+  },
+  (columns) => [
+    index('pages_blocks_form_order_idx').on(columns._order),
+    index('pages_blocks_form_parent_id_idx').on(columns._parentID),
+    index('pages_blocks_form_path_idx').on(columns._path),
+    index('pages_blocks_form_form_idx').on(columns.form),
+    foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages.id],
+      name: 'pages_blocks_form_parent_id_fk',
+    }).onDelete('cascade'),
+  ],
+)
+
 export const pages = sqliteTable(
   'pages',
   {
@@ -79,6 +104,15 @@ export const pages = sqliteTable(
     slug: text('slug'),
     metaTitle: text('meta_title'),
     metaDescription: text('meta_description'),
+    canonicalURL: text('canonical_u_r_l'),
+    robots: text('robots', {
+      enum: ['index,follow', 'noindex,follow', 'index,nofollow', 'noindex,nofollow'],
+    }),
+    ogTitle: text('og_title'),
+    ogImage: integer('og_image_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    ogDescription: text('og_description'),
     parent: integer('parent_id').references((): AnySQLiteColumn => pages.id, {
       onDelete: 'set null',
     }),
@@ -94,6 +128,7 @@ export const pages = sqliteTable(
   },
   (columns) => [
     uniqueIndex('pages_slug_idx').on(columns.slug),
+    index('pages_og_image_idx').on(columns.ogImage),
     index('pages_parent_idx').on(columns.parent),
     index('pages_updated_at_idx').on(columns.updatedAt),
     index('pages_created_at_idx').on(columns.createdAt),
@@ -155,6 +190,32 @@ export const _pages_v_blocks_hero36 = sqliteTable(
   ],
 )
 
+export const _pages_v_blocks_form = sqliteTable(
+  '_pages_v_blocks_form',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: integer('id').primaryKey(),
+    form: integer('form_id').references(() => forms.id, {
+      onDelete: 'set null',
+    }),
+    _uuid: text('_uuid'),
+    blockName: text('block_name'),
+  },
+  (columns) => [
+    index('_pages_v_blocks_form_order_idx').on(columns._order),
+    index('_pages_v_blocks_form_parent_id_idx').on(columns._parentID),
+    index('_pages_v_blocks_form_path_idx').on(columns._path),
+    index('_pages_v_blocks_form_form_idx').on(columns.form),
+    foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v.id],
+      name: '_pages_v_blocks_form_parent_id_fk',
+    }).onDelete('cascade'),
+  ],
+)
+
 export const _pages_v = sqliteTable(
   '_pages_v',
   {
@@ -167,6 +228,15 @@ export const _pages_v = sqliteTable(
     version_slug: text('version_slug'),
     version_metaTitle: text('version_meta_title'),
     version_metaDescription: text('version_meta_description'),
+    version_canonicalURL: text('version_canonical_u_r_l'),
+    version_robots: text('version_robots', {
+      enum: ['index,follow', 'noindex,follow', 'index,nofollow', 'noindex,nofollow'],
+    }),
+    version_ogTitle: text('version_og_title'),
+    version_ogImage: integer('version_og_image_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    version_ogDescription: text('version_og_description'),
     version_parent: integer('version_parent_id').references(() => pages.id, {
       onDelete: 'set null',
     }),
@@ -194,6 +264,7 @@ export const _pages_v = sqliteTable(
   (columns) => [
     index('_pages_v_parent_idx').on(columns.parent),
     index('_pages_v_version_version_slug_idx').on(columns.version_slug),
+    index('_pages_v_version_version_og_image_idx').on(columns.version_ogImage),
     index('_pages_v_version_version_parent_idx').on(columns.version_parent),
     index('_pages_v_version_version_updated_at_idx').on(columns.version_updatedAt),
     index('_pages_v_version_version_created_at_idx').on(columns.version_createdAt),
@@ -1194,6 +1265,198 @@ export const _system_pages_v = sqliteTable(
   ],
 )
 
+export const forms_fields_options = sqliteTable(
+  'forms_fields_options',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: text('_parent_id').notNull(),
+    id: text('id').primaryKey(),
+    label: text('label'),
+    value: text('value'),
+  },
+  (columns) => [
+    index('forms_fields_options_order_idx').on(columns._order),
+    index('forms_fields_options_parent_id_idx').on(columns._parentID),
+    foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [forms_fields.id],
+      name: 'forms_fields_options_parent_id_fk',
+    }).onDelete('cascade'),
+  ],
+)
+
+export const forms_fields = sqliteTable(
+  'forms_fields',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    id: text('id').primaryKey(),
+    name: text('name'),
+    label: text('label'),
+    type: text('type', { enum: ['text', 'email', 'textarea', 'select', 'checkbox'] }).default(
+      'text',
+    ),
+    required: integer('required', { mode: 'boolean' }).default(false),
+    placeholder: text('placeholder'),
+  },
+  (columns) => [
+    index('forms_fields_order_idx').on(columns._order),
+    index('forms_fields_parent_id_idx').on(columns._parentID),
+    foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [forms.id],
+      name: 'forms_fields_parent_id_fk',
+    }).onDelete('cascade'),
+  ],
+)
+
+export const forms = sqliteTable(
+  'forms',
+  {
+    id: integer('id').primaryKey(),
+    title: text('title'),
+    generateSlug: integer('generate_slug', { mode: 'boolean' }).default(true),
+    slug: text('slug'),
+    internalNotes: text('internal_notes'),
+    submitButtonLabel: text('submit_button_label').default('Submit'),
+    successMessage: text('success_message').default('Thanks. Your submission has been received.'),
+    updatedAt: text('updated_at')
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    createdAt: text('created_at')
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    deletedAt: text('deleted_at').default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    _status: text('_status', { enum: ['draft', 'published'] }).default('draft'),
+  },
+  (columns) => [
+    uniqueIndex('forms_slug_idx').on(columns.slug),
+    index('forms_updated_at_idx').on(columns.updatedAt),
+    index('forms_created_at_idx').on(columns.createdAt),
+    index('forms_deleted_at_idx').on(columns.deletedAt),
+    index('forms__status_idx').on(columns._status),
+  ],
+)
+
+export const _forms_v_version_fields_options = sqliteTable(
+  '_forms_v_version_fields_options',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    id: integer('id').primaryKey(),
+    label: text('label'),
+    value: text('value'),
+    _uuid: text('_uuid'),
+  },
+  (columns) => [
+    index('_forms_v_version_fields_options_order_idx').on(columns._order),
+    index('_forms_v_version_fields_options_parent_id_idx').on(columns._parentID),
+    foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_forms_v_version_fields.id],
+      name: '_forms_v_version_fields_options_parent_id_fk',
+    }).onDelete('cascade'),
+  ],
+)
+
+export const _forms_v_version_fields = sqliteTable(
+  '_forms_v_version_fields',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    id: integer('id').primaryKey(),
+    name: text('name'),
+    label: text('label'),
+    type: text('type', { enum: ['text', 'email', 'textarea', 'select', 'checkbox'] }).default(
+      'text',
+    ),
+    required: integer('required', { mode: 'boolean' }).default(false),
+    placeholder: text('placeholder'),
+    _uuid: text('_uuid'),
+  },
+  (columns) => [
+    index('_forms_v_version_fields_order_idx').on(columns._order),
+    index('_forms_v_version_fields_parent_id_idx').on(columns._parentID),
+    foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_forms_v.id],
+      name: '_forms_v_version_fields_parent_id_fk',
+    }).onDelete('cascade'),
+  ],
+)
+
+export const _forms_v = sqliteTable(
+  '_forms_v',
+  {
+    id: integer('id').primaryKey(),
+    parent: integer('parent_id').references(() => forms.id, {
+      onDelete: 'set null',
+    }),
+    version_title: text('version_title'),
+    version_generateSlug: integer('version_generate_slug', { mode: 'boolean' }).default(true),
+    version_slug: text('version_slug'),
+    version_internalNotes: text('version_internal_notes'),
+    version_submitButtonLabel: text('version_submit_button_label').default('Submit'),
+    version_successMessage: text('version_success_message').default(
+      'Thanks. Your submission has been received.',
+    ),
+    version_updatedAt: text('version_updated_at').default(
+      sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`,
+    ),
+    version_createdAt: text('version_created_at').default(
+      sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`,
+    ),
+    version_deletedAt: text('version_deleted_at').default(
+      sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`,
+    ),
+    version__status: text('version__status', { enum: ['draft', 'published'] }).default('draft'),
+    createdAt: text('created_at')
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    updatedAt: text('updated_at')
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    latest: integer('latest', { mode: 'boolean' }),
+  },
+  (columns) => [
+    index('_forms_v_parent_idx').on(columns.parent),
+    index('_forms_v_version_version_slug_idx').on(columns.version_slug),
+    index('_forms_v_version_version_updated_at_idx').on(columns.version_updatedAt),
+    index('_forms_v_version_version_created_at_idx').on(columns.version_createdAt),
+    index('_forms_v_version_version_deleted_at_idx').on(columns.version_deletedAt),
+    index('_forms_v_version_version__status_idx').on(columns.version__status),
+    index('_forms_v_created_at_idx').on(columns.createdAt),
+    index('_forms_v_updated_at_idx').on(columns.updatedAt),
+    index('_forms_v_latest_idx').on(columns.latest),
+  ],
+)
+
+export const form_submissions = sqliteTable(
+  'form_submissions',
+  {
+    id: integer('id').primaryKey(),
+    form: integer('form_id')
+      .notNull()
+      .references(() => forms.id, {
+        onDelete: 'set null',
+      }),
+    data: text('data', { mode: 'json' }).notNull(),
+    updatedAt: text('updated_at')
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    createdAt: text('created_at')
+      .notNull()
+      .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+    deletedAt: text('deleted_at').default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
+  },
+  (columns) => [
+    index('form_submissions_form_idx').on(columns.form),
+    index('form_submissions_updated_at_idx').on(columns.updatedAt),
+    index('form_submissions_created_at_idx').on(columns.createdAt),
+    index('form_submissions_deleted_at_idx').on(columns.deletedAt),
+  ],
+)
+
 export const media = sqliteTable(
   'media',
   {
@@ -1367,6 +1630,8 @@ export const payload_locked_documents_rels = sqliteTable(
     headersID: integer('headers_id'),
     footersID: integer('footers_id'),
     'system-pagesID': integer('system_pages_id'),
+    formsID: integer('forms_id'),
+    'form-submissionsID': integer('form_submissions_id'),
     mediaID: integer('media_id'),
     usersID: integer('users_id'),
   },
@@ -1382,6 +1647,10 @@ export const payload_locked_documents_rels = sqliteTable(
     index('payload_locked_documents_rels_headers_id_idx').on(columns.headersID),
     index('payload_locked_documents_rels_footers_id_idx').on(columns.footersID),
     index('payload_locked_documents_rels_system_pages_id_idx').on(columns['system-pagesID']),
+    index('payload_locked_documents_rels_forms_id_idx').on(columns.formsID),
+    index('payload_locked_documents_rels_form_submissions_id_idx').on(
+      columns['form-submissionsID'],
+    ),
     index('payload_locked_documents_rels_media_id_idx').on(columns.mediaID),
     index('payload_locked_documents_rels_users_id_idx').on(columns.usersID),
     foreignKey({
@@ -1418,6 +1687,16 @@ export const payload_locked_documents_rels = sqliteTable(
       columns: [columns['system-pagesID']],
       foreignColumns: [system_pages.id],
       name: 'payload_locked_documents_rels_system_pages_fk',
+    }).onDelete('cascade'),
+    foreignKey({
+      columns: [columns['formsID']],
+      foreignColumns: [forms.id],
+      name: 'payload_locked_documents_rels_forms_fk',
+    }).onDelete('cascade'),
+    foreignKey({
+      columns: [columns['form-submissionsID']],
+      foreignColumns: [form_submissions.id],
+      name: 'payload_locked_documents_rels_form_submissions_fk',
     }).onDelete('cascade'),
     foreignKey({
       columns: [columns['mediaID']],
@@ -1815,9 +2094,29 @@ export const relations_pages_blocks_hero36 = relations(pages_blocks_hero36, ({ o
     relationName: 'cards',
   }),
 }))
+export const relations_pages_blocks_form = relations(pages_blocks_form, ({ one }) => ({
+  _parentID: one(pages, {
+    fields: [pages_blocks_form._parentID],
+    references: [pages.id],
+    relationName: '_blocks_form',
+  }),
+  form: one(forms, {
+    fields: [pages_blocks_form.form],
+    references: [forms.id],
+    relationName: 'form',
+  }),
+}))
 export const relations_pages = relations(pages, ({ one, many }) => ({
   _blocks_hero36: many(pages_blocks_hero36, {
     relationName: '_blocks_hero36',
+  }),
+  _blocks_form: many(pages_blocks_form, {
+    relationName: '_blocks_form',
+  }),
+  ogImage: one(media, {
+    fields: [pages.ogImage],
+    references: [media.id],
+    relationName: 'ogImage',
   }),
   parent: one(pages, {
     fields: [pages.parent],
@@ -1853,6 +2152,18 @@ export const relations__pages_v_blocks_hero36 = relations(
     }),
   }),
 )
+export const relations__pages_v_blocks_form = relations(_pages_v_blocks_form, ({ one }) => ({
+  _parentID: one(_pages_v, {
+    fields: [_pages_v_blocks_form._parentID],
+    references: [_pages_v.id],
+    relationName: '_blocks_form',
+  }),
+  form: one(forms, {
+    fields: [_pages_v_blocks_form.form],
+    references: [forms.id],
+    relationName: 'form',
+  }),
+}))
 export const relations__pages_v = relations(_pages_v, ({ one, many }) => ({
   parent: one(pages, {
     fields: [_pages_v.parent],
@@ -1861,6 +2172,14 @@ export const relations__pages_v = relations(_pages_v, ({ one, many }) => ({
   }),
   _blocks_hero36: many(_pages_v_blocks_hero36, {
     relationName: '_blocks_hero36',
+  }),
+  _blocks_form: many(_pages_v_blocks_form, {
+    relationName: '_blocks_form',
+  }),
+  version_ogImage: one(media, {
+    fields: [_pages_v.version_ogImage],
+    references: [media.id],
+    relationName: 'version_ogImage',
   }),
   version_parent: one(pages, {
     fields: [_pages_v.version_parent],
@@ -2339,6 +2658,68 @@ export const relations__system_pages_v = relations(_system_pages_v, ({ one, many
     relationName: '_blocks_systemComingSoon',
   }),
 }))
+export const relations_forms_fields_options = relations(forms_fields_options, ({ one }) => ({
+  _parentID: one(forms_fields, {
+    fields: [forms_fields_options._parentID],
+    references: [forms_fields.id],
+    relationName: 'options',
+  }),
+}))
+export const relations_forms_fields = relations(forms_fields, ({ one, many }) => ({
+  _parentID: one(forms, {
+    fields: [forms_fields._parentID],
+    references: [forms.id],
+    relationName: 'fields',
+  }),
+  options: many(forms_fields_options, {
+    relationName: 'options',
+  }),
+}))
+export const relations_forms = relations(forms, ({ many }) => ({
+  fields: many(forms_fields, {
+    relationName: 'fields',
+  }),
+}))
+export const relations__forms_v_version_fields_options = relations(
+  _forms_v_version_fields_options,
+  ({ one }) => ({
+    _parentID: one(_forms_v_version_fields, {
+      fields: [_forms_v_version_fields_options._parentID],
+      references: [_forms_v_version_fields.id],
+      relationName: 'options',
+    }),
+  }),
+)
+export const relations__forms_v_version_fields = relations(
+  _forms_v_version_fields,
+  ({ one, many }) => ({
+    _parentID: one(_forms_v, {
+      fields: [_forms_v_version_fields._parentID],
+      references: [_forms_v.id],
+      relationName: 'version_fields',
+    }),
+    options: many(_forms_v_version_fields_options, {
+      relationName: 'options',
+    }),
+  }),
+)
+export const relations__forms_v = relations(_forms_v, ({ one, many }) => ({
+  parent: one(forms, {
+    fields: [_forms_v.parent],
+    references: [forms.id],
+    relationName: 'parent',
+  }),
+  version_fields: many(_forms_v_version_fields, {
+    relationName: 'version_fields',
+  }),
+}))
+export const relations_form_submissions = relations(form_submissions, ({ one }) => ({
+  form: one(forms, {
+    fields: [form_submissions.form],
+    references: [forms.id],
+    relationName: 'form',
+  }),
+}))
 export const relations_media = relations(media, () => ({}))
 export const relations__media_v = relations(_media_v, ({ one }) => ({
   parent: one(media, {
@@ -2397,6 +2778,16 @@ export const relations_payload_locked_documents_rels = relations(
       fields: [payload_locked_documents_rels['system-pagesID']],
       references: [system_pages.id],
       relationName: 'system-pages',
+    }),
+    formsID: one(forms, {
+      fields: [payload_locked_documents_rels.formsID],
+      references: [forms.id],
+      relationName: 'forms',
+    }),
+    'form-submissionsID': one(form_submissions, {
+      fields: [payload_locked_documents_rels['form-submissionsID']],
+      references: [form_submissions.id],
+      relationName: 'form-submissions',
     }),
     mediaID: one(media, {
       fields: [payload_locked_documents_rels.mediaID],
@@ -2547,9 +2938,11 @@ export const relations__seo_settings_v = relations(_seo_settings_v, ({ one }) =>
 type DatabaseSchema = {
   pages_blocks_hero36_cards: typeof pages_blocks_hero36_cards
   pages_blocks_hero36: typeof pages_blocks_hero36
+  pages_blocks_form: typeof pages_blocks_form
   pages: typeof pages
   _pages_v_blocks_hero36_cards: typeof _pages_v_blocks_hero36_cards
   _pages_v_blocks_hero36: typeof _pages_v_blocks_hero36
+  _pages_v_blocks_form: typeof _pages_v_blocks_form
   _pages_v: typeof _pages_v
   navigation_links: typeof navigation_links
   _navigation_links_v: typeof _navigation_links_v
@@ -2583,6 +2976,13 @@ type DatabaseSchema = {
   _system_pages_v_blocks_system_maintenance: typeof _system_pages_v_blocks_system_maintenance
   _system_pages_v_blocks_system_coming_soon: typeof _system_pages_v_blocks_system_coming_soon
   _system_pages_v: typeof _system_pages_v
+  forms_fields_options: typeof forms_fields_options
+  forms_fields: typeof forms_fields
+  forms: typeof forms
+  _forms_v_version_fields_options: typeof _forms_v_version_fields_options
+  _forms_v_version_fields: typeof _forms_v_version_fields
+  _forms_v: typeof _forms_v
+  form_submissions: typeof form_submissions
   media: typeof media
   _media_v: typeof _media_v
   users_sessions: typeof users_sessions
@@ -2603,9 +3003,11 @@ type DatabaseSchema = {
   _seo_settings_v: typeof _seo_settings_v
   relations_pages_blocks_hero36_cards: typeof relations_pages_blocks_hero36_cards
   relations_pages_blocks_hero36: typeof relations_pages_blocks_hero36
+  relations_pages_blocks_form: typeof relations_pages_blocks_form
   relations_pages: typeof relations_pages
   relations__pages_v_blocks_hero36_cards: typeof relations__pages_v_blocks_hero36_cards
   relations__pages_v_blocks_hero36: typeof relations__pages_v_blocks_hero36
+  relations__pages_v_blocks_form: typeof relations__pages_v_blocks_form
   relations__pages_v: typeof relations__pages_v
   relations_navigation_links: typeof relations_navigation_links
   relations__navigation_links_v: typeof relations__navigation_links_v
@@ -2639,6 +3041,13 @@ type DatabaseSchema = {
   relations__system_pages_v_blocks_system_maintenance: typeof relations__system_pages_v_blocks_system_maintenance
   relations__system_pages_v_blocks_system_coming_soon: typeof relations__system_pages_v_blocks_system_coming_soon
   relations__system_pages_v: typeof relations__system_pages_v
+  relations_forms_fields_options: typeof relations_forms_fields_options
+  relations_forms_fields: typeof relations_forms_fields
+  relations_forms: typeof relations_forms
+  relations__forms_v_version_fields_options: typeof relations__forms_v_version_fields_options
+  relations__forms_v_version_fields: typeof relations__forms_v_version_fields
+  relations__forms_v: typeof relations__forms_v
+  relations_form_submissions: typeof relations_form_submissions
   relations_media: typeof relations_media
   relations__media_v: typeof relations__media_v
   relations_users_sessions: typeof relations_users_sessions

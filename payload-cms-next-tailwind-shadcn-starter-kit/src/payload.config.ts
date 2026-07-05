@@ -7,6 +7,8 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Footers } from './collections/Footers'
+import { FormSubmissions } from './collections/FormSubmissions'
+import { Forms } from './collections/Forms'
 import { Media } from './collections/Media'
 import { NavigationLinks } from './collections/NavigationLinks'
 import { Pages } from './collections/Pages'
@@ -29,7 +31,18 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Pages, NavigationLinks, Redirects, Headers, Footers, SystemPages, Media, Users],
+  collections: [
+    Pages,
+    NavigationLinks,
+    Redirects,
+    Headers,
+    Footers,
+    SystemPages,
+    Forms,
+    FormSubmissions,
+    Media,
+    Users,
+  ],
   globals: [PageSettings, SiteSettings, ThemeSettings, SEOSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

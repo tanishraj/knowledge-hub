@@ -73,6 +73,8 @@ export interface Config {
     headers: Header;
     footers: Footer;
     'system-pages': SystemPage;
+    forms: Form;
+    'form-submissions': FormSubmission;
     media: Media;
     users: User;
     'payload-kv': PayloadKv;
@@ -88,6 +90,8 @@ export interface Config {
     headers: HeadersSelect<false> | HeadersSelect<true>;
     footers: FootersSelect<false> | FootersSelect<true>;
     'system-pages': SystemPagesSelect<false> | SystemPagesSelect<true>;
+    forms: FormsSelect<false> | FormsSelect<true>;
+    'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -156,7 +160,7 @@ export interface Page {
   /**
    * Compose the page with reusable frontend sections.
    */
-  layout?: Hero36Block[] | null;
+  layout?: (Hero36Block | FormBlock)[] | null;
   metaTitle: string;
   metaDescription: string;
   /**
@@ -239,6 +243,62 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FormBlock".
+ */
+export interface FormBlock {
+  /**
+   * Select the published form to render on this page.
+   */
+  form: number | Form;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'form';
+}
+/**
+ * Reusable form definitions that can be placed on pages.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms".
+ */
+export interface Form {
+  id: number;
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  /**
+   * Optional notes for editors. This is not shown on the website.
+   */
+  internalNotes?: string | null;
+  submitButtonLabel: string;
+  successMessage: string;
+  fields: {
+    /**
+     * Machine key used in stored submission data.
+     */
+    name: string;
+    label: string;
+    type: 'text' | 'email' | 'textarea' | 'select' | 'checkbox';
+    required?: boolean | null;
+    placeholder?: string | null;
+    options?:
+      | {
+          label: string;
+          value: string;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * Reusable destinations for menus, CTAs, legal links, and utility links.
@@ -538,6 +598,28 @@ export interface SystemComingSoonBlock {
   blockType: 'systemComingSoon';
 }
 /**
+ * Stored form submissions. These records are read-only after creation.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions".
+ */
+export interface FormSubmission {
+  id: number;
+  form: number | Form;
+  data:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -612,6 +694,14 @@ export interface PayloadLockedDocument {
         value: number | SystemPage;
       } | null)
     | ({
+        relationTo: 'forms';
+        value: number | Form;
+      } | null)
+    | ({
+        relationTo: 'form-submissions';
+        value: number | FormSubmission;
+      } | null)
+    | ({
         relationTo: 'media';
         value: number | Media;
       } | null)
@@ -673,6 +763,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         hero36?: T | Hero36BlockSelect<T>;
+        form?: T | FormBlockSelect<T>;
       };
   metaTitle?: T;
   metaDescription?: T;
@@ -712,6 +803,15 @@ export interface Hero36BlockSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FormBlock_select".
+ */
+export interface FormBlockSelect<T extends boolean = true> {
+  form?: T;
   id?: T;
   blockName?: T;
 }
@@ -953,6 +1053,50 @@ export interface SystemComingSoonBlockSelect<T extends boolean = true> {
   image?: T;
   id?: T;
   blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms_select".
+ */
+export interface FormsSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  internalNotes?: T;
+  submitButtonLabel?: T;
+  successMessage?: T;
+  fields?:
+    | T
+    | {
+        name?: T;
+        label?: T;
+        type?: T;
+        required?: T;
+        placeholder?: T;
+        options?:
+          | T
+          | {
+              label?: T;
+              value?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  deletedAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions_select".
+ */
+export interface FormSubmissionsSelect<T extends boolean = true> {
+  form?: T;
+  data?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  deletedAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

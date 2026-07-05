@@ -7,6 +7,7 @@ import {
 import type { Page } from '@/payload-types'
 import { robotsFieldOptions } from '@/lib/seo'
 
+import { FormBlock } from '../blocks/Form/config'
 import { Hero36Block } from '../blocks/Hero36/config'
 import { createRedirectsForChangedPagePath } from '../hooks/createRedirectsForChangedPagePath'
 import { populatePageUrlPreview } from '../hooks/populatePageUrlPreview'
@@ -112,7 +113,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Hero36Block],
+              blocks: [Hero36Block, FormBlock],
               admin: {
                 initCollapsed: true,
                 description:

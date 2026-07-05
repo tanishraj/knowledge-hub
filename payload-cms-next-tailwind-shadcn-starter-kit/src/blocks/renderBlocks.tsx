@@ -1,5 +1,6 @@
 import type { Page, SystemPage } from '@/payload-types'
 
+import { FormBlockComponent } from './Form/Component'
 import { Hero36BlockComponent } from './Hero36/Component'
 import { System404BlockComponent } from './System404/Component'
 import { SystemComingSoonBlockComponent } from './SystemComingSoon/Component'
@@ -32,6 +33,8 @@ export function RenderBlocks({ blocks }: { blocks?: RenderableBlock[] | null }) 
             return (
               <Hero36BlockComponent key={block.id ?? `${block.blockType}-${index}`} {...block} />
             )
+          case 'form':
+            return <FormBlockComponent key={block.id ?? `${block.blockType}-${index}`} {...block} />
           case 'system404':
             return (
               <System404BlockComponent key={block.id ?? `${block.blockType}-${index}`} {...block} />
