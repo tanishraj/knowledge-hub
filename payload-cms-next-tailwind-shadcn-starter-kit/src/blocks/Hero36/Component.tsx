@@ -1,18 +1,15 @@
 import { Hero36 } from '@/components/hero36'
-import type { Hero36Block as Hero36BlockData, Media } from '@/payload-types'
-
-const isMediaDoc = (value: number | Media | null | undefined): value is Media => {
-  return typeof value === 'object' && value !== null
-}
+import { getMediaImageProps, isMediaDoc } from '@/lib/media'
+import type { Hero36Block as Hero36BlockData } from '@/payload-types'
 
 export function Hero36BlockComponent(props: Hero36BlockData) {
   const cards = props.cards.map((card) => {
     const image =
-      card.visualType === 'image' && isMediaDoc(card.image) && card.image.url
-        ? {
-            src: card.image.url,
-            alt: card.image.alt,
-          }
+      card.visualType === 'image' && isMediaDoc(card.image)
+        ? getMediaImageProps({
+            media: card.image,
+            preset: 'hero',
+          })
         : undefined
 
     return {

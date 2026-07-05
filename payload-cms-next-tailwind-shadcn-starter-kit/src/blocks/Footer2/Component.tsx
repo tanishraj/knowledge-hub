@@ -1,11 +1,8 @@
 import { Footer2 } from '@/components/footer2'
-import type { Footer2Block as Footer2BlockData, Media, SiteSetting } from '@/payload-types'
+import { getMediaImageProps, isMediaDoc } from '@/lib/media'
+import type { Footer2Block as Footer2BlockData, SiteSetting } from '@/payload-types'
 import { resolveNavigationLink } from '@/lib/navigationLinks'
 import { resolveFooterSections } from '@/lib/navigationStructures'
-
-const isMediaDoc = (value: number | Media | null | undefined): value is Media => {
-  return typeof value === 'object' && value !== null
-}
 
 export function Footer2BlockComponent({
   siteSettings,
@@ -17,13 +14,18 @@ export function Footer2BlockComponent({
   const customLogo = isMediaDoc(props.customLogo) ? props.customLogo : null
   const logoImage =
     props.logoMode === 'customLogo' ? customLogo ?? siteLogo : siteLogo ?? customLogo
+  const resolvedLogoImage = getMediaImageProps({
+    media: logoImage,
+    preset: 'logo',
+    fallbackAlt: siteSettings.siteName || 'Site logo',
+  })
   const logo =
-    logoImage?.url && logoImage.alt
+    resolvedLogoImage
       ? {
           url: '/',
-          src: logoImage.url,
-          alt: logoImage.alt,
-          title: siteSettings.siteName || logoImage.alt,
+          src: resolvedLogoImage.src,
+          alt: resolvedLogoImage.alt,
+          title: siteSettings.siteName || resolvedLogoImage.alt,
         }
       : undefined
 

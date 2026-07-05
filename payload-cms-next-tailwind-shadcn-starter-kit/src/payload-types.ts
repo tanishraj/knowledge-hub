@@ -229,7 +229,31 @@ export interface Hero36Block {
  */
 export interface Media {
   id: number;
+  /**
+   * Internal asset name used in the admin panel.
+   */
+  title?: string | null;
+  /**
+   * Use Logo, Hero, and SEO for image assets only. Logo: prefer transparent background and clean padding. Hero: prefer wide, high-resolution imagery for desktop layouts. SEO: prefer Open Graph-friendly images around 1200x630.
+   */
+  assetType?: ('general' | 'logo' | 'hero' | 'seo' | 'icon' | 'document') | null;
+  /**
+   * Describe the image for accessibility and SEO. Keep logo alt concise, describe meaningful hero imagery, and write SEO alt as a clear preview description.
+   */
   alt: string;
+  /**
+   * Optional labels to make assets easier to find later.
+   */
+  tags?:
+    | {
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional internal notes about where or how this asset should be used, plus any preferred sizing or placement guidance for editors.
+   */
+  notes?: string | null;
   updatedAt: string;
   createdAt: string;
   deletedAt?: string | null;
@@ -1118,7 +1142,16 @@ export interface FormSubmissionsSelect<T extends boolean = true> {
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
+  title?: T;
+  assetType?: T;
   alt?: T;
+  tags?:
+    | T
+    | {
+        value?: T;
+        id?: T;
+      };
+  notes?: T;
   updatedAt?: T;
   createdAt?: T;
   deletedAt?: T;

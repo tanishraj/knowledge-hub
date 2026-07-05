@@ -4,6 +4,7 @@ import { getPayload, type Where } from 'payload'
 import { cache } from 'react'
 
 import type { Metadata } from 'next'
+import { getMediaAbsoluteUrl } from '@/lib/media'
 import { getRobotsMetadata } from '@/lib/seo'
 import { toAbsoluteSiteUrl } from '@/lib/siteUrl'
 import type { Media, Page, SeoSetting, SystemPage } from '@/payload-types'
@@ -202,14 +203,6 @@ export async function getHomepagePath(): Promise<string | null> {
   return href
 }
 
-const getMediaUrl = (media: number | Media | null | undefined): string | undefined => {
-  if (!media || typeof media === 'number' || !media.url) {
-    return undefined
-  }
-
-  return toAbsoluteSiteUrl(media.url)
-}
-
 const toBaseMetadata = (
   page: Pick<Page, 'metaDescription' | 'metaTitle'> | Pick<SystemPage, 'metaDescription' | 'metaTitle'> | null,
 ): Metadata => {
@@ -231,8 +224,8 @@ const toManagedPageMetadata = async (page: Page): Promise<Metadata> => {
   const resolvedCanonicalPath = isHomepage ? '/' : getPageHref(page)
   const canonicalValue = page.canonicalURL?.trim() || resolvedCanonicalPath
   const canonicalUrl = canonicalValue ? toAbsoluteSiteUrl(canonicalValue) : undefined
-  const defaultImageUrl = getMediaUrl(seoSettings.defaultImage)
-  const pageImageUrl = getMediaUrl(page.ogImage) ?? defaultImageUrl
+  const defaultImageUrl = getMediaAbsoluteUrl(seoSettings.defaultImage)
+  const pageImageUrl = getMediaAbsoluteUrl(page.ogImage) ?? defaultImageUrl
   const openGraphTitle = page.ogTitle || page.metaTitle || seoSettings.defaultTitle || undefined
   const openGraphDescription =
     page.ogDescription || page.metaDescription || seoSettings.defaultDescription || undefined

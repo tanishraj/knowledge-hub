@@ -8,9 +8,10 @@ import '../../styles/globals.css'
 import type { Metadata } from 'next'
 import { RenderFooter } from '@/blocks/renderFooter'
 import { RenderHeader } from '@/blocks/renderHeader'
+import { getMediaAbsoluteUrl } from '@/lib/media'
 import { getRobotsMetadata } from '@/lib/seo'
 import { getSiteURL } from '@/lib/siteUrl'
-import type { Footer, Header, Media } from '@/payload-types'
+import type { Footer, Header } from '@/payload-types'
 
 export const dynamic = 'force-dynamic'
 
@@ -77,18 +78,6 @@ const getFrontendGlobals = cache(async () => {
 const defaultSiteTitle = 'Payload Blank Template'
 const defaultSiteDescription = 'A blank template using Payload in a Next.js app.'
 
-function getMediaUrl(media: number | Media | null | undefined): string | undefined {
-  if (!media || typeof media === 'number') {
-    return undefined
-  }
-
-  if (!media.url) {
-    return undefined
-  }
-
-  return new URL(media.url, defaultSiteURL).toString()
-}
-
 export async function generateMetadata(): Promise<Metadata> {
   const { seoSettings, siteSettings } = await getFrontendGlobals()
   const defaultTitle = seoSettings.defaultTitle || defaultSiteTitle
@@ -98,8 +87,8 @@ export async function generateMetadata(): Promise<Metadata> {
         template: seoSettings.titleTemplate,
       }
     : defaultTitle
-  const defaultImageUrl = getMediaUrl(seoSettings.defaultImage)
-  const faviconUrl = getMediaUrl(siteSettings.favicon)
+  const defaultImageUrl = getMediaAbsoluteUrl(seoSettings.defaultImage)
+  const faviconUrl = getMediaAbsoluteUrl(siteSettings.favicon)
 
   return {
     metadataBase: new URL(defaultSiteURL),

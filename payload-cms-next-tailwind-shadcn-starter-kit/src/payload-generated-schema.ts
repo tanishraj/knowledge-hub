@@ -1265,6 +1265,25 @@ export const _system_pages_v = sqliteTable(
   ],
 )
 
+export const forms_notification_recipients = sqliteTable(
+  'forms_notification_recipients',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    id: text('id').primaryKey(),
+    email: text('email'),
+  },
+  (columns) => [
+    index('forms_notification_recipients_order_idx').on(columns._order),
+    index('forms_notification_recipients_parent_id_idx').on(columns._parentID),
+    foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [forms.id],
+      name: 'forms_notification_recipients_parent_id_fk',
+    }).onDelete('cascade'),
+  ],
+)
+
 export const forms_fields_options = sqliteTable(
   'forms_fields_options',
   {
@@ -1335,6 +1354,26 @@ export const forms = sqliteTable(
     index('forms_created_at_idx').on(columns.createdAt),
     index('forms_deleted_at_idx').on(columns.deletedAt),
     index('forms__status_idx').on(columns._status),
+  ],
+)
+
+export const _forms_v_version_notification_recipients = sqliteTable(
+  '_forms_v_version_notification_recipients',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    id: integer('id').primaryKey(),
+    email: text('email'),
+    _uuid: text('_uuid'),
+  },
+  (columns) => [
+    index('_forms_v_version_notification_recipients_order_idx').on(columns._order),
+    index('_forms_v_version_notification_recipients_parent_id_idx').on(columns._parentID),
+    foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_forms_v.id],
+      name: '_forms_v_version_notification_recipients_parent_id_fk',
+    }).onDelete('cascade'),
   ],
 )
 
@@ -1457,11 +1496,35 @@ export const form_submissions = sqliteTable(
   ],
 )
 
+export const media_tags = sqliteTable(
+  'media_tags',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    id: text('id').primaryKey(),
+    value: text('value'),
+  },
+  (columns) => [
+    index('media_tags_order_idx').on(columns._order),
+    index('media_tags_parent_id_idx').on(columns._parentID),
+    foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [media.id],
+      name: 'media_tags_parent_id_fk',
+    }).onDelete('cascade'),
+  ],
+)
+
 export const media = sqliteTable(
   'media',
   {
     id: integer('id').primaryKey(),
+    title: text('title'),
+    assetType: text('asset_type', {
+      enum: ['general', 'logo', 'hero', 'seo', 'icon', 'document'],
+    }).default('general'),
     alt: text('alt'),
+    notes: text('notes'),
     updatedAt: text('updated_at')
       .notNull()
       .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
@@ -1489,6 +1552,26 @@ export const media = sqliteTable(
   ],
 )
 
+export const _media_v_version_tags = sqliteTable(
+  '_media_v_version_tags',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    id: integer('id').primaryKey(),
+    value: text('value'),
+    _uuid: text('_uuid'),
+  },
+  (columns) => [
+    index('_media_v_version_tags_order_idx').on(columns._order),
+    index('_media_v_version_tags_parent_id_idx').on(columns._parentID),
+    foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_media_v.id],
+      name: '_media_v_version_tags_parent_id_fk',
+    }).onDelete('cascade'),
+  ],
+)
+
 export const _media_v = sqliteTable(
   '_media_v',
   {
@@ -1496,7 +1579,12 @@ export const _media_v = sqliteTable(
     parent: integer('parent_id').references(() => media.id, {
       onDelete: 'set null',
     }),
+    version_title: text('version_title'),
+    version_assetType: text('version_asset_type', {
+      enum: ['general', 'logo', 'hero', 'seo', 'icon', 'document'],
+    }).default('general'),
     version_alt: text('version_alt'),
+    version_notes: text('version_notes'),
     version_updatedAt: text('version_updated_at').default(
       sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`,
     ),
@@ -2658,6 +2746,16 @@ export const relations__system_pages_v = relations(_system_pages_v, ({ one, many
     relationName: '_blocks_systemComingSoon',
   }),
 }))
+export const relations_forms_notification_recipients = relations(
+  forms_notification_recipients,
+  ({ one }) => ({
+    _parentID: one(forms, {
+      fields: [forms_notification_recipients._parentID],
+      references: [forms.id],
+      relationName: 'notificationRecipients',
+    }),
+  }),
+)
 export const relations_forms_fields_options = relations(forms_fields_options, ({ one }) => ({
   _parentID: one(forms_fields, {
     fields: [forms_fields_options._parentID],
@@ -2676,10 +2774,23 @@ export const relations_forms_fields = relations(forms_fields, ({ one, many }) =>
   }),
 }))
 export const relations_forms = relations(forms, ({ many }) => ({
+  notificationRecipients: many(forms_notification_recipients, {
+    relationName: 'notificationRecipients',
+  }),
   fields: many(forms_fields, {
     relationName: 'fields',
   }),
 }))
+export const relations__forms_v_version_notification_recipients = relations(
+  _forms_v_version_notification_recipients,
+  ({ one }) => ({
+    _parentID: one(_forms_v, {
+      fields: [_forms_v_version_notification_recipients._parentID],
+      references: [_forms_v.id],
+      relationName: 'version_notificationRecipients',
+    }),
+  }),
+)
 export const relations__forms_v_version_fields_options = relations(
   _forms_v_version_fields_options,
   ({ one }) => ({
@@ -2709,6 +2820,9 @@ export const relations__forms_v = relations(_forms_v, ({ one, many }) => ({
     references: [forms.id],
     relationName: 'parent',
   }),
+  version_notificationRecipients: many(_forms_v_version_notification_recipients, {
+    relationName: 'version_notificationRecipients',
+  }),
   version_fields: many(_forms_v_version_fields, {
     relationName: 'version_fields',
   }),
@@ -2720,12 +2834,33 @@ export const relations_form_submissions = relations(form_submissions, ({ one }) 
     relationName: 'form',
   }),
 }))
-export const relations_media = relations(media, () => ({}))
-export const relations__media_v = relations(_media_v, ({ one }) => ({
+export const relations_media_tags = relations(media_tags, ({ one }) => ({
+  _parentID: one(media, {
+    fields: [media_tags._parentID],
+    references: [media.id],
+    relationName: 'tags',
+  }),
+}))
+export const relations_media = relations(media, ({ many }) => ({
+  tags: many(media_tags, {
+    relationName: 'tags',
+  }),
+}))
+export const relations__media_v_version_tags = relations(_media_v_version_tags, ({ one }) => ({
+  _parentID: one(_media_v, {
+    fields: [_media_v_version_tags._parentID],
+    references: [_media_v.id],
+    relationName: 'version_tags',
+  }),
+}))
+export const relations__media_v = relations(_media_v, ({ one, many }) => ({
   parent: one(media, {
     fields: [_media_v.parent],
     references: [media.id],
     relationName: 'parent',
+  }),
+  version_tags: many(_media_v_version_tags, {
+    relationName: 'version_tags',
   }),
 }))
 export const relations_users_sessions = relations(users_sessions, ({ one }) => ({
@@ -2976,14 +3111,18 @@ type DatabaseSchema = {
   _system_pages_v_blocks_system_maintenance: typeof _system_pages_v_blocks_system_maintenance
   _system_pages_v_blocks_system_coming_soon: typeof _system_pages_v_blocks_system_coming_soon
   _system_pages_v: typeof _system_pages_v
+  forms_notification_recipients: typeof forms_notification_recipients
   forms_fields_options: typeof forms_fields_options
   forms_fields: typeof forms_fields
   forms: typeof forms
+  _forms_v_version_notification_recipients: typeof _forms_v_version_notification_recipients
   _forms_v_version_fields_options: typeof _forms_v_version_fields_options
   _forms_v_version_fields: typeof _forms_v_version_fields
   _forms_v: typeof _forms_v
   form_submissions: typeof form_submissions
+  media_tags: typeof media_tags
   media: typeof media
+  _media_v_version_tags: typeof _media_v_version_tags
   _media_v: typeof _media_v
   users_sessions: typeof users_sessions
   users: typeof users
@@ -3041,14 +3180,18 @@ type DatabaseSchema = {
   relations__system_pages_v_blocks_system_maintenance: typeof relations__system_pages_v_blocks_system_maintenance
   relations__system_pages_v_blocks_system_coming_soon: typeof relations__system_pages_v_blocks_system_coming_soon
   relations__system_pages_v: typeof relations__system_pages_v
+  relations_forms_notification_recipients: typeof relations_forms_notification_recipients
   relations_forms_fields_options: typeof relations_forms_fields_options
   relations_forms_fields: typeof relations_forms_fields
   relations_forms: typeof relations_forms
+  relations__forms_v_version_notification_recipients: typeof relations__forms_v_version_notification_recipients
   relations__forms_v_version_fields_options: typeof relations__forms_v_version_fields_options
   relations__forms_v_version_fields: typeof relations__forms_v_version_fields
   relations__forms_v: typeof relations__forms_v
   relations_form_submissions: typeof relations_form_submissions
+  relations_media_tags: typeof relations_media_tags
   relations_media: typeof relations_media
+  relations__media_v_version_tags: typeof relations__media_v_version_tags
   relations__media_v: typeof relations__media_v
   relations_users_sessions: typeof relations_users_sessions
   relations_users: typeof relations_users

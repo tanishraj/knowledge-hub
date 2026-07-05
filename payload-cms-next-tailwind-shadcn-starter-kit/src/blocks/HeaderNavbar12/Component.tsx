@@ -1,7 +1,7 @@
 import { Navbar12 } from '@/components/navbar12'
+import { getMediaImageProps, isMediaDoc } from '@/lib/media'
 import type {
   HeaderNavbar12Block as HeaderNavbar12BlockData,
-  Media,
   SiteSetting,
 } from '@/payload-types'
 import { resolveNavigationLink } from '@/lib/navigationLinks'
@@ -16,10 +16,6 @@ type NavbarLink = {
 }
 
 type SecondaryAction = NonNullable<HeaderNavbar12BlockData['secondaryActions']>[number]
-
-const isMediaDoc = (value: number | Media | null | undefined): value is Media => {
-  return typeof value === 'object' && value !== null
-}
 
 const mapAction = (
   item:
@@ -55,12 +51,17 @@ export function HeaderNavbar12BlockComponent({
   const siteLogo = isMediaDoc(siteSettings.logo) ? siteSettings.logo : null
   const customLogo = isMediaDoc(block.customLogo) ? block.customLogo : null
   const logoImage = block.logoMode === 'customLogo' ? customLogo ?? siteLogo : siteLogo ?? customLogo
+  const resolvedLogoImage = getMediaImageProps({
+    media: logoImage,
+    preset: 'logo',
+    fallbackAlt: siteSettings.siteName || 'Site logo',
+  })
   const logo =
-    logoImage?.url != null
+    resolvedLogoImage
       ? {
           url: '/',
-          src: logoImage.url,
-          alt: logoImage.alt || siteSettings.siteName || 'Site logo',
+          src: resolvedLogoImage.src,
+          alt: resolvedLogoImage.alt,
         }
       : undefined
 

@@ -1,18 +1,12 @@
 import { SystemPageHero } from '@/components/system-page-hero'
-import type { Media, SystemComingSoonBlock as SystemComingSoonBlockData } from '@/payload-types'
-
-const isMediaDoc = (value: number | Media | null | undefined): value is Media => {
-  return typeof value === 'object' && value !== null
-}
+import { getMediaImageProps } from '@/lib/media'
+import type { SystemComingSoonBlock as SystemComingSoonBlockData } from '@/payload-types'
 
 export function SystemComingSoonBlockComponent(props: SystemComingSoonBlockData) {
-  const image =
-    isMediaDoc(props.image) && props.image.url
-      ? {
-          src: props.image.url,
-          alt: props.image.alt,
-        }
-      : undefined
+  const image = getMediaImageProps({
+    media: props.image,
+    preset: 'system',
+  })
 
   return (
     <SystemPageHero
