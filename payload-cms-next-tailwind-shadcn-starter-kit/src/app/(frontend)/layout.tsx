@@ -8,12 +8,14 @@ import '../../styles/globals.css'
 import type { Metadata } from 'next'
 import { RenderFooter } from '@/blocks/renderFooter'
 import { RenderHeader } from '@/blocks/renderHeader'
+import { getRobotsMetadata } from '@/lib/seo'
+import { getSiteURL } from '@/lib/siteUrl'
 import type { Footer, Header, Media } from '@/payload-types'
 
 export const dynamic = 'force-dynamic'
 
 const validThemeColors = new Set(['default', 'blue', 'sera'])
-const defaultSiteURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+const defaultSiteURL = getSiteURL()
 
 const getFrontendGlobals = cache(async () => {
   const payload = await getPayload({
@@ -74,20 +76,6 @@ const getFrontendGlobals = cache(async () => {
 
 const defaultSiteTitle = 'Payload Blank Template'
 const defaultSiteDescription = 'A blank template using Payload in a Next.js app.'
-
-function getRobotsMetadata(value: string | null | undefined): Metadata['robots'] {
-  switch (value) {
-    case 'noindex,follow':
-      return { index: false, follow: true }
-    case 'index,nofollow':
-      return { index: true, follow: false }
-    case 'noindex,nofollow':
-      return { index: false, follow: false }
-    case 'index,follow':
-    default:
-      return { index: true, follow: true }
-  }
-}
 
 function getMediaUrl(media: number | Media | null | undefined): string | undefined {
   if (!media || typeof media === 'number') {

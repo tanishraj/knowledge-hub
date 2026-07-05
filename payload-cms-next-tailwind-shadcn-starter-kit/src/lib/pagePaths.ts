@@ -3,6 +3,7 @@ import type { PayloadRequest } from 'payload'
 import type { Page } from '@/payload-types'
 
 type PagePathSource = Pick<Page, 'parent' | 'slug'>
+type ResolvePageParent = (id: number) => Promise<PagePathSource | null>
 
 export const isPageDoc = (value: number | Page | null | undefined): value is Page => {
   return typeof value === 'object' && value !== null
@@ -44,6 +45,20 @@ export const getPageHrefFromSource = async (
   page: PagePathSource,
   req: PayloadRequest,
 ): Promise<string | null> => {
+  return getPageHrefFromSourceWithResolver(page, async (id) => {
+    return req.payload.findByID({
+      collection: 'pages',
+      id,
+      depth: 0,
+      req,
+    })
+  })
+}
+
+export const getPageHrefFromSourceWithResolver = async (
+  page: PagePathSource,
+  resolvePageParent: ResolvePageParent,
+): Promise<string | null> => {
   if (!page.slug) {
     return null
   }
@@ -58,12 +73,11 @@ export const getPageHrefFromSource = async (
       continue
     }
 
-    const parentPage = await req.payload.findByID({
-      collection: 'pages',
-      id: currentParent,
-      depth: 0,
-      req,
-    })
+    const parentPage = await resolvePageParent(currentParent)
+
+    if (!parentPage) {
+      return null
+    }
 
     segments.unshift(parentPage.slug)
     currentParent = parentPage.parent as number | Page | null | undefined

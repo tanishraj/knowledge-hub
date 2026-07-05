@@ -4,7 +4,9 @@ import { getPayload, type Where } from 'payload'
 import { cache } from 'react'
 
 import type { Metadata } from 'next'
-import type { Page, SystemPage } from '@/payload-types'
+import { getRobotsMetadata } from '@/lib/seo'
+import { toAbsoluteSiteUrl } from '@/lib/siteUrl'
+import type { Media, Page, SeoSetting, SystemPage } from '@/payload-types'
 import { getPageHref, getPageSlugSegments } from '@/lib/pagePaths'
 import type { SystemPageType } from '@/lib/systemPageTypes'
 
@@ -30,6 +32,17 @@ const getPageSettings = cache(async () => {
   return payload.findGlobal({
     slug: 'page-settings',
     depth: 0,
+  })
+})
+
+const getSeoSettings = cache(async (): Promise<SeoSetting> => {
+  const payload = await getPayload({
+    config: configPromise,
+  })
+
+  return payload.findGlobal({
+    slug: 'seo-settings',
+    depth: 1,
   })
 })
 
@@ -189,7 +202,15 @@ export async function getHomepagePath(): Promise<string | null> {
   return href
 }
 
-const toPageMetadata = (
+const getMediaUrl = (media: number | Media | null | undefined): string | undefined => {
+  if (!media || typeof media === 'number' || !media.url) {
+    return undefined
+  }
+
+  return toAbsoluteSiteUrl(media.url)
+}
+
+const toBaseMetadata = (
   page: Pick<Page, 'metaDescription' | 'metaTitle'> | Pick<SystemPage, 'metaDescription' | 'metaTitle'> | null,
 ): Metadata => {
   if (!page) {
@@ -199,6 +220,51 @@ const toPageMetadata = (
   return {
     title: page.metaTitle,
     description: page.metaDescription,
+  }
+}
+
+const toManagedPageMetadata = async (page: Page): Promise<Metadata> => {
+  const [pageSettings, seoSettings] = await Promise.all([getPageSettings(), getSeoSettings()])
+
+  const homepageID = extractRelationshipID(pageSettings.homepage)
+  const isHomepage = homepageID != null && page.id === homepageID
+  const resolvedCanonicalPath = isHomepage ? '/' : getPageHref(page)
+  const canonicalValue = page.canonicalURL?.trim() || resolvedCanonicalPath
+  const canonicalUrl = canonicalValue ? toAbsoluteSiteUrl(canonicalValue) : undefined
+  const defaultImageUrl = getMediaUrl(seoSettings.defaultImage)
+  const pageImageUrl = getMediaUrl(page.ogImage) ?? defaultImageUrl
+  const openGraphTitle = page.ogTitle || page.metaTitle || seoSettings.defaultTitle || undefined
+  const openGraphDescription =
+    page.ogDescription || page.metaDescription || seoSettings.defaultDescription || undefined
+
+  return {
+    title: page.metaTitle,
+    description: page.metaDescription,
+    alternates: canonicalUrl
+      ? {
+          canonical: canonicalUrl,
+        }
+      : undefined,
+    openGraph: {
+      title: openGraphTitle,
+      description: openGraphDescription,
+      url: canonicalUrl,
+      type: 'website',
+      images: pageImageUrl
+        ? [
+            {
+              url: pageImageUrl,
+            },
+          ]
+        : undefined,
+    },
+    robots: getRobotsMetadata(page.robots || seoSettings.robots),
+    twitter: {
+      card: pageImageUrl ? 'summary_large_image' : 'summary',
+      title: openGraphTitle,
+      description: openGraphDescription,
+      images: pageImageUrl ? [pageImageUrl] : undefined,
+    },
   }
 }
 
@@ -323,7 +389,13 @@ export async function getManagedNotFoundPage(): Promise<SystemPage | null> {
 }
 
 export async function getPageMetadataBySlug(slug: string): Promise<Metadata> {
-  return toPageMetadata(await getPageBySlug(slug))
+  const page = await getPageBySlug(slug)
+
+  if (!page) {
+    return {}
+  }
+
+  return toManagedPageMetadata(page)
 }
 
 export async function getPageMetadataByPath(segments: string[]): Promise<Metadata> {
@@ -331,7 +403,7 @@ export async function getPageMetadataByPath(segments: string[]): Promise<Metadat
   const systemPageState = await getSystemPageRenderState(pathname)
 
   if (systemPageState.page) {
-    return toPageMetadata(systemPageState.page)
+    return toBaseMetadata(systemPageState.page)
   }
 
   if (systemPageState.mode === 'maintenance') {
@@ -349,17 +421,17 @@ export async function getPageMetadataByPath(segments: string[]): Promise<Metadat
   const page = await getPageByPath(segments)
 
   if (page) {
-    return toPageMetadata(page)
+    return toManagedPageMetadata(page)
   }
 
-  return toPageMetadata(await getManagedNotFoundPage())
+  return toBaseMetadata(await getManagedNotFoundPage())
 }
 
 export async function getHomepageMetadata(): Promise<Metadata> {
   const systemPageState = await getSystemPageRenderState('/')
 
   if (systemPageState.page) {
-    return toPageMetadata(systemPageState.page)
+    return toBaseMetadata(systemPageState.page)
   }
 
   if (systemPageState.mode === 'maintenance') {
@@ -377,8 +449,8 @@ export async function getHomepageMetadata(): Promise<Metadata> {
   const homepage = await getHomepagePage()
 
   if (homepage) {
-    return toPageMetadata(homepage)
+    return toManagedPageMetadata(homepage)
   }
 
-  return toPageMetadata(await getManagedNotFoundPage())
+  return toBaseMetadata(await getManagedNotFoundPage())
 }

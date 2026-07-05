@@ -160,6 +160,26 @@ export interface Page {
   metaTitle: string;
   metaDescription: string;
   /**
+   * Optional. Leave empty to use the resolved public page URL. Supports relative paths or full URLs.
+   */
+  canonicalURL?: string | null;
+  /**
+   * Optional. Leave empty to inherit the global robots setting for this page.
+   */
+  robots?: ('index,follow' | 'noindex,follow' | 'index,nofollow' | 'noindex,nofollow') | null;
+  /**
+   * Optional. Leave empty to use the page SEO title, then global defaults.
+   */
+  ogTitle?: string | null;
+  /**
+   * Optional. Leave empty to use the global default social image.
+   */
+  ogImage?: (number | null) | Media;
+  /**
+   * Optional. Leave empty to use the page SEO description, then global defaults.
+   */
+  ogDescription?: string | null;
+  /**
    * Resolved from the current saved slug and parent hierarchy.
    */
   publicUrlPreview?: string | null;
@@ -656,6 +676,11 @@ export interface PagesSelect<T extends boolean = true> {
       };
   metaTitle?: T;
   metaDescription?: T;
+  canonicalURL?: T;
+  robots?: T;
+  ogTitle?: T;
+  ogImage?: T;
+  ogDescription?: T;
   publicUrlPreview?: T;
   parent?: T;
   showInNavigation?: T;

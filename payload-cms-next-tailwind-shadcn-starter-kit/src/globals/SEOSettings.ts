@@ -1,5 +1,7 @@
 import type { GlobalConfig } from 'payload'
 
+import { robotsFieldOptions } from '@/lib/seo'
+
 export const SEOSettings: GlobalConfig = {
   slug: 'seo-settings',
   label: 'SEO Settings',
@@ -35,24 +37,7 @@ export const SEOSettings: GlobalConfig = {
       name: 'robots',
       type: 'select',
       defaultValue: 'index,follow',
-      options: [
-        {
-          label: 'Index, Follow',
-          value: 'index,follow',
-        },
-        {
-          label: 'No Index, Follow',
-          value: 'noindex,follow',
-        },
-        {
-          label: 'Index, No Follow',
-          value: 'index,nofollow',
-        },
-        {
-          label: 'No Index, No Follow',
-          value: 'noindex,nofollow',
-        },
-      ],
+      options: [...robotsFieldOptions],
     },
     {
       name: 'googleSiteVerification',

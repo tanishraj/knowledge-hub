@@ -5,6 +5,7 @@ import {
 } from 'payload'
 
 import type { Page } from '@/payload-types'
+import { robotsFieldOptions } from '@/lib/seo'
 
 import { Hero36Block } from '../blocks/Hero36/config'
 import { createRedirectsForChangedPagePath } from '../hooks/createRedirectsForChangedPagePath'
@@ -132,6 +133,66 @@ export const Pages: CollectionConfig = {
               name: 'metaDescription',
               type: 'textarea',
               required: true,
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'canonicalURL',
+                  label: 'Canonical URL Override',
+                  type: 'text',
+                  admin: {
+                    description:
+                      'Optional. Leave empty to use the resolved public page URL. Supports relative paths or full URLs.',
+                    width: '50%',
+                  },
+                },
+                {
+                  name: 'robots',
+                  type: 'select',
+                  options: [...robotsFieldOptions],
+                  admin: {
+                    description:
+                      'Optional. Leave empty to inherit the global robots setting for this page.',
+                    width: '50%',
+                  },
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'ogTitle',
+                  label: 'Open Graph Title',
+                  type: 'text',
+                  admin: {
+                    description:
+                      'Optional. Leave empty to use the page SEO title, then global defaults.',
+                    width: '50%',
+                  },
+                },
+                {
+                  name: 'ogImage',
+                  label: 'Open Graph Image',
+                  type: 'upload',
+                  relationTo: 'media',
+                  admin: {
+                    description:
+                      'Optional. Leave empty to use the global default social image.',
+                    width: '50%',
+                  },
+                },
+              ],
+            },
+            {
+              name: 'ogDescription',
+              label: 'Open Graph Description',
+              type: 'textarea',
+              admin: {
+                description:
+                  'Optional. Leave empty to use the page SEO description, then global defaults.',
+              },
             },
           ],
         },
