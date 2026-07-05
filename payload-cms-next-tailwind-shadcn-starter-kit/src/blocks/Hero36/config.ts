@@ -1,6 +1,7 @@
 import type { Block } from 'payload'
 
 import type { Hero36IconName } from '@/components/hero36'
+import { createCmsLinkFields } from '@/fields/cmsLinkFields'
 
 const hero36IconOptions: { label: string; value: Hero36IconName }[] = [
   {
@@ -76,13 +77,6 @@ export const Hero36Block: Block = {
           required: true,
         },
         {
-          name: 'href',
-          type: 'text',
-          admin: {
-            placeholder: '/admin',
-          },
-        },
-        {
           name: 'visualType',
           type: 'select',
           required: true,
@@ -123,6 +117,7 @@ export const Hero36Block: Block = {
             condition: (_, siblingData) => siblingData?.visualType === 'image',
           },
         },
+        ...createCmsLinkFields(),
       ],
     },
   ],

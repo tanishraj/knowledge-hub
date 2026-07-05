@@ -60,16 +60,17 @@ const fields: Field[] = [
   },
   {
     name: 'destinationType',
+    label: 'Destination Type',
     type: 'radio',
     required: true,
     defaultValue: 'page',
     options: [
       {
-        label: 'Page',
+        label: 'Destination Page',
         value: 'page',
       },
       {
-        label: 'Custom URL',
+        label: 'Custom Destination',
         value: 'custom',
       },
     ],
@@ -79,23 +80,26 @@ const fields: Field[] = [
   },
   {
     name: 'page',
+    label: 'Destination Page',
     type: 'relationship',
     relationTo: 'pages',
     validate: validateRequiredDestinationField('page', 'Select the destination page.'),
     admin: {
       condition: (_: unknown, siblingData: { destinationType?: 'page' | 'custom' | null }) =>
         siblingData?.destinationType === 'page',
+      description: 'Choose the page this old path should redirect to.',
     },
   },
   {
     name: 'url',
-    label: 'Custom URL',
+    label: 'Custom Destination',
     type: 'text',
     validate: validateRequiredDestinationField('custom', 'Enter the destination URL.'),
     admin: {
       condition: (_: unknown, siblingData: { destinationType?: 'page' | 'custom' | null }) =>
         siblingData?.destinationType === 'custom',
       placeholder: '/new-path or https://example.com',
+      description: 'Enter an internal path or full external URL to redirect to.',
     },
   },
   {

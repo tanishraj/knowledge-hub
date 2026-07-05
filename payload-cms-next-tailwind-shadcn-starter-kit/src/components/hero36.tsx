@@ -17,6 +17,7 @@ export interface Hero36Card {
   image?: Hero36Image;
   icon?: Hero36IconName | React.ReactNode;
   href?: string;
+  openInNewTab?: boolean;
 }
 export interface Hero36Image {
   src: string;
@@ -151,6 +152,8 @@ const Hero36 = (props: Props) => {
           <a
             key={index}
             href={item.href ?? "#"}
+            target={item.openInNewTab ? "_blank" : undefined}
+            rel={item.openInNewTab ? "noreferrer noopener" : undefined}
             className={cn(
               "relative flex flex-col items-center rounded-xl border bg-background/70 px-6 py-10 text-center backdrop-blur-sm lg:px-8 lg:py-12",
               index === 1 && "md:translate-y-4",

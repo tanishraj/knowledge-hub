@@ -1,4 +1,5 @@
 import { Hero36 } from '@/components/hero36'
+import { resolveCmsLink } from '@/lib/cmsLinks'
 import { getMediaImageProps, isMediaDoc } from '@/lib/media'
 import type { Hero36Block as Hero36BlockData } from '@/payload-types'
 
@@ -11,11 +12,13 @@ export function Hero36BlockComponent(props: Hero36BlockData) {
             preset: 'hero',
           })
         : undefined
+    const { href, openInNewTab } = resolveCmsLink(card)
 
     return {
       title: card.title,
       description: card.description,
-      href: card.href ?? undefined,
+      href,
+      openInNewTab,
       icon: card.visualType === 'icon' ? card.icon ?? undefined : undefined,
       image,
     }

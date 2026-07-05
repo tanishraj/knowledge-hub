@@ -1,17 +1,12 @@
 import type { Block, Field } from 'payload'
+import { createCmsLinkFields } from '@/fields/cmsLinkFields'
 
 const actionFields: Field[] = [
   {
     name: 'label',
     type: 'text',
   },
-  {
-    name: 'url',
-    type: 'text',
-    admin: {
-      placeholder: '/ or /contact or https://example.com',
-    },
-  },
+  ...createCmsLinkFields(),
 ]
 
 export const createSystemPageBlock = ({

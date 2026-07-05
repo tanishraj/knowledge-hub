@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 
 type ActionLink = {
   label?: string | null
+  openInNewTab?: boolean | null
   url?: string | null
 }
 
@@ -62,6 +63,7 @@ function ActionButton({
   }
 
   const isExternal = /^https?:\/\//.test(action.url)
+  const openInNewTab = action.openInNewTab || isExternal
 
   return (
     <Button
@@ -71,8 +73,8 @@ function ActionButton({
     >
       <a
         href={action.url}
-        target={isExternal ? '_blank' : undefined}
-        rel={isExternal ? 'noreferrer' : undefined}
+        target={openInNewTab ? '_blank' : undefined}
+        rel={openInNewTab ? 'noreferrer noopener' : undefined}
       >
         {action.label}
         {variant === 'default' && <ArrowRight className="size-4" />}

@@ -27,17 +27,23 @@ export const pages_blocks_hero36_cards = sqliteTable(
     id: text('id').primaryKey(),
     title: text('title'),
     description: text('description'),
-    href: text('href'),
     visualType: text('visual_type', { enum: ['icon', 'image'] }).default('icon'),
     icon: text('icon', { enum: ['blocks', 'database', 'layout', 'rocket'] }),
     image: integer('image_id').references(() => media.id, {
       onDelete: 'set null',
     }),
+    linkType: text('link_type', { enum: ['page', 'custom'] }).default('page'),
+    page: integer('page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
+    url: text('url'),
+    openInNewTab: integer('open_in_new_tab', { mode: 'boolean' }).default(false),
   },
   (columns) => [
     index('pages_blocks_hero36_cards_order_idx').on(columns._order),
     index('pages_blocks_hero36_cards_parent_id_idx').on(columns._parentID),
     index('pages_blocks_hero36_cards_image_idx').on(columns.image),
+    index('pages_blocks_hero36_cards_page_idx').on(columns.page),
     foreignKey({
       columns: [columns['_parentID']],
       foreignColumns: [pages_blocks_hero36.id],
@@ -145,18 +151,24 @@ export const _pages_v_blocks_hero36_cards = sqliteTable(
     id: integer('id').primaryKey(),
     title: text('title'),
     description: text('description'),
-    href: text('href'),
     visualType: text('visual_type', { enum: ['icon', 'image'] }).default('icon'),
     icon: text('icon', { enum: ['blocks', 'database', 'layout', 'rocket'] }),
     image: integer('image_id').references(() => media.id, {
       onDelete: 'set null',
     }),
+    linkType: text('link_type', { enum: ['page', 'custom'] }).default('page'),
+    page: integer('page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
+    url: text('url'),
+    openInNewTab: integer('open_in_new_tab', { mode: 'boolean' }).default(false),
     _uuid: text('_uuid'),
   },
   (columns) => [
     index('_pages_v_blocks_hero36_cards_order_idx').on(columns._order),
     index('_pages_v_blocks_hero36_cards_parent_id_idx').on(columns._parentID),
     index('_pages_v_blocks_hero36_cards_image_idx').on(columns.image),
+    index('_pages_v_blocks_hero36_cards_page_idx').on(columns.page),
     foreignKey({
       columns: [columns['_parentID']],
       foreignColumns: [_pages_v_blocks_hero36.id],
@@ -1002,9 +1014,27 @@ export const system_pages_blocks_system404 = sqliteTable(
     description: text('description'),
     supportingNote: text('supporting_note'),
     primaryAction_label: text('primary_action_label'),
+    primaryAction_linkType: text('primary_action_link_type', { enum: ['page', 'custom'] }).default(
+      'page',
+    ),
+    primaryAction_page: integer('primary_action_page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
     primaryAction_url: text('primary_action_url'),
+    primaryAction_openInNewTab: integer('primary_action_open_in_new_tab', {
+      mode: 'boolean',
+    }).default(false),
     secondaryAction_label: text('secondary_action_label'),
+    secondaryAction_linkType: text('secondary_action_link_type', {
+      enum: ['page', 'custom'],
+    }).default('page'),
+    secondaryAction_page: integer('secondary_action_page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
     secondaryAction_url: text('secondary_action_url'),
+    secondaryAction_openInNewTab: integer('secondary_action_open_in_new_tab', {
+      mode: 'boolean',
+    }).default(false),
     image: integer('image_id').references(() => media.id, {
       onDelete: 'set null',
     }),
@@ -1014,6 +1044,12 @@ export const system_pages_blocks_system404 = sqliteTable(
     index('system_pages_blocks_system404_order_idx').on(columns._order),
     index('system_pages_blocks_system404_parent_id_idx').on(columns._parentID),
     index('system_pages_blocks_system404_path_idx').on(columns._path),
+    index('system_pages_blocks_system404_primary_action_primary_act_idx').on(
+      columns.primaryAction_page,
+    ),
+    index('system_pages_blocks_system404_secondary_action_secondary_idx').on(
+      columns.secondaryAction_page,
+    ),
     index('system_pages_blocks_system404_image_idx').on(columns.image),
     foreignKey({
       columns: [columns['_parentID']],
@@ -1035,9 +1071,27 @@ export const system_pages_blocks_system_maintenance = sqliteTable(
     description: text('description'),
     supportingNote: text('supporting_note'),
     primaryAction_label: text('primary_action_label'),
+    primaryAction_linkType: text('primary_action_link_type', { enum: ['page', 'custom'] }).default(
+      'page',
+    ),
+    primaryAction_page: integer('primary_action_page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
     primaryAction_url: text('primary_action_url'),
+    primaryAction_openInNewTab: integer('primary_action_open_in_new_tab', {
+      mode: 'boolean',
+    }).default(false),
     secondaryAction_label: text('secondary_action_label'),
+    secondaryAction_linkType: text('secondary_action_link_type', {
+      enum: ['page', 'custom'],
+    }).default('page'),
+    secondaryAction_page: integer('secondary_action_page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
     secondaryAction_url: text('secondary_action_url'),
+    secondaryAction_openInNewTab: integer('secondary_action_open_in_new_tab', {
+      mode: 'boolean',
+    }).default(false),
     image: integer('image_id').references(() => media.id, {
       onDelete: 'set null',
     }),
@@ -1047,6 +1101,12 @@ export const system_pages_blocks_system_maintenance = sqliteTable(
     index('system_pages_blocks_system_maintenance_order_idx').on(columns._order),
     index('system_pages_blocks_system_maintenance_parent_id_idx').on(columns._parentID),
     index('system_pages_blocks_system_maintenance_path_idx').on(columns._path),
+    index('system_pages_blocks_system_maintenance_primary_action_pr_idx').on(
+      columns.primaryAction_page,
+    ),
+    index('system_pages_blocks_system_maintenance_secondary_action__idx').on(
+      columns.secondaryAction_page,
+    ),
     index('system_pages_blocks_system_maintenance_image_idx').on(columns.image),
     foreignKey({
       columns: [columns['_parentID']],
@@ -1068,9 +1128,27 @@ export const system_pages_blocks_system_coming_soon = sqliteTable(
     description: text('description'),
     supportingNote: text('supporting_note'),
     primaryAction_label: text('primary_action_label'),
+    primaryAction_linkType: text('primary_action_link_type', { enum: ['page', 'custom'] }).default(
+      'page',
+    ),
+    primaryAction_page: integer('primary_action_page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
     primaryAction_url: text('primary_action_url'),
+    primaryAction_openInNewTab: integer('primary_action_open_in_new_tab', {
+      mode: 'boolean',
+    }).default(false),
     secondaryAction_label: text('secondary_action_label'),
+    secondaryAction_linkType: text('secondary_action_link_type', {
+      enum: ['page', 'custom'],
+    }).default('page'),
+    secondaryAction_page: integer('secondary_action_page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
     secondaryAction_url: text('secondary_action_url'),
+    secondaryAction_openInNewTab: integer('secondary_action_open_in_new_tab', {
+      mode: 'boolean',
+    }).default(false),
     image: integer('image_id').references(() => media.id, {
       onDelete: 'set null',
     }),
@@ -1080,6 +1158,12 @@ export const system_pages_blocks_system_coming_soon = sqliteTable(
     index('system_pages_blocks_system_coming_soon_order_idx').on(columns._order),
     index('system_pages_blocks_system_coming_soon_parent_id_idx').on(columns._parentID),
     index('system_pages_blocks_system_coming_soon_path_idx').on(columns._path),
+    index('system_pages_blocks_system_coming_soon_primary_action_pr_idx').on(
+      columns.primaryAction_page,
+    ),
+    index('system_pages_blocks_system_coming_soon_secondary_action__idx').on(
+      columns.secondaryAction_page,
+    ),
     index('system_pages_blocks_system_coming_soon_image_idx').on(columns.image),
     foreignKey({
       columns: [columns['_parentID']],
@@ -1129,9 +1213,27 @@ export const _system_pages_v_blocks_system404 = sqliteTable(
     description: text('description'),
     supportingNote: text('supporting_note'),
     primaryAction_label: text('primary_action_label'),
+    primaryAction_linkType: text('primary_action_link_type', { enum: ['page', 'custom'] }).default(
+      'page',
+    ),
+    primaryAction_page: integer('primary_action_page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
     primaryAction_url: text('primary_action_url'),
+    primaryAction_openInNewTab: integer('primary_action_open_in_new_tab', {
+      mode: 'boolean',
+    }).default(false),
     secondaryAction_label: text('secondary_action_label'),
+    secondaryAction_linkType: text('secondary_action_link_type', {
+      enum: ['page', 'custom'],
+    }).default('page'),
+    secondaryAction_page: integer('secondary_action_page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
     secondaryAction_url: text('secondary_action_url'),
+    secondaryAction_openInNewTab: integer('secondary_action_open_in_new_tab', {
+      mode: 'boolean',
+    }).default(false),
     image: integer('image_id').references(() => media.id, {
       onDelete: 'set null',
     }),
@@ -1142,6 +1244,12 @@ export const _system_pages_v_blocks_system404 = sqliteTable(
     index('_system_pages_v_blocks_system404_order_idx').on(columns._order),
     index('_system_pages_v_blocks_system404_parent_id_idx').on(columns._parentID),
     index('_system_pages_v_blocks_system404_path_idx').on(columns._path),
+    index('_system_pages_v_blocks_system404_primary_action_primary__idx').on(
+      columns.primaryAction_page,
+    ),
+    index('_system_pages_v_blocks_system404_secondary_action_second_idx').on(
+      columns.secondaryAction_page,
+    ),
     index('_system_pages_v_blocks_system404_image_idx').on(columns.image),
     foreignKey({
       columns: [columns['_parentID']],
@@ -1163,9 +1271,27 @@ export const _system_pages_v_blocks_system_maintenance = sqliteTable(
     description: text('description'),
     supportingNote: text('supporting_note'),
     primaryAction_label: text('primary_action_label'),
+    primaryAction_linkType: text('primary_action_link_type', { enum: ['page', 'custom'] }).default(
+      'page',
+    ),
+    primaryAction_page: integer('primary_action_page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
     primaryAction_url: text('primary_action_url'),
+    primaryAction_openInNewTab: integer('primary_action_open_in_new_tab', {
+      mode: 'boolean',
+    }).default(false),
     secondaryAction_label: text('secondary_action_label'),
+    secondaryAction_linkType: text('secondary_action_link_type', {
+      enum: ['page', 'custom'],
+    }).default('page'),
+    secondaryAction_page: integer('secondary_action_page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
     secondaryAction_url: text('secondary_action_url'),
+    secondaryAction_openInNewTab: integer('secondary_action_open_in_new_tab', {
+      mode: 'boolean',
+    }).default(false),
     image: integer('image_id').references(() => media.id, {
       onDelete: 'set null',
     }),
@@ -1176,6 +1302,12 @@ export const _system_pages_v_blocks_system_maintenance = sqliteTable(
     index('_system_pages_v_blocks_system_maintenance_order_idx').on(columns._order),
     index('_system_pages_v_blocks_system_maintenance_parent_id_idx').on(columns._parentID),
     index('_system_pages_v_blocks_system_maintenance_path_idx').on(columns._path),
+    index('_system_pages_v_blocks_system_maintenance_primary_action_idx').on(
+      columns.primaryAction_page,
+    ),
+    index('_system_pages_v_blocks_system_maintenance_secondary_acti_idx').on(
+      columns.secondaryAction_page,
+    ),
     index('_system_pages_v_blocks_system_maintenance_image_idx').on(columns.image),
     foreignKey({
       columns: [columns['_parentID']],
@@ -1197,9 +1329,27 @@ export const _system_pages_v_blocks_system_coming_soon = sqliteTable(
     description: text('description'),
     supportingNote: text('supporting_note'),
     primaryAction_label: text('primary_action_label'),
+    primaryAction_linkType: text('primary_action_link_type', { enum: ['page', 'custom'] }).default(
+      'page',
+    ),
+    primaryAction_page: integer('primary_action_page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
     primaryAction_url: text('primary_action_url'),
+    primaryAction_openInNewTab: integer('primary_action_open_in_new_tab', {
+      mode: 'boolean',
+    }).default(false),
     secondaryAction_label: text('secondary_action_label'),
+    secondaryAction_linkType: text('secondary_action_link_type', {
+      enum: ['page', 'custom'],
+    }).default('page'),
+    secondaryAction_page: integer('secondary_action_page_id').references(() => pages.id, {
+      onDelete: 'set null',
+    }),
     secondaryAction_url: text('secondary_action_url'),
+    secondaryAction_openInNewTab: integer('secondary_action_open_in_new_tab', {
+      mode: 'boolean',
+    }).default(false),
     image: integer('image_id').references(() => media.id, {
       onDelete: 'set null',
     }),
@@ -1210,6 +1360,12 @@ export const _system_pages_v_blocks_system_coming_soon = sqliteTable(
     index('_system_pages_v_blocks_system_coming_soon_order_idx').on(columns._order),
     index('_system_pages_v_blocks_system_coming_soon_parent_id_idx').on(columns._parentID),
     index('_system_pages_v_blocks_system_coming_soon_path_idx').on(columns._path),
+    index('_system_pages_v_blocks_system_coming_soon_primary_action_idx').on(
+      columns.primaryAction_page,
+    ),
+    index('_system_pages_v_blocks_system_coming_soon_secondary_acti_idx').on(
+      columns.secondaryAction_page,
+    ),
     index('_system_pages_v_blocks_system_coming_soon_image_idx').on(columns.image),
     foreignKey({
       columns: [columns['_parentID']],
@@ -2170,6 +2326,11 @@ export const relations_pages_blocks_hero36_cards = relations(
       references: [media.id],
       relationName: 'image',
     }),
+    page: one(pages, {
+      fields: [pages_blocks_hero36_cards.page],
+      references: [pages.id],
+      relationName: 'page',
+    }),
   }),
 )
 export const relations_pages_blocks_hero36 = relations(pages_blocks_hero36, ({ one, many }) => ({
@@ -2224,6 +2385,11 @@ export const relations__pages_v_blocks_hero36_cards = relations(
       fields: [_pages_v_blocks_hero36_cards.image],
       references: [media.id],
       relationName: 'image',
+    }),
+    page: one(pages, {
+      fields: [_pages_v_blocks_hero36_cards.page],
+      references: [pages.id],
+      relationName: 'page',
     }),
   }),
 )
@@ -2637,6 +2803,16 @@ export const relations_system_pages_blocks_system404 = relations(
       references: [system_pages.id],
       relationName: '_blocks_system404',
     }),
+    primaryAction_page: one(pages, {
+      fields: [system_pages_blocks_system404.primaryAction_page],
+      references: [pages.id],
+      relationName: 'primaryAction_page',
+    }),
+    secondaryAction_page: one(pages, {
+      fields: [system_pages_blocks_system404.secondaryAction_page],
+      references: [pages.id],
+      relationName: 'secondaryAction_page',
+    }),
     image: one(media, {
       fields: [system_pages_blocks_system404.image],
       references: [media.id],
@@ -2652,6 +2828,16 @@ export const relations_system_pages_blocks_system_maintenance = relations(
       references: [system_pages.id],
       relationName: '_blocks_systemMaintenance',
     }),
+    primaryAction_page: one(pages, {
+      fields: [system_pages_blocks_system_maintenance.primaryAction_page],
+      references: [pages.id],
+      relationName: 'primaryAction_page',
+    }),
+    secondaryAction_page: one(pages, {
+      fields: [system_pages_blocks_system_maintenance.secondaryAction_page],
+      references: [pages.id],
+      relationName: 'secondaryAction_page',
+    }),
     image: one(media, {
       fields: [system_pages_blocks_system_maintenance.image],
       references: [media.id],
@@ -2666,6 +2852,16 @@ export const relations_system_pages_blocks_system_coming_soon = relations(
       fields: [system_pages_blocks_system_coming_soon._parentID],
       references: [system_pages.id],
       relationName: '_blocks_systemComingSoon',
+    }),
+    primaryAction_page: one(pages, {
+      fields: [system_pages_blocks_system_coming_soon.primaryAction_page],
+      references: [pages.id],
+      relationName: 'primaryAction_page',
+    }),
+    secondaryAction_page: one(pages, {
+      fields: [system_pages_blocks_system_coming_soon.secondaryAction_page],
+      references: [pages.id],
+      relationName: 'secondaryAction_page',
     }),
     image: one(media, {
       fields: [system_pages_blocks_system_coming_soon.image],
@@ -2693,6 +2889,16 @@ export const relations__system_pages_v_blocks_system404 = relations(
       references: [_system_pages_v.id],
       relationName: '_blocks_system404',
     }),
+    primaryAction_page: one(pages, {
+      fields: [_system_pages_v_blocks_system404.primaryAction_page],
+      references: [pages.id],
+      relationName: 'primaryAction_page',
+    }),
+    secondaryAction_page: one(pages, {
+      fields: [_system_pages_v_blocks_system404.secondaryAction_page],
+      references: [pages.id],
+      relationName: 'secondaryAction_page',
+    }),
     image: one(media, {
       fields: [_system_pages_v_blocks_system404.image],
       references: [media.id],
@@ -2708,6 +2914,16 @@ export const relations__system_pages_v_blocks_system_maintenance = relations(
       references: [_system_pages_v.id],
       relationName: '_blocks_systemMaintenance',
     }),
+    primaryAction_page: one(pages, {
+      fields: [_system_pages_v_blocks_system_maintenance.primaryAction_page],
+      references: [pages.id],
+      relationName: 'primaryAction_page',
+    }),
+    secondaryAction_page: one(pages, {
+      fields: [_system_pages_v_blocks_system_maintenance.secondaryAction_page],
+      references: [pages.id],
+      relationName: 'secondaryAction_page',
+    }),
     image: one(media, {
       fields: [_system_pages_v_blocks_system_maintenance.image],
       references: [media.id],
@@ -2722,6 +2938,16 @@ export const relations__system_pages_v_blocks_system_coming_soon = relations(
       fields: [_system_pages_v_blocks_system_coming_soon._parentID],
       references: [_system_pages_v.id],
       relationName: '_blocks_systemComingSoon',
+    }),
+    primaryAction_page: one(pages, {
+      fields: [_system_pages_v_blocks_system_coming_soon.primaryAction_page],
+      references: [pages.id],
+      relationName: 'primaryAction_page',
+    }),
+    secondaryAction_page: one(pages, {
+      fields: [_system_pages_v_blocks_system_coming_soon.secondaryAction_page],
+      references: [pages.id],
+      relationName: 'secondaryAction_page',
     }),
     image: one(media, {
       fields: [_system_pages_v_blocks_system_coming_soon.image],

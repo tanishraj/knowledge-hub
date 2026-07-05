@@ -213,10 +213,13 @@ export interface Hero36Block {
   cards: {
     title: string;
     description: string;
-    href?: string | null;
     visualType: 'icon' | 'image';
     icon?: ('blocks' | 'database' | 'layout' | 'rocket') | null;
     image?: (number | null) | Media;
+    linkType: 'page' | 'custom';
+    page?: (number | null) | Page;
+    url?: string | null;
+    openInNewTab?: boolean | null;
     id?: string | null;
   }[];
   id?: string | null;
@@ -573,13 +576,19 @@ export interface System404Block {
   heading: string;
   description?: string | null;
   supportingNote?: string | null;
-  primaryAction?: {
+  primaryAction: {
     label?: string | null;
+    linkType: 'page' | 'custom';
+    page?: (number | null) | Page;
     url?: string | null;
+    openInNewTab?: boolean | null;
   };
-  secondaryAction?: {
+  secondaryAction: {
     label?: string | null;
+    linkType: 'page' | 'custom';
+    page?: (number | null) | Page;
     url?: string | null;
+    openInNewTab?: boolean | null;
   };
   image?: (number | null) | Media;
   id?: string | null;
@@ -595,13 +604,19 @@ export interface SystemMaintenanceBlock {
   heading: string;
   description?: string | null;
   supportingNote?: string | null;
-  primaryAction?: {
+  primaryAction: {
     label?: string | null;
+    linkType: 'page' | 'custom';
+    page?: (number | null) | Page;
     url?: string | null;
+    openInNewTab?: boolean | null;
   };
-  secondaryAction?: {
+  secondaryAction: {
     label?: string | null;
+    linkType: 'page' | 'custom';
+    page?: (number | null) | Page;
     url?: string | null;
+    openInNewTab?: boolean | null;
   };
   image?: (number | null) | Media;
   id?: string | null;
@@ -617,13 +632,19 @@ export interface SystemComingSoonBlock {
   heading: string;
   description?: string | null;
   supportingNote?: string | null;
-  primaryAction?: {
+  primaryAction: {
     label?: string | null;
+    linkType: 'page' | 'custom';
+    page?: (number | null) | Page;
     url?: string | null;
+    openInNewTab?: boolean | null;
   };
-  secondaryAction?: {
+  secondaryAction: {
     label?: string | null;
+    linkType: 'page' | 'custom';
+    page?: (number | null) | Page;
     url?: string | null;
+    openInNewTab?: boolean | null;
   };
   image?: (number | null) | Media;
   id?: string | null;
@@ -830,10 +851,13 @@ export interface Hero36BlockSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
-        href?: T;
         visualType?: T;
         icon?: T;
         image?: T;
+        linkType?: T;
+        page?: T;
+        url?: T;
+        openInNewTab?: T;
         id?: T;
       };
   id?: T;
@@ -1025,13 +1049,19 @@ export interface System404BlockSelect<T extends boolean = true> {
     | T
     | {
         label?: T;
+        linkType?: T;
+        page?: T;
         url?: T;
+        openInNewTab?: T;
       };
   secondaryAction?:
     | T
     | {
         label?: T;
+        linkType?: T;
+        page?: T;
         url?: T;
+        openInNewTab?: T;
       };
   image?: T;
   id?: T;
@@ -1050,13 +1080,19 @@ export interface SystemMaintenanceBlockSelect<T extends boolean = true> {
     | T
     | {
         label?: T;
+        linkType?: T;
+        page?: T;
         url?: T;
+        openInNewTab?: T;
       };
   secondaryAction?:
     | T
     | {
         label?: T;
+        linkType?: T;
+        page?: T;
         url?: T;
+        openInNewTab?: T;
       };
   image?: T;
   id?: T;
@@ -1075,13 +1111,19 @@ export interface SystemComingSoonBlockSelect<T extends boolean = true> {
     | T
     | {
         label?: T;
+        linkType?: T;
+        page?: T;
         url?: T;
+        openInNewTab?: T;
       };
   secondaryAction?:
     | T
     | {
         label?: T;
+        linkType?: T;
+        page?: T;
         url?: T;
+        openInNewTab?: T;
       };
   image?: T;
   id?: T;
