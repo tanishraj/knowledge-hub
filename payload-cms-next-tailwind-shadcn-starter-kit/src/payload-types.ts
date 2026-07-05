@@ -277,6 +277,15 @@ export interface Form {
   internalNotes?: string | null;
   submitButtonLabel: string;
   successMessage: string;
+  /**
+   * Optional internal email recipients who should be notified when this form receives a valid submission.
+   */
+  notificationRecipients?:
+    | {
+        email: string;
+        id?: string | null;
+      }[]
+    | null;
   fields: {
     /**
      * Machine key used in stored submission data.
@@ -1065,6 +1074,12 @@ export interface FormsSelect<T extends boolean = true> {
   internalNotes?: T;
   submitButtonLabel?: T;
   successMessage?: T;
+  notificationRecipients?:
+    | T
+    | {
+        email?: T;
+        id?: T;
+      };
   fields?:
     | T
     | {

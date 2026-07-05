@@ -8,6 +8,10 @@ import {
   isSpamHoneypotTriggered,
   recordSubmissionAttempt,
 } from '@/lib/formSpamProtection'
+import {
+  buildFormNotificationEmail,
+  getNotificationRecipients,
+} from '@/lib/formNotifications'
 import { validateFormSubmission, type FormSubmissionValues, type SimpleFormField } from '@/lib/forms'
 import type { Form } from '@/payload-types'
 
@@ -119,7 +123,7 @@ export async function POST(
     )
   }
 
-  await payload.create({
+  const submission = await payload.create({
     collection: 'form-submissions',
     data: {
       data: normalizedData,
@@ -127,6 +131,31 @@ export async function POST(
     },
     overrideAccess: true,
   })
+
+  const notificationRecipients = getNotificationRecipients(form)
+
+  if (notificationRecipients.length > 0) {
+    const submittedAt = submission.createdAt ? new Date(submission.createdAt) : new Date()
+    const emailContent = buildFormNotificationEmail({
+      form,
+      submittedAt,
+      values: normalizedData,
+    })
+
+    try {
+      await payload.sendEmail({
+        html: emailContent.html,
+        subject: emailContent.subject,
+        text: emailContent.text,
+        to: notificationRecipients,
+      })
+    } catch (error) {
+      payload.logger.error({
+        err: error,
+        msg: `Failed to send form notification email for form "${form.slug}".`,
+      })
+    }
+  }
 
   return NextResponse.json({
     message: form.successMessage,

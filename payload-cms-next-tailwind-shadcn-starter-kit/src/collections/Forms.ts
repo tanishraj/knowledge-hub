@@ -71,6 +71,27 @@ export const Forms: CollectionConfig = {
       ],
     },
     {
+      name: 'notificationRecipients',
+      label: 'Notification Recipients',
+      type: 'array',
+      labels: {
+        singular: 'Recipient',
+        plural: 'Recipients',
+      },
+      admin: {
+        description:
+          'Optional internal email recipients who should be notified when this form receives a valid submission.',
+        initCollapsed: true,
+      },
+      fields: [
+        {
+          name: 'email',
+          type: 'email',
+          required: true,
+        },
+      ],
+    },
+    {
       name: 'fields',
       type: 'array',
       required: true,

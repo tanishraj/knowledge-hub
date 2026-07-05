@@ -1,4 +1,5 @@
 import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { resendAdapter } from '@payloadcms/email-resend'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -23,6 +24,26 @@ import { withTrash } from './plugins/withTrash'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+const isProduction = process.env.NODE_ENV === 'production'
+const resendAPIKey = process.env.RESEND_API_KEY
+const resendFromAddress = process.env.RESEND_FROM_EMAIL
+const resendFromName = process.env.RESEND_FROM_NAME || 'Website'
+
+if (isProduction && (!resendAPIKey || !resendFromAddress)) {
+  throw new Error(
+    'Missing Resend email configuration. Set RESEND_API_KEY and RESEND_FROM_EMAIL in production.',
+  )
+}
+
+const email =
+  resendAPIKey && resendFromAddress
+    ? resendAdapter({
+        apiKey: resendAPIKey,
+        defaultFromAddress: resendFromAddress,
+        defaultFromName: resendFromName,
+        overrideRecipientAddress: process.env.RESEND_OVERRIDE_TO_EMAIL || undefined,
+      })
+    : undefined
 
 export default buildConfig({
   admin: {
@@ -45,6 +66,7 @@ export default buildConfig({
   ],
   globals: [PageSettings, SiteSettings, ThemeSettings, SEOSettings],
   editor: lexicalEditor(),
+  email,
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
