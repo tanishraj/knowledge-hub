@@ -5,6 +5,11 @@ import {
 } from 'payload'
 
 import type { Page } from '@/payload-types'
+import {
+  allowPublicReadOrCapability,
+  hideFromUsersWithoutCapability,
+  requireCapability,
+} from '@/access/adminCapabilities'
 import { robotsFieldOptions } from '@/lib/seo'
 
 import { FormBlock } from '../blocks/Form/config'
@@ -76,6 +81,7 @@ export const Pages: CollectionConfig = {
   },
   admin: {
     group: 'Content',
+    hidden: hideFromUsersWithoutCapability('manage_pages'),
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
     description:
@@ -83,7 +89,11 @@ export const Pages: CollectionConfig = {
     listSearchableFields: ['title', 'slug'],
   },
   access: {
-    read: () => true,
+    create: requireCapability('manage_pages'),
+    delete: requireCapability('manage_pages'),
+    read: allowPublicReadOrCapability('manage_pages'),
+    readVersions: requireCapability('manage_pages'),
+    update: requireCapability('manage_pages'),
   },
   hooks: {
     afterRead: [populatePageUrlPreview],

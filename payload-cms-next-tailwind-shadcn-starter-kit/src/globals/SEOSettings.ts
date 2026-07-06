@@ -1,5 +1,10 @@
 import type { GlobalConfig } from 'payload'
 
+import {
+  allowPublicReadOrCapability,
+  hideFromUsersWithoutCapability,
+  requireCapability,
+} from '@/access/adminCapabilities'
 import { robotsFieldOptions } from '@/lib/seo'
 
 export const SEOSettings: GlobalConfig = {
@@ -8,6 +13,12 @@ export const SEOSettings: GlobalConfig = {
   admin: {
     group: 'Settings',
     description: 'Default SEO values used when a page does not provide its own overrides.',
+    hidden: hideFromUsersWithoutCapability('manage_seo_settings'),
+  },
+  access: {
+    read: allowPublicReadOrCapability('manage_seo_settings'),
+    readVersions: requireCapability('manage_seo_settings'),
+    update: requireCapability('manage_seo_settings'),
   },
   versions: {
     drafts: true,

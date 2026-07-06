@@ -99,7 +99,10 @@ const upsertRedirect = async ({
 }) => {
   const normalizedFromPath = normalizeRedirectPath(fromPath)
   const existing = await findExistingRedirect(normalizedFromPath, req)
-  const data = {
+  const data: Pick<
+    Redirect,
+    '_status' | 'destinationType' | 'enabled' | 'fromPath' | 'page' | 'statusCode' | 'url'
+  > = {
     fromPath: normalizedFromPath,
     destinationType: destination.type === 'page' ? 'page' : 'custom',
     page: destination.type === 'page' ? destination.pageID : null,

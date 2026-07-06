@@ -1,5 +1,10 @@
 import type { GlobalConfig, RelationshipFieldSingleValidation } from 'payload'
 
+import {
+  allowPublicReadOrCapability,
+  hideFromUsersWithoutCapability,
+  requireCapability,
+} from '@/access/adminCapabilities'
 import type { SystemPageType } from '@/lib/systemPageTypes'
 
 const extractPageID = (
@@ -104,9 +109,12 @@ export const PageSettings: GlobalConfig = {
   label: 'Site Defaults',
   admin: {
     group: 'System Defaults',
+    hidden: hideFromUsersWithoutCapability(['manage_page_settings', 'manage_site_settings']),
   },
   access: {
-    read: () => true,
+    read: allowPublicReadOrCapability(['manage_page_settings', 'manage_site_settings']),
+    readVersions: requireCapability(['manage_page_settings', 'manage_site_settings']),
+    update: requireCapability(['manage_page_settings', 'manage_site_settings']),
   },
   versions: {
     drafts: true,

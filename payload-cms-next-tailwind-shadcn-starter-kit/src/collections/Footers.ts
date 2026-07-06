@@ -1,5 +1,10 @@
 import { slugField, type CollectionConfig } from 'payload'
 
+import {
+  allowPublicReadOrCapability,
+  hideFromUsersWithoutCapability,
+  requireCapability,
+} from '@/access/adminCapabilities'
 import { Footer2Block } from '../blocks/Footer2/config'
 
 export const Footers: CollectionConfig = {
@@ -10,13 +15,18 @@ export const Footers: CollectionConfig = {
   },
   admin: {
     group: 'Site Structure',
+    hidden: hideFromUsersWithoutCapability('manage_footers'),
     useAsTitle: 'title',
     defaultColumns: ['title', 'updatedAt'],
     description: 'Reusable site footer presets powered by footer layout blocks.',
     listSearchableFields: ['title', 'slug'],
   },
   access: {
-    read: () => true,
+    create: requireCapability('manage_footers'),
+    delete: requireCapability('manage_footers'),
+    read: allowPublicReadOrCapability('manage_footers'),
+    readVersions: requireCapability('manage_footers'),
+    update: requireCapability('manage_footers'),
   },
   versions: {
     drafts: true,

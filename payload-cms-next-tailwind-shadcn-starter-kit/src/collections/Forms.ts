@@ -4,6 +4,11 @@ import {
 } from 'payload'
 
 import {
+  allowPublicReadOrCapability,
+  hideFromUsersWithoutCapability,
+  requireCapability,
+} from '@/access/adminCapabilities'
+import {
   formFieldTypeOptions,
   isTextLikeFormFieldType,
   isValidFormFieldName,
@@ -18,13 +23,18 @@ export const Forms: CollectionConfig = {
   },
   admin: {
     group: 'Forms',
+    hidden: hideFromUsersWithoutCapability('manage_forms'),
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
     description: 'Reusable form definitions that can be placed on pages.',
     listSearchableFields: ['title', 'slug'],
   },
   access: {
-    read: () => true,
+    create: requireCapability('manage_forms'),
+    delete: requireCapability('manage_forms'),
+    read: allowPublicReadOrCapability('manage_forms'),
+    readVersions: requireCapability('manage_forms'),
+    update: requireCapability('manage_forms'),
   },
   versions: {
     drafts: true,

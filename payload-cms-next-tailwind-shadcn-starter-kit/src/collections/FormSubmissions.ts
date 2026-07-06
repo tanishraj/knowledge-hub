@@ -1,5 +1,10 @@
 import type { CollectionConfig } from 'payload'
 
+import {
+  hideFromUsersWithoutCapability,
+  requireCapability,
+} from '@/access/adminCapabilities'
+
 export const FormSubmissions: CollectionConfig = {
   slug: 'form-submissions',
   labels: {
@@ -8,14 +13,15 @@ export const FormSubmissions: CollectionConfig = {
   },
   admin: {
     group: 'Forms',
+    hidden: hideFromUsersWithoutCapability('manage_form_submissions'),
     useAsTitle: 'id',
     defaultColumns: ['form', 'createdAt'],
     description: 'Stored form submissions. These records are read-only after creation.',
   },
   access: {
     create: () => false,
-    delete: ({ req }) => Boolean(req.user),
-    read: ({ req }) => Boolean(req.user),
+    delete: requireCapability('manage_form_submissions'),
+    read: requireCapability('manage_form_submissions'),
     update: () => false,
   },
   timestamps: true,

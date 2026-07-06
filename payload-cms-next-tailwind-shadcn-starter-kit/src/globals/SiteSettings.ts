@@ -1,10 +1,22 @@
 import type { GlobalConfig } from 'payload'
 
+import {
+  allowPublicReadOrCapability,
+  hideFromUsersWithoutCapability,
+  requireCapability,
+} from '@/access/adminCapabilities'
+
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: 'Site Settings',
   admin: {
     group: 'Settings',
+    hidden: hideFromUsersWithoutCapability('manage_site_settings'),
+  },
+  access: {
+    read: allowPublicReadOrCapability('manage_site_settings'),
+    readVersions: requireCapability('manage_site_settings'),
+    update: requireCapability('manage_site_settings'),
   },
   versions: {
     drafts: true,

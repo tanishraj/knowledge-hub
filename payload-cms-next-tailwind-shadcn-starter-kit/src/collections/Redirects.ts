@@ -1,5 +1,11 @@
 import type { CollectionBeforeValidateHook, CollectionConfig, Field } from 'payload'
 
+import {
+  allowPublicReadOrCapability,
+  hideFromUsersWithoutCapability,
+  requireCapability,
+} from '@/access/adminCapabilities'
+
 const validateRequiredDestinationField =
   (destinationType: 'page' | 'custom', message: string) =>
   (value: unknown, { siblingData }: { siblingData?: { destinationType?: 'page' | 'custom' | null } }) => {
@@ -140,6 +146,7 @@ export const Redirects: CollectionConfig = {
   },
   admin: {
     group: 'Site Structure',
+    hidden: hideFromUsersWithoutCapability('manage_redirects'),
     useAsTitle: 'fromPath',
     defaultColumns: ['fromPath', 'destinationType', 'statusCode', 'enabled', 'updatedAt'],
     listSearchableFields: ['fromPath', 'url'],
@@ -147,7 +154,11 @@ export const Redirects: CollectionConfig = {
       'Map old URLs to new destinations during migrations and ongoing URL changes. Some redirects may be auto-generated when a published page URL changes.',
   },
   access: {
-    read: () => true,
+    create: requireCapability('manage_redirects'),
+    delete: requireCapability('manage_redirects'),
+    read: allowPublicReadOrCapability('manage_redirects'),
+    readVersions: requireCapability('manage_redirects'),
+    update: requireCapability('manage_redirects'),
   },
   hooks: {
     beforeValidate: [beforeValidate],

@@ -1,5 +1,11 @@
 import type { CollectionBeforeValidateHook, CollectionConfig } from 'payload'
 
+import {
+  allowPublicReadOrCapability,
+  hideFromUsersWithoutCapability,
+  requireCapability,
+} from '@/access/adminCapabilities'
+
 const mediaAssetTypeOptions = [
   {
     label: 'General',
@@ -54,12 +60,17 @@ export const Media: CollectionConfig = {
   slug: 'media',
   admin: {
     group: 'Content',
+    hidden: hideFromUsersWithoutCapability('manage_media'),
     useAsTitle: 'title',
     defaultColumns: ['title', 'assetType', 'alt', 'updatedAt'],
     listSearchableFields: ['title', 'alt', 'filename'],
   },
   access: {
-    read: () => true,
+    create: requireCapability('manage_media'),
+    delete: requireCapability('manage_media'),
+    read: allowPublicReadOrCapability('manage_media'),
+    readVersions: requireCapability('manage_media'),
+    update: requireCapability('manage_media'),
   },
   hooks: {
     beforeValidate: [beforeValidate],

@@ -1,5 +1,10 @@
 import { slugField, type CollectionConfig } from 'payload'
 
+import {
+  allowPublicReadOrCapability,
+  hideFromUsersWithoutCapability,
+  requireCapability,
+} from '@/access/adminCapabilities'
 import { HeaderNavbar12Block } from '../blocks/HeaderNavbar12/config'
 
 export const Headers: CollectionConfig = {
@@ -10,13 +15,18 @@ export const Headers: CollectionConfig = {
   },
   admin: {
     group: 'Site Structure',
+    hidden: hideFromUsersWithoutCapability('manage_headers'),
     useAsTitle: 'title',
     defaultColumns: ['title', 'updatedAt'],
     description: 'Reusable site header presets powered by header layout blocks.',
     listSearchableFields: ['title', 'slug'],
   },
   access: {
-    read: () => true,
+    create: requireCapability('manage_headers'),
+    delete: requireCapability('manage_headers'),
+    read: allowPublicReadOrCapability('manage_headers'),
+    readVersions: requireCapability('manage_headers'),
+    update: requireCapability('manage_headers'),
   },
   versions: {
     drafts: true,

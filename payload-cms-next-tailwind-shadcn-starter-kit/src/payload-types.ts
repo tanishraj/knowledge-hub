@@ -685,6 +685,67 @@ export interface FormSubmission {
  */
 export interface User {
   id: number;
+  /**
+   * Controls the base admin role for this user.
+   */
+  role?: ('admin' | 'editor' | 'contentEditor') | null;
+  /**
+   * Choose which admin areas this user can access. Admin users always receive full access.
+   */
+  capabilities?: {
+    /**
+     * Allow access to Pages.
+     */
+    manage_pages?: boolean | null;
+    /**
+     * Allow access to Navigation.
+     */
+    manage_navigation?: boolean | null;
+    /**
+     * Allow access to Redirects.
+     */
+    manage_redirects?: boolean | null;
+    /**
+     * Allow access to Headers.
+     */
+    manage_headers?: boolean | null;
+    /**
+     * Allow access to Footers.
+     */
+    manage_footers?: boolean | null;
+    /**
+     * Allow access to System Pages.
+     */
+    manage_system_pages?: boolean | null;
+    /**
+     * Allow access to Forms.
+     */
+    manage_forms?: boolean | null;
+    /**
+     * Allow access to Form Submissions.
+     */
+    manage_form_submissions?: boolean | null;
+    /**
+     * Allow access to Media.
+     */
+    manage_media?: boolean | null;
+    /**
+     * Allow access to Site Defaults.
+     */
+    manage_page_settings?: boolean | null;
+    /**
+     * Allow access to Site Settings.
+     */
+    manage_site_settings?: boolean | null;
+    /**
+     * Allow access to Theme Settings.
+     */
+    manage_theme_settings?: boolean | null;
+    /**
+     * Allow access to SEO Settings.
+     */
+    manage_seo_settings?: boolean | null;
+  };
   updatedAt: string;
   createdAt: string;
   deletedAt?: string | null;
@@ -1219,6 +1280,24 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  role?: T;
+  capabilities?:
+    | T
+    | {
+        manage_pages?: T;
+        manage_navigation?: T;
+        manage_redirects?: T;
+        manage_headers?: T;
+        manage_footers?: T;
+        manage_system_pages?: T;
+        manage_forms?: T;
+        manage_form_submissions?: T;
+        manage_media?: T;
+        manage_page_settings?: T;
+        manage_site_settings?: T;
+        manage_theme_settings?: T;
+        manage_seo_settings?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   deletedAt?: T;

@@ -129,7 +129,7 @@ describe('redirect cleanup', () => {
         slug: 'home',
       } as never,
       req: req as never,
-    } as Parameters<typeof createRedirectsForChangedPagePath>[0])
+    } as unknown as Parameters<typeof createRedirectsForChangedPagePath>[0])
 
     expect(spies.create).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -174,7 +174,7 @@ describe('redirect cleanup', () => {
         slug: 'homepage',
       } as never,
       req: req as never,
-    } as Parameters<typeof createRedirectsForChangedPagePath>[0])
+    } as unknown as Parameters<typeof createRedirectsForChangedPagePath>[0])
 
     expect(spies.delete).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -216,7 +216,7 @@ describe('redirect cleanup', () => {
         slug: 'home',
       } as never,
       req: req as never,
-    } as Parameters<typeof createRedirectsForChangedPagePath>[0])
+    } as unknown as Parameters<typeof createRedirectsForChangedPagePath>[0])
 
     expect(spies.delete).toHaveBeenCalledWith(
       expect.objectContaining({

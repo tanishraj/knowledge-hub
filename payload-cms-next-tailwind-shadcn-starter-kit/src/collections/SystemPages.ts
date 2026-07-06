@@ -3,6 +3,11 @@ import {
   type CollectionConfig,
 } from 'payload'
 
+import {
+  allowPublicReadOrCapability,
+  hideFromUsersWithoutCapability,
+  requireCapability,
+} from '@/access/adminCapabilities'
 import { systemPageTypeOptions, type SystemPageType } from '@/lib/systemPageTypes'
 
 import { System404Block } from '../blocks/System404/config'
@@ -53,13 +58,18 @@ export const SystemPages: CollectionConfig = {
   },
   admin: {
     group: 'Site Structure',
+    hidden: hideFromUsersWithoutCapability('manage_system_pages'),
     useAsTitle: 'title',
     defaultColumns: ['title', 'type', 'updatedAt'],
     description: 'Reusable presets for 404, maintenance, and coming soon experiences.',
     listSearchableFields: ['title', 'slug'],
   },
   access: {
-    read: () => true,
+    create: requireCapability('manage_system_pages'),
+    delete: requireCapability('manage_system_pages'),
+    read: allowPublicReadOrCapability('manage_system_pages'),
+    readVersions: requireCapability('manage_system_pages'),
+    update: requireCapability('manage_system_pages'),
   },
   hooks: {
     beforeChange: [preventReferencedSystemPageInvalidation],

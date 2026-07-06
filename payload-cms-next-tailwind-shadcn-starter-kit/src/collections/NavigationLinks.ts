@@ -1,5 +1,11 @@
 import type { CollectionConfig, Field } from 'payload'
 
+import {
+  allowPublicReadOrCapability,
+  hideFromUsersWithoutCapability,
+  requireCapability,
+} from '@/access/adminCapabilities'
+
 const validateRequiredLinkField =
   (linkType: 'page' | 'custom', message: string) =>
   (value: unknown, { siblingData }: { siblingData?: { linkType?: 'page' | 'custom' | null } }) => {
@@ -107,13 +113,18 @@ export const NavigationLinks: CollectionConfig = {
   },
   admin: {
     group: 'Content',
+    hidden: hideFromUsersWithoutCapability('manage_navigation'),
     useAsTitle: 'title',
     defaultColumns: ['title', 'linkType', 'sourceType', 'updatedAt'],
     listSearchableFields: ['title', 'url'],
     description: 'Reusable destinations for menus, CTAs, legal links, and utility links.',
   },
   access: {
-    read: () => true,
+    create: requireCapability('manage_navigation'),
+    delete: requireCapability('manage_navigation'),
+    read: allowPublicReadOrCapability('manage_navigation'),
+    readVersions: requireCapability('manage_navigation'),
+    update: requireCapability('manage_navigation'),
   },
   versions: {
     drafts: true,
