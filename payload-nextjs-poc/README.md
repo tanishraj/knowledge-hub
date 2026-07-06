@@ -1,4 +1,4 @@
-# Payload Next.js POC
+# Payload Next.js Shadcn
 
 This project is a multi-tenant **Payload CMS + Next.js** proof of concept built in `knowledge-hub/payload-nextjs-poc`.
 
