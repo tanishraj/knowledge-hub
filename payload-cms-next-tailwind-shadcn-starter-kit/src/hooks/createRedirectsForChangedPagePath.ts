@@ -42,6 +42,34 @@ const findExistingRedirect = async (
   return result.docs[0] ?? null
 }
 
+const findEnabledRedirectsByFromPath = async (
+  fromPath: string,
+  req: PayloadRequest,
+): Promise<Redirect[]> => {
+  const result = await req.payload.find({
+    collection: 'redirects',
+    where: {
+      and: [
+        {
+          fromPath: {
+            equals: normalizeRedirectPath(fromPath),
+          },
+        },
+        {
+          enabled: {
+            equals: true,
+          },
+        },
+      ],
+    },
+    limit: 50,
+    depth: 0,
+    req,
+  })
+
+  return result.docs
+}
+
 const getHomepageID = async (req: PayloadRequest): Promise<number | null> => {
   const pageSettings = await req.payload.findGlobal({
     slug: 'page-settings',
@@ -52,7 +80,7 @@ const getHomepageID = async (req: PayloadRequest): Promise<number | null> => {
   return getRelationshipID(pageSettings.homepage as number | Page | null | undefined)
 }
 
-const createRedirectIfMissing = async ({
+const upsertRedirect = async ({
   destination,
   fromPath,
   req,
@@ -71,24 +99,52 @@ const createRedirectIfMissing = async ({
 }) => {
   const normalizedFromPath = normalizeRedirectPath(fromPath)
   const existing = await findExistingRedirect(normalizedFromPath, req)
+  const data = {
+    fromPath: normalizedFromPath,
+    destinationType: destination.type === 'page' ? 'page' : 'custom',
+    page: destination.type === 'page' ? destination.pageID : null,
+    statusCode: '301',
+    url: destination.type === 'custom' ? destination.url : null,
+    enabled: true,
+    _status: 'published' as const,
+  }
 
   if (existing) {
+    await req.payload.update({
+      collection: 'redirects',
+      id: existing.id,
+      data,
+      req,
+    })
+
     return
   }
 
   await req.payload.create({
     collection: 'redirects',
-    data: {
-      fromPath: normalizedFromPath,
-      destinationType: destination.type === 'page' ? 'page' : 'custom',
-      page: destination.type === 'page' ? destination.pageID : undefined,
-      statusCode: '301',
-      url: destination.type === 'custom' ? destination.url : undefined,
-      enabled: true,
-      _status: 'published',
-    },
+    data,
     req,
   })
+}
+
+const deleteConflictingRedirectsForLivePath = async ({
+  livePath,
+  req,
+}: {
+  livePath: string
+  req: PayloadRequest
+}): Promise<Redirect[]> => {
+  const redirects = await findEnabledRedirectsByFromPath(livePath, req)
+
+  for (const redirect of redirects) {
+    await req.payload.delete({
+      collection: 'redirects',
+      id: redirect.id,
+      req,
+    })
+  }
+
+  return redirects
 }
 
 const hydratePagePath = async (
@@ -182,7 +238,7 @@ const createDescendantRedirects = async ({
       continue
     }
 
-    await createRedirectIfMissing({
+    await upsertRedirect({
       destination: {
         pageID: descendant.id,
         type: 'page',
@@ -217,20 +273,37 @@ export const createRedirectsForChangedPagePath: CollectionAfterChangeHook<Page> 
   const pageID = typeof doc.id === 'number' ? doc.id : Number(doc.id)
   const homepageID = await getHomepageID(req)
 
-  await createRedirectIfMissing({
-    destination:
-      homepageID === pageID
-        ? {
-            type: 'custom',
-            url: '/',
-          }
-        : {
-            pageID,
-            type: 'page',
-          },
-    fromPath: oldPath,
+  const deletedConflicts = await deleteConflictingRedirectsForLivePath({
+    livePath: newPath,
     req,
   })
+
+  const restoredPreviousPath = deletedConflicts.some((redirect) => {
+    if (redirect.destinationType === 'page') {
+      return getRelationshipID(redirect.page as number | Page | null | undefined) === pageID
+    }
+
+    const destinationUrl = redirect.url?.trim()
+
+    return destinationUrl ? normalizeRedirectPath(destinationUrl) === oldPath : false
+  })
+
+  if (!restoredPreviousPath) {
+    await upsertRedirect({
+      destination:
+        homepageID === pageID
+          ? {
+              type: 'custom',
+              url: '/',
+            }
+          : {
+              pageID,
+              type: 'page',
+            },
+      fromPath: oldPath,
+      req,
+    })
+  }
 
   await createDescendantRedirects({
     newRootPath: newPath,
