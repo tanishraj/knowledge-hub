@@ -210,7 +210,20 @@ describe('user normalization hook', () => {
     expect(roleField.admin.condition({}, {}, conditionContext(null))).toBe(false)
     expect(capabilitiesField.admin.condition({}, {}, conditionContext(null))).toBe(false)
     expect(roleField.admin.condition({}, {}, conditionContext({ id: 1 }))).toBe(true)
-    expect(capabilitiesField.admin.condition({}, {}, conditionContext({ id: 1 }))).toBe(true)
+    expect(
+      capabilitiesField.admin.condition(
+        { role: 'editor' },
+        { role: 'editor' },
+        conditionContext({ id: 1 }),
+      ),
+    ).toBe(true)
+    expect(
+      capabilitiesField.admin.condition(
+        { role: 'admin' },
+        { role: 'admin' },
+        conditionContext({ id: 1 }),
+      ),
+    ).toBe(false)
   })
 
   it('promotes the first created user to admin with all capabilities', async () => {

@@ -19,6 +19,20 @@ const showOnlyForAuthenticatedAdminUser = (
   return Boolean(user)
 }
 
+const showCapabilitiesForNonAdminRole = (
+  data: Record<string, unknown>,
+  siblingData: Record<string, unknown>,
+  { user }: { user?: unknown },
+) => {
+  if (!user) {
+    return false
+  }
+
+  const resolvedRole = normalizeAdminRole(siblingData?.role ?? data?.role, 'contentEditor')
+
+  return resolvedRole !== 'admin'
+}
+
 const normalizeUserAccessFields: CollectionBeforeChangeHook = async ({
   data,
   operation,
@@ -90,7 +104,7 @@ export const Users: CollectionConfig = {
       name: 'capabilities',
       type: 'group',
       admin: {
-        condition: showOnlyForAuthenticatedAdminUser,
+        condition: showCapabilitiesForNonAdminRole,
         description:
           'Choose which admin areas this user can access. Admin users always receive full access.',
       },
