@@ -73,6 +73,27 @@ const validateParentRelationship: RelationshipFieldSingleValidation = async (
   return true
 }
 
+const previewBreakpoints = [
+  {
+    name: 'desktop',
+    label: 'Desktop',
+    width: 1440,
+    height: 900,
+  },
+  {
+    name: 'tablet',
+    label: 'Tablet',
+    width: 834,
+    height: 1112,
+  },
+  {
+    name: 'mobile',
+    label: 'Mobile',
+    width: 390,
+    height: 844,
+  },
+] as const
+
 export const Pages: CollectionConfig = {
   slug: 'pages',
   labels: {
@@ -87,6 +108,18 @@ export const Pages: CollectionConfig = {
     description:
       'Flexible website pages with reusable layout blocks, SEO controls, and publishing settings.',
     listSearchableFields: ['title', 'slug'],
+    livePreview: {
+      breakpoints: [...previewBreakpoints],
+      url: ({ data }) => {
+        if (!data?.id) {
+          return null
+        }
+
+        const appURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+
+        return `${appURL}/preview/page/${data.id}`
+      },
+    },
   },
   access: {
     create: requireCapability('manage_pages'),
