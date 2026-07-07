@@ -15,6 +15,7 @@ import { robotsFieldOptions } from '@/lib/seo'
 import { FormBlock } from '../blocks/Form/config'
 import { Hero36Block } from '../blocks/Hero36/config'
 import { createRedirectsForChangedPagePath } from '../hooks/createRedirectsForChangedPagePath'
+import { migrateLegacyPageLinksBeforeChange } from '../hooks/migrateLegacyReusableLinks'
 import { populatePageUrlPreview } from '../hooks/populatePageUrlPreview'
 import { preventReferencedPageUnpublish } from '../hooks/preventReferencedPageUnpublish'
 import {
@@ -132,7 +133,7 @@ export const Pages: CollectionConfig = {
     afterRead: [populatePageUrlPreview],
     afterChange: [syncNavigationLinkAfterChange, createRedirectsForChangedPagePath],
     afterDelete: [syncNavigationLinkAfterDelete],
-    beforeChange: [preventReferencedPageUnpublish],
+    beforeChange: [preventReferencedPageUnpublish, migrateLegacyPageLinksBeforeChange],
   },
   versions: {
     drafts: true,
@@ -271,16 +272,6 @@ export const Pages: CollectionConfig = {
               validate: validateParentRelationship,
               admin: {
                 description: 'Use this for nested page hierarchies like /services/web-development.',
-              },
-            },
-            {
-              name: 'showInNavigation',
-              type: 'checkbox',
-              defaultValue: false,
-              label: 'Sync to Navigation Links',
-              admin: {
-                description: 'Create or maintain a reusable link record for this page.',
-                width: '50%',
               },
             },
           ],

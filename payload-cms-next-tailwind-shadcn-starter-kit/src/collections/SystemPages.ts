@@ -13,6 +13,7 @@ import { systemPageTypeOptions, type SystemPageType } from '@/lib/systemPageType
 import { System404Block } from '../blocks/System404/config'
 import { SystemComingSoonBlock } from '../blocks/SystemComingSoon/config'
 import { SystemMaintenanceBlock } from '../blocks/SystemMaintenance/config'
+import { migrateLegacySystemPageLinksBeforeChange } from '../hooks/migrateLegacyReusableLinks'
 import { preventReferencedSystemPageInvalidation } from '../hooks/preventReferencedSystemPageInvalidation'
 
 const blockTypeBySystemPageType: Record<SystemPageType, 'system404' | 'systemMaintenance' | 'systemComingSoon'> =
@@ -72,7 +73,10 @@ export const SystemPages: CollectionConfig = {
     update: requireCapability('manage_system_pages'),
   },
   hooks: {
-    beforeChange: [preventReferencedSystemPageInvalidation],
+    beforeChange: [
+      preventReferencedSystemPageInvalidation,
+      migrateLegacySystemPageLinksBeforeChange,
+    ],
   },
   versions: {
     drafts: true,

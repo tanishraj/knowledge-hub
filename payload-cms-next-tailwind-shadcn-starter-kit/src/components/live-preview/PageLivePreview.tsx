@@ -109,7 +109,7 @@ type Props = {
 export function PageLivePreview({ initialData }: Props) {
   const router = useRouter()
   const { data } = useLivePreview<Page>({
-    depth: 1,
+    depth: 2,
     initialData,
     serverURL,
   })
@@ -117,7 +117,7 @@ export function PageLivePreview({ initialData }: Props) {
   return (
     <>
       <RefreshRouteOnSave
-        depth={1}
+        depth={2}
         refresh={() => router.refresh()}
         serverURL={serverURL}
       />

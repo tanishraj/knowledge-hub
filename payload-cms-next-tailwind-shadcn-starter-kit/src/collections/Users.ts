@@ -37,26 +37,18 @@ const normalizeUserAccessFields: CollectionBeforeChangeHook = async ({
   data,
   operation,
   originalDoc,
-  req,
 }) => {
   if (!data) {
     return data
   }
 
-  let defaultRole = normalizeAdminRole(originalDoc?.role, 'contentEditor')
-
   if (operation === 'create') {
-    const { totalDocs } = await req.payload.count({
-      collection: 'users',
-      overrideAccess: true,
-      where: {},
-    })
-
-    if (totalDocs === 0) {
-      defaultRole = 'admin'
-    }
+    data.role = 'admin'
+    data.capabilities = toAdminCapabilitiesMap(allAdminCapabilities)
+    return data
   }
 
+  const defaultRole = normalizeAdminRole(originalDoc?.role, 'contentEditor')
   const nextRole = normalizeAdminRole(data.role, defaultRole)
 
   data.role = nextRole
@@ -91,9 +83,10 @@ export const Users: CollectionConfig = {
     {
       name: 'role',
       type: 'select',
-      defaultValue: 'contentEditor',
+      defaultValue: 'admin',
       options: [...adminRoleOptions],
       required: true,
+      saveToJWT: true,
       admin: {
         condition: showOnlyForAuthenticatedAdminUser,
         description: 'Controls the base admin role for this user.',
@@ -103,6 +96,7 @@ export const Users: CollectionConfig = {
     {
       name: 'capabilities',
       type: 'group',
+      saveToJWT: true,
       admin: {
         condition: showCapabilitiesForNonAdminRole,
         description:

@@ -191,10 +191,6 @@ export interface Page {
    * Use this for nested page hierarchies like /services/web-development.
    */
   parent?: (number | null) | Page;
-  /**
-   * Create or maintain a reusable link record for this page.
-   */
-  showInNavigation?: boolean | null;
   updatedAt: string;
   createdAt: string;
   deletedAt?: string | null;
@@ -216,9 +212,10 @@ export interface Hero36Block {
     visualType: 'icon' | 'image';
     icon?: ('blocks' | 'database' | 'layout' | 'rocket') | null;
     image?: (number | null) | Media;
-    linkType: 'page' | 'custom';
-    page?: (number | null) | Page;
-    url?: string | null;
+    /**
+     * Select a reusable link. Save target pages first so their synced links exist in the Links collection.
+     */
+    link?: (number | null) | NavigationLink;
     openInNewTab?: boolean | null;
     id?: string | null;
   }[];
@@ -270,6 +267,33 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * Reusable destinations for menus, CTAs, legal links, and utility links.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation-links".
+ */
+export interface NavigationLink {
+  id: number;
+  title: string;
+  description?: string | null;
+  linkType: 'page' | 'custom';
+  page?: (number | null) | Page;
+  url?: string | null;
+  openInNewTab?: boolean | null;
+  /**
+   * Shows whether this reusable link is manually managed or synced from a page.
+   */
+  sourceType: 'manual' | 'pageSynced';
+  /**
+   * The page that currently owns this synced reusable link.
+   */
+  syncPage?: (number | null) | Page;
+  updatedAt: string;
+  createdAt: string;
+  deletedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -331,33 +355,6 @@ export interface Form {
       | null;
     id?: string | null;
   }[];
-  updatedAt: string;
-  createdAt: string;
-  deletedAt?: string | null;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * Reusable destinations for menus, CTAs, legal links, and utility links.
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "navigation-links".
- */
-export interface NavigationLink {
-  id: number;
-  title: string;
-  description?: string | null;
-  linkType: 'page' | 'custom';
-  page?: (number | null) | Page;
-  url?: string | null;
-  openInNewTab?: boolean | null;
-  /**
-   * Shows whether this reusable link is manually managed or synced from a page.
-   */
-  sourceType: 'manual' | 'pageSynced';
-  /**
-   * The page that currently owns this synced reusable link.
-   */
-  syncPage?: (number | null) | Page;
   updatedAt: string;
   createdAt: string;
   deletedAt?: string | null;
@@ -582,18 +579,20 @@ export interface System404Block {
   heading: string;
   description?: string | null;
   supportingNote?: string | null;
-  primaryAction: {
+  primaryAction?: {
     label?: string | null;
-    linkType: 'page' | 'custom';
-    page?: (number | null) | Page;
-    url?: string | null;
+    /**
+     * Select a reusable link. Save target pages first so their synced links exist in the Links collection.
+     */
+    link?: (number | null) | NavigationLink;
     openInNewTab?: boolean | null;
   };
-  secondaryAction: {
+  secondaryAction?: {
     label?: string | null;
-    linkType: 'page' | 'custom';
-    page?: (number | null) | Page;
-    url?: string | null;
+    /**
+     * Select a reusable link. Save target pages first so their synced links exist in the Links collection.
+     */
+    link?: (number | null) | NavigationLink;
     openInNewTab?: boolean | null;
   };
   image?: (number | null) | Media;
@@ -610,18 +609,20 @@ export interface SystemMaintenanceBlock {
   heading: string;
   description?: string | null;
   supportingNote?: string | null;
-  primaryAction: {
+  primaryAction?: {
     label?: string | null;
-    linkType: 'page' | 'custom';
-    page?: (number | null) | Page;
-    url?: string | null;
+    /**
+     * Select a reusable link. Save target pages first so their synced links exist in the Links collection.
+     */
+    link?: (number | null) | NavigationLink;
     openInNewTab?: boolean | null;
   };
-  secondaryAction: {
+  secondaryAction?: {
     label?: string | null;
-    linkType: 'page' | 'custom';
-    page?: (number | null) | Page;
-    url?: string | null;
+    /**
+     * Select a reusable link. Save target pages first so their synced links exist in the Links collection.
+     */
+    link?: (number | null) | NavigationLink;
     openInNewTab?: boolean | null;
   };
   image?: (number | null) | Media;
@@ -638,18 +639,20 @@ export interface SystemComingSoonBlock {
   heading: string;
   description?: string | null;
   supportingNote?: string | null;
-  primaryAction: {
+  primaryAction?: {
     label?: string | null;
-    linkType: 'page' | 'custom';
-    page?: (number | null) | Page;
-    url?: string | null;
+    /**
+     * Select a reusable link. Save target pages first so their synced links exist in the Links collection.
+     */
+    link?: (number | null) | NavigationLink;
     openInNewTab?: boolean | null;
   };
-  secondaryAction: {
+  secondaryAction?: {
     label?: string | null;
-    linkType: 'page' | 'custom';
-    page?: (number | null) | Page;
-    url?: string | null;
+    /**
+     * Select a reusable link. Save target pages first so their synced links exist in the Links collection.
+     */
+    link?: (number | null) | NavigationLink;
     openInNewTab?: boolean | null;
   };
   image?: (number | null) | Media;
@@ -895,7 +898,6 @@ export interface PagesSelect<T extends boolean = true> {
   ogDescription?: T;
   publicUrlPreview?: T;
   parent?: T;
-  showInNavigation?: T;
   updatedAt?: T;
   createdAt?: T;
   deletedAt?: T;
@@ -921,9 +923,7 @@ export interface Hero36BlockSelect<T extends boolean = true> {
         visualType?: T;
         icon?: T;
         image?: T;
-        linkType?: T;
-        page?: T;
-        url?: T;
+        link?: T;
         openInNewTab?: T;
         id?: T;
       };
@@ -1116,18 +1116,14 @@ export interface System404BlockSelect<T extends boolean = true> {
     | T
     | {
         label?: T;
-        linkType?: T;
-        page?: T;
-        url?: T;
+        link?: T;
         openInNewTab?: T;
       };
   secondaryAction?:
     | T
     | {
         label?: T;
-        linkType?: T;
-        page?: T;
-        url?: T;
+        link?: T;
         openInNewTab?: T;
       };
   image?: T;
@@ -1147,18 +1143,14 @@ export interface SystemMaintenanceBlockSelect<T extends boolean = true> {
     | T
     | {
         label?: T;
-        linkType?: T;
-        page?: T;
-        url?: T;
+        link?: T;
         openInNewTab?: T;
       };
   secondaryAction?:
     | T
     | {
         label?: T;
-        linkType?: T;
-        page?: T;
-        url?: T;
+        link?: T;
         openInNewTab?: T;
       };
   image?: T;
@@ -1178,18 +1170,14 @@ export interface SystemComingSoonBlockSelect<T extends boolean = true> {
     | T
     | {
         label?: T;
-        linkType?: T;
-        page?: T;
-        url?: T;
+        link?: T;
         openInNewTab?: T;
       };
   secondaryAction?:
     | T
     | {
         label?: T;
-        linkType?: T;
-        page?: T;
-        url?: T;
+        link?: T;
         openInNewTab?: T;
       };
   image?: T;

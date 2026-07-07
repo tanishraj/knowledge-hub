@@ -34,7 +34,7 @@ export default async function AdminPreviewPage({ params }: PageProps) {
   const page = await payload.findByID({
     collection: 'pages',
     id: pageID,
-    depth: 1,
+    depth: 2,
     draft: true,
   })
 

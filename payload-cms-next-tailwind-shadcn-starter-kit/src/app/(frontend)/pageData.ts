@@ -68,7 +68,7 @@ const canCurrentRequestBypassSystemModes = cache(async (): Promise<boolean> => {
 
 const getPublishedPageByID = cache(
   async ({
-    depth = 1,
+    depth = 2,
     id,
   }: {
     depth?: number
@@ -125,7 +125,7 @@ export const getPageBySlug = cache(async (slug: string): Promise<Page | null> =>
         },
       ],
     },
-    depth: 1,
+    depth: 2,
     limit: 1,
   })
 
@@ -160,7 +160,7 @@ const getPageByPathname = cache(async (pathname: string): Promise<Page | null> =
         },
       ],
     },
-    depth: segments.length,
+    depth: Math.max(segments.length, 2),
     limit: 1,
   })
 
@@ -187,7 +187,7 @@ export const getHomepagePage = cache(async (): Promise<Page | null> => {
   }
 
   return getPublishedPageByID({
-    depth: 1,
+    depth: 2,
     id: homepageID,
   })
 })
